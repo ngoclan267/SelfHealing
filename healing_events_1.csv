@@ -1,0 +1,199 @@
+id,step_name,ui_version,original_by,original_value,healed_by,healed_value,attr_score,sem_score,struct_score,visual_score,ctx_score,total_score,healing_success,action,healed_at
+1,email_field,v2,css selector,"[data-testid=""login-email""]",xpath,//input[@placeholder='name@example.com'],0.7467,1.0,0.8479,0.7524,0.764,0.8308,1,AUTO_FIX,2026-05-23 22:39:06
+2,password_field,v2,css selector,"[data-testid=""login-password""]",xpath,//input[@placeholder='••••••••'],0.93,1.0,0.88,0.7396,0.764,0.8845,1,AUTO_FIX,2026-05-23 22:39:06
+3,login_button,v2,css selector,"[data-testid=""btn-login""]",id,btn-login,0.93,0.6359,1.0,0.7298,0.764,0.8195,1,AUTO_FIX,2026-05-23 22:39:07
+4,add_product_button,v2,css selector,"[data-testid=""btn-add-product""]",xpath,//a[normalize-space(text())='Tạo sản phẩm'],0.93,0.8652,0.88,0.7611,0.764,0.8558,1,AUTO_FIX,2026-05-23 22:39:27
+5,product_name_field,v2,css selector,"[data-testid=""product-name""]",name,name,0.93,1.0,0.88,0.747,0.764,0.8858,1,AUTO_FIX,2026-05-23 22:39:44
+6,product_price_field,v2,css selector,"[data-testid=""product-price""]",name,pr,0.93,1.0,0.88,0.7399,0.764,0.8846,1,AUTO_FIX,2026-05-23 22:39:46
+7,submit_product_button,v2,css selector,"[data-testid=""btn-add-product""]",xpath,//button[normalize-space(text())='XÁC NHẬN ĐĂNG SẢN PHẨM'],0.93,0.6533,0.88,0.6203,0.764,0.781,1,AUTO_FIX,2026-05-23 22:39:48
+8,email_field,v3,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='v3-login-email'],0.9916,1.0,0.815,0.7556,0.764,0.8909,1,AUTO_FIX,2026-05-23 22:40:16
+9,password_field,v3,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='v3-login-password'],0.9932,1.0,0.815,0.7454,0.764,0.8896,1,AUTO_FIX,2026-05-23 22:40:16
+10,login_button,v3,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='v3-btn-login'],0.99,1.0,0.62,0.7343,0.764,0.8478,1,AUTO_FIX,2026-05-23 22:40:16
+11,add_product_button,v3,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='v3-prod-btn-add'],0.9627,1.0,0.8406,0.7632,0.764,0.8895,1,AUTO_FIX,2026-05-23 22:40:34
+12,product_name_field,v3,css selector,"[data-testid=""product-name""]",xpath,//input[@data-testid='v3-ap-name'],0.9682,1.0,0.8496,0.747,0.764,0.89,1,AUTO_FIX,2026-05-23 22:40:52
+13,product_price_field,v3,css selector,"[data-testid=""product-price""]",xpath,//input[@data-testid='v3-ap-price'],0.9708,1.0,0.8496,0.7399,0.764,0.8895,1,AUTO_FIX,2026-05-23 22:40:54
+14,submit_product_button,v3,css selector,"[data-testid=""btn-add-product""]",xpath,//button[@data-testid='v3-ap-submit'],0.9559,1.0,0.6037,0.6203,0.764,0.816,1,AUTO_FIX,2026-05-23 22:40:55
+15,email_field,v4,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='v4-login-email'],0.796,1.0,0.8449,0.668,0.764,0.8291,1,AUTO_FIX,2026-05-23 22:41:23
+16,password_field,v4,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='v4-login-password'],0.8282,1.0,0.8584,0.6488,0.764,0.8373,1,AUTO_FIX,2026-05-23 22:41:23
+17,login_button,v4,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='v4-btn-login'],0.902,1.0,0.9606,0.6102,0.764,0.8711,1,AUTO_FIX,2026-05-23 22:41:24
+18,add_product_button,v4,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='v4-btn-add-product'],0.9056,1.0,0.8174,0.5473,0.764,0.8327,1,AUTO_FIX,2026-05-23 22:41:43
+19,product_name_field,v4,css selector,"[data-testid=""product-name""]",xpath,//input[@data-testid='v4-ap-name'],0.7482,1.0,0.8169,0.6563,0.484,0.775,1,AUTO_FIX,2026-05-23 22:42:00
+20,product_price_field,v4,css selector,"[data-testid=""product-price""]",xpath,//input[@data-testid='v4-ap-price'],0.7508,1.0,0.7901,0.5497,0.484,0.7523,1,AUTO_FIX,2026-05-23 22:42:02
+21,submit_product_button,v4,css selector,"[data-testid=""btn-add-product""]",xpath,//button[@data-testid='v4-ap-submit'],0.7359,1.0,0.9037,0.4851,0.484,0.76,1,AUTO_FIX,2026-05-23 22:42:04
+22,email_field,v5,css selector,"[data-testid=""login-email""]",xpath,//input[@placeholder='name@example.com'],0.93,1.0,0.83,0.6329,0.764,0.8564,1,AUTO_FIX,2026-05-23 22:42:31
+23,password_field,v5,css selector,"[data-testid=""login-password""]",xpath,//input[@placeholder='••••••••'],0.93,1.0,0.83,0.5889,0.764,0.8489,1,AUTO_FIX,2026-05-23 22:42:32
+24,login_button,v5,css selector,"[data-testid=""btn-login""]",id,btn-login,0.93,1.0,0.9625,0.5788,0.764,0.8737,1,AUTO_FIX,2026-05-23 22:42:32
+25,add_product_button,v5,css selector,"[data-testid=""btn-add-product""]",xpath,//a[normalize-space(text())='+ Thêm sản phẩm mới'],0.93,1.0,0.88,0.6847,0.764,0.8752,1,AUTO_FIX,2026-05-23 22:42:51
+26,product_name_field,v5,css selector,"[data-testid=""product-name""]",name,name,0.93,1.0,0.86,0.5893,0.764,0.855,1,AUTO_FIX,2026-05-23 22:43:08
+27,product_price_field,v5,css selector,"[data-testid=""product-price""]",name,pr,0.93,1.0,0.86,0.5894,0.764,0.855,1,AUTO_FIX,2026-05-23 22:43:10
+28,submit_product_button,v5,css selector,"[data-testid=""btn-add-product""]",xpath,//button[normalize-space(text())='ĐĂNG BÁN SẢN PHẨM'],0.93,1.0,0.86,0.5355,0.764,0.8458,1,AUTO_FIX,2026-05-23 22:43:12
+29,email_field,v6,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='v6-login-email'],0.2708,1.0,0.7882,0.7524,0.764,0.6903,1,SUGGEST,2026-05-23 22:43:39
+30,password_field,v6,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='v6-login-password'],0.3832,1.0,0.7612,0.7396,0.764,0.7131,1,SUGGEST,2026-05-23 22:43:39
+31,login_button,v6,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='v6-btn-login'],0.6925,0.6891,0.931,0.7298,0.764,0.7543,1,AUTO_FIX,2026-05-23 22:43:40
+32,add_product_button,v6,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='v6-prod-btn-add'],0.8827,0.9486,0.88,0.7637,0.764,0.8635,1,AUTO_FIX,2026-05-23 22:43:59
+33,product_name_field,v6,css selector,"[data-testid=""product-name""]",xpath,//input[@data-testid='v6-ap-spec-val-0'],0.71,1.0,0.8252,0.5401,0.764,0.7802,1,AUTO_FIX,2026-05-23 22:44:16
+34,product_price_field,v6,css selector,"[data-testid=""product-price""]",xpath,//input[@data-testid='v6-ap-gb-price-0'],0.7238,1.0,0.8311,0.5096,0.764,0.78,1,AUTO_FIX,2026-05-23 22:44:19
+35,submit_product_button,v6,css selector,"[data-testid=""btn-add-product""]",xpath,//button[@data-testid='v6-ap-submit'],0.8759,0.8733,0.88,0.6203,0.764,0.8192,1,AUTO_FIX,2026-05-23 22:44:20
+36,email_field,v7,css selector,"[data-testid=""login-email""]",xpath,//input[@placeholder='yourname@domain.com'],0.33,1.0,0.867,0.6398,0.484,0.6693,1,SUGGEST,2026-05-23 22:44:47
+37,password_field,v7,css selector,"[data-testid=""login-password""]",xpath,//input[@placeholder='Nhập mật khẩu của bạn'],0.33,1.0,0.8718,0.7286,0.484,0.6854,1,SUGGEST,2026-05-23 22:44:48
+38,login_button,v7,css selector,"[data-testid=""btn-login""]",id,submit-access,0.42,0.74,0.6949,0.681,0.484,0.6038,1,SUGGEST,2026-05-23 22:44:48
+39,add_product_button,v7,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='product-add-btn'],0.8893,0.9553,0.86,0.5359,0.764,0.8242,1,AUTO_FIX,2026-05-23 22:45:07
+40,product_name_field,v7,css selector,"[data-testid=""product-name""]",name,name,0.6714,1.0,0.9383,0.5212,0.484,0.7556,1,AUTO_FIX,2026-05-23 22:45:23
+41,product_price_field,v7,css selector,"[data-testid=""product-price""]",name,pr,0.62,1.0,0.9352,0.5261,0.484,0.742,1,SUGGEST,2026-05-23 22:45:25
+42,submit_product_button,v7,css selector,"[data-testid=""btn-add-product""]",xpath,//button[normalize-space(text())='Đăng xuất'],0.7375,0.7662,0.617,0.4099,0.484,0.6342,1,SUGGEST,2026-05-23 22:45:27
+43,email_field,v8,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='login-email_v8'],0.4916,0.87,0.7849,0.7488,0.764,0.7175,1,SUGGEST,2026-05-23 22:45:54
+44,password_field,v8,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='login-password_v8'],0.4666,0.87,0.769,0.744,0.764,0.7067,1,SUGGEST,2026-05-23 22:45:55
+45,login_button,v8,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='btn-login_v8'],0.7233,1.0,0.9811,0.7419,0.764,0.8493,1,AUTO_FIX,2026-05-23 22:45:55
+46,add_product_button,v8,css selector,"[data-testid=""btn-add-product""]",id,link-add-product,0.64,0.9136,0.7625,0.7514,0.764,0.764,1,AUTO_FIX,2026-05-23 22:46:15
+47,product_name_field,v8,css selector,"[data-testid=""product-name""]",name,name,0.55,1.0,0.7164,0.7837,0.68,0.7466,1,SUGGEST,2026-05-23 22:46:32
+48,product_price_field,v8,css selector,"[data-testid=""product-price""]",name,pr,0.64,1.0,0.7191,0.7621,0.68,0.7678,1,AUTO_FIX,2026-05-23 22:46:34
+49,submit_product_button,v8,css selector,"[data-testid=""btn-add-product""]",id,btn-submit-product,0.64,0.9329,0.7326,0.6203,0.68,0.7303,1,SUGGEST,2026-05-23 22:46:35
+50,email_field,v9,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='v9-email-input'],0.5136,0.87,0.757,0.7477,0.764,0.7177,1,SUGGEST,2026-05-23 22:47:03
+51,password_field,v9,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='v9-password-input'],0.704,0.87,0.8252,0.736,0.764,0.7807,1,AUTO_FIX,2026-05-23 22:47:03
+52,login_button,v9,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='v9-submit-login'],0.6427,0.8733,0.4542,0.7272,0.764,0.6893,1,SUGGEST,2026-05-23 22:47:03
+53,add_product_button,v9,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='v9-btn-new-product'],0.9809,0.8944,0.88,0.7632,0.764,0.8769,1,AUTO_FIX,2026-05-23 22:47:23
+54,product_name_field,v9,css selector,"[data-testid=""product-name""]",xpath,//input[@data-testid='v9-name'],0.7968,1.0,0.8064,0.747,0.484,0.8015,1,AUTO_FIX,2026-05-23 22:47:40
+55,product_price_field,v9,css selector,"[data-testid=""product-price""]",xpath,//input[@data-testid='v9-price'],0.89,1.0,0.8064,0.7399,0.484,0.8254,1,AUTO_FIX,2026-05-23 22:47:41
+56,submit_product_button,v9,css selector,"[data-testid=""btn-add-product""]",xpath,//button[@data-testid='v9-submit'],0.9417,0.861,0.6597,0.5818,0.484,0.7498,1,SUGGEST,2026-05-23 22:47:43
+57,email_field,v10,css selector,"[data-testid=""login-email""]",xpath,//input[@aria-label='Tài khoản email đăng nhập'],0.2242,0.87,0.6075,0.7004,0.624,0.5848,1,SUGGEST,2026-05-23 22:48:10
+58,password_field,v10,css selector,"[data-testid=""login-password""]",xpath,//input[@aria-label='Mật khẩu đăng nhập'],0.27,0.87,0.6049,0.6634,0.624,0.5903,1,SUGGEST,2026-05-23 22:48:11
+59,login_button,v10,css selector,"[data-testid=""btn-login""]",xpath,//button[@aria-label='Xác nhận và đăng nhập'],0.4657,0.6545,0.493,0.6404,0.624,0.5652,1,SUGGEST,2026-05-23 22:48:11
+60,add_product_button,v10,css selector,"[data-testid=""btn-add-product""]",xpath,//a[@data-testid='btn-add-product_v10'],0.9918,1.0,0.88,0.7632,0.764,0.9052,1,AUTO_FIX,2026-05-23 22:48:30
+61,product_name_field,v10,css selector,"[data-testid=""product-name""]",xpath,//input[@data-testid='cell-a-0'],0.711,1.0,0.734,0.731,0.484,0.7611,1,AUTO_FIX,2026-05-23 22:48:47
+62,product_price_field,v10,css selector,"[data-testid=""product-price""]",xpath,//input[@data-testid='cell-d-0'],0.7033,1.0,0.747,0.5418,0.484,0.7295,1,SUGGEST,2026-05-23 22:48:49
+63,submit_product_button,v10,css selector,"[data-testid=""btn-add-product""]",xpath,//button[@data-testid='publish-btn'],0.8833,0.848,0.5814,0.4986,0.484,0.7011,1,SUGGEST,2026-05-23 22:48:51
+64,email_field,v11,css selector,"[data-testid=""login-email""]",xpath,//input[@data-testid='auth-field-email'],0.4396,0.87,0.8129,0.6616,0.764,0.6942,1,SUGGEST,2026-05-23 22:49:18
+65,password_field,v11,css selector,"[data-testid=""login-password""]",xpath,//input[@data-testid='auth-field-password'],0.6291,0.87,0.8151,0.6246,0.764,0.7395,1,SUGGEST,2026-05-23 22:49:18
+66,login_button,v11,css selector,"[data-testid=""btn-login""]",xpath,//button[@data-testid='auth-submit-btn'],0.6135,1.0,0.81,0.6032,0.764,0.7619,1,AUTO_FIX,2026-05-23 22:49:19
+67,add_product_button,v11,css selector,"[data-testid=""btn-add-product""]",xpath,//a[normalize-space(text())='Thêm hàng mới'],0.8043,0.8575,0.8161,0.7464,0.764,0.8047,1,AUTO_FIX,2026-05-23 22:49:39
+68,product_name_field,v11,css selector,"[data-testid=""product-name""]",name,name,0.84,1.0,0.88,0.7279,0.6396,0.8433,1,AUTO_FIX,2026-05-23 22:49:56
+69,product_price_field,v11,css selector,"[data-testid=""product-price""]",name,pr,0.93,1.0,0.88,0.7226,0.6396,0.8667,1,AUTO_FIX,2026-05-23 22:49:58
+70,submit_product_button,v11,css selector,"[data-testid=""btn-add-product""]",xpath,//button[normalize-space(text())='XÁC NHẬN ĐĂNG SẢN PHẨM'],0.8671,0.8733,0.8612,0.6186,0.6396,0.7979,1,AUTO_FIX,2026-05-23 22:50:00
+71,register_email_field,v2,css selector,"[data-testid=""register-email""]",xpath,//input[@placeholder='name@example.com'],0.93,1.0,0.88,0.7524,0.764,0.8867,1,AUTO_FIX,2026-05-23 22:51:43
+72,register_password_field,v2,css selector,"[data-testid=""register-password""]",xpath,//input[@placeholder='••••••••'],0.93,1.0,0.88,0.7396,0.764,0.8845,1,AUTO_FIX,2026-05-23 22:51:44
+73,register_button,v2,css selector,"[data-testid=""btn-register""]",xpath,//button[normalize-space(text())='Hoàn tất đăng ký'],0.93,0.6313,1.0,0.7298,0.764,0.8184,1,AUTO_FIX,2026-05-23 22:51:44
+74,register_email_field,v3,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='v3-reg-email'],0.9785,1.0,0.815,0.7524,0.764,0.8868,1,AUTO_FIX,2026-05-23 22:52:08
+75,register_password_field,v3,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='v3-reg-password'],0.9825,1.0,0.815,0.7396,0.764,0.8857,1,AUTO_FIX,2026-05-23 22:52:09
+76,register_button,v3,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='v3-reg-btn-submit'],0.959,1.0,0.5973,0.7298,0.764,0.8341,1,AUTO_FIX,2026-05-23 22:52:09
+77,register_email_field,v4,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='v4-register-email'],0.8832,1.0,0.8271,0.6112,0.764,0.8395,1,AUTO_FIX,2026-05-23 22:52:34
+78,register_password_field,v4,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='v4-register-password'],0.8843,1.0,0.8299,0.5919,0.764,0.837,1,AUTO_FIX,2026-05-23 22:52:35
+79,register_button,v4,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='v4-btn-register'],0.8665,1.0,0.9339,0.578,0.764,0.8507,1,AUTO_FIX,2026-05-23 22:52:35
+80,register_email_field,v5,css selector,"[data-testid=""register-email""]",xpath,//input[@placeholder='name@example.com'],0.93,1.0,0.83,0.6326,0.764,0.8563,1,AUTO_FIX,2026-05-23 22:53:00
+81,register_password_field,v5,css selector,"[data-testid=""register-password""]",xpath,//input[@placeholder='••••••••'],0.93,1.0,0.83,0.5889,0.764,0.8489,1,AUTO_FIX,2026-05-23 22:53:00
+82,register_button,v5,css selector,"[data-testid=""btn-register""]",xpath,//button[normalize-space(text())='Đăng ký'],0.93,1.0,0.9403,0.5786,0.764,0.8692,1,AUTO_FIX,2026-05-23 22:53:01
+83,register_email_field,v6,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='v6-register-email'],0.4557,1.0,0.7941,0.7524,0.764,0.7414,1,SUGGEST,2026-05-23 22:53:25
+84,register_password_field,v6,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='v6-register-password'],0.3843,1.0,0.7877,0.7104,0.764,0.7137,1,SUGGEST,2026-05-23 22:53:26
+85,register_button,v6,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='v6-btn-register'],0.9122,0.696,1.0,0.7003,0.764,0.8241,1,AUTO_FIX,2026-05-23 22:53:26
+86,register_email_field,v7,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='field-register-email'],0.8776,1.0,0.8421,0.6721,0.764,0.8513,1,AUTO_FIX,2026-05-23 22:53:50
+87,register_password_field,v7,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='field-register-password'],0.8795,1.0,0.8449,0.6499,0.764,0.8486,1,AUTO_FIX,2026-05-23 22:53:51
+88,register_button,v7,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='action-register'],0.8648,1.0,0.9669,0.6274,0.764,0.8652,1,AUTO_FIX,2026-05-23 22:53:51
+89,register_email_field,v8,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='register-email_v8'],0.5391,0.87,0.8145,0.7488,0.764,0.7362,1,SUGGEST,2026-05-23 22:54:17
+90,register_password_field,v8,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='register-password_v8'],0.5402,0.87,0.8199,0.744,0.764,0.7368,1,SUGGEST,2026-05-23 22:54:17
+91,register_button,v8,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='btn-register_v8'],0.6394,0.6808,0.846,0.7419,0.764,0.723,1,SUGGEST,2026-05-23 22:54:18
+92,register_email_field,v9,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='v9-reg-email'],0.671,0.87,0.7777,0.7477,0.764,0.7643,1,AUTO_FIX,2026-05-23 22:54:42
+93,register_password_field,v9,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='v9-reg-password'],0.675,0.87,0.8162,0.736,0.764,0.7711,1,AUTO_FIX,2026-05-23 22:54:43
+94,register_button,v9,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='v9-reg-submit'],0.8903,0.8513,0.5973,0.7358,0.764,0.7809,1,AUTO_FIX,2026-05-23 22:54:43
+95,register_email_field,v10,css selector,"[data-testid=""register-email""]",xpath,//input[@data-testid='v10-email-field'],0.379,0.87,0.7512,0.5794,0.624,0.6347,1,SUGGEST,2026-05-23 22:55:08
+96,register_password_field,v10,css selector,"[data-testid=""register-password""]",xpath,//input[@data-testid='v10-pw-field'],0.2726,0.87,0.7332,0.7651,0.624,0.634,1,SUGGEST,2026-05-23 22:55:09
+97,register_button,v10,css selector,"[data-testid=""btn-register""]",xpath,//button[@data-testid='v10-create-account'],0.8158,0.6808,0.5452,0.644,0.624,0.6771,1,SUGGEST,2026-05-23 22:55:09
+98,register_email_field,v11,css selector,"[data-testid=""register-email""]",name,email,0.4,1.0,0.6896,0.7274,0.764,0.7013,1,SUGGEST,2026-05-23 22:55:34
+99,register_password_field,v11,css selector,"[data-testid=""register-password""]",name,password,0.4,1.0,0.685,0.7139,0.764,0.698,1,SUGGEST,2026-05-23 22:55:34
+100,register_button,v11,css selector,"[data-testid=""btn-register""]",xpath,//button[normalize-space(text())='Hoàn tất đăng ký'],0.8357,0.8513,0.964,0.7017,0.764,0.8337,1,AUTO_FIX,2026-05-23 22:55:35
+101,contact_name_field,v2,css selector,"[data-testid=""contact-name""]",xpath,//input[@placeholder='Họ và tên đầy đủ'],0.8737,1.0,0.88,0.7512,0.764,0.8713,1,AUTO_FIX,2026-05-23 22:59:39
+102,contact_phone_field,v2,css selector,"[data-testid=""contact-phone""]",xpath,//input[@placeholder='Số điện thoại để chúng tôi liên lạc'],0.8625,1.0,0.88,0.738,0.764,0.866,1,AUTO_FIX,2026-05-23 22:59:40
+103,contact_mess_field,v2,css selector,"[data-testid=""contact-mess""]",xpath,//input[@placeholder='Mô tả vấn đề bạn cần được hỗ trợ'],0.845,1.0,0.88,0.7245,0.764,0.859,1,AUTO_FIX,2026-05-23 22:59:41
+104,contact_submit_button,v2,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[normalize-space(text())='Gửi yêu cầu'],0.93,0.5583,0.88,0.716,0.764,0.7745,1,AUTO_FIX,2026-05-23 22:59:42
+105,contact_name_field,v3,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='v3-ct-name'],0.9745,1.0,0.845,0.7512,0.764,0.8915,1,AUTO_FIX,2026-05-23 23:00:10
+106,contact_phone_field,v3,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='v3-ct-phone'],0.9767,1.0,0.845,0.738,0.764,0.8898,1,AUTO_FIX,2026-05-23 23:00:11
+107,contact_mess_field,v3,css selector,"[data-testid=""contact-mess""]",xpath,//input[@data-testid='v3-ct-message'],0.9692,1.0,0.845,0.7245,0.764,0.8855,1,AUTO_FIX,2026-05-23 23:00:11
+108,contact_submit_button,v3,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='v3-ct-btn-submit'],0.9712,1.0,0.8545,0.6092,0.764,0.8684,1,AUTO_FIX,2026-05-23 23:00:12
+109,contact_name_field,v4,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='v4-contact-name'],0.8822,1.0,0.8411,0.7146,0.764,0.8596,1,AUTO_FIX,2026-05-23 23:00:40
+110,contact_phone_field,v4,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='v4-contact-phone'],0.8828,1.0,0.8411,0.7061,0.764,0.8583,1,AUTO_FIX,2026-05-23 23:00:40
+111,contact_mess_field,v4,css selector,"[data-testid=""contact-mess""]",xpath,//input[@data-testid='v4-contact-mess'],0.8822,1.0,0.8411,0.6848,0.764,0.8545,1,AUTO_FIX,2026-05-23 23:00:41
+112,contact_submit_button,v4,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='v4-btn-contact-submit'],0.806,1.0,0.725,0.6171,0.764,0.7992,1,AUTO_FIX,2026-05-23 23:00:42
+113,contact_name_field,v5,css selector,"[data-testid=""contact-name""]",xpath,//input[@placeholder='Nhập họ và tên của bạn'],0.93,1.0,0.845,0.5985,0.764,0.8535,1,AUTO_FIX,2026-05-23 23:01:09
+114,contact_phone_field,v5,css selector,"[data-testid=""contact-phone""]",xpath,//input[@placeholder='Nhập số điện thoại (10 chữ số)'],0.93,1.0,0.845,0.5555,0.764,0.8462,1,AUTO_FIX,2026-05-23 23:01:10
+115,contact_mess_field,v5,css selector,"[data-testid=""contact-mess""]",xpath,//input[@placeholder='Nhập lời nhắn của bạn (tối đa 500 ký tự)'],0.93,1.0,0.845,0.5257,0.764,0.8411,1,AUTO_FIX,2026-05-23 23:01:11
+116,contact_submit_button,v5,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[normalize-space(text())='Gửi thông tin'],0.93,1.0,0.8545,0.5261,0.764,0.8431,1,AUTO_FIX,2026-05-23 23:01:11
+117,contact_name_field,v6,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='v6-contact-name'],0.4997,1.0,0.7816,0.7512,0.764,0.7506,1,AUTO_FIX,2026-05-23 23:01:40
+118,contact_phone_field,v6,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='v6-contact-phone'],0.4691,1.0,0.7816,0.738,0.764,0.7401,1,SUGGEST,2026-05-23 23:01:41
+119,contact_mess_field,v6,css selector,"[data-testid=""contact-mess""]",xpath,//input[@data-testid='v6-contact-mess'],0.4238,1.0,0.7693,0.7245,0.764,0.7231,1,SUGGEST,2026-05-23 23:01:42
+120,contact_submit_button,v6,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='v6-btn-contact-submit'],0.9146,0.8328,0.88,0.716,0.764,0.8362,1,AUTO_FIX,2026-05-23 23:01:42
+121,contact_name_field,v7,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='ctrl-contact-name'],0.9879,1.0,0.865,0.511,0.764,0.8583,1,AUTO_FIX,2026-05-23 23:02:20
+122,contact_phone_field,v7,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='ctrl-contact-phone'],0.9887,1.0,0.865,0.5537,0.764,0.8658,1,AUTO_FIX,2026-05-23 23:02:21
+123,contact_mess_field,v7,css selector,"[data-testid=""contact-mess""]",xpath,//input[@data-testid='ctrl-contact-mess'],0.9879,1.0,0.865,0.5503,0.764,0.865,1,AUTO_FIX,2026-05-23 23:02:22
+124,contact_submit_button,v7,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='submit-contact'],0.848,1.0,0.8344,0.5514,0.764,0.8213,1,AUTO_FIX,2026-05-23 23:02:22
+125,contact_name_field,v8,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='contact-name_v8'],0.6085,0.87,0.8079,0.7222,0.764,0.7491,1,SUGGEST,2026-05-23 23:02:51
+126,contact_phone_field,v8,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='contact-phone_v8'],0.5753,0.87,0.8095,0.7085,0.764,0.7382,1,SUGGEST,2026-05-23 23:02:51
+127,contact_mess_field,v8,css selector,"[data-testid=""contact-mess""]",xpath,//input[@data-testid='contact-mess_v8'],0.5078,0.87,0.7964,0.6947,0.764,0.715,1,SUGGEST,2026-05-23 23:02:52
+128,contact_submit_button,v8,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='btn-contact-submit_v8'],0.6313,0.7916,0.7212,0.6822,0.764,0.7123,1,SUGGEST,2026-05-23 23:02:53
+129,contact_name_field,v9,css selector,"[data-testid=""contact-name""]",xpath,//input[@data-testid='v9-contact-name'],0.7839,0.87,0.7933,0.6445,0.764,0.7804,1,AUTO_FIX,2026-05-23 23:03:21
+130,contact_phone_field,v9,css selector,"[data-testid=""contact-phone""]",xpath,//input[@data-testid='v9-contact-phone'],0.6866,0.87,0.7852,0.7252,0.764,0.7662,1,AUTO_FIX,2026-05-23 23:03:21
+131,contact_submit_button,v9,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@data-testid='v9-contact-submit'],0.9167,0.7783,0.8545,0.5867,0.764,0.7966,1,AUTO_FIX,2026-05-23 23:03:21
+132,contact_name_field,v10,css selector,"[data-testid=""contact-name""]",xpath,//input[@aria-label='Họ và tên'],0.3892,0.87,0.7585,0.6787,0.764,0.6726,1,SUGGEST,2026-05-23 23:03:49
+133,contact_phone_field,v10,css selector,"[data-testid=""contact-phone""]",xpath,//input[@aria-label='Số điện thoại'],0.3117,0.87,0.756,0.6407,0.764,0.6448,1,SUGGEST,2026-05-23 23:03:50
+134,contact_submit_button,v10,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[@aria-label='Gửi tin nhắn liên hệ'],0.7243,0.8227,0.8222,0.5247,0.764,0.7383,1,SUGGEST,2026-05-23 23:03:50
+135,contact_name_field,v11,css selector,"[data-testid=""contact-name""]",xpath,//input[@placeholder='Họ và tên đầy đủ của bạn'],0.8962,0.87,0.88,0.7333,0.764,0.8431,1,AUTO_FIX,2026-05-23 23:04:18
+136,contact_phone_field,v11,css selector,"[data-testid=""contact-phone""]",xpath,//input[@placeholder='Số điện thoại (10 chữ số)'],0.9171,0.87,0.88,0.7206,0.764,0.8466,1,AUTO_FIX,2026-05-23 23:04:19
+137,contact_mess_field,v11,css selector,"[data-testid=""contact-mess""]",xpath,//input[@placeholder='Mô tả chi tiết vấn đề bạn cần hỗ trợ'],0.8447,0.87,0.88,0.7058,0.764,0.8245,1,AUTO_FIX,2026-05-23 23:04:20
+138,contact_submit_button,v11,css selector,"[data-testid=""btn-contact-submit""]",xpath,//button[normalize-space(text())='Gửi yêu cầu ngay'],0.7833,0.7772,0.844,0.6969,0.764,0.777,1,AUTO_FIX,2026-05-23 23:04:21
+139,search_input,v2,css selector,"[data-testid=""search-input""]",xpath,//input[@placeholder='Gõ tên hàng hoá cần tìm...'],0.55,1.0,0.7286,0.7545,0.764,0.7542,1,AUTO_FIX,2026-05-23 23:09:06
+140,filter_iphone_button,v2,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[normalize-space(text())='Apple iPhone'],0.93,0.8733,0.88,0.7441,0.764,0.8549,1,AUTO_FIX,2026-05-23 23:09:57
+141,filter_ipad_button,v2,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[normalize-space(text())='Apple iPad'],0.93,0.8371,0.88,0.7454,0.764,0.8288,1,AUTO_FIX,2026-05-23 23:10:49
+142,filter_macbook_button,v2,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[normalize-space(text())='MacBook'],0.93,1.0,0.88,0.7414,0.764,0.85,1,AUTO_FIX,2026-05-23 23:11:39
+143,filter_airpods_button,v2,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[normalize-space(text())='AirPods'],0.93,1.0,0.88,0.7459,0.764,0.852,1,AUTO_FIX,2026-05-23 23:12:30
+144,filter_Tất cả_button,v2,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[normalize-space(text())='Tất cả danh mục'],0.93,0.8371,0.88,0.7229,0.764,0.8191,1,AUTO_FIX,2026-05-23 23:13:21
+145,search_input,v3,css selector,"[data-testid=""search-input""]",xpath,//input[@data-testid='v3-prod-search'],0.6723,1.0,0.6986,0.7545,0.764,0.7585,1,AUTO_FIX,2026-05-23 23:13:40
+146,filter_iphone_button,v3,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[@data-testid='v3-prod-filter-iphone'],0.9816,1.0,0.7249,0.7471,0.764,0.8455,1,AUTO_FIX,2026-05-23 23:14:31
+147,filter_ipad_button,v3,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[@data-testid='v3-prod-filter-ipad'],0.9794,1.0,0.7167,0.7457,0.764,0.8431,1,AUTO_FIX,2026-05-23 23:15:22
+148,filter_macbook_button,v3,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[@data-testid='v3-prod-filter-macbook'],0.9825,1.0,0.6999,0.7443,0.764,0.841,1,AUTO_FIX,2026-05-23 23:16:16
+149,filter_airpods_button,v3,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[@data-testid='v3-prod-filter-airpods'],0.9825,1.0,0.6874,0.742,0.764,0.8383,1,AUTO_FIX,2026-05-23 23:17:04
+150,filter_Tất cả_button,v3,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[@data-testid='v3-prod-filter-all'],0.9781,1.0,0.7417,0.7481,0.764,0.8472,1,AUTO_FIX,2026-05-23 23:17:55
+151,search_input,v4,css selector,"[data-testid=""search-input""]",xpath,//input[@data-testid='v4-search-input'],0.5189,1.0,0.641,0.6328,0.764,0.6552,1,SUGGEST,2026-05-23 23:18:13
+152,filter_iphone_button,v4,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[@data-testid='v4-btn-filter-iphone'],0.7743,1.0,0.7721,0.6579,0.764,0.7556,1,AUTO_FIX,2026-05-23 23:19:04
+153,filter_ipad_button,v4,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[@data-testid='v4-btn-filter-ipad'],0.7736,1.0,0.7596,0.6876,0.764,0.7665,1,AUTO_FIX,2026-05-23 23:19:56
+154,filter_macbook_button,v4,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[@data-testid='v4-btn-filter-macbook'],0.7746,1.0,0.7596,0.5401,0.764,0.7033,1,SUGGEST,2026-05-23 23:20:47
+155,filter_airpods_button,v4,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[@data-testid='v4-btn-filter-airpods'],0.7746,1.0,0.7721,0.5401,0.764,0.705,1,SUGGEST,2026-05-23 23:21:38
+156,filter_Tất cả_button,v4,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[@data-testid='v4-btn-filter-all'],0.7732,1.0,0.7891,0.6236,0.764,0.7429,1,SUGGEST,2026-05-23 23:22:27
+157,search_input,v5,css selector,"[data-testid=""search-input""]",xpath,//input[@placeholder='Tìm kiếm sản phẩm (Viết đúng chính tả...)'],0.64,1.0,0.7286,0.673,0.764,0.7185,1,SUGGEST,2026-05-23 23:22:45
+158,filter_iphone_button,v5,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[normalize-space(text())='IPHONE'],0.93,1.0,0.88,0.6656,0.764,0.8174,1,AUTO_FIX,2026-05-23 23:23:36
+159,filter_ipad_button,v5,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[normalize-space(text())='IPAD'],0.93,1.0,0.88,0.6652,0.764,0.8173,1,AUTO_FIX,2026-05-23 23:24:28
+160,filter_macbook_button,v5,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[normalize-space(text())='MACBOOK'],0.93,1.0,0.88,0.6645,0.764,0.817,1,AUTO_FIX,2026-05-23 23:25:18
+161,filter_airpods_button,v5,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[normalize-space(text())='AIRPODS'],0.93,1.0,0.88,0.6638,0.764,0.8407,1,AUTO_FIX,2026-05-23 23:26:10
+162,filter_Tất cả_button,v5,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[normalize-space(text())='TẤT CẢ'],0.93,1.0,0.88,0.6662,0.764,0.8416,1,AUTO_FIX,2026-05-23 23:27:01
+163,search_input,v6,css selector,"[data-testid=""search-input""]",xpath,//input[@data-testid='v6-prod-search'],0.3523,1.0,0.6832,0.7545,0.764,0.7374,1,SUGGEST,2026-05-23 23:27:20
+164,filter_iphone_button,v6,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[@data-testid='v6-prod-filter-iphone'],0.9016,1.0,0.88,0.7471,0.764,0.8673,1,AUTO_FIX,2026-05-23 23:28:11
+165,filter_ipad_button,v6,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[@data-testid='v6-prod-filter-ipad'],0.8994,1.0,0.88,0.7457,0.764,0.8663,1,AUTO_FIX,2026-05-23 23:29:03
+166,filter_macbook_button,v6,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[@data-testid='v6-prod-filter-macbook'],0.9025,1.0,0.88,0.7443,0.764,0.8664,1,AUTO_FIX,2026-05-23 23:29:52
+167,filter_airpods_button,v6,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[@data-testid='v6-prod-filter-airpods'],0.9025,1.0,0.88,0.742,0.764,0.8655,1,AUTO_FIX,2026-05-23 23:30:43
+168,filter_Tất cả_button,v6,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[@data-testid='v6-prod-filter-all'],0.8981,1.0,0.88,0.7481,0.764,0.867,1,AUTO_FIX,2026-05-23 23:31:34
+169,search_input,v7,css selector,"[data-testid=""search-input""]",xpath,//input[@data-testid='product-search'],0.9623,1.0,0.8757,0.7037,0.764,0.8623,1,AUTO_FIX,2026-05-23 23:31:52
+170,filter_iphone_button,v7,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[@data-testid='category-iphone'],0.8271,1.0,0.8751,0.6845,0.764,0.8272,1,AUTO_FIX,2026-05-23 23:32:41
+171,filter_ipad_button,v7,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[@data-testid='category-ipad'],0.8233,1.0,0.8751,0.6835,0.764,0.8261,1,AUTO_FIX,2026-05-23 23:33:33
+172,filter_macbook_button,v7,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[@data-testid='category-macbook'],0.8286,1.0,0.8751,0.6812,0.764,0.8263,1,AUTO_FIX,2026-05-23 23:34:24
+173,filter_airpods_button,v7,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[@data-testid='category-airpods'],0.8286,1.0,0.8751,0.6775,0.764,0.8248,1,AUTO_FIX,2026-05-23 23:35:12
+174,filter_Tất cả_button,v7,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[@data-testid='category-all'],0.8797,1.0,0.8751,0.6843,0.764,0.8379,1,AUTO_FIX,2026-05-23 23:36:03
+175,search_input,v8,css selector,"[data-testid=""search-input""]",name,search,0.315,1.0,0.6868,0.7545,0.764,0.7302,1,SUGGEST,2026-05-23 23:36:22
+176,filter_iphone_button,v8,css selector,"[data-testid=""btn-filter-iphone""]",id,filter-btn-iphone,0.64,1.0,0.5741,0.7471,0.764,0.7816,1,AUTO_FIX,2026-05-23 23:37:15
+177,filter_ipad_button,v8,css selector,"[data-testid=""btn-filter-ipad""]",id,filter-btn-ipad,0.64,1.0,0.5756,0.7457,0.764,0.7812,1,AUTO_FIX,2026-05-23 23:38:05
+178,filter_macbook_button,v8,css selector,"[data-testid=""btn-filter-macbook""]",id,filter-btn-macbook,0.64,1.0,0.5733,0.7443,0.764,0.7804,1,AUTO_FIX,2026-05-23 23:38:55
+179,filter_airpods_button,v8,css selector,"[data-testid=""btn-filter-airpods""]",id,filter-btn-airpods,0.64,1.0,0.5733,0.742,0.764,0.7795,1,AUTO_FIX,2026-05-23 23:39:45
+180,filter_Tất cả_button,v8,css selector,"[data-testid=""btn-filter-all""]",id,filter-btn-all,0.64,1.0,0.5763,0.7481,0.764,0.7822,1,AUTO_FIX,2026-05-23 23:40:36
+181,search_input,v9,css selector,"[data-testid=""search-input""]",xpath,//input[@data-testid='v9-search'],0.9045,1.0,0.8511,0.7545,0.764,0.8763,1,AUTO_FIX,2026-05-23 23:40:54
+182,filter_iphone_button,v9,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[@data-testid='v9-filter-iphone'],0.9894,1.0,0.88,0.7471,0.764,0.8906,1,AUTO_FIX,2026-05-23 23:41:46
+183,filter_ipad_button,v9,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[@data-testid='v9-filter-ipad'],0.9879,1.0,0.88,0.7457,0.764,0.8898,1,AUTO_FIX,2026-05-23 23:42:38
+184,filter_macbook_button,v9,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[@data-testid='v9-filter-macbook'],0.99,1.0,0.88,0.7443,0.764,0.8897,1,AUTO_FIX,2026-05-23 23:43:29
+185,filter_airpods_button,v9,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[@data-testid='v9-filter-airpods'],0.99,1.0,0.88,0.742,0.764,0.8888,1,AUTO_FIX,2026-05-23 23:44:18
+186,filter_Tất cả_button,v9,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[@data-testid='v9-filter-all'],0.987,1.0,0.88,0.7481,0.764,0.8906,1,AUTO_FIX,2026-05-23 23:45:09
+187,search_input,v10,css selector,"[data-testid=""search-input""]",xpath,//input[@placeholder='Tìm kiếm sản phẩm (Viết đúng chính tả...)'],0.93,1.0,0.88,0.7545,0.764,0.883,1,AUTO_FIX,2026-05-23 23:45:28
+188,filter_iphone_button,v10,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[normalize-space(text())='IPHONE'],0.93,1.0,0.8023,0.6749,0.764,0.8471,1,AUTO_FIX,2026-05-23 23:46:17
+189,filter_ipad_button,v10,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[normalize-space(text())='IPAD'],0.93,1.0,0.7898,0.6999,0.764,0.8556,1,AUTO_FIX,2026-05-23 23:47:05
+190,filter_macbook_button,v10,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[normalize-space(text())='MACBOOK'],0.93,1.0,0.7773,0.697,0.764,0.8535,1,AUTO_FIX,2026-05-23 23:47:56
+191,filter_airpods_button,v10,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[normalize-space(text())='AIRPODS'],0.93,1.0,0.7648,0.742,0.764,0.8696,1,AUTO_FIX,2026-05-23 23:48:48
+192,filter_Tất cả_button,v10,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[normalize-space(text())='TẤT CẢ'],0.93,1.0,0.8193,0.7481,0.764,0.876,1,AUTO_FIX,2026-05-23 23:49:38
+193,search_input,v11,css selector,"[data-testid=""search-input""]",xpath,//input[@placeholder='Nhập tên sản phẩm cần tìm...'],0.855,1.0,0.88,0.7355,0.764,0.8626,1,AUTO_FIX,2026-05-23 23:49:57
+194,filter_iphone_button,v11,css selector,"[data-testid=""btn-filter-iphone""]",xpath,//button[normalize-space(text())='IPHONE'],0.842,1.0,0.88,0.7287,0.764,0.8577,1,AUTO_FIX,2026-05-23 23:50:48
+195,filter_ipad_button,v11,css selector,"[data-testid=""btn-filter-ipad""]",xpath,//button[normalize-space(text())='IPAD'],0.842,1.0,0.88,0.7277,0.764,0.8573,1,AUTO_FIX,2026-05-23 23:51:39
+196,filter_macbook_button,v11,css selector,"[data-testid=""btn-filter-macbook""]",xpath,//button[normalize-space(text())='MACBOOK'],0.842,1.0,0.88,0.7263,0.764,0.8568,1,AUTO_FIX,2026-05-23 23:52:31
+197,filter_airpods_button,v11,css selector,"[data-testid=""btn-filter-airpods""]",xpath,//button[normalize-space(text())='AIRPODS'],0.842,1.0,0.88,0.7248,0.764,0.8562,1,AUTO_FIX,2026-05-23 23:53:22
+198,filter_Tất cả_button,v11,css selector,"[data-testid=""btn-filter-all""]",xpath,//button[normalize-space(text())='TẤT CẢ'],0.93,1.0,0.88,0.7294,0.764,0.8735,1,AUTO_FIX,2026-05-23 23:54:16
