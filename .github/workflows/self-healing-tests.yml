@@ -152,7 +152,7 @@ jobs:
           if [ "$MODULE" == "all" ] || [ -z "$MODULE" ]; then
             if [ "$UI" == "v1" ]; then
               # v1: chạy toàn bộ test suite
-              pytest backend/tests/ \
+              pytest tests/ \
                 -v --tb=short \
                 --junit-xml=reports/junit-$UI.xml \
                 --html=reports/report-$UI.html \
@@ -160,7 +160,7 @@ jobs:
                 2>&1 | tee logs/test-$UI.log
             else
               # v2–v11: chỉ chạy 2 healing-check cases / module
-              pytest backend/tests/ \
+              pytest tests/ \
                 -v --tb=short \
                 --junit-xml=reports/junit-$UI.xml \
                 --html=reports/report-$UI.html \
@@ -170,7 +170,7 @@ jobs:
             fi
           else
             # Chạy 1 module cụ thể
-            pytest backend/tests/test_${MODULE}.py \
+            pytest tests/test_${MODULE}.py \
               -v --tb=short \
               --junit-xml=reports/junit-${MODULE}-$UI.xml \
               --html=reports/report-${MODULE}-$UI.html \
