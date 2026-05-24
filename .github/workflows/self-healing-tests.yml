@@ -231,15 +231,6 @@ jobs:
           path: all-junit/
           merge-multiple: true
 
-      - name: Publish Test Results (PR comment)
-        uses: EnricoMi/publish-unit-test-results-action@v2
-        if: always()
-        with:
-          files: all-junit/**/*.xml
-          check_name: "Selenium Test Results"
-          comment_mode: always
-          fail_on: "test failures"
-
       - name: Generate summary table
         if: always()
         run: |
