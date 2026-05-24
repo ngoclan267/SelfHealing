@@ -23,67 +23,11 @@ env:
 
 jobs:
   # ──────────────────────────────────────────────
-  # JOB 1: Xác định matrix UI versions
+  # JOB 1: Chạy v1 TRƯỚC — tạo snapshot + seed healing.db
   # ──────────────────────────────────────────────
-  setup:
-    name: "Setup & Cache"
+  test-v1:
+    name: "Test UI v1 (tạo snapshot)"
     runs-on: ubuntu-latest
-    outputs:
-      ui-versions: ${{ steps.set-versions.outputs.versions }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set UI versions matrix
-        id: set-versions
-        run: |
-          INPUT="${{ github.event.inputs.ui_version }}"
-          if [ "$INPUT" == "all" ] || [ -z "$INPUT" ]; then
-            echo 'versions=["v1","v2","v3","v4","v5","v6","v7","v8","v9","v10","v11"]' >> $GITHUB_OUTPUT
-          else
-            echo "versions=[\"$INPUT\"]" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Setup Node.js & cache
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        id: node-cache
-        with:
-          path: myapp/node_modules
-          key: node-${{ runner.os }}-${{ hashFiles('myapp/package-lock.json') }}
-          restore-keys: node-${{ runner.os }}-
-
-      - name: Install frontend dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        working-directory: myapp
-        run: npm ci
-
-      - name: Setup Python & cache
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-  # ──────────────────────────────────────────────
-  # JOB 2: Chạy tests theo từng UI version
-  # ──────────────────────────────────────────────
-  test:
-    name: "Test UI ${{ matrix.ui-version }}"
-    runs-on: ubuntu-latest
-    needs: setup
-    strategy:
-      fail-fast: false
-      matrix:
-        ui-version: ${{ fromJson(needs.setup.outputs.ui-versions) }}
 
     steps:
       - name: Checkout repository
@@ -107,47 +51,164 @@ jobs:
           cache: "npm"
           cache-dependency-path: myapp/package-lock.json
 
-      - name: Restore node_modules cache
-        uses: actions/cache@v4
-        with:
-          path: myapp/node_modules
-          key: node-${{ runner.os }}-${{ hashFiles('myapp/package-lock.json') }}
-          restore-keys: node-${{ runner.os }}-
-
-      - name: Install frontend dependencies (nếu cache miss)
+      - name: Install frontend dependencies
         working-directory: myapp
         run: npm ci
 
       # ── Chrome ───────────────────────────────────
-      - name: Setup Chrome & ChromeDriver
+      - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
-      
-      # ── Start MongoDB ─────────────────────────────
+
+      # ── MongoDB ──────────────────────────────────
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.11.0
         with:
           mongodb-version: '6.0'
 
-      # ── Start Backend server ───────────────────────
+      # ── Backend server ───────────────────────────
       - name: Start Backend server
         run: |
           npm install
           node server.js &
           echo "Waiting for backend at port 5000..."
           timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-          echo "Backend ready!".
+          echo "Backend ready!"
 
-      # ── Seed data ─────────────────────────────────
-      - name: Seed database
+      # ── Switch UI v1 ─────────────────────────────
+      - name: Switch to UI v1
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
+
+      # ── Start React dev server ───────────────────
+      - name: Start React dev server
+        working-directory: myapp
         run: |
-          curl -sf http://localhost:3000 > /dev/null 2>&1 && \
-          node -e "
-            const fs = require('fs');
-            const data = JSON.parse(fs.readFileSync('seed_data.json'));
-            console.log('Seed data loaded:', Object.keys(data));
-          " || echo "Skipping seed"
+          npm run dev &
+          echo "Waiting for Vite..."
+          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
+          echo "React ready!"
+
+      # ── Tạo thư mục output ───────────────────────
+      - name: Create output directories
+        run: mkdir -p reports logs snapshots knowledge_base
+
+      # ── Chạy toàn bộ test v1 ─────────────────────
+      - name: Run Selenium Tests (UI v1)
+        run: |
+          MODULE="${{ github.event.inputs.test_module }}"
+          if [ "$MODULE" == "all" ] || [ -z "$MODULE" ]; then
+            pytest tests/ \
+              -v --tb=short \
+              --junit-xml=reports/junit-v1.xml \
+              --html=reports/report-v1.html \
+              --self-contained-html \
+              2>&1 | tee logs/test-v1.log
+          else
+            pytest tests/test_${MODULE}.py \
+              -v --tb=short \
+              --junit-xml=reports/junit-v1.xml \
+              --html=reports/report-v1.html \
+              --self-contained-html \
+              2>&1 | tee logs/test-v1.log
+          fi
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+          HEADLESS: "true"
+          PYTHONPATH: ${{ github.workspace }}
+
+      # ── Upload snapshot + healing.db để v2-v11 dùng ──
+      - name: Upload snapshots & healing.db từ v1
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v1-artifacts
+          path: |
+            snapshots/
+            knowledge_base/
+            healing.db
+          retention-days: 1
+
+      - name: Upload test report v1
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-v1
+          path: |
+            reports/
+            logs/
+          retention-days: 14
+
+  # ──────────────────────────────────────────────
+  # JOB 2: Chạy v2-v11 SONG SONG sau khi v1 xong
+  #         Mỗi version download snapshot từ v1
+  #         Heal thành công → ghi vào healing.db riêng
+  #         → upload lên để job merge tổng hợp
+  # ──────────────────────────────────────────────
+  test-others:
+    name: "Test UI ${{ matrix.ui-version }}"
+    runs-on: ubuntu-latest
+    needs: test-v1
+    strategy:
+      fail-fast: false
+      matrix:
+        ui-version: ["v2","v3","v4","v5","v6","v7","v8","v9","v10","v11"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Python ──────────────────────────────────
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # ── Node / React ─────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: myapp/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: myapp
+        run: npm ci
+
+      # ── Chrome ───────────────────────────────────
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      # ── MongoDB ──────────────────────────────────
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: '6.0'
+
+      # ── Backend server ───────────────────────────
+      - name: Start Backend server
+        run: |
+          npm install
+          node server.js &
+          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
+          echo "Backend ready!"
+
+      # ── Download snapshot + healing.db từ v1 ─────
+      - name: Download v1 artifacts (snapshot + healing.db)
+        uses: actions/download-artifact@v4
+        with:
+          name: v1-artifacts
+          path: .
+
       # ── Switch UI version ────────────────────────
       - name: Switch to UI ${{ matrix.ui-version }}
         run: bash myapp/src_mutated/switch_ui.sh ${{ matrix.ui-version }}
@@ -159,56 +220,39 @@ jobs:
         working-directory: myapp
         run: |
           npm run dev &
-          echo "Waiting for Vite to be ready..."
           timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-          echo "React app is ready!"
+          echo "React ready!"
 
       # ── Tạo thư mục output ───────────────────────
       - name: Create output directories
         run: mkdir -p reports logs
 
-      # ── Chạy tests ───────────────────────────────
+      # ── Chạy healing test ────────────────────────
       - name: Run Selenium Tests (UI ${{ matrix.ui-version }})
         run: |
-          MODULE="${{ github.event.inputs.test_module }}"
           UI="${{ matrix.ui-version }}"
-
-          if [ "$MODULE" == "all" ] || [ -z "$MODULE" ]; then
-            if [ "$UI" == "v1" ]; then
-              # v1: chạy toàn bộ test suite
-              pytest tests/ \
-                -v --tb=short \
-                --junit-xml=reports/junit-$UI.xml \
-                --html=reports/report-$UI.html \
-                --self-contained-html \
-                2>&1 | tee logs/test-$UI.log
-            else
-              # v2–v11: chỉ chạy 2 healing-check cases / module
-              pytest tests/ \
-                -v --tb=short \
-                --junit-xml=reports/junit-$UI.xml \
-                --html=reports/report-$UI.html \
-                --self-contained-html \
-                -k "Healing" \
-                2>&1 | tee logs/test-$UI.log
-            fi
-          else
-            # Chạy 1 module cụ thể
-            pytest tests/test_${MODULE}.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-${MODULE}-$UI.xml \
-              --html=reports/report-${MODULE}-$UI.html \
-              --self-contained-html \
-              2>&1 | tee logs/test-${MODULE}-$UI.log
-          fi
+          pytest tests/ \
+            -v --tb=short \
+            --junit-xml=reports/junit-$UI.xml \
+            --html=reports/report-$UI.html \
+            --self-contained-html \
+            -k "Healing" \
+            2>&1 | tee logs/test-$UI.log
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
-          # PYTHONPATH trỏ vào backend để import được core.* và tests.*
-          PYTHONPATH: ${{ github.workspace }}/backend
+          PYTHONPATH: ${{ github.workspace }}
 
-      # ── Upload artifacts ─────────────────────────
-      - name: Upload test reports
+      # ── Upload healing.db sau khi heal ───────────
+      - name: Upload healing.db sau khi heal ${{ matrix.ui-version }}
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: healing-db-${{ matrix.ui-version }}
+          path: healing.db
+          retention-days: 1
+
+      - name: Upload test report ${{ matrix.ui-version }}
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -216,72 +260,220 @@ jobs:
           path: |
             reports/
             logs/
-            backend/snapshots/
-            backend/healing.db
           retention-days: 14
 
-      - name: Upload JUnit XML
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: junit-${{ matrix.ui-version }}
-          path: reports/junit-*.xml
-          retention-days: 7
-
   # ──────────────────────────────────────────────
-  # JOB 3: Tổng hợp & publish report
+  # JOB 3: Merge tất cả healing.db + trigger retrain nếu đủ events
   # ──────────────────────────────────────────────
-  report:
-    name: "Publish Test Report"
+  merge-and-train:
+    name: "Merge DB & Train Model"
     runs-on: ubuntu-latest
-    needs: test
+    needs: test-others
     if: always()
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download all test reports
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      # ── Download healing.db từ v1 ─────────────────
+      - name: Download v1-artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: v1-artifacts
+          path: v1-artifacts/
+
+      # ── Download healing.db từ v2-v11 ────────────
+      - name: Download healing DBs từ v2-v11
+        uses: actions/download-artifact@v4
+        with:
+          pattern: healing-db-v*
+          path: healing-dbs/
+          merge-multiple: false
+
+      # ── Merge tất cả DB lại ──────────────────────
+      - name: Merge healing databases
+        run: |
+          python - << 'EOF'
+          import sqlite3
+          import shutil
+          import os
+          from pathlib import Path
+
+          # Copy healing.db từ v1 làm base
+          base_db = Path("healing.db")
+          shutil.copy("v1-artifacts/healing.db", base_db)
+          print(f"Base DB từ v1: {base_db}")
+
+          # Merge từng DB của v2-v11
+          for db_dir in sorted(Path("healing-dbs").glob("healing-db-v*")):
+            src_db = db_dir / "healing.db"
+            if not src_db.exists():
+              print(f"Bỏ qua {db_dir} (không có healing.db)")
+              continue
+
+            version = db_dir.name.replace("healing-db-", "")
+            print(f"Merging {version}...")
+
+            src_conn = sqlite3.connect(str(src_db))
+            dst_conn = sqlite3.connect(str(base_db))
+            dst_conn.execute("PRAGMA journal_mode=WAL")
+
+            # Merge healing_events
+            events = src_conn.execute(
+              "SELECT step_name, ui_version, original_by, original_value, "
+              "healed_by, healed_value, attr_score, sem_score, struct_score, "
+              "visual_score, ctx_score, total_score, healing_success, action "
+              "FROM healing_events WHERE ui_version = ?", (version,)
+            ).fetchall()
+
+            if events:
+              dst_conn.executemany("""
+                INSERT OR IGNORE INTO healing_events (
+                  step_name, ui_version, original_by, original_value,
+                  healed_by, healed_value, attr_score, sem_score, struct_score,
+                  visual_score, ctx_score, total_score, healing_success, action
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+              """, events)
+
+            # Merge candidate_scores
+            candidates = src_conn.execute(
+              "SELECT step_name, ui_version, attr_score, sem_score, struct_score, "
+              "visual_score, ctx_score, total_score, cand_tag, cand_testid, "
+              "cand_text, is_correct FROM candidate_scores WHERE ui_version = ?", (version,)
+            ).fetchall()
+
+            if candidates:
+              dst_conn.executemany("""
+                INSERT OR IGNORE INTO candidate_scores (
+                  step_name, ui_version, attr_score, sem_score, struct_score,
+                  visual_score, ctx_score, total_score, cand_tag, cand_testid,
+                  cand_text, is_correct
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+              """, candidates)
+
+            dst_conn.commit()
+            src_conn.close()
+            dst_conn.close()
+            print(f"  -> Merged {len(events)} events, {len(candidates)} candidates")
+
+          # In thống kê tổng
+          conn = sqlite3.connect(str(base_db))
+          total = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+          print(f"\nTổng heal thành công: {total}")
+          conn.close()
+          EOF
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      # ── Trigger retrain nếu đủ events ────────────
+      - name: Check & trigger model retrain
+        run: |
+          python - << 'EOF'
+          import sys
+          sys.path.insert(0, ".")
+          from core.Logistic_weight_model import LogisticWeightModel
+
+          model = LogisticWeightModel(db_path="healing.db")
+          total = model._count_successful_heals()
+          history = model._count_retrain_history()
+
+          first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 140
+          retrain_every   = LogisticWeightModel.RETRAIN_EVERY        # 20
+
+          print(f"Tổng heal thành công: {total}")
+          print(f"Số lần đã train: {history}")
+          print(f"Ngưỡng train lần đầu: {first_threshold}")
+
+          if total < first_threshold:
+            print(f"Chưa đủ data để train ({total}/{first_threshold})")
+          else:
+            should_have_trained = 1 + (total - first_threshold) // retrain_every
+            if should_have_trained > history:
+              print(f"Đủ điều kiện retrain lần #{history + 1}! Bắt đầu train...")
+              new_weights = model.retrain()
+              if new_weights:
+                print(f"Train thành công! Weights mới: {new_weights}")
+              else:
+                print("Train thất bại hoặc không đủ data")
+            else:
+              print(f"Chưa đến milestone retrain tiếp theo")
+          EOF
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      # ── Upload merged DB + model ──────────────────
+      - name: Upload merged healing.db
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: healing-db-merged
+          path: healing.db
+          retention-days: 14
+
+  # ──────────────────────────────────────────────
+  # JOB 4: Tổng hợp report
+  # ──────────────────────────────────────────────
+  report:
+    name: "Publish Test Report"
+    runs-on: ubuntu-latest
+    needs: [test-v1, test-others]
+    if: always()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all JUnit XMLs
         uses: actions/download-artifact@v4
         with:
           pattern: test-report-*
           path: all-reports/
           merge-multiple: false
 
-      - name: Download all JUnit XMLs
-        uses: actions/download-artifact@v4
-        with:
-          pattern: junit-*
-          path: all-junit/
-          merge-multiple: true
-
       - name: Generate summary table
         if: always()
         run: |
           echo "## 🧪 Self-Healing Selenium Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| UI Version | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| UI Version | Loại test | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|-----------|--------|" >> $GITHUB_STEP_SUMMARY
 
           for version in v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            XML=$(find all-junit -name "junit-${version}.xml" 2>/dev/null | head -1)
+            XML=$(find all-reports -name "junit-${version}.xml" 2>/dev/null | head -1)
+            TYPE="Full suite"
+            [ "$version" != "v1" ] && TYPE="Healing check"
             if [ -n "$XML" ]; then
-              FAILURES=$(grep -oP 'failures="\K[0-9]+' "$XML" | awk '{s+=$1}END{print s+0}')
-              ERRORS=$(grep -oP 'errors="\K[0-9]+' "$XML" | awk '{s+=$1}END{print s+0}')
+              FAILURES=$(grep -oP 'failures="\K[0-9]+' "$XML" 2>/dev/null | head -1 || echo "0")
+              ERRORS=$(grep -oP 'errors="\K[0-9]+' "$XML" 2>/dev/null | head -1 || echo "0")
+              FAILURES=${FAILURES:-0}
+              ERRORS=${ERRORS:-0}
               if [ "$FAILURES" -eq 0 ] && [ "$ERRORS" -eq 0 ]; then
-                echo "| $version | ✅ PASS |" >> $GITHUB_STEP_SUMMARY
+                echo "| $version | $TYPE | ✅ PASS |" >> $GITHUB_STEP_SUMMARY
               else
-                echo "| $version | ❌ FAIL (failures: $FAILURES, errors: $ERRORS) |" >> $GITHUB_STEP_SUMMARY
+                echo "| $version | $TYPE | ❌ FAIL (failures: $FAILURES, errors: $ERRORS) |" >> $GITHUB_STEP_SUMMARY
               fi
             else
-              echo "| $version | ⚪ SKIPPED |" >> $GITHUB_STEP_SUMMARY
+              echo "| $version | $TYPE | ⚪ SKIPPED |" >> $GITHUB_STEP_SUMMARY
             fi
           done
 
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "_Artifacts lưu 14 ngày — xem tab **Artifacts** để tải HTML report._" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Mô tả |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| test-v1 | Chạy toàn bộ test suite, tạo snapshot |" >> $GITHUB_STEP_SUMMARY
+          echo "| test-v2..v11 | Chạy healing check song song |" >> $GITHUB_STEP_SUMMARY
+          echo "| merge-and-train | Merge DB, retrain model nếu đủ 140 events |" >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload merged reports
+      - name: Upload all reports
         uses: actions/upload-artifact@v4
         with:
           name: all-test-reports
