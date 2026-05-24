@@ -123,7 +123,31 @@ jobs:
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
+      
+      # ── Start MongoDB ─────────────────────────────
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: '6.0'
 
+      # ── Start Backend server ───────────────────────
+      - name: Start Backend server
+        run: |
+          npm install
+          node server.js &
+          echo "Waiting for backend at port 5000..."
+          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
+          echo "Backend ready!".
+
+      # ── Seed data ─────────────────────────────────
+      - name: Seed database
+        run: |
+          curl -sf http://localhost:3000 > /dev/null 2>&1 && \
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('seed_data.json'));
+            console.log('Seed data loaded:', Object.keys(data));
+          " || echo "Skipping seed"
       # ── Switch UI version ────────────────────────
       - name: Switch to UI ${{ matrix.ui-version }}
         run: bash myapp/src_mutated/switch_ui.sh ${{ matrix.ui-version }}
