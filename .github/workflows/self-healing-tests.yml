@@ -232,7 +232,7 @@ jobs:
           merge-multiple: true
 
       - name: Publish Test Results (PR comment)
-        uses: EnricoMi/publish-test-results-action@v2
+        uses: EnricoMi/publish-unit-test-results-action@v2
         if: always()
         with:
           files: all-junit/**/*.xml
