@@ -1,0 +1,274 @@
+name: Self-Healing Selenium Tests
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      ui_version:
+        description: "UI version to test (v1–v11, hoặc 'all')"
+        required: false
+        default: "all"
+      test_module:
+        description: "Module test (login/register/products/admin/contact/self_healing, hoặc 'all')"
+        required: false
+        default: "all"
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.11"
+  BASE_URL: "http://localhost:5173"
+
+jobs:
+  # ──────────────────────────────────────────────
+  # JOB 1: Xác định matrix UI versions
+  # ──────────────────────────────────────────────
+  setup:
+    name: "Setup & Cache"
+    runs-on: ubuntu-latest
+    outputs:
+      ui-versions: ${{ steps.set-versions.outputs.versions }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set UI versions matrix
+        id: set-versions
+        run: |
+          INPUT="${{ github.event.inputs.ui_version }}"
+          if [ "$INPUT" == "all" ] || [ -z "$INPUT" ]; then
+            echo 'versions=["v1","v2","v3","v4","v5","v6","v7","v8","v9","v10","v11"]' >> $GITHUB_OUTPUT
+          else
+            echo "versions=[\"$INPUT\"]" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js & cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: myapp/package-lock.json
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: node-cache
+        with:
+          path: myapp/node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('myapp/package-lock.json') }}
+          restore-keys: node-${{ runner.os }}-
+
+      - name: Install frontend dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        working-directory: myapp
+        run: npm ci
+
+      - name: Setup Python & cache
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r backend/requirements.txt
+
+  # ──────────────────────────────────────────────
+  # JOB 2: Chạy tests theo từng UI version
+  # ──────────────────────────────────────────────
+  test:
+    name: "Test UI ${{ matrix.ui-version }}"
+    runs-on: ubuntu-latest
+    needs: setup
+    strategy:
+      fail-fast: false
+      matrix:
+        ui-version: ${{ fromJson(needs.setup.outputs.ui-versions) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Python ──────────────────────────────────
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r backend/requirements.txt
+
+      # ── Node / React ─────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: myapp/package-lock.json
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: myapp/node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('myapp/package-lock.json') }}
+          restore-keys: node-${{ runner.os }}-
+
+      - name: Install frontend dependencies (nếu cache miss)
+        working-directory: myapp
+        run: npm ci
+
+      # ── Chrome ───────────────────────────────────
+      - name: Setup Chrome & ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      # ── Switch UI version ────────────────────────
+      - name: Switch to UI ${{ matrix.ui-version }}
+        run: bash myapp/src_mutated/switch_ui.sh ${{ matrix.ui-version }}
+        env:
+          SRC_DIR: myapp/src/pages
+
+      # ── Start React dev server ───────────────────
+      - name: Start React dev server
+        working-directory: myapp
+        run: |
+          npm run dev &
+          echo "Waiting for Vite to be ready..."
+          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
+          echo "React app is ready!"
+
+      # ── Tạo thư mục output ───────────────────────
+      - name: Create output directories
+        run: mkdir -p reports logs
+
+      # ── Chạy tests ───────────────────────────────
+      - name: Run Selenium Tests (UI ${{ matrix.ui-version }})
+        run: |
+          MODULE="${{ github.event.inputs.test_module }}"
+          UI="${{ matrix.ui-version }}"
+
+          if [ "$MODULE" == "all" ] || [ -z "$MODULE" ]; then
+            if [ "$UI" == "v1" ]; then
+              # v1: chạy toàn bộ test suite
+              pytest backend/tests/ \
+                -v --tb=short \
+                --junit-xml=reports/junit-$UI.xml \
+                --html=reports/report-$UI.html \
+                --self-contained-html \
+                2>&1 | tee logs/test-$UI.log
+            else
+              # v2–v11: chỉ chạy 2 healing-check cases / module
+              pytest backend/tests/ \
+                -v --tb=short \
+                --junit-xml=reports/junit-$UI.xml \
+                --html=reports/report-$UI.html \
+                --self-contained-html \
+                -k "Healing" \
+                2>&1 | tee logs/test-$UI.log
+            fi
+          else
+            # Chạy 1 module cụ thể
+            pytest backend/tests/test_${MODULE}.py \
+              -v --tb=short \
+              --junit-xml=reports/junit-${MODULE}-$UI.xml \
+              --html=reports/report-${MODULE}-$UI.html \
+              --self-contained-html \
+              2>&1 | tee logs/test-${MODULE}-$UI.log
+          fi
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+          HEADLESS: "true"
+          # PYTHONPATH trỏ vào backend để import được core.* và tests.*
+          PYTHONPATH: ${{ github.workspace }}/backend
+
+      # ── Upload artifacts ─────────────────────────
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-${{ matrix.ui-version }}
+          path: |
+            reports/
+            logs/
+            backend/snapshots/
+            backend/healing.db
+          retention-days: 14
+
+      - name: Upload JUnit XML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-${{ matrix.ui-version }}
+          path: reports/junit-*.xml
+          retention-days: 7
+
+  # ──────────────────────────────────────────────
+  # JOB 3: Tổng hợp & publish report
+  # ──────────────────────────────────────────────
+  report:
+    name: "Publish Test Report"
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all test reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: test-report-*
+          path: all-reports/
+          merge-multiple: false
+
+      - name: Download all JUnit XMLs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: junit-*
+          path: all-junit/
+          merge-multiple: true
+
+      - name: Publish Test Results (PR comment)
+        uses: EnricoMi/publish-test-results-action@v2
+        if: always()
+        with:
+          files: all-junit/**/*.xml
+          check_name: "Selenium Test Results"
+          comment_mode: always
+          fail_on: "test failures"
+
+      - name: Generate summary table
+        if: always()
+        run: |
+          echo "## 🧪 Self-Healing Selenium Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| UI Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          for version in v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
+            XML=$(find all-junit -name "junit-${version}.xml" 2>/dev/null | head -1)
+            if [ -n "$XML" ]; then
+              FAILURES=$(grep -oP 'failures="\K[0-9]+' "$XML" | awk '{s+=$1}END{print s+0}')
+              ERRORS=$(grep -oP 'errors="\K[0-9]+' "$XML" | awk '{s+=$1}END{print s+0}')
+              if [ "$FAILURES" -eq 0 ] && [ "$ERRORS" -eq 0 ]; then
+                echo "| $version | ✅ PASS |" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "| $version | ❌ FAIL (failures: $FAILURES, errors: $ERRORS) |" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "| $version | ⚪ SKIPPED |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "_Artifacts lưu 14 ngày — xem tab **Artifacts** để tải HTML report._" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload merged reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-test-reports
+          path: all-reports/
+          retention-days: 14

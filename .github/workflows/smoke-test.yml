@@ -1,0 +1,78 @@
+name: Smoke Test (PR Quick Check)
+
+on:
+  pull_request:
+    branches: [main, master]
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  smoke:
+    name: "Smoke Test – UI v1"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: myapp/package-lock.json
+
+      - name: Install frontend deps
+        working-directory: myapp
+        run: npm ci
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Switch to UI v1
+        run: bash src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
+
+      - name: Start React dev server
+        working-directory: myapp
+        run: |
+          npm run dev &
+          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
+
+      - name: Run smoke tests (login + register)
+        run: |
+          mkdir -p reports logs
+          pytest tests/tests/test_login.py tests/tests/test_register.py \
+            -v --tb=short \
+            -m "not slow" \
+            -k "v1" \
+            --junit-xml=reports/smoke-junit.xml \
+            --html=reports/smoke-report.html \
+            --self-contained-html \
+            2>&1 | tee logs/smoke.log
+        env:
+          BASE_URL: "http://localhost:5173"
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Upload smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-report
+          path: reports/
+          retention-days: 7
