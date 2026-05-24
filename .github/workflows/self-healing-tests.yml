@@ -71,7 +71,7 @@ jobs:
           cache: "pip"
 
       - name: Install Python dependencies
-        run: pip install -r backend/requirements.txt
+        run: pip install -r requirements.txt
 
   # ──────────────────────────────────────────────
   # JOB 2: Chạy tests theo từng UI version
@@ -97,7 +97,7 @@ jobs:
           cache: "pip"
 
       - name: Install Python dependencies
-        run: pip install -r backend/requirements.txt
+        run: pip install -r requirements.txt
 
       # ── Node / React ─────────────────────────────
       - name: Setup Node.js
