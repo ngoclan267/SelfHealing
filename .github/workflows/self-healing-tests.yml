@@ -20,20 +20,35 @@ env:
 
 # ──────────────────────────────────────────────────────────────────────────────
 # THIẾT KẾ:
-#   Toàn bộ 5 module chạy TUẦN TỰ trên 1 runner duy nhất — giống hệt terminal:
-#     pytest test_login.py test_register.py test_products.py test_admin.py test_contact.py
+#   Toàn bộ 5 module chạy TUẦN TỰ trên 1 runner duy nhất.
 #
-#   healing.db tích lũy liên tục trên cùng 1 máy, không cần upload/download
-#   artifact giữa các job. Model tự train khi DB đếm đủ 140 heal_success.
+#   Trước mỗi module test, file page tương ứng được RESTORE về v1 từ
+#   snapshots/v1/<PageName>.jsx để làm baseline cho self-healing.
+#   Chỉ copy đúng page của module đó (LoginPage, RegisterPage, …),
+#   các page còn lại giữ nguyên — Vite HMR tự reload, không cần restart.
 #
-#   Job report chạy sau để đọc DB và publish summary lên GitHub Actions UI.
+#   Luồng mỗi module:
+#     1. copy snapshots/v1/<Page>.jsx → myapp/src/pages/<Page>.jsx
+#     2. chờ Vite HMR reload (3 s đủ với local dev server)
+#     3. pytest test_<module>.py
+#
+#   healing.db tích lũy liên tục trên cùng 1 máy.
+#   Model tự train khi DB đếm đủ 140 heal_success.
 # ──────────────────────────────────────────────────────────────────────────────
+
+# Ánh xạ module → file page v1 (snapshot baseline)
+# Cấu trúc thư mục snapshot:
+#   snapshots/
+#   └── v1/
+#       ├── Login.jsx          ← baseline của test_login.py
+#       ├── Register.jsx       ← baseline của test_register.py
+#       ├── Products.jsx       ← baseline của test_products.py
+#       ├── Admin.jsx          ← baseline của test_admin.py
+#       └── Contact.jsx        ← baseline của test_contact.py
 
 jobs:
   # ════════════════════════════════════════════════════════════════
   # JOB DUY NHẤT: chạy tất cả 5 module tuần tự trên 1 runner
-  # Giống hệt: pytest test_login.py test_register.py test_products.py
-  #                   test_admin.py test_contact.py
   # ════════════════════════════════════════════════════════════════
   run-all-tests:
     name: "Self-Healing Tests (login → register → products → admin → contact)"
@@ -79,10 +94,28 @@ jobs:
           echo "React ready!"
 
       - name: Create output directories
-        run: mkdir -p reports logs snapshots knowledge_base
+        run: mkdir -p reports logs snapshots/v1 knowledge_base
 
-      # ── Bước 1: login ─────────────────────────────────────────
-      - name: "[1/5] test_login.py (v1 snapshot → v2→v11 healing)"
+      # ════════════════════════════════════════════════════════════
+      # BƯỚC 1 — LOGIN
+      # Restore snapshots/v1/Login.jsx → myapp/src/pages/Login.jsx
+      # ════════════════════════════════════════════════════════════
+      - name: "[1/5] Restore Login page → v1 snapshot"
+        run: |
+          SNAPSHOT="snapshots/v1/Login.jsx"
+          TARGET="myapp/src/pages/Login.jsx"
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "❌ Snapshot không tồn tại: $SNAPSHOT"
+            echo "   Hãy đảm bảo file v1 đã được commit vào snapshots/v1/"
+            exit 1
+          fi
+          cp "$SNAPSHOT" "$TARGET"
+          echo "✅ Restored $SNAPSHOT → $TARGET"
+          echo "   $(wc -l < $TARGET) dòng | $(date -u +%H:%M:%S) UTC"
+          # Chờ Vite HMR pick up thay đổi
+          sleep 3
+
+      - name: "[1/5] test_login.py"
         run: |
           pytest tests/test_login.py \
             -v --tb=short \
@@ -108,8 +141,24 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      # ── Bước 2: register ──────────────────────────────────────
-      - name: "[2/5] test_register.py (v1 snapshot → v2→v11 healing)"
+      # ════════════════════════════════════════════════════════════
+      # BƯỚC 2 — REGISTER
+      # Restore snapshots/v1/Register.jsx → myapp/src/pages/Register.jsx
+      # ════════════════════════════════════════════════════════════
+      - name: "[2/5] Restore Register page → v1 snapshot"
+        run: |
+          SNAPSHOT="snapshots/v1/Register.jsx"
+          TARGET="myapp/src/pages/Register.jsx"
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "❌ Snapshot không tồn tại: $SNAPSHOT"
+            exit 1
+          fi
+          cp "$SNAPSHOT" "$TARGET"
+          echo "✅ Restored $SNAPSHOT → $TARGET"
+          echo "   $(wc -l < $TARGET) dòng | $(date -u +%H:%M:%S) UTC"
+          sleep 3
+
+      - name: "[2/5] test_register.py"
         run: |
           pytest tests/test_register.py \
             -v --tb=short \
@@ -135,8 +184,24 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      # ── Bước 3: products ──────────────────────────────────────
-      - name: "[3/5] test_products.py (v1 snapshot → v2→v11 healing)"
+      # ════════════════════════════════════════════════════════════
+      # BƯỚC 3 — PRODUCTS
+      # Restore snapshots/v1/Products.jsx → myapp/src/pages/Products.jsx
+      # ════════════════════════════════════════════════════════════
+      - name: "[3/5] Restore Products page → v1 snapshot"
+        run: |
+          SNAPSHOT="snapshots/v1/Products.jsx"
+          TARGET="myapp/src/pages/Products.jsx"
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "❌ Snapshot không tồn tại: $SNAPSHOT"
+            exit 1
+          fi
+          cp "$SNAPSHOT" "$TARGET"
+          echo "✅ Restored $SNAPSHOT → $TARGET"
+          echo "   $(wc -l < $TARGET) dòng | $(date -u +%H:%M:%S) UTC"
+          sleep 3
+
+      - name: "[3/5] test_products.py"
         run: |
           pytest tests/test_products.py \
             -v --tb=short \
@@ -162,8 +227,24 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      # ── Bước 4: admin ─────────────────────────────────────────
-      - name: "[4/5] test_admin.py (v1 snapshot → v2→v11 healing)"
+      # ════════════════════════════════════════════════════════════
+      # BƯỚC 4 — ADMIN
+      # Restore snapshots/v1/Admin.jsx → myapp/src/pages/Admin.jsx
+      # ════════════════════════════════════════════════════════════
+      - name: "[4/5] Restore Admin page → v1 snapshot"
+        run: |
+          SNAPSHOT="snapshots/v1/Admin.jsx"
+          TARGET="myapp/src/pages/Admin.jsx"
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "❌ Snapshot không tồn tại: $SNAPSHOT"
+            exit 1
+          fi
+          cp "$SNAPSHOT" "$TARGET"
+          echo "✅ Restored $SNAPSHOT → $TARGET"
+          echo "   $(wc -l < $TARGET) dòng | $(date -u +%H:%M:%S) UTC"
+          sleep 3
+
+      - name: "[4/5] test_admin.py"
         run: |
           pytest tests/test_admin.py \
             -v --tb=short \
@@ -189,8 +270,24 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      # ── Bước 5: contact ───────────────────────────────────────
-      - name: "[5/5] test_contact.py (v1 snapshot → v2→v11 healing)"
+      # ════════════════════════════════════════════════════════════
+      # BƯỚC 5 — CONTACT
+      # Restore snapshots/v1/Contact.jsx → myapp/src/pages/Contact.jsx
+      # ════════════════════════════════════════════════════════════
+      - name: "[5/5] Restore Contact page → v1 snapshot"
+        run: |
+          SNAPSHOT="snapshots/v1/Contact.jsx"
+          TARGET="myapp/src/pages/Contact.jsx"
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "❌ Snapshot không tồn tại: $SNAPSHOT"
+            exit 1
+          fi
+          cp "$SNAPSHOT" "$TARGET"
+          echo "✅ Restored $SNAPSHOT → $TARGET"
+          echo "   $(wc -l < $TARGET) dòng | $(date -u +%H:%M:%S) UTC"
+          sleep 3
+
+      - name: "[5/5] test_contact.py"
         run: |
           pytest tests/test_contact.py \
             -v --tb=short \
@@ -281,7 +378,7 @@ jobs:
           lines = []
           lines.append("## 🧪 Self-Healing Selenium Test Results\n")
           lines.append("### Luồng chạy: login → register → products → admin → contact\n")
-          lines.append("_Toàn bộ 5 module chạy tuần tự trên 1 runner, healing.db tích lũy liên tục_\n\n")
+          lines.append("_Mỗi module restore page v1 từ snapshots/v1/ trước khi chạy — Vite HMR tự reload_\n\n")
 
           # Đọc DB stats
           try:
@@ -307,13 +404,22 @@ jobs:
 
           # Kết quả từng module
           lines.append("### 📋 Kết quả từng module\n\n")
-          lines.append("| Module | Tổng cases | Passed | Failed | Status |\n")
-          lines.append("|--------|-----------|--------|--------|--------|\n")
+          lines.append("| Module | Snapshot v1 | Tổng cases | Passed | Failed | Status |\n")
+          lines.append("|--------|------------|-----------|--------|--------|--------|\n")
+
+          snapshots = {
+              "login":    "Login.jsx",
+              "register": "Register.jsx",
+              "products": "Products.jsx",
+              "admin":    "Admin.jsx",
+              "contact":  "Contact.jsx",
+          }
 
           for module in ["login", "register", "products", "admin", "contact"]:
+              snap = snapshots[module]
               xml_files = glob.glob(f"reports/junit-{module}.xml")
               if not xml_files:
-                  lines.append(f"| {module} | — | — | — | ⚪ SKIP |\n")
+                  lines.append(f"| {module} | `{snap}` | — | — | — | ⚪ SKIP |\n")
                   continue
               content = open(xml_files[0]).read()
               tests    = re.search(r'tests="(\d+)"',    content)
@@ -324,7 +430,7 @@ jobs:
               e = int(errors.group(1))   if errors   else 0
               passed = t - f - e
               status = "✅ PASS" if (f + e) == 0 else f"❌ FAIL"
-              lines.append(f"| {module} | {t} | {passed} | {f+e} | {status} |\n")
+              lines.append(f"| {module} | `{snap}` | {t} | {passed} | {f+e} | {status} |\n")
 
           with open(summary, 'a') as fp:
               fp.writelines(lines)
