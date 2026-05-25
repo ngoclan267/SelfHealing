@@ -1,368 +1,576 @@
-name: Self-Healing Selenium Tests
+name: Self-Healing Test Suite
 
 on:
   push:
-    branches: [main, master, develop]
+    branches: [ main, master, develop ]
+    paths:
+      - 'backend/**'
+      - 'myapp/**'
+      - '.github/workflows/**'
   pull_request:
-    branches: [main, master]
+    branches: [ main, master ]
   workflow_dispatch:
     inputs:
-      test_module:
-        description: "Module test (login/register/products/admin/contact, hoặc 'all')"
+      test_file:
+        description: 'Chạy file test cụ thể (để trống = chạy tất cả)'
         required: false
-        default: "all"
+        default: ''
+      ui_version:
+        description: 'UI version để test (v1..v11, để trống = tất cả)'
+        required: false
+        default: ''
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
-  NODE_VERSION: "20"
-  PYTHON_VERSION: "3.11"
-  BASE_URL: "http://localhost:5173"
-  BACKEND_PORT: "5000"
-
-# ──────────────────────────────────────────────────────────────────────────────
-# THIẾT KẾ:
-#   Toàn bộ 5 module chạy TUẦN TỰ trên 1 runner duy nhất — giống hệt terminal:
-#     pytest test_login.py test_register.py test_products.py test_admin.py test_contact.py
-#
-#   Trước mỗi module: switch_ui.sh v1 → đảm bảo snapshot v1 luôn sạch,
-#   tránh ảnh hưởng chéo giữa các module khi healing chạy v2→v11.
-#
-#   healing.db tích lũy liên tục trên cùng 1 máy, không cần upload/download
-#   artifact giữa các job. Model tự train khi DB đếm đủ 140 heal_success.
-#
-#   Job report chạy sau để đọc DB và publish summary lên GitHub Actions UI.
-# ──────────────────────────────────────────────────────────────────────────────
+  PYTHON_VERSION: '3.11'
+  HEADLESS: 'true'
+  BACKEND_DIR: backend
+  DB_PATH: backend/healing.db
+  FIRST_TRAIN_THRESHOLD: 140
+  RETRAIN_EVERY: 20
 
 jobs:
-  # ════════════════════════════════════════════════════════════════
-  # JOB DUY NHẤT: chạy tất cả 5 module tuần tự trên 1 runner
-  # Giống hệt: pytest test_login.py test_register.py test_products.py
-  #                   test_admin.py test_contact.py
-  # ════════════════════════════════════════════════════════════════
-  run-all-tests:
-    name: "Self-Healing Tests (login → register → products → admin → contact)"
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 1: Cài đặt dependencies và cache
+  # ─────────────────────────────────────────────────────────────────────────────
+  setup:
+    name: Setup Environment
     runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-      - run: pip install -r requirements.txt
 
-      - uses: actions/setup-node@v4
+      - name: Generate cache key
+        id: cache-key
+        run: echo "key=pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements.txt', 'backend/requirements.txt') }}" >> $GITHUB_OUTPUT
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-      - run: npm ci
-        working-directory: myapp
+          path: ~/.cache/pip
+          key: ${{ steps.cache-key.outputs.key }}
+          restore-keys: |
+            pip-${{ env.PYTHON_VERSION }}-
 
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: "6.0"
-
-      - name: Start Backend server
+      - name: Install Python dependencies
         run: |
-          npm install
-          node server.js &
-          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-          echo "Backend ready!"
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
 
-      - name: Start React dev server
+      - name: Verify installations
+        run: |
+          python -c "import selenium; print('selenium:', selenium.__version__)"
+          python -c "import sklearn; print('sklearn:', sklearn.__version__)"
+          python -c "import numpy; print('numpy:', numpy.__version__)"
+          python -c "import pytest; print('pytest:', pytest.__version__)"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 2: Khởi động services (Frontend + Backend)
+  # ─────────────────────────────────────────────────────────────────────────────
+  start-services:
+    name: Start App Services
+    runs-on: ubuntu-latest
+    needs: setup
+    outputs:
+      backend-ready: ${{ steps.check-backend.outputs.ready }}
+      frontend-ready: ${{ steps.check-frontend.outputs.ready }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'myapp/package-lock.json'
+
+      - name: Install frontend dependencies
+        working-directory: myapp
+        run: npm ci
+
+      - name: Start Frontend (Vite dev server)
         working-directory: myapp
         run: |
           npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-          echo "React ready!"
+          echo "FRONTEND_PID=$!" >> $GITHUB_ENV
 
-      - name: Create output directories
-        run: mkdir -p reports logs snapshots knowledge_base
-
-      # ── Bước 1: login ─────────────────────────────────────────
-      - name: "[1/5] Switch UI về v1 trước khi chạy test_login.py"
-        run: bash myapp/src_mutated/switch_ui.sh v1
-        env:
-          SRC_DIR: myapp/src/pages
-
-      - name: "[1/5] test_login.py (v1 snapshot → v2→v11 healing)"
+      - name: Wait for Frontend to be ready
+        id: check-frontend
         run: |
-          pytest tests/test_login.py \
-            -v --tb=short \
-            --junit-xml=reports/junit-login.xml \
-            --html=reports/report-login.html \
-            --self-contained-html \
-            2>&1 | tee logs/login.log
-          echo "--- heal_count sau login ---"
-          python - <<'EOF'
-          import sqlite3
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
-              conn.close()
-          except Exception as e:
-              print(f"  (DB chưa có dữ liệu: {e})")
-          EOF
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
+          echo "Waiting for frontend on port 5173..."
+          for i in {1..30}; do
+            if curl -s http://localhost:5173 > /dev/null 2>&1; then
+              echo "Frontend is ready!"
+              echo "ready=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+            echo "  Attempt $i/30..."
+            sleep 2
+          done
+          echo "Frontend failed to start"
+          echo "ready=false" >> $GITHUB_OUTPUT
+          exit 1
 
-      # ── Bước 2: register ──────────────────────────────────────
-      - name: "[2/5] Switch UI về v1 trước khi chạy test_register.py"
-        run: bash myapp/src_mutated/switch_ui.sh v1
-        env:
-          SRC_DIR: myapp/src/pages
-
-      - name: "[2/5] test_register.py (v1 snapshot → v2→v11 healing)"
-        run: |
-          pytest tests/test_register.py \
-            -v --tb=short \
-            --junit-xml=reports/junit-register.xml \
-            --html=reports/report-register.html \
-            --self-contained-html \
-            2>&1 | tee logs/register.log
-          echo "--- heal_count sau register ---"
-          python - <<'EOF'
-          import sqlite3
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
-              conn.close()
-          except Exception as e:
-              print(f"  (DB chưa có dữ liệu: {e})")
-          EOF
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      # ── Bước 3: products ──────────────────────────────────────
-      - name: "[3/5] Switch UI về v1 trước khi chạy test_products.py"
-        run: bash myapp/src_mutated/switch_ui.sh v1
-        env:
-          SRC_DIR: myapp/src/pages
-
-      - name: "[3/5] test_products.py (v1 snapshot → v2→v11 healing)"
-        run: |
-          pytest tests/test_products.py \
-            -v --tb=short \
-            --junit-xml=reports/junit-products.xml \
-            --html=reports/report-products.html \
-            --self-contained-html \
-            2>&1 | tee logs/products.log
-          echo "--- heal_count sau products ---"
-          python - <<'EOF'
-          import sqlite3
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
-              conn.close()
-          except Exception as e:
-              print(f"  (DB chưa có dữ liệu: {e})")
-          EOF
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      # ── Bước 4: admin ─────────────────────────────────────────
-      - name: "[4/5] Switch UI về v1 trước khi chạy test_admin.py"
-        run: bash myapp/src_mutated/switch_ui.sh v1
-        env:
-          SRC_DIR: myapp/src/pages
-
-      - name: "[4/5] test_admin.py (v1 snapshot → v2→v11 healing)"
-        run: |
-          pytest tests/test_admin.py \
-            -v --tb=short \
-            --junit-xml=reports/junit-admin.xml \
-            --html=reports/report-admin.html \
-            --self-contained-html \
-            2>&1 | tee logs/admin.log
-          echo "--- heal_count sau admin ---"
-          python - <<'EOF'
-          import sqlite3
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
-              conn.close()
-          except Exception as e:
-              print(f"  (DB chưa có dữ liệu: {e})")
-          EOF
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      # ── Bước 5: contact ───────────────────────────────────────
-      - name: "[5/5] Switch UI về v1 trước khi chạy test_contact.py"
-        run: bash myapp/src_mutated/switch_ui.sh v1
-        env:
-          SRC_DIR: myapp/src/pages
-
-      - name: "[5/5] test_contact.py (v1 snapshot → v2→v11 healing)"
-        run: |
-          pytest tests/test_contact.py \
-            -v --tb=short \
-            --junit-xml=reports/junit-contact.xml \
-            --html=reports/report-contact.html \
-            --self-contained-html \
-            2>&1 | tee logs/contact.log
-          echo "--- heal_count FINAL ---"
-          python - <<'EOF'
-          import sqlite3
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              total  = conn.execute("SELECT COUNT(*) FROM healing_events").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              print(f"  heal_success = {heal} / 140  |  models trained = {models}  |  total events = {total}")
-              if models > 0:
-                  row = conn.execute("SELECT w_attribute, w_semantic, w_structure, w_visual, w_context, accuracy FROM learned_weights ORDER BY id DESC LIMIT 1").fetchone()
-                  print(f"  Trọng số mới nhất: attr={row[0]:.3f} sem={row[1]:.3f} struct={row[2]:.3f} vis={row[3]:.3f} ctx={row[4]:.3f} (acc={row[5]:.1%})")
-              conn.close()
-          except Exception as e:
-              print(f"  (DB chưa có dữ liệu: {e})")
-          EOF
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      # ── Upload artifacts ───────────────────────────────────────
-      - name: Upload healing.db + knowledge_base
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: healing-db-final
-          path: |
-            healing.db
-            snapshots/
-            knowledge_base/
-          retention-days: 14
-
-      - name: Upload test reports + logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: |
-            reports/
-            logs/
-          retention-days: 14
-
-  # ════════════════════════════════════════════════════════════════
-  # JOB 2: Publish summary lên GitHub Actions UI
-  # ════════════════════════════════════════════════════════════════
-  report:
-    name: "Publish Test Report"
-    runs-on: ubuntu-latest
-    needs: run-all-tests
-    if: always()
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - name: Setup Python for backend
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Download reports
-        uses: actions/download-artifact@v4
+      - name: Restore pip cache
+        uses: actions/cache@v4
         with:
-          name: test-reports
-          path: reports/
+          path: ~/.cache/pip
+          key: ${{ needs.setup.outputs.cache-key }}
 
-      - name: Download healing.db
-        uses: actions/download-artifact@v4
-        with:
-          name: healing-db-final
-          path: .
-        continue-on-error: true
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
 
-      - name: Generate summary
-        if: always()
+      - name: Start Backend (Express/Node)
+        working-directory: backend
         run: |
-          python - <<'EOF'
-          import os, sqlite3, glob, re
+          npm ci
+          node server.js &
+          echo "BACKEND_PID=$!" >> $GITHUB_ENV
+        env:
+          PORT: 5000
 
-          summary = os.environ.get('GITHUB_STEP_SUMMARY', '/dev/stdout')
+      - name: Wait for Backend to be ready
+        id: check-backend
+        run: |
+          echo "Waiting for backend on port 5000..."
+          for i in {1..30}; do
+            if curl -s http://localhost:5000/health > /dev/null 2>&1 || \
+               curl -s http://localhost:5000 > /dev/null 2>&1; then
+              echo "Backend is ready!"
+              echo "ready=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+            echo "  Attempt $i/30..."
+            sleep 2
+          done
+          echo "Backend failed to start"
+          echo "ready=false" >> $GITHUB_OUTPUT
+          exit 1
 
-          lines = []
-          lines.append("## 🧪 Self-Healing Selenium Test Results\n")
-          lines.append("### Luồng chạy: login → register → products → admin → contact\n")
-          lines.append("_Toàn bộ 5 module chạy tuần tự trên 1 runner, switch về v1 trước mỗi module, healing.db tích lũy liên tục_\n\n")
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 3: Chạy từng file test riêng biệt (matrix strategy)
+  # ─────────────────────────────────────────────────────────────────────────────
+  run-tests:
+    name: Test - ${{ matrix.test_module }}
+    runs-on: ubuntu-latest
+    needs: [setup, start-services]
+    strategy:
+      fail-fast: false   # Tiếp tục chạy các file khác dù 1 file fail
+      matrix:
+        test_module:
+          - test_login
+          - test_register
+          - test_products
+          - test_admin
+          - test_contact
+          - test_self_healing
 
-          # Đọc DB stats
-          try:
-              conn = sqlite3.connect('healing.db')
-              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
-              total  = conn.execute("SELECT COUNT(*) FROM healing_events").fetchone()[0]
-              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
-              conn.close()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-              lines.append("### 📊 Healing Database (kết thúc pipeline)\n\n")
-              lines.append("| Chỉ số | Giá trị |\n|--------|--------|\n")
-              lines.append(f"| Tổng heal events | {total} |\n")
-              lines.append(f"| heal_success tích lũy | **{heal}** |\n")
-              lines.append(f"| Ngưỡng train lần đầu | 140 |\n")
-              lines.append(f"| Số lần model đã train | {models} |\n")
-              if models > 0:
-                  lines.append(f"| Trạng thái model | ✅ Đã train, dùng LEARNED weights |\n")
-              else:
-                  lines.append(f"| Trạng thái model | ⏳ Còn thiếu {max(0, 140-heal)} heal_success |\n")
-              lines.append("\n")
-          except Exception as e:
-              lines.append(f"_(Không đọc được healing.db: {e})_\n\n")
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-          # Kết quả từng module
-          lines.append("### 📋 Kết quả từng module\n\n")
-          lines.append("| Module | Tổng cases | Passed | Failed | Status |\n")
-          lines.append("|--------|-----------|--------|--------|--------|\n")
+      - name: Restore pip cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ needs.setup.outputs.cache-key }}
 
-          for module in ["login", "register", "products", "admin", "contact"]:
-              xml_files = glob.glob(f"reports/junit-{module}.xml")
-              if not xml_files:
-                  lines.append(f"| {module} | — | — | — | ⚪ SKIP |\n")
-                  continue
-              content = open(xml_files[0]).read()
-              tests    = re.search(r'tests="(\d+)"',    content)
-              failures = re.search(r'failures="(\d+)"', content)
-              errors   = re.search(r'errors="(\d+)"',   content)
-              t = int(tests.group(1))    if tests    else 0
-              f = int(failures.group(1)) if failures else 0
-              e = int(errors.group(1))   if errors   else 0
-              passed = t - f - e
-              status = "✅ PASS" if (f + e) == 0 else f"❌ FAIL"
-              lines.append(f"| {module} | {t} | {passed} | {f+e} | {status} |\n")
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
 
-          with open(summary, 'a') as fp:
-              fp.writelines(lines)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-          print("Summary generated.")
-          EOF
+      - name: Start Frontend
+        working-directory: myapp
+        run: |
+          npm ci
+          npm run dev &
+          sleep 5
 
-      - name: Upload combined reports
+      - name: Start Backend
+        working-directory: backend
+        run: |
+          npm ci
+          node server.js &
+          sleep 5
+        env:
+          PORT: 5000
+
+      - name: Setup ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Restore healing.db (nếu có artifact từ run trước)
+        uses: actions/download-artifact@v4
+        with:
+          name: healing-db
+          path: backend/
+        continue-on-error: true   # Lần đầu chạy chưa có DB → bỏ qua
+
+      - name: Run ${{ matrix.test_module }}
+        working-directory: backend
+        run: |
+          # Chạy file test cụ thể theo matrix
+          python -m pytest tests/${{ matrix.test_module }}.py \
+            -v \
+            --timeout=120 \
+            --tb=short \
+            --junitxml=reports/junit_${{ matrix.test_module }}.xml \
+            --html=reports/report_${{ matrix.test_module }}.html \
+            --self-contained-html \
+            -p no:warnings
+        env:
+          HEADLESS: 'true'
+          PYTHONPATH: '.'
+          DB_PATH: healing.db
+
+      - name: Upload test reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: all-test-reports
-          path: reports/
-          retention-days: 14
+          name: report-${{ matrix.test_module }}-${{ github.run_number }}
+          path: |
+            backend/reports/junit_${{ matrix.test_module }}.xml
+            backend/reports/report_${{ matrix.test_module }}.html
+          retention-days: 30
+
+      - name: Upload healing.db (sau mỗi test)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: healing-db-${{ matrix.test_module }}
+          path: backend/healing.db
+          retention-days: 7
+          overwrite: true
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 4: Merge DB và kiểm tra ngưỡng train/retrain
+  # ─────────────────────────────────────────────────────────────────────────────
+  check-train-trigger:
+    name: Check Train / Retrain Trigger
+    runs-on: ubuntu-latest
+    needs: run-tests
+    if: always()
+    outputs:
+      should-train: ${{ steps.check.outputs.should_train }}
+      train-type: ${{ steps.check.outputs.train_type }}
+      heal-count: ${{ steps.check.outputs.heal_count }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Download all healing DBs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: healing-db-*
+          path: /tmp/dbs/
+          merge-multiple: false
+        continue-on-error: true
+
+      - name: Merge healing DBs
+        run: |
+          python scripts/merge_healing_dbs.py \
+            --input-dir /tmp/dbs \
+            --output backend/healing.db \
+            --base-db backend/healing.db
+        continue-on-error: true
+
+      - name: Check heal event count & train trigger
+        id: check
+        working-directory: backend
+        run: |
+          python - <<'PYEOF'
+          import sqlite3, os, sys
+
+          db_path = "healing.db"
+          FIRST_TRAIN = 140
+          RETRAIN_EVERY = 20
+
+          if not os.path.exists(db_path):
+              print("DB không tồn tại, chưa có heal event nào")
+              with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                  f.write("should_train=false\n")
+                  f.write("train_type=none\n")
+                  f.write("heal_count=0\n")
+              sys.exit(0)
+
+          conn = sqlite3.connect(db_path)
+          # Đếm tổng heal thành công
+          total = conn.execute(
+              "SELECT COUNT(*) FROM healing_events WHERE healing_success=1"
+          ).fetchone()[0]
+
+          # Đếm số lần đã train
+          try:
+              history = conn.execute(
+                  "SELECT COUNT(*) FROM learned_weights"
+              ).fetchone()[0]
+          except:
+              history = 0
+
+          conn.close()
+
+          print(f"Total heal success: {total}")
+          print(f"Train history count: {history}")
+          print(f"FIRST_TRAIN threshold: {FIRST_TRAIN}")
+          print(f"RETRAIN_EVERY: {RETRAIN_EVERY}")
+
+          should_train = False
+          train_type = "none"
+
+          if total < FIRST_TRAIN:
+              print(f"Chưa đủ {FIRST_TRAIN} heal events (hiện có {total})")
+          else:
+              should_have_trained = 1 + (total - FIRST_TRAIN) // RETRAIN_EVERY
+              print(f"should_have_trained: {should_have_trained} | history: {history}")
+
+              if should_have_trained > history:
+                  should_train = True
+                  if history == 0:
+                      train_type = "first_train"
+                      print(f">>> TRIGGER: Train lần đầu (đủ {FIRST_TRAIN} heal events)")
+                  else:
+                      train_type = "retrain"
+                      print(f">>> TRIGGER: Retrain lần #{history+1} (total={total})")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"should_train={'true' if should_train else 'false'}\n")
+              f.write(f"train_type={train_type}\n")
+              f.write(f"heal_count={total}\n")
+          PYEOF
+
+      - name: Save merged DB
+        uses: actions/upload-artifact@v4
+        with:
+          name: healing-db
+          path: backend/healing.db
+          retention-days: 90
+          overwrite: true
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 5: Train / Retrain model (chỉ chạy khi đạt ngưỡng)
+  # ─────────────────────────────────────────────────────────────────────────────
+  train-model:
+    name: "Train Model (${{ needs.check-train-trigger.outputs.train-type }})"
+    runs-on: ubuntu-latest
+    needs: check-train-trigger
+    if: needs.check-train-trigger.outputs.should-train == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Download latest healing.db
+        uses: actions/download-artifact@v4
+        with:
+          name: healing-db
+          path: backend/
+
+      - name: Run Train / Retrain
+        id: train
+        working-directory: backend
+        run: |
+          echo "=== Train type: ${{ needs.check-train-trigger.outputs.train-type }} ==="
+          echo "=== Heal count: ${{ needs.check-train-trigger.outputs.heal-count }} ==="
+
+          python - <<'PYEOF'
+          import sys
+          sys.path.insert(0, ".")
+          from core.Logistic_weight_model import LogisticWeightModel
+
+          model = LogisticWeightModel(db_path="healing.db")
+          print("Bắt đầu training...")
+          result = model.retrain()
+
+          if result:
+              print("Training thành công!")
+              print("New weights:")
+              for k, v in result.items():
+                  print(f"  {k}: {v:.4f}")
+          else:
+              print("Training thất bại hoặc chưa đủ data")
+              sys.exit(1)
+          PYEOF
+
+      - name: Export new weights to JSON
+        working-directory: backend
+        run: |
+          python - <<'PYEOF'
+          import sqlite3, json, os
+
+          conn = sqlite3.connect("healing.db")
+          row = conn.execute("""
+              SELECT w_attribute, w_semantic, w_structure, w_visual, w_context,
+                     n_samples, accuracy, trained_at, notes
+              FROM learned_weights
+              ORDER BY id DESC LIMIT 1
+          """).fetchone()
+          conn.close()
+
+          if row:
+              weights = {
+                  "attribute": row[0], "semantic": row[1],
+                  "structure": row[2], "visual": row[3], "context": row[4],
+                  "n_samples": row[5], "accuracy": row[6],
+                  "trained_at": row[7], "notes": row[8],
+                  "train_type": "${{ needs.check-train-trigger.outputs.train-type }}",
+                  "heal_count": ${{ needs.check-train-trigger.outputs.heal-count }},
+              }
+              os.makedirs("reports", exist_ok=True)
+              with open("reports/latest_weights.json", "w") as f:
+                  json.dump(weights, f, indent=2, ensure_ascii=False)
+              print(json.dumps(weights, indent=2, ensure_ascii=False))
+          PYEOF
+
+      - name: Upload trained DB + weights
+        uses: actions/upload-artifact@v4
+        with:
+          name: healing-db
+          path: |
+            backend/healing.db
+            backend/reports/latest_weights.json
+          retention-days: 90
+          overwrite: true
+
+      - name: Summary
+        run: |
+          echo "## 🤖 Model Training Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Type**: ${{ needs.check-train-trigger.outputs.train-type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Heal events used**: ${{ needs.check-train-trigger.outputs.heal-count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run**: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          if [ -f backend/reports/latest_weights.json ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### New Weights" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            cat backend/reports/latest_weights.json >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 6: Tổng hợp kết quả & tạo summary
+  # ─────────────────────────────────────────────────────────────────────────────
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [run-tests, check-train-trigger, train-model]
+    if: always()
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: report-*
+          path: /tmp/reports/
+          merge-multiple: true
+        continue-on-error: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install lxml for JUnit parsing
+        run: pip install lxml
+
+      - name: Generate Summary
+        run: |
+          python - <<'PYEOF'
+          import os, glob
+          from xml.etree import ElementTree as ET
+
+          reports_dir = "/tmp/reports"
+          xml_files = glob.glob(f"{reports_dir}/**/*.xml", recursive=True)
+
+          total_tests = total_pass = total_fail = total_error = 0
+          results = []
+
+          for f in sorted(xml_files):
+              try:
+                  tree = ET.parse(f)
+                  root = tree.getroot()
+                  suite = root if root.tag == 'testsuite' else root.find('testsuite')
+                  if suite is None:
+                      continue
+                  t = int(suite.get('tests', 0))
+                  fail = int(suite.get('failures', 0))
+                  err = int(suite.get('errors', 0))
+                  skip = int(suite.get('skipped', 0))
+                  passed = t - fail - err - skip
+                  name = os.path.basename(f).replace('junit_', '').replace('.xml', '')
+                  results.append((name, t, passed, fail + err))
+                  total_tests += t
+                  total_pass += passed
+                  total_fail += fail + err
+              except Exception as e:
+                  print(f"Error parsing {f}: {e}")
+
+          summary = os.environ.get("GITHUB_STEP_SUMMARY", "/dev/stdout")
+          with open(summary, "a") as f:
+              f.write("## 📊 Test Results Summary\n\n")
+              f.write(f"| Module | Total | ✅ Pass | ❌ Fail |\n")
+              f.write(f"|--------|-------|---------|--------|\n")
+              for name, t, p, fail in results:
+                  icon = "✅" if fail == 0 else "❌"
+                  f.write(f"| {icon} `{name}` | {t} | {p} | {fail} |\n")
+              f.write(f"\n**Total**: {total_tests} tests | ✅ {total_pass} passed | ❌ {total_fail} failed\n\n")
+
+              heal_count = "${{ needs.check-train-trigger.outputs.heal-count }}"
+              train_type = "${{ needs.check-train-trigger.outputs.train-type }}"
+              should_train = "${{ needs.check-train-trigger.outputs.should-train }}"
+
+              f.write("## 🔧 Self-Healing Status\n\n")
+              f.write(f"- **Total heal events**: {heal_count}\n")
+              f.write(f"- **Train triggered**: {'Yes - ' + train_type if should_train == 'true' else 'No'}\n")
+              f.write(f"- **First train threshold**: 140 heal events\n")
+              f.write(f"- **Retrain every**: 20 heal events\n")
+          PYEOF
+
+      - name: Final status
+        run: |
+          echo "Pipeline completed. Check summary for details."
