@@ -23,6 +23,9 @@ env:
 #   Toàn bộ 5 module chạy TUẦN TỰ trên 1 runner duy nhất — giống hệt terminal:
 #     pytest test_login.py test_register.py test_products.py test_admin.py test_contact.py
 #
+#   Trước mỗi module: switch_ui.sh v1 → đảm bảo snapshot v1 luôn sạch,
+#   tránh ảnh hưởng chéo giữa các module khi healing chạy v2→v11.
+#
 #   healing.db tích lũy liên tục trên cùng 1 máy, không cần upload/download
 #   artifact giữa các job. Model tự train khi DB đếm đủ 140 heal_success.
 #
@@ -71,60 +74,30 @@ jobs:
           timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
           echo "Backend ready!"
 
-      - name: Create output directories
-        run: mkdir -p reports logs snapshots knowledge_base
-
-      # ── Helper script: switch_v1_and_restart.sh ────────────────
-      # Dùng chung cho cả 5 bước: checkout myapp/src/ về tag v1
-      # rồi restart React dev server để Vite pick up code mới.
-      - name: Create switch-v1 helper script
-        run: |
-          cat > /tmp/switch_v1_restart.sh << 'SCRIPT'
-          #!/usr/bin/env bash
-          set -euo pipefail
-
-          echo "──────────────────────────────────────────"
-          echo "🔄  Switch myapp/src/ → tag v1"
-          echo "──────────────────────────────────────────"
-
-          # Restore toàn bộ myapp/src/ về tag v1 (chỉ working-tree, không thay HEAD)
-          git checkout v1 -- myapp/src/
-
-          echo "✅  Checkout v1 xong. Diff so với HEAD:"
-          git diff --stat HEAD -- myapp/src/ || true
-
-          # Kill React dev server đang chạy (nếu có)
-          pkill -f "vite" || true
-          sleep 1
-
-          # Restart React dev server
-          cd myapp
-          npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-          echo "✅  React dev server ready (v1 code)"
-          SCRIPT
-          chmod +x /tmp/switch_v1_restart.sh
-
-      # ── Start React lần đầu (code hiện tại trên branch) ───────
-      - name: Start React dev server (initial)
+      - name: Start React dev server
         working-directory: myapp
         run: |
           npm run dev &
           timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
           echo "React ready!"
 
-      # ── Bước 1: login ─────────────────────────────────────────
-      - name: "[1/5] Switch → v1 then test_login.py"
-        run: |
-          bash /tmp/switch_v1_restart.sh
+      - name: Create output directories
+        run: mkdir -p reports logs snapshots knowledge_base
 
+      # ── Bước 1: login ─────────────────────────────────────────
+      - name: "[1/5] Switch UI về v1 trước khi chạy test_login.py"
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
+
+      - name: "[1/5] test_login.py (v1 snapshot → v2→v11 healing)"
+        run: |
           pytest tests/test_login.py \
             -v --tb=short \
             --junit-xml=reports/junit-login.xml \
             --html=reports/report-login.html \
             --self-contained-html \
             2>&1 | tee logs/login.log
-
           echo "--- heal_count sau login ---"
           python - <<'EOF'
           import sqlite3
@@ -144,17 +117,19 @@ jobs:
           SRC_DIR: myapp/src/pages
 
       # ── Bước 2: register ──────────────────────────────────────
-      - name: "[2/5] Switch → v1 then test_register.py"
-        run: |
-          bash /tmp/switch_v1_restart.sh
+      - name: "[2/5] Switch UI về v1 trước khi chạy test_register.py"
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
 
+      - name: "[2/5] test_register.py (v1 snapshot → v2→v11 healing)"
+        run: |
           pytest tests/test_register.py \
             -v --tb=short \
             --junit-xml=reports/junit-register.xml \
             --html=reports/report-register.html \
             --self-contained-html \
             2>&1 | tee logs/register.log
-
           echo "--- heal_count sau register ---"
           python - <<'EOF'
           import sqlite3
@@ -174,17 +149,19 @@ jobs:
           SRC_DIR: myapp/src/pages
 
       # ── Bước 3: products ──────────────────────────────────────
-      - name: "[3/5] Switch → v1 then test_products.py"
-        run: |
-          bash /tmp/switch_v1_restart.sh
+      - name: "[3/5] Switch UI về v1 trước khi chạy test_products.py"
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
 
+      - name: "[3/5] test_products.py (v1 snapshot → v2→v11 healing)"
+        run: |
           pytest tests/test_products.py \
             -v --tb=short \
             --junit-xml=reports/junit-products.xml \
             --html=reports/report-products.html \
             --self-contained-html \
             2>&1 | tee logs/products.log
-
           echo "--- heal_count sau products ---"
           python - <<'EOF'
           import sqlite3
@@ -204,17 +181,19 @@ jobs:
           SRC_DIR: myapp/src/pages
 
       # ── Bước 4: admin ─────────────────────────────────────────
-      - name: "[4/5] Switch → v1 then test_admin.py"
-        run: |
-          bash /tmp/switch_v1_restart.sh
+      - name: "[4/5] Switch UI về v1 trước khi chạy test_admin.py"
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
 
+      - name: "[4/5] test_admin.py (v1 snapshot → v2→v11 healing)"
+        run: |
           pytest tests/test_admin.py \
             -v --tb=short \
             --junit-xml=reports/junit-admin.xml \
             --html=reports/report-admin.html \
             --self-contained-html \
             2>&1 | tee logs/admin.log
-
           echo "--- heal_count sau admin ---"
           python - <<'EOF'
           import sqlite3
@@ -234,17 +213,19 @@ jobs:
           SRC_DIR: myapp/src/pages
 
       # ── Bước 5: contact ───────────────────────────────────────
-      - name: "[5/5] Switch → v1 then test_contact.py"
-        run: |
-          bash /tmp/switch_v1_restart.sh
+      - name: "[5/5] Switch UI về v1 trước khi chạy test_contact.py"
+        run: bash myapp/src_mutated/switch_ui.sh v1
+        env:
+          SRC_DIR: myapp/src/pages
 
+      - name: "[5/5] test_contact.py (v1 snapshot → v2→v11 healing)"
+        run: |
           pytest tests/test_contact.py \
             -v --tb=short \
             --junit-xml=reports/junit-contact.xml \
             --html=reports/report-contact.html \
             --self-contained-html \
             2>&1 | tee logs/contact.log
-
           echo "--- heal_count FINAL ---"
           python - <<'EOF'
           import sqlite3
@@ -328,7 +309,7 @@ jobs:
           lines = []
           lines.append("## 🧪 Self-Healing Selenium Test Results\n")
           lines.append("### Luồng chạy: login → register → products → admin → contact\n")
-          lines.append("_Toàn bộ 5 module chạy tuần tự trên 1 runner, healing.db tích lũy liên tục_\n\n")
+          lines.append("_Toàn bộ 5 module chạy tuần tự trên 1 runner, switch về v1 trước mỗi module, healing.db tích lũy liên tục_\n\n")
 
           # Đọc DB stats
           try:
