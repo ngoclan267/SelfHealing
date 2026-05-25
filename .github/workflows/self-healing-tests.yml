@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       test_module:
-        description: "Module test (login/register/products/admin/contact/self_healing, hoặc 'all')"
+        description: "Module test (login/register/products/admin/contact, hoặc 'all')"
         required: false
         default: "all"
 
@@ -18,15 +18,25 @@ env:
   BASE_URL: "http://localhost:5173"
   BACKEND_PORT: "5000"
 
-# Script dùng chung để chạy 1 file test qua v1→v11 tuần tự
-# Mỗi version: switch UI → chạy test → lưu healing.db
+# ──────────────────────────────────────────────────────────────────────────────
+# THIẾT KẾ:
+#   Toàn bộ 5 module chạy TUẦN TỰ trên 1 runner duy nhất — giống hệt terminal:
+#     pytest test_login.py test_register.py test_products.py test_admin.py test_contact.py
+#
+#   healing.db tích lũy liên tục trên cùng 1 máy, không cần upload/download
+#   artifact giữa các job. Model tự train khi DB đếm đủ 140 heal_success.
+#
+#   Job report chạy sau để đọc DB và publish summary lên GitHub Actions UI.
+# ──────────────────────────────────────────────────────────────────────────────
 
 jobs:
-  # ══════════════════════════════════════════════════════════════
-  # JOB 1: test_login.py — v1→v11 tuần tự
-  # ══════════════════════════════════════════════════════════════
-  test-login:
-    name: "test_login.py (v1→v11)"
+  # ════════════════════════════════════════════════════════════════
+  # JOB DUY NHẤT: chạy tất cả 5 module tuần tự trên 1 runner
+  # Giống hệt: pytest test_login.py test_register.py test_products.py
+  #                   test_admin.py test_contact.py
+  # ════════════════════════════════════════════════════════════════
+  run-all-tests:
+    name: "Self-Healing Tests (login → register → products → admin → contact)"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +62,7 @@ jobs:
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.11.0
         with:
-          mongodb-version: '6.0'
+          mongodb-version: "6.0"
 
       - name: Start Backend server
         run: |
@@ -71,502 +81,147 @@ jobs:
       - name: Create output directories
         run: mkdir -p reports logs snapshots knowledge_base
 
-      # ── Chạy v1 trước — tạo snapshot ──────────────
-      - name: "[login] v1 — tạo snapshot"
+      # ── Bước 1: login ─────────────────────────────────────────
+      - name: "[1/5] test_login.py (v1 snapshot → v2→v11 healing)"
         run: |
-          bash myapp/src_mutated/switch_ui.sh v1
           pytest tests/test_login.py \
             -v --tb=short \
-            --junit-xml=reports/junit-login-v1.xml \
-            --html=reports/report-login-v1.html \
+            --junit-xml=reports/junit-login.xml \
+            --html=reports/report-login.html \
             --self-contained-html \
-            2>&1 | tee logs/login-v1.log
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      # ── v2→v11 tuần tự — heal + tích lũy DB ───────
-      - name: "[login] v2→v11 — heal tuần tự"
-        run: |
-          for VERSION in v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            echo "════════════════════════════════"
-            echo " Chạy test_login.py với UI $VERSION"
-            echo "════════════════════════════════"
-            bash myapp/src_mutated/switch_ui.sh $VERSION
-            pytest tests/test_login.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-login-$VERSION.xml \
-              --html=reports/report-login-$VERSION.html \
-              --self-contained-html \
-              -k "Healing" \
-              2>&1 | tee logs/login-$VERSION.log
-            echo "Done $VERSION — DB events:"
-            python -c "
+            2>&1 | tee logs/login.log
+          echo "--- heal_count sau login ---"
+          python - <<'EOF'
           import sqlite3
-          conn = sqlite3.connect('healing.db')
-          total = conn.execute('SELECT COUNT(*) FROM healing_events WHERE healing_success=1').fetchone()[0]
-          weights = conn.execute('SELECT COUNT(*) FROM learned_weights').fetchone()[0]
-          print(f'  heal_success={total}, model_versions={weights}')
-          conn.close()
-            " 2>/dev/null || true
-          done
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
+              conn.close()
+          except Exception as e:
+              print(f"  (DB chưa có dữ liệu: {e})")
+          EOF
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      - name: Upload healing.db sau login
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: healing-db-after-login
-          path: |
-            healing.db
-            snapshots/
-            knowledge_base/
-          retention-days: 1
-
-      - name: Upload reports login
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report-login
-          path: |
-            reports/
-            logs/
-          retention-days: 14
-
-  # ══════════════════════════════════════════════════════════════
-  # JOB 2: test_register.py — download DB từ job 1, tiếp tục tích lũy
-  # ══════════════════════════════════════════════════════════════
-  test-register:
-    name: "test_register.py (v1→v11)"
-    runs-on: ubuntu-latest
-    needs: test-login
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-      - run: pip install -r requirements.txt
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-      - run: npm ci
-        working-directory: myapp
-
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: '6.0'
-
-      - name: Start Backend server
+      # ── Bước 2: register ──────────────────────────────────────
+      - name: "[2/5] test_register.py (v1 snapshot → v2→v11 healing)"
         run: |
-          npm install
-          node server.js &
-          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-
-      - name: Start React dev server
-        working-directory: myapp
-        run: |
-          npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-
-      # ── Download healing.db từ job login ───────────
-      - name: Download healing.db từ job login
-        uses: actions/download-artifact@v4
-        with:
-          name: healing-db-after-login
-          path: .
-
-      - name: Create output directories
-        run: mkdir -p reports logs
-
-      - name: "[register] v1 — tạo snapshot"
-        run: |
-          bash myapp/src_mutated/switch_ui.sh v1
           pytest tests/test_register.py \
             -v --tb=short \
-            --junit-xml=reports/junit-register-v1.xml \
-            --html=reports/report-register-v1.html \
+            --junit-xml=reports/junit-register.xml \
+            --html=reports/report-register.html \
             --self-contained-html \
-            2>&1 | tee logs/register-v1.log
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      - name: "[register] v2→v11 — heal tuần tự"
-        run: |
-          for VERSION in v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            echo "════ test_register.py UI $VERSION ════"
-            bash myapp/src_mutated/switch_ui.sh $VERSION
-            pytest tests/test_register.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-register-$VERSION.xml \
-              --html=reports/report-register-$VERSION.html \
-              --self-contained-html \
-              -k "Healing" \
-              2>&1 | tee logs/register-$VERSION.log
-            python -c "
+            2>&1 | tee logs/register.log
+          echo "--- heal_count sau register ---"
+          python - <<'EOF'
           import sqlite3
-          conn = sqlite3.connect('healing.db')
-          total = conn.execute('SELECT COUNT(*) FROM healing_events WHERE healing_success=1').fetchone()[0]
-          weights = conn.execute('SELECT COUNT(*) FROM learned_weights').fetchone()[0]
-          print(f'  heal_success={total}, model_versions={weights}')
-          conn.close()
-            " 2>/dev/null || true
-          done
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
+              conn.close()
+          except Exception as e:
+              print(f"  (DB chưa có dữ liệu: {e})")
+          EOF
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      - name: Upload healing.db sau register
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: healing-db-after-register
-          path: |
-            healing.db
-            snapshots/
-            knowledge_base/
-          retention-days: 1
-
-      - name: Upload reports register
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report-register
-          path: |
-            reports/
-            logs/
-          retention-days: 14
-
-  # ══════════════════════════════════════════════════════════════
-  # JOB 3: test_products.py
-  # ══════════════════════════════════════════════════════════════
-  test-products:
-    name: "test_products.py (v1→v11)"
-    runs-on: ubuntu-latest
-    needs: test-register
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-      - run: pip install -r requirements.txt
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-      - run: npm ci
-        working-directory: myapp
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: '6.0'
-      - name: Start Backend server
+      # ── Bước 3: products ──────────────────────────────────────
+      - name: "[3/5] test_products.py (v1 snapshot → v2→v11 healing)"
         run: |
-          npm install && node server.js &
-          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-      - name: Start React dev server
-        working-directory: myapp
-        run: |
-          npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-
-      - name: Download healing.db từ job register
-        uses: actions/download-artifact@v4
-        with:
-          name: healing-db-after-register
-          path: .
-
-      - name: Create output directories
-        run: mkdir -p reports logs
-
-      - name: "[products] v1 — tạo snapshot"
-        run: |
-          bash myapp/src_mutated/switch_ui.sh v1
           pytest tests/test_products.py \
             -v --tb=short \
-            --junit-xml=reports/junit-products-v1.xml \
-            --html=reports/report-products-v1.html \
+            --junit-xml=reports/junit-products.xml \
+            --html=reports/report-products.html \
             --self-contained-html \
-            2>&1 | tee logs/products-v1.log
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      - name: "[products] v2→v11 — heal tuần tự"
-        run: |
-          for VERSION in v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            echo "════ test_products.py UI $VERSION ════"
-            bash myapp/src_mutated/switch_ui.sh $VERSION
-            pytest tests/test_products.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-products-$VERSION.xml \
-              --html=reports/report-products-$VERSION.html \
-              --self-contained-html \
-              -k "Healing" \
-              2>&1 | tee logs/products-$VERSION.log
-            python -c "
+            2>&1 | tee logs/products.log
+          echo "--- heal_count sau products ---"
+          python - <<'EOF'
           import sqlite3
-          conn = sqlite3.connect('healing.db')
-          total = conn.execute('SELECT COUNT(*) FROM healing_events WHERE healing_success=1').fetchone()[0]
-          weights = conn.execute('SELECT COUNT(*) FROM learned_weights').fetchone()[0]
-          print(f'  heal_success={total}, model_versions={weights}')
-          conn.close()
-            " 2>/dev/null || true
-          done
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
+              conn.close()
+          except Exception as e:
+              print(f"  (DB chưa có dữ liệu: {e})")
+          EOF
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      - name: Upload healing.db sau products
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: healing-db-after-products
-          path: |
-            healing.db
-            snapshots/
-            knowledge_base/
-          retention-days: 1
-
-      - name: Upload reports products
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report-products
-          path: |
-            reports/
-            logs/
-          retention-days: 14
-
-  # ══════════════════════════════════════════════════════════════
-  # JOB 4: test_admin.py
-  # ══════════════════════════════════════════════════════════════
-  test-admin:
-    name: "test_admin.py (v1→v11)"
-    runs-on: ubuntu-latest
-    needs: test-products
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-      - run: pip install -r requirements.txt
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-      - run: npm ci
-        working-directory: myapp
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: '6.0'
-      - name: Start Backend server
+      # ── Bước 4: admin ─────────────────────────────────────────
+      - name: "[4/5] test_admin.py (v1 snapshot → v2→v11 healing)"
         run: |
-          npm install && node server.js &
-          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-      - name: Start React dev server
-        working-directory: myapp
-        run: |
-          npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-
-      - name: Download healing.db từ job products
-        uses: actions/download-artifact@v4
-        with:
-          name: healing-db-after-products
-          path: .
-
-      - name: Create output directories
-        run: mkdir -p reports logs
-
-      - name: "[admin] v1 — tạo snapshot"
-        run: |
-          bash myapp/src_mutated/switch_ui.sh v1
           pytest tests/test_admin.py \
             -v --tb=short \
-            --junit-xml=reports/junit-admin-v1.xml \
-            --html=reports/report-admin-v1.html \
+            --junit-xml=reports/junit-admin.xml \
+            --html=reports/report-admin.html \
             --self-contained-html \
-            2>&1 | tee logs/admin-v1.log
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      - name: "[admin] v2→v11 — heal tuần tự"
-        run: |
-          for VERSION in v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            echo "════ test_admin.py UI $VERSION ════"
-            bash myapp/src_mutated/switch_ui.sh $VERSION
-            pytest tests/test_admin.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-admin-$VERSION.xml \
-              --html=reports/report-admin-$VERSION.html \
-              --self-contained-html \
-              -k "Healing" \
-              2>&1 | tee logs/admin-$VERSION.log
-            python -c "
+            2>&1 | tee logs/admin.log
+          echo "--- heal_count sau admin ---"
+          python - <<'EOF'
           import sqlite3
-          conn = sqlite3.connect('healing.db')
-          total = conn.execute('SELECT COUNT(*) FROM healing_events WHERE healing_success=1').fetchone()[0]
-          weights = conn.execute('SELECT COUNT(*) FROM learned_weights').fetchone()[0]
-          print(f'  heal_success={total}, model_versions={weights}')
-          conn.close()
-            " 2>/dev/null || true
-          done
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              print(f"  heal_success = {heal} / 140  |  models trained = {models}")
+              conn.close()
+          except Exception as e:
+              print(f"  (DB chưa có dữ liệu: {e})")
+          EOF
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      - name: Upload healing.db sau admin
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: healing-db-after-admin
-          path: |
-            healing.db
-            snapshots/
-            knowledge_base/
-          retention-days: 1
-
-      - name: Upload reports admin
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report-admin
-          path: |
-            reports/
-            logs/
-          retention-days: 14
-
-  # ══════════════════════════════════════════════════════════════
-  # JOB 5: test_contact.py
-  # ══════════════════════════════════════════════════════════════
-  test-contact:
-    name: "test_contact.py (v1→v11)"
-    runs-on: ubuntu-latest
-    needs: test-admin
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: "pip"
-      - run: pip install -r requirements.txt
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: myapp/package-lock.json
-      - run: npm ci
-        working-directory: myapp
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: '6.0'
-      - name: Start Backend server
+      # ── Bước 5: contact ───────────────────────────────────────
+      - name: "[5/5] test_contact.py (v1 snapshot → v2→v11 healing)"
         run: |
-          npm install && node server.js &
-          timeout 30 bash -c 'until curl -sf http://localhost:5000 > /dev/null 2>&1; do sleep 2; done' || true
-      - name: Start React dev server
-        working-directory: myapp
-        run: |
-          npm run dev &
-          timeout 60 bash -c 'until curl -sf http://localhost:5173 > /dev/null; do sleep 2; done'
-
-      - name: Download healing.db từ job admin
-        uses: actions/download-artifact@v4
-        with:
-          name: healing-db-after-admin
-          path: .
-
-      - name: Create output directories
-        run: mkdir -p reports logs
-
-      - name: "[contact] v1 — tạo snapshot"
-        run: |
-          bash myapp/src_mutated/switch_ui.sh v1
           pytest tests/test_contact.py \
             -v --tb=short \
-            --junit-xml=reports/junit-contact-v1.xml \
-            --html=reports/report-contact-v1.html \
+            --junit-xml=reports/junit-contact.xml \
+            --html=reports/report-contact.html \
             --self-contained-html \
-            2>&1 | tee logs/contact-v1.log
-        env:
-          BASE_URL: ${{ env.BASE_URL }}
-          HEADLESS: "true"
-          PYTHONPATH: ${{ github.workspace }}
-          SRC_DIR: myapp/src/pages
-
-      - name: "[contact] v2→v11 — heal tuần tự"
-        run: |
-          for VERSION in v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-            echo "════ test_contact.py UI $VERSION ════"
-            bash myapp/src_mutated/switch_ui.sh $VERSION
-            pytest tests/test_contact.py \
-              -v --tb=short \
-              --junit-xml=reports/junit-contact-$VERSION.xml \
-              --html=reports/report-contact-$VERSION.html \
-              --self-contained-html \
-              -k "Healing" \
-              2>&1 | tee logs/contact-$VERSION.log
-            python -c "
+            2>&1 | tee logs/contact.log
+          echo "--- heal_count FINAL ---"
+          python - <<'EOF'
           import sqlite3
-          conn = sqlite3.connect('healing.db')
-          total = conn.execute('SELECT COUNT(*) FROM healing_events WHERE healing_success=1').fetchone()[0]
-          weights = conn.execute('SELECT COUNT(*) FROM learned_weights').fetchone()[0]
-          print(f'  heal_success={total}, model_versions={weights}')
-          conn.close()
-            " 2>/dev/null || true
-          done
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              total  = conn.execute("SELECT COUNT(*) FROM healing_events").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              print(f"  heal_success = {heal} / 140  |  models trained = {models}  |  total events = {total}")
+              if models > 0:
+                  row = conn.execute("SELECT w_attribute, w_semantic, w_structure, w_visual, w_context, accuracy FROM learned_weights ORDER BY id DESC LIMIT 1").fetchone()
+                  print(f"  Trọng số mới nhất: attr={row[0]:.3f} sem={row[1]:.3f} struct={row[2]:.3f} vis={row[3]:.3f} ctx={row[4]:.3f} (acc={row[5]:.1%})")
+              conn.close()
+          except Exception as e:
+              print(f"  (DB chưa có dữ liệu: {e})")
+          EOF
         env:
           BASE_URL: ${{ env.BASE_URL }}
           HEADLESS: "true"
           PYTHONPATH: ${{ github.workspace }}
           SRC_DIR: myapp/src/pages
 
-      - name: Upload healing.db FINAL
+      # ── Upload artifacts ───────────────────────────────────────
+      - name: Upload healing.db + knowledge_base
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -577,68 +232,109 @@ jobs:
             knowledge_base/
           retention-days: 14
 
-      - name: Upload reports contact
+      - name: Upload test reports + logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-report-contact
+          name: test-reports
           path: |
             reports/
             logs/
           retention-days: 14
 
-  # ══════════════════════════════════════════════════════════════
-  # JOB 6: Tổng hợp report
-  # ══════════════════════════════════════════════════════════════
+  # ════════════════════════════════════════════════════════════════
+  # JOB 2: Publish summary lên GitHub Actions UI
+  # ════════════════════════════════════════════════════════════════
   report:
     name: "Publish Test Report"
     runs-on: ubuntu-latest
-    needs: [test-login, test-products, test-register, test-contact, test-admin]
+    needs: run-all-tests
     if: always()
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download all reports
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Download reports
         uses: actions/download-artifact@v4
         with:
-          pattern: test-report-*
-          path: all-reports/
-          merge-multiple: false
+          name: test-reports
+          path: reports/
+
+      - name: Download healing.db
+        uses: actions/download-artifact@v4
+        with:
+          name: healing-db-final
+          path: .
+        continue-on-error: true
 
       - name: Generate summary
         if: always()
         run: |
-          echo "## 🧪 Self-Healing Selenium Test Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Flow: login → register → products → admin → contact" >> $GITHUB_STEP_SUMMARY
-          echo "_healing.db được truyền tuần tự qua từng job, model tự train khi đủ 140 heal events_" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Module | UI Version | Loại | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|--------|-----------|------|--------|" >> $GITHUB_STEP_SUMMARY
+          python - <<'EOF'
+          import os, sqlite3, glob, re
 
-          for MODULE in login register products admin contact; do
-            for VERSION in v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 v11; do
-              XML=$(find all-reports -name "junit-${MODULE}-${VERSION}.xml" 2>/dev/null | head -1)
-              TYPE="Full suite"
-              [ "$VERSION" != "v1" ] && TYPE="Healing"
-              if [ -n "$XML" ]; then
-                FAILURES=$(grep -oP 'failures="\K[0-9]+' "$XML" 2>/dev/null | head -1 || echo "0")
-                ERRORS=$(grep -oP 'errors="\K[0-9]+' "$XML" 2>/dev/null | head -1 || echo "0")
-                FAILURES=${FAILURES:-0}; ERRORS=${ERRORS:-0}
-                if [ "$FAILURES" -eq 0 ] && [ "$ERRORS" -eq 0 ]; then
-                  echo "| $MODULE | $VERSION | $TYPE | ✅ PASS |" >> $GITHUB_STEP_SUMMARY
-                else
-                  echo "| $MODULE | $VERSION | $TYPE | ❌ FAIL |" >> $GITHUB_STEP_SUMMARY
-                fi
-              else
-                echo "| $MODULE | $VERSION | $TYPE | ⚪ SKIP |" >> $GITHUB_STEP_SUMMARY
-              fi
-            done
-          done
+          summary = os.environ.get('GITHUB_STEP_SUMMARY', '/dev/stdout')
 
-      - name: Upload all reports
+          lines = []
+          lines.append("## 🧪 Self-Healing Selenium Test Results\n")
+          lines.append("### Luồng chạy: login → register → products → admin → contact\n")
+          lines.append("_Toàn bộ 5 module chạy tuần tự trên 1 runner, healing.db tích lũy liên tục_\n\n")
+
+          # Đọc DB stats
+          try:
+              conn = sqlite3.connect('healing.db')
+              heal   = conn.execute("SELECT COUNT(*) FROM healing_events WHERE healing_success=1").fetchone()[0]
+              total  = conn.execute("SELECT COUNT(*) FROM healing_events").fetchone()[0]
+              models = conn.execute("SELECT COUNT(*) FROM learned_weights").fetchone()[0]
+              conn.close()
+
+              lines.append("### 📊 Healing Database (kết thúc pipeline)\n\n")
+              lines.append("| Chỉ số | Giá trị |\n|--------|--------|\n")
+              lines.append(f"| Tổng heal events | {total} |\n")
+              lines.append(f"| heal_success tích lũy | **{heal}** |\n")
+              lines.append(f"| Ngưỡng train lần đầu | 140 |\n")
+              lines.append(f"| Số lần model đã train | {models} |\n")
+              if models > 0:
+                  lines.append(f"| Trạng thái model | ✅ Đã train, dùng LEARNED weights |\n")
+              else:
+                  lines.append(f"| Trạng thái model | ⏳ Còn thiếu {max(0, 140-heal)} heal_success |\n")
+              lines.append("\n")
+          except Exception as e:
+              lines.append(f"_(Không đọc được healing.db: {e})_\n\n")
+
+          # Kết quả từng module
+          lines.append("### 📋 Kết quả từng module\n\n")
+          lines.append("| Module | Tổng cases | Passed | Failed | Status |\n")
+          lines.append("|--------|-----------|--------|--------|--------|\n")
+
+          for module in ["login", "register", "products", "admin", "contact"]:
+              xml_files = glob.glob(f"reports/junit-{module}.xml")
+              if not xml_files:
+                  lines.append(f"| {module} | — | — | — | ⚪ SKIP |\n")
+                  continue
+              content = open(xml_files[0]).read()
+              tests    = re.search(r'tests="(\d+)"',    content)
+              failures = re.search(r'failures="(\d+)"', content)
+              errors   = re.search(r'errors="(\d+)"',   content)
+              t = int(tests.group(1))    if tests    else 0
+              f = int(failures.group(1)) if failures else 0
+              e = int(errors.group(1))   if errors   else 0
+              passed = t - f - e
+              status = "✅ PASS" if (f + e) == 0 else f"❌ FAIL"
+              lines.append(f"| {module} | {t} | {passed} | {f+e} | {status} |\n")
+
+          with open(summary, 'a') as fp:
+              fp.writelines(lines)
+
+          print("Summary generated.")
+          EOF
+
+      - name: Upload combined reports
         uses: actions/upload-artifact@v4
         with:
           name: all-test-reports
-          path: all-reports/
+          path: reports/
           retention-days: 14
