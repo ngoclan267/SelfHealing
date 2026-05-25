@@ -1,4 +1,3 @@
 {
-  "tests/test_products.py::test_products[[v1] search 'iPhone': t\\u1eeb kh\\xf3a th\\u1ef1c t\\u1ebf]": true,
   "tests/test_products.py::test_products[[v1] search 'iphone': ch\\u1eef th\\u01b0\\u1eddng]": true
 }
