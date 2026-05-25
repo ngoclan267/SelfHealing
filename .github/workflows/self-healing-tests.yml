@@ -593,7 +593,7 @@ jobs:
   report:
     name: "Publish Test Report"
     runs-on: ubuntu-latest
-    needs: [test-login, test-register, test-products, test-admin, test-contact]
+    needs: [test-login, test-products, test-register, test-contact, test-admin]
     if: always()
     steps:
       - uses: actions/checkout@v4
