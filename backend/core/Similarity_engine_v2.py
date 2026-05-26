@@ -21,11 +21,11 @@ DYNAMIC_PATTERNS = [
 
 # STATIC WEIGHTS
 STATIC_WEIGHTS: Dict[str, float] = {
-    'attribute': 0.27,
-    'semantic':  0.24,
-    'structure': 0.2,
-    'visual':    0.17,
-    'context':   0.12,
+    'attribute': 0.39,
+    'semantic':  0.33,
+    'structure': 0.28,
+    'visual':    0,
+    'context':   0,
 }
 
 # HEALING DECISION

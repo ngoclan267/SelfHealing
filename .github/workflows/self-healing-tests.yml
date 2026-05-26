@@ -68,7 +68,7 @@ jobs:
       - name: Start backend API
         run: |
           npm install
-          node server.js &
+          node backend/server.js &
           for i in $(seq 1 15); do
             if curl -s http://localhost:5000/api/products > /dev/null; then
               echo "Backend is up!"
@@ -109,6 +109,7 @@ jobs:
         run: |
           mkdir -p reports
           python -m pytest \
+            backend/tests/test_login.py \
             backend/tests/test_products.py \
             backend/tests/test_register.py \
             backend/tests/test_contact.py \

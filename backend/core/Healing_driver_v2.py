@@ -442,7 +442,7 @@ class SelfHealingDriverV2:
 
         logger.info(f"[M5] Healing OK: '{failed_value}' -> '{new_val}' "
                     f"(score={best.score:.1%} action={action})")
-        self._maybe_retrain_model()
+        # self._maybe_retrain_model()
         return best.element
 
     def _save_healing_event(self, step_name, ui_version,

@@ -39,11 +39,11 @@ except ImportError:
 
 # Trọng số mặc định (dùng khi chưa có model nào được train)
 DEFAULT_WEIGHTS: Dict[str, float] = {
-    'attribute': 0.27,
-    'semantic':  0.24,
-    'structure': 0.2,
-    'visual':    0.17,
-    'context':   0.12,
+    'attribute': 0.39,
+    'semantic':  0.33,
+    'structure': 0.28,
+    'visual':    0,
+    'context':   0,
 }
 FEATURE_NAMES = ['attribute', 'semantic', 'structure', 'visual', 'context']
 class LogisticWeightModel:

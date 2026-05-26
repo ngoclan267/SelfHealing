@@ -1,3 +1,4 @@
 {
-  "tests/test_products.py::test_products[[v1] search 'iphone': ch\\u1eef th\\u01b0\\u1eddng]": true
+  "tests/test_products.py::test_products[[v1] search 'iphone': ch\\u1eef th\\u01b0\\u1eddng]": true,
+  "backend/tests/test_contact.py::test_contact[[v8] contact: g\\u1eedi \\u0111\\u1ea7y \\u0111\\u1ee7 th\\xf4ng tin (Healing Check)]": true
 }
