@@ -10,7 +10,7 @@ app.use(cors());
 const SECRET_KEY = "Ngoclan@267204"; // Dùng để mã hóa Token
 
 // 1. KẾT NỐI DATABASE (Sử dụng MongoDB Local)
-mongoose.connect('mongodb://127.0.0.1:27017/product_db')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/product_db')
     .then(() => console.log("Đã kết nối MongoDB"))
     .catch(err => console.error("Lỗi kết nối DB:", err));
 
