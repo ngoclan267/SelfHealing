@@ -64,17 +64,21 @@ jobs:
             sleep 2
           done
 
-      # ─── 4. BACKEND (nếu có) ────────────────────────────────────────
-      # Nếu project có backend API (FastAPI/Node), khởi động ở đây.
-      # Bỏ comment và điều chỉnh theo project của bạn:
-      #
-      # - name: Start backend API
-      #   working-directory: backend
-      #   run: |
-      #     pip install -r requirements.txt
-      #     uvicorn main:app --host 0.0.0.0 --port 5000 &
-      #     sleep 3
-
+      # ─── 4. BACKEND Node.js ─────────────────────────────────────────
+      - name: Start backend API
+        working-directory: backend
+        run: |
+          npm install
+          node server.js &
+          for i in $(seq 1 15); do
+            if curl -s http://localhost:5000/api/products > /dev/null; then
+              echo "Backend is up!"
+              break
+            fi
+            sleep 2
+          done
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
       # ─── 5. CHROME ──────────────────────────────────────────────────
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
