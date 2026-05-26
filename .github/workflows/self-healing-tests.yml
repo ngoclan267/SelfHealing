@@ -66,10 +66,9 @@ jobs:
 
       # ─── 4. BACKEND Node.js ─────────────────────────────────────────
       - name: Start backend API
-        working-directory: backend
         run: |
           npm install
-          node server.js &
+          node backend/server.js &
           for i in $(seq 1 15); do
             if curl -s http://localhost:5000/api/products > /dev/null; then
               echo "Backend is up!"
