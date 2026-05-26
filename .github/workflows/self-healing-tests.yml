@@ -106,16 +106,10 @@ jobs:
         run: |
           mkdir -p reports
           python -m pytest \
-            tests/test_products.py \
-            tests/test_register.py \
-            tests/test_contact.py \
-            tests/test_admin.py \
-            -v -s \
-            --tb=short \
-            --junitxml=reports/test_results.xml \
-            --log-cli-level=INFO \
-            2>&1 | tee reports/test_output.log
-        continue-on-error: true
+            backend/tests/test_products.py \
+            backend/tests/test_register.py \
+            backend/tests/test_contact.py \
+            backend/tests/test_admin.py \
 
       # ─── 9. THỐNG KÊ DB SAU KHI CHẠY ───────────────────────────────
       - name: Show DB stats after run
