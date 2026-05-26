@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
+    env:
+      CI: "true"
+      # BASE_URL dùng cho toàn bộ test — app chạy trên cổng 5173
+      BASE_URL: "http://localhost:5173"
+
     steps:
       # ─── 1. CHECKOUT ────────────────────────────────────────────────
       - name: Checkout repository
@@ -26,40 +31,77 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ─── 3. CHROME HEADLESS ─────────────────────────────────────────
+      # ─── 3. NODE + KHỞI ĐỘNG APP ────────────────────────────────────
+      # App React/Vite cần chạy trước khi test Selenium kết nối vào
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: myapp/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: myapp
+        run: npm ci
+
+      - name: Start frontend app (background)
+        working-directory: myapp
+        run: |
+          npm run dev &
+          echo "Waiting for app to start on port 5173..."
+          # Chờ app khởi động xong (tối đa 60s)
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:5173 > /dev/null; then
+              echo "App is up!"
+              break
+            fi
+            echo "Attempt $i/30..."
+            sleep 2
+          done
+
+      # ─── 4. BACKEND (nếu có) ────────────────────────────────────────
+      # Nếu project có backend API (FastAPI/Node), khởi động ở đây.
+      # Bỏ comment và điều chỉnh theo project của bạn:
+      #
+      # - name: Start backend API
+      #   working-directory: backend
+      #   run: |
+      #     pip install -r requirements.txt
+      #     uvicorn main:app --host 0.0.0.0 --port 5000 &
+      #     sleep 3
+
+      # ─── 5. CHROME ──────────────────────────────────────────────────
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
-      # ─── 4. RESTORE healing.db TỪ CACHE ────────────────────────────
-      # Đây là bước then chốt: SQLite phải được giữ lại giữa các lần chạy.
-      # GitHub Actions cache dùng key theo ngày → mỗi ngày tạo cache mới
-      # nhưng vẫn restore từ ngày hôm trước nếu ngày hôm nay chưa có.
+      # ─── 6. RESTORE healing.db ──────────────────────────────────────
       - name: Restore healing database from cache
         uses: actions/cache@v4
         with:
           path: |
             healing.db
             knowledge_base/
-          key: healing-db-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('healing.db') }}
+            snapshots/
+          key: healing-db-${{ runner.os }}-${{ github.ref_name }}-${{ github.run_number }}
           restore-keys: |
             healing-db-${{ runner.os }}-${{ github.ref_name }}-
             healing-db-${{ runner.os }}-
 
-      # ─── 5. IN TRẠNG THÁI DB TRƯỚC KHI CHẠY ────────────────────────
-      - name: Show DB state before run
+      # ─── 7. THỐNG KÊ DB TRƯỚC KHI CHẠY ─────────────────────────────
+      - name: Show DB stats before run
         run: python scripts/db_stats.py
         continue-on-error: true
 
-      # ─── 6. CHẠY 4 FILE TEST THEO THỨ TỰ ───────────────────────────
-      # _maybe_retrain_model() được gọi tự động bên trong Healing_driver_v2
-      # sau mỗi heal thành công. Không cần làm gì thêm ở đây.
+      # ─── 8. CHẠY TESTS ──────────────────────────────────────────────
+      # Chạy đúng thứ tự: products → register → contact → admin
+      # _maybe_retrain_model() tự kích hoạt bên trong khi đủ 140 heals
       - name: Run self-healing tests
         run: |
           mkdir -p reports
@@ -74,28 +116,23 @@ jobs:
             --log-cli-level=INFO \
             2>&1 | tee reports/test_output.log
         continue-on-error: true
-        env:
-          APP_URL: ${{ secrets.APP_URL }}
-          # Bảo Selenium dùng Chrome headless
-          CI: "true"
 
-      # ─── 7. IN TRẠNG THÁI DB SAU KHI CHẠY ──────────────────────────
-      - name: Show DB state after run
+      # ─── 9. THỐNG KÊ DB SAU KHI CHẠY ───────────────────────────────
+      - name: Show DB stats after run
         if: always()
         run: python scripts/db_stats.py
         continue-on-error: true
 
-      # ─── 8. LƯU REPORTS ─────────────────────────────────────────────
+      # ─── 10. UPLOAD REPORTS ─────────────────────────────────────────
       - name: Upload test reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-reports-${{ github.run_number }}
+          name: test-reports-run-${{ github.run_number }}
           path: reports/
           retention-days: 30
 
-      # ─── 9. BACKUP healing.db LÊN ARTIFACTS ─────────────────────────
-      # Để có thể download về xem hoặc restore thủ công nếu cần
+      # ─── 11. BACKUP healing.db ──────────────────────────────────────
       - name: Backup healing database
         uses: actions/upload-artifact@v4
         if: always()
@@ -104,4 +141,5 @@ jobs:
           path: |
             healing.db
             knowledge_base/
+            snapshots/
           retention-days: 90
