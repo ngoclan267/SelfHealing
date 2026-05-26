@@ -1,0 +1,4 @@
+id,w_attribute,w_semantic,w_structure,w_visual,w_context,accuracy,n_samples,trained_at,notes
+1,0.1017,0.5802,0.0861,0.2115,0.0205,0.832258064516129,465,2026-05-26T00:12:13.602274,retrain #1 | n_samples=465 | accuracy=83.2% | scikit-learn LogisticRegression
+2,0.1246,0.5532,0.0919,0.2228,0.0075,0.8103448275862069,522,2026-05-26T00:18:23.456371,retrain #2 | n_samples=522 | accuracy=81.0% | scikit-learn LogisticRegression
+3,0.1664,0.4563,0.1127,0.2541,0.0104,0.8021806853582555,642,2026-05-26T00:24:08.088879,retrain #3 | n_samples=642 | accuracy=80.2% | scikit-learn LogisticRegression
