@@ -17,3 +17,4 @@ cp "$BASE_DIR/Products_$VERSION.jsx" "$SRC_DIR/Products.jsx"
 cp "$BASE_DIR/Contact_$VERSION.jsx" "$SRC_DIR/Contact.jsx"
 cp "$BASE_DIR/addProduct_$VERSION.jsx" "$SRC_DIR/addProduct.jsx"
 echo "Xong! Reload React dev server để thấy thay đổi."
+sleep 2
