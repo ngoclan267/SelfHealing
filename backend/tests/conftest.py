@@ -85,14 +85,14 @@ def do_login(driver, email: str, password: str,
     SelfHealingDriverV2.find_element() có cùng signature → không cần sửa.
     """
     navigate_to(driver, "/login", ui_version)
+    import os
+    if os.environ.get("CI"):
+        print(f"\nDEBUG URL: {driver._drv.current_url}")
+        print(f"DEBUG PAGE:\n{driver._drv.page_source[:2000]}")
 
-    WebDriverWait(driver.drv, 15).until(
-        EC.presence_of_element_located((
-            By.CSS_SELECTOR,
-            '[data-testid="login-email"]'
-        ))
-    )   
-
+    WebDriverWait(driver._drv, 15).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="login-email"]'))
+    )
     email_el = driver.find_element(
         By.CSS_SELECTOR,
         '[data-testid="login-email"]',
