@@ -12,7 +12,7 @@ from .conftest import do_login, navigate_to
 from .config import ADMIN_EMAIL, ADMIN_PASS
 
 def switch_ui(version):
-    subprocess.run(["bash", "../myapp/src_mutated/switch_ui.sh", version], shell=True)
+    subprocess.run(f"bash ../myapp/src_mutated/switch_ui.sh {version}", shell=True)
 
 ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 

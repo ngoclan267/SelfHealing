@@ -9,7 +9,7 @@ from .config import ADMIN_EMAIL
 from .conftest import navigate_to
 
 def switch_ui(version):
-    subprocess.run(["bash", "../myapp/src_mutated/switch_ui.sh", version], shell=True)
+    subprocess.run(f"bash ../myapp/src_mutated/switch_ui.sh {version}", shell=True)
 
 def random_email():
     suffix = "".join(random.choices(string.ascii_lowercase, k=6))
