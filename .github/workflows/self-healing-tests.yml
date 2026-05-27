@@ -50,19 +50,19 @@ jobs:
         run: npm ci
 
       - name: Start frontend app (background)
-        working-directory: myapp
         run: |
-          npm run dev &
-          echo "Waiting for app to start on port 5173..."
-          # Chờ app khởi động xong (tối đa 60s)
+          npm install
+          npx vite --host 0.0.0.0 --port 5173 &
+          echo "Waiting for app on port 5173..."
           for i in $(seq 1 30); do
-            if curl -s http://localhost:5173 > /dev/null; then
-              echo "App is up!"
+            if curl -s http://localhost:5173 > /dev/null 2>&1; then
+              echo "✅ App is up!"
               break
             fi
             echo "Attempt $i/30..."
             sleep 2
           done
+          curl -v http://localhost:5173 || echo "❌ App failed to start"
 
       # ─── 4. BACKEND Node.js ─────────────────────────────────────────
       - name: Start backend API
