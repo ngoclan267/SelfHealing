@@ -81,12 +81,12 @@ def do_login(driver, email: str, password: str,
     """
     navigate_to(driver, "/login", ui_version)
 
-    # WebDriverWait(driver, 10).until(
-    #     EC.presence_of_element_located((
-    #         By.CSS_SELECTOR,
-    #         '[data-testid="login-email"]'
-    #     ))
-    # )   
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((
+            By.CSS_SELECTOR,
+            '[data-testid="login-email"]'
+        ))
+    )   
 
     email_el = driver.find_element(
         By.CSS_SELECTOR,
