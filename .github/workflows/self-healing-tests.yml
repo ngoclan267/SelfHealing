@@ -49,20 +49,19 @@ jobs:
         working-directory: myapp
         run: npm ci
 
-      - name: Start frontend app (background)
+      - name: Build and serve frontend
         working-directory: myapp
         run: |
-          npx vite --host 0.0.0.0 --port 5173 &
-          echo "Waiting for app on port 5173..."
-          for i in $(seq 1 30); do
+          npm run build
+          npx serve -s dist -l 5173 &
+          echo "Waiting for static server..."
+          for i in $(seq 1 15); do
             if curl -s http://localhost:5173 > /dev/null 2>&1; then
-              echo "✅ App is up!"
+              echo "✅ Static server is up!"
               break
             fi
-            echo "Attempt $i/30..."
             sleep 2
           done
-          curl -v http://localhost:5173 || echo "❌ App failed to start"
       # ─── 4. BACKEND Node.js ─────────────────────────────────────────
       - name: Start backend API
         run: |
@@ -128,13 +127,10 @@ jobs:
             backend/tests/test_contact.py \
             backend/tests/test_admin.py \
             -v -s \
-
-      # ─── 9. THỐNG KÊ DB SAU KHI CHẠY ───────────────────────────────
-      - name: Show DB stats after run
-        if: always()
-        run: python scripts/db_stats.py
+            --tb=short \
+            --junitxml=reports/test_results.xml \
+            2>&1 | tee reports/test_output.log
         continue-on-error: true
-
       # ─── 10. UPLOAD REPORTS ─────────────────────────────────────────
       - name: Upload test reports
         uses: actions/upload-artifact@v4
