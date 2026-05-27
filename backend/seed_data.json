@@ -1,0 +1,841 @@
+{
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "email": "lan@gmail.com",
+      "password": "password123",
+      "role": "user"
+    }
+  ],
+
+  "iphone": [
+    {
+      "name": "iPhone 16 Pro Max",
+      "description": "iPhone 16 Pro Max với chip A18 Pro mạnh mẽ, camera 48MP và màn hình ProMotion 120Hz siêu mượt.",
+      "pr": 34990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-pro-max_1.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.9 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A18 Pro" },
+        { "key": "Camera sau", "value": "48MP + 48MP + 12MP" },
+        { "key": "Pin", "value": "4685 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 18" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "256GB", "price": 34990000 },
+        { "label": "512GB", "price": 39990000 },
+        { "label": "1TB", "price": 44990000 }
+      ],
+      "variants": [
+        { "colorName": "Titan Đen", "colorCode": "#4A4A4A", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-pro-max-titan-den_1.png" },
+        { "colorName": "Titan Trắng", "colorCode": "#E8E4DC", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-pro-max-titan-trang_1.png" },
+        { "colorName": "Titan Sa Mạc", "colorCode": "#C4A882", "img": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-pro-max_1.png" }
+      ]
+    },
+    {
+      "name": "iPhone 16 Pro",
+      "description": "iPhone 16 Pro chip A18 Pro, màn hình 6.3 inch, hệ thống camera chuyên nghiệp với tính năng Camera Control.",
+      "pr": 28990000,
+      "image": [
+        "https://cdn.tgdd.vn/Products/Images/42/329147/iphone-16-pro-black-1.jpg"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.3 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A18 Pro" },
+        { "key": "Camera sau", "value": "48MP + 48MP + 12MP" },
+        { "key": "Pin", "value": "3274 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 18" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 28990000 },
+        { "label": "256GB", "price": 31990000 },
+        { "label": "512GB", "price": 36990000 },
+        { "label": "1TB", "price": 41990000 }
+      ],
+      "variants": [
+        { "colorName": "Titan Đen", "colorCode": "#4A4A4A", "img": "https://cdn.tgdd.vn/Products/Images/42/329147/iphone-16-pro-black-1.jpg" },
+        { "colorName": "Titan Trắng", "colorCode": "#E8E4DC", "img": "https://cdn.tgdd.vn/Products/Images/42/329147/iphone-16-pro-white-1.jpg" },
+        { "colorName": "Titan Tự Nhiên", "colorCode": "#C7B89A", "img": "https://cdn.tgdd.vn/Products/Images/42/329147/iphone-16-pro-natural-1.jpg" }
+      ]
+    },
+    {
+      "name": "iPhone 16 Plus",
+      "description": "iPhone 16 Plus màn hình 6.7 inch, chip A18, pin siêu bền cả ngày dài với Dynamic Island.",
+      "pr": 26490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-16-plus-1.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.7 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A18" },
+        { "key": "Camera sau", "value": "48MP + 12MP" },
+        { "key": "Pin", "value": "4674 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 18" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 26490000 },
+        { "label": "256GB", "price": 29490000 },
+        { "label": "512GB", "price": 34490000 }
+      ],
+      "variants": [
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-den.png" },
+        { "colorName": "Trắng", "colorCode": "#F5F5F0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-trang.png" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-hong_2.png" },
+        { "colorName": "Xanh Mòng Két", "colorCode": "#9BBFBA", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-xanh-mong-ket.png" }
+      ]
+    },
+    {
+      "name": "iPhone 16",
+      "description": "iPhone 16 chip A18, Dynamic Island, Camera Control và hỗ trợ Apple Intelligence đầy đủ.",
+      "pr": 22490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-16-1.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.1 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A18" },
+        { "key": "Camera sau", "value": "48MP + 12MP" },
+        { "key": "Pin", "value": "3561 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 18" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 22490000 },
+        { "label": "256GB", "price": 25490000 },
+        { "label": "512GB", "price": 30490000 }
+      ],
+      "variants": [
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-den.png" },
+        { "colorName": "Trắng", "colorCode": "#F5F5F0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-trang.png" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-hong_2.png" },
+        { "colorName": "Xanh Mòng Két", "colorCode": "#9BBFBA", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-16-plus-xanh-mong-ket.png" }
+      ]
+    },
+    {
+      "name": "iPhone 15 Pro Max",
+      "description": "iPhone 15 Pro Max titan siêu nhẹ, chip A17 Pro, camera zoom quang 5x và Action Button tiện lợi.",
+      "pr": 29990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.7 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A17 Pro" },
+        { "key": "Camera sau", "value": "48MP + 12MP + 12MP" },
+        { "key": "Pin", "value": "4422 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 17" },
+        { "key": "Chất liệu", "value": "Titan" }
+      ],
+      "Gb": [
+        { "label": "256GB", "price": 29990000 },
+        { "label": "512GB", "price": 34990000 },
+        { "label": "1TB", "price": 39990000 }
+      ],
+      "variants": [
+        { "colorName": "Titan Đen", "colorCode": "#4A4A4A", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-max-titan-den.jpg" },
+        { "colorName": "Titan Trắng", "colorCode": "#E8E4DC", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-max-titan-trang.jpg" },
+        { "colorName": "Titan Xanh", "colorCode": "#7A8FA0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-max-titan-xanh.jpg" }
+      ]
+    },
+    {
+      "name": "iPhone 15 Pro",
+      "description": "iPhone 15 Pro thiết kế titan cao cấp, chip A17 Pro mạnh mẽ, Action Button thông minh.",
+      "pr": 24990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-nau_1_.jpg"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.1 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A17 Pro" },
+        { "key": "Camera sau", "value": "48MP + 12MP + 12MP" },
+        { "key": "Pin", "value": "3274 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 17" },
+        { "key": "Chất liệu", "value": "Titan" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 24990000 },
+        { "label": "256GB", "price": 27990000 },
+        { "label": "512GB", "price": 32990000 },
+        { "label": "1TB", "price": 37990000 }
+      ],
+      "variants": [
+        { "colorName": "Titan Đen", "colorCode": "#4A4A4A", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-den_1.jpg" },
+        { "colorName": "Titan Trắng", "colorCode": "#E8E4DC", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-trang_1__1.jpg" },
+        { "colorName": "Titan Tự Nhiên", "colorCode": "#C7B89A", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-nau_1_.jpg" }
+      ]
+    },
+    {
+      "name": "iPhone 15 Plus",
+      "description": "iPhone 15 Plus màn hình lớn 6.7 inch, Dynamic Island, sạc USB-C tiện lợi, pin dung lượng cao.",
+      "pr": 21990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-hong.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.7 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A16 Bionic" },
+        { "key": "Camera sau", "value": "48MP + 12MP" },
+        { "key": "Pin", "value": "4383 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 17" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 21990000 },
+        { "label": "256GB", "price": 24990000 },
+        { "label": "512GB", "price": 29990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128-gbden.png" },
+        { "colorName": "Vàng", "colorCode": "#F5E6C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-vang.png" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-hong.png" }
+      ]
+    },
+    {
+      "name": "iPhone 15",
+      "description": "iPhone 15 Dynamic Island, chip A16 Bionic, camera 48MP chính, cổng USB-C thay thế Lightning.",
+      "pr": 18990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-hong.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.1 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A16 Bionic" },
+        { "key": "Camera sau", "value": "48MP + 12MP" },
+        { "key": "Pin", "value": "3349 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 17" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 18990000 },
+        { "label": "256GB", "price": 21990000 },
+        { "label": "512GB", "price": 26990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128-gbden.png" },
+        { "colorName": "Vàng", "colorCode": "#F5E6C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-128gb-vang.png" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-15-hong.png" }
+      ]
+    },
+    {
+      "name": "iPhone 14 Pro Max",
+      "description": "iPhone 14 Pro Max với Dynamic Island, camera 48MP lần đầu tiên, Always-On Display và chip A16 Bionic.",
+      "pr": 22490000,
+      "image": [
+        "https://cdn.tgdd.vn/Products/Images/42/246741/iphone-14-pro-max-black-1.jpg"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.7 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A16 Bionic" },
+        { "key": "Camera sau", "value": "48MP + 12MP + 12MP" },
+        { "key": "Pin", "value": "4323 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 16" },
+        { "key": "Cổng sạc", "value": "Lightning" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 22490000 },
+        { "label": "256GB", "price": 25490000 },
+        { "label": "512GB", "price": 30490000 },
+        { "label": "1TB", "price": 35490000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn.tgdd.vn/Products/Images/42/246741/iphone-14-pro-max-black-1.jpg" },
+        { "colorName": "Vàng", "colorCode": "#F5E6C8", "img": "https://cdn.tgdd.vn/Products/Images/42/246741/iphone-14-pro-max-gold-1.jpg" },
+        { "colorName": "Tím", "colorCode": "#C9B8D8", "img": "https://cdn.tgdd.vn/Products/Images/42/246741/iphone-14-pro-max-purple-1.jpg" }
+      ]
+    },
+    {
+      "name": "iPhone 14",
+      "description": "iPhone 14 chip A15 Bionic, camera chính 12MP cải tiến, chế độ Crash Detection an toàn.",
+      "pr": 15990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-57_2.jpg"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.1 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A15 Bionic" },
+        { "key": "Camera sau", "value": "12MP + 12MP" },
+        { "key": "Pin", "value": "3279 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 16" },
+        { "key": "Cổng sạc", "value": "Lightning" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 15990000 },
+        { "label": "256GB", "price": 18990000 },
+        { "label": "512GB", "price": 23990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh", "colorCode": "#A8C5D6", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-51_1.jpg" },
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-57_2.jpg" },
+        { "colorName": "Đỏ", "colorCode": "#BF0000", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/p/h/photo_2022-09-28_21-58-54_1.jpg" }
+      ]
+    },
+    {
+      "name": "iPhone 13 Pro Max",
+      "description": "iPhone 13 Pro Max màn hình ProMotion 120Hz, hệ thống camera ProRes, chip A15 Bionic.",
+      "pr": 19990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-13-pro-max-128gb-cu-dep.png"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.7 inch Super Retina XDR ProMotion" },
+        { "key": "Chip", "value": "Apple A15 Bionic" },
+        { "key": "Camera sau", "value": "12MP + 12MP + 12MP" },
+        { "key": "Pin", "value": "4352 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 15" },
+        { "key": "Cổng sạc", "value": "Lightning" }
+      ],
+      "Gb": [
+        { "label": "128GB", "price": 19990000 },
+        { "label": "256GB", "price": 22990000 },
+        { "label": "512GB", "price": 27990000 },
+        { "label": "1TB", "price": 32990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh Sierra", "colorCode": "#88AAC0", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-13-pro-max-128gb-cu-dep_3_.png" },
+        { "colorName": "Vàng", "colorCode": "#F5E6C8", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-13-pro-max-128gb-cu-dep_2_.png" },
+        { "colorName": "Xanh Lá", "colorCode": "#4A7C59", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-13-pro-max-128gb-cu-dep.png" }
+      ]
+    },
+    {
+      "name": "iPhone 11",
+      "description": "iPhone 12 5G đầu tiên của Apple, chip A14 Bionic, thiết kế vuông vắn phong cách cổ điển.",
+      "pr": 12990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/1/1/11._d_nn.jpg"
+      ],
+      "category": "iphone",
+      "specifications": [
+        { "key": "Màn hình", "value": "6.1 inch Super Retina XDR" },
+        { "key": "Chip", "value": "Apple A14 Bionic" },
+        { "key": "Camera sau", "value": "12MP + 12MP" },
+        { "key": "Pin", "value": "2815 mAh" },
+        { "key": "Hệ điều hành", "value": "iOS 14" },
+        { "key": "5G", "value": "Có hỗ trợ" }
+      ],
+      "Gb": [
+        { "label": "64GB", "price": 12990000 },
+        { "label": "128GB", "price": 14990000 },
+        { "label": "256GB", "price": 17990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/1/1/11._d_nn.jpg" },
+        { "colorName": "Trắng", "colorCode": "#F5F5F0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone11-white-select-2019_3.png" }
+      ]
+    }
+  ],
+
+  "ipad": [
+    {
+      "name": "iPad Pro M4 13 inch",
+      "description": "iPad Pro M4 mỏng nhất từ trước đến nay, chip M4 cực mạnh, màn hình OLED Ultra Retina XDR 13 inch.",
+      "pr": 36990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "13 inch OLED Ultra Retina XDR" },
+        { "key": "Chip", "value": "Apple M4" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6E, Bluetooth 5.3" },
+        { "key": "Cổng sạc", "value": "Thunderbolt / USB 4" }
+      ],
+      "Gb": [
+        { "label": "256GB Wi-Fi", "price": 36990000 },
+        { "label": "512GB Wi-Fi", "price": 43990000 },
+        { "label": "1TB Wi-Fi", "price": 57990000 },
+        { "label": "256GB Wi-Fi + 5G", "price": 44990000 }
+      ],
+      "variants": [
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_8.png" },
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch_1__8.png" }
+      ]
+    },
+    {
+      "name": "iPad Pro M4 11 inch",
+      "description": "iPad Pro M4 11 inch siêu mỏng, màn hình OLED Ultra Retina XDR sắc nét, hiệu năng đỉnh cao.",
+      "pr": 27990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/f/r/frame_100_1_2__1.png"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "11 inch OLED Ultra Retina XDR" },
+        { "key": "Chip", "value": "Apple M4" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6E, Bluetooth 5.3" },
+        { "key": "Cổng sạc", "value": "Thunderbolt / USB 4" }
+      ],
+      "Gb": [
+        { "label": "256GB Wi-Fi", "price": 27990000 },
+        { "label": "512GB Wi-Fi", "price": 34990000 },
+        { "label": "1TB Wi-Fi", "price": 48990000 },
+        { "label": "256GB Wi-Fi + 5G", "price": 35990000 }
+      ],
+      "variants": [
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-pro-m4-11-inch.png" },
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/f/r/frame_100_1_2__1.png" }
+      ]
+    },
+    {
+      "name": "iPad Air M2 13 inch",
+      "description": "iPad Air M2 13 inch lần đầu tiên - màn hình lớn hơn, chip M2 mạnh mẽ, thiết kế mỏng nhẹ thanh lịch.",
+      "pr": 22990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-6-m2-11-inch_2__9.png"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "13 inch Liquid Retina" },
+        { "key": "Chip", "value": "Apple M2" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6E, Bluetooth 5.3" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB Wi-Fi", "price": 22990000 },
+        { "label": "256GB Wi-Fi", "price": 26990000 },
+        { "label": "512GB Wi-Fi", "price": 34990000 },
+        { "label": "128GB Wi-Fi + 5G", "price": 29990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh", "colorCode": "#88B0C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-6-m2-11-inch_8.png" },
+        { "colorName": "Tím", "colorCode": "#C9B8D8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-6-m2-11-inch_2__9.png" },
+        { "colorName": "Ánh Sao", "colorCode": "#E8E0D0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-air-6-m2-11-inch_3__9.png" }
+      ]
+    },
+    {
+      "name": "iPad Mini 7",
+      "description": "iPad mini 7 nhỏ gọn cầm tay, chip A17 Pro, hỗ trợ Apple Pencil Pro, màn hình 8.3 inch.",
+      "pr": 15990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-gray.jpg"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "8.3 inch Liquid Retina" },
+        { "key": "Chip", "value": "Apple A17 Pro" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6E, Bluetooth 5.3" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "128GB Wi-Fi", "price": 15990000 },
+        { "label": "256GB Wi-Fi", "price": 18990000 },
+        { "label": "128GB Wi-Fi + 5G", "price": 21990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh", "colorCode": "#88B0C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-blue.jpg" },
+        { "colorName": "Tím", "colorCode": "#C9B8D8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-purple.jpg" },
+        { "colorName": "Ánh Sao", "colorCode": "#E8E0D0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ipad-mini-starlight.jpg" }
+      ]
+    },
+    {
+      "name": "iPad 10 Gen",
+      "description": "iPad thế hệ 10 thiết kế hoàn toàn mới, chip A14 Bionic, màn hình 10.9 inch viền mỏng.",
+      "pr": 11990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/_/h_ngff.png"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "10.9 inch Liquid Retina" },
+        { "key": "Chip", "value": "Apple A14 Bionic" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6, Bluetooth 5.2" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "64GB Wi-Fi", "price": 11990000 },
+        { "label": "256GB Wi-Fi", "price": 15990000 },
+        { "label": "64GB Wi-Fi + 5G", "price": 16990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh", "colorCode": "#88B0C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/x/n/xnah_d_.png" },
+        { "colorName": "Vàng", "colorCode": "#F5E6C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/n/vnaggf.png" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/h/_/h_ngff.png" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/b/_/b_ccc.png" }
+      ]
+    },
+    {
+      "name": "iPad Air M1 10.9 inch",
+      "description": "iPad Air M1 chip M1 lần đầu tiên, màn hình Liquid Retina 10.9 inch, Touch ID trên nút nguồn.",
+      "pr": 14990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/5/_/5_158_4.jpg"
+      ],
+      "category": "ipad",
+      "specifications": [
+        { "key": "Màn hình", "value": "10.9 inch Liquid Retina" },
+        { "key": "Chip", "value": "Apple M1" },
+        { "key": "Camera sau", "value": "12MP Wide" },
+        { "key": "Pin", "value": "Lên đến 10 giờ" },
+        { "key": "Kết nối", "value": "Wi-Fi 6, Bluetooth 5.0" },
+        { "key": "Cổng sạc", "value": "USB-C" }
+      ],
+      "Gb": [
+        { "label": "64GB Wi-Fi", "price": 14990000 },
+        { "label": "256GB Wi-Fi", "price": 18990000 },
+        { "label": "64GB Wi-Fi + 5G", "price": 19990000 }
+      ],
+      "variants": [
+        { "colorName": "Xanh", "colorCode": "#88B0C8", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/3/_/3_225_3.jpg" },
+        { "colorName": "Tím", "colorCode": "#C9B8D8", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/9/_/9_44_1.jpg" },
+        { "colorName": "Hồng", "colorCode": "#F2A7B0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/7/_/7_87_3.jpg" }
+      ]
+    }
+  ],
+
+  "macbook": [
+    {
+      "name": "MacBook Air M3 13 inch",
+      "description": "MacBook Air M3 mỏng nhẹ huyền thoại, chip M3 mạnh mẽ, màn hình Liquid Retina 13.6 inch, pin 18 giờ.",
+      "pr": 28990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-spacegray-gallery1-202402_1.jpg"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M3 (8-core CPU, 10-core GPU)" },
+        { "key": "RAM", "value": "8GB" },
+        { "key": "Màn hình", "value": "13.6 inch Liquid Retina" },
+        { "key": "Pin", "value": "Lên đến 18 giờ" },
+        { "key": "Cổng kết nối", "value": "2x Thunderbolt / USB 4, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "1.24 kg" }
+      ],
+      "Gb": [
+        { "label": "8GB RAM / 256GB SSD", "price": 28990000 },
+        { "label": "8GB RAM / 512GB SSD", "price": 34990000 },
+        { "label": "16GB RAM / 512GB SSD", "price": 39990000 },
+        { "label": "24GB RAM / 1TB SSD", "price": 49990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Nửa Đêm", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-midnight-gallery1-202402.jpg" },
+        { "colorName": "Ánh Sao", "colorCode": "#E8E0D0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-starlight-gallery1-202402_1.jpg" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-spacegray-gallery1-202402_1.jpg" }
+      ]
+    },
+    {
+      "name": "MacBook Air M3 15 inch",
+      "description": "MacBook Air M3 15 inch màn hình lớn nhất trong dòng Air, chip M3, loa 6 loa chất lượng cao.",
+      "pr": 34990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-spacegray-gallery1-202402_1.jpg"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M3 (8-core CPU, 10-core GPU)" },
+        { "key": "RAM", "value": "8GB" },
+        { "key": "Màn hình", "value": "15.3 inch Liquid Retina" },
+        { "key": "Pin", "value": "Lên đến 18 giờ" },
+        { "key": "Cổng kết nối", "value": "2x Thunderbolt / USB 4, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "1.51 kg" }
+      ],
+      "Gb": [
+        { "label": "8GB RAM / 256GB SSD", "price": 34990000 },
+        { "label": "8GB RAM / 512GB SSD", "price": 40990000 },
+        { "label": "16GB RAM / 512GB SSD", "price": 45990000 },
+        { "label": "24GB RAM / 1TB SSD", "price": 55990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Nửa Đêm", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-midnight-gallery1-202402.jpg" },
+        { "colorName": "Ánh Sao", "colorCode": "#E8E0D0", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-starlight-gallery1-202402_1.jpg" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/b/mba13-m3-spacegray-gallery1-202402_1.jpg" }
+      ]
+    },
+    {
+      "name": "MacBook Pro M4 14 inch",
+      "description": "MacBook Pro M4 14 inch chip M4 đột phá, màn hình Liquid Retina XDR ProMotion, pin lên đến 24 giờ.",
+      "pr": 44990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_pro_14-inch_m4_chip_space_black_pdp_image_position_1__vn-vi.jpg"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M4 (10-core CPU, 10-core GPU)" },
+        { "key": "RAM", "value": "16GB" },
+        { "key": "Màn hình", "value": "14.2 inch Liquid Retina XDR" },
+        { "key": "Pin", "value": "Lên đến 24 giờ" },
+        { "key": "Cổng kết nối", "value": "3x Thunderbolt 5, HDMI, SD card, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "1.55 kg" }
+      ],
+      "Gb": [
+        { "label": "16GB RAM / 512GB SSD", "price": 44990000 },
+        { "label": "24GB RAM / 512GB SSD", "price": 52990000 },
+        { "label": "32GB RAM / 1TB SSD", "price": 64990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn.tgdd.vn/Products/Images/44/330115/macbook-pro-m4-14-black-1.jpg" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn.tgdd.vn/Products/Images/44/330115/macbook-pro-m4-14-silver-1.jpg" }
+      ]
+    },
+    {
+      "name": "MacBook Pro M4 16 inch",
+      "description": "MacBook Pro M4 16 inch mạnh nhất dành cho chuyên gia, chip M4 Pro/Max tùy chọn, màn hình 16.2 inch.",
+      "pr": 64990000,
+      "image": [
+        "https://cdn.tgdd.vn/Products/Images/44/330117/macbook-pro-m4-16-black-1.jpg"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M4 Pro (14-core CPU, 20-core GPU)" },
+        { "key": "RAM", "value": "24GB" },
+        { "key": "Màn hình", "value": "16.2 inch Liquid Retina XDR" },
+        { "key": "Pin", "value": "Lên đến 24 giờ" },
+        { "key": "Cổng kết nối", "value": "3x Thunderbolt 5, HDMI, SD card, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "2.14 kg" }
+      ],
+      "Gb": [
+        { "label": "24GB RAM / 512GB SSD", "price": 64990000 },
+        { "label": "48GB RAM / 1TB SSD", "price": 79990000 },
+        { "label": "64GB RAM / 1TB SSD", "price": 94990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_pro_14-inch_m4_chip_space_black_pdp_image_position_1__vn-vi.jpg" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook_pro_14-inch_m4_chip_silver_pdp_image_position_1__vn-vi.jpg" }
+      ]
+    },
+    {
+      "name": "MacBook Pro M3 14 inch",
+      "description": "MacBook Pro M3 14 inch hiệu năng chuyên nghiệp, màn hình Liquid Retina XDR 120Hz, chip M3.",
+      "pr": 39990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-14-inch-m3-2023-16gb-512gb-1_1.jpg"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M3 (8-core CPU, 10-core GPU)" },
+        { "key": "RAM", "value": "8GB" },
+        { "key": "Màn hình", "value": "14.2 inch Liquid Retina XDR" },
+        { "key": "Pin", "value": "Lên đến 22 giờ" },
+        { "key": "Cổng kết nối", "value": "3x Thunderbolt 4, HDMI, SD card, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "1.55 kg" }
+      ],
+      "Gb": [
+        { "label": "8GB RAM / 512GB SSD", "price": 39990000 },
+        { "label": "16GB RAM / 512GB SSD", "price": 47990000 },
+        { "label": "16GB RAM / 1TB SSD", "price": 53990000 }
+      ],
+      "variants": [
+        { "colorName": "Xám", "colorCode": "#2C2C2E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-14-inch-m3-2023-16gb-512gb-1_1.jpg" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-14-inch-m3-2023-16gb-512gb-1_2.jpg" }
+      ]
+    },
+    {
+      "name": "MacBook Pro M3 Max 16 inch",
+      "description": "MacBook Pro M3 Max 16 inch chip cực mạnh 16 nhân CPU và 40 nhân GPU, dành cho chuyên gia sáng tạo.",
+      "pr": 89990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_1__2.png"
+      ],
+      "category": "macbook",
+      "specifications": [
+        { "key": "Chip", "value": "Apple M3 Max (16-core CPU, 40-core GPU)" },
+        { "key": "RAM", "value": "48GB" },
+        { "key": "Màn hình", "value": "16.2 inch Liquid Retina XDR" },
+        { "key": "Pin", "value": "Lên đến 22 giờ" },
+        { "key": "Cổng kết nối", "value": "3x Thunderbolt 4, HDMI, SD card, MagSafe 3" },
+        { "key": "Trọng lượng", "value": "2.15 kg" }
+      ],
+      "Gb": [
+        { "label": "48GB RAM / 1TB SSD", "price": 89990000 },
+        { "label": "128GB RAM / 1TB SSD", "price": 119990000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Không Gian", "colorCode": "#2C2C2E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_2__2.png" },
+        { "colorName": "Bạc", "colorCode": "#E8E8E8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/m/a/macbook-pro-16-inch-m3-pro-2023-36gb-512gb_1__2.png" }
+      ]
+    }
+  ],
+
+  "airpods": [
+    {
+      "name": "AirPods 4",
+      "description": "AirPods 4 mang đến trải nghiệm âm thanh hoàn hảo với thiết kế mới thoải mái hơn, chip H2 và ANC tùy chọn.",
+      "pr": 3490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/e/text_ng_n_-_2024-09-10t082905.078_2.png"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H2" },
+        { "key": "Công nghệ", "value": "Âm thanh không gian cá nhân hóa" },
+        { "key": "Pin", "value": "Lên đến 30 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "USB-C" },
+        { "key": "Kháng nước", "value": "IP54 (tai nghe và hộp sạc)" }
+      ],
+      "Gb": [
+        { "label": "Tiêu chuẩn", "price": 3490000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-3-4.png" }
+      ]
+    },
+    {
+      "name": "AirPods 4 ANC",
+      "description": "AirPods 4 phiên bản chống ồn chủ động, chip H2, âm thanh không gian, hộp sạc MagSafe tiện lợi.",
+      "pr": 4490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-1.png"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H2" },
+        { "key": "Chống ồn", "value": "ANC chủ động" },
+        { "key": "Công nghệ", "value": "Âm thanh không gian cá nhân hóa" },
+        { "key": "Pin", "value": "Lên đến 30 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "USB-C / MagSafe / Sạc không dây" },
+        { "key": "Kháng nước", "value": "IP54" }
+      ],
+      "Gb": [
+        { "label": "ANC", "price": 4490000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods-4-3-4.png" }
+      ]
+    },
+    {
+      "name": "AirPods Pro 2",
+      "description": "AirPods Pro thế hệ 2 chống ồn vượt trội, âm thanh không gian, chip H2, hộp sạc MagSafe tiện lợi.",
+      "pr": 6490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H2" },
+        { "key": "Chống ồn", "value": "ANC thế hệ 2 - mạnh hơn 2x" },
+        { "key": "Công nghệ", "value": "Âm thanh không gian cá nhân hóa" },
+        { "key": "Pin", "value": "Lên đến 30 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "USB-C / MagSafe / Lightning" },
+        { "key": "Kháng nước", "value": "IPX4" }
+      ],
+      "Gb": [
+        { "label": "Cổng Lightning", "price": 6490000 },
+        { "label": "Cổng USB-C", "price": 6490000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg" }
+      ]
+    },
+    {
+      "name": "AirPods Max USB-C",
+      "description": "AirPods Max tai nghe chụp tai cao cấp, âm thanh Hi-Fi, ANC cực mạnh, cổng USB-C mới.",
+      "pr": 14490000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/a/tai_nghe_ch_p_tai_ch_ng_n_apple_airpods_max_2026_1__1.png"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H1 (2 chip)" },
+        { "key": "Chống ồn", "value": "ANC chủ động" },
+        { "key": "Công nghệ", "value": "Âm thanh không gian Dolby Atmos" },
+        { "key": "Pin", "value": "Lên đến 20 giờ" },
+        { "key": "Cổng sạc", "value": "USB-C" },
+        { "key": "Kết nối", "value": "Bluetooth 5.0" }
+      ],
+      "Gb": [
+        { "label": "Tiêu chuẩn", "price": 14490000 }
+      ],
+      "variants": [
+        { "colorName": "Đen Nửa Đêm", "colorCode": "#1C1C1E", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/a/tai_nghe_ch_p_tai_ch_ng_n_apple_airpods_max_2.png" },
+        { "colorName": "Ánh Sao", "colorCode": "#E8E0D0", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/a/tai_nghe_ch_p_tai_ch_ng_n_apple_airpods_max_2026_1__1.png" },
+        { "colorName": "Xanh Bầu Trời", "colorCode": "#88B0C8", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/a/tai_nghe_ch_p_tai_ch_ng_n_apple_airpods_max_2_1_.png" },
+        { "colorName": "Cam", "colorCode": "#E8884A", "img": "https://cdn2.cellphones.com.vn/358x/media/catalog/product/t/a/tai_nghe_ch_p_tai_ch_ng_n_apple_airpods_max_2_2_.png" }
+      ]
+    },
+    {
+      "name": "AirPods 3",
+      "description": "AirPods thế hệ 3 thiết kế giống Pro, âm thanh không gian, chống nước IPX4, hộp sạc MagSafe.",
+      "pr": 2990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods3.png"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H1" },
+        { "key": "Công nghệ", "value": "Âm thanh không gian" },
+        { "key": "Pin", "value": "Lên đến 30 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "Lightning / MagSafe" },
+        { "key": "Kháng nước", "value": "IPX4" }
+      ],
+      "Gb": [
+        { "label": "Hộp sạc Lightning", "price": 2990000 },
+        { "label": "Hộp sạc MagSafe", "price": 3290000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple-airpods-3-ksp_1.png" }
+      ]
+    },
+    {
+      "name": "AirPods 2",
+      "description": "AirPods thế hệ 2 kết nối nhanh, chip H1, tích hợp Hey Siri, hộp sạc không dây tùy chọn.",
+      "pr": 1990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods2-s-1.png"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H1" },
+        { "key": "Pin", "value": "Lên đến 24 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "Lightning" },
+        { "key": "Hey Siri", "value": "Có" }
+      ],
+      "Gb": [
+        { "label": "Hộp sạc thường", "price": 1990000 },
+        { "label": "Hộp sạc không dây", "price": 2390000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/g/r/group_169_2.png" }
+      ]
+    },
+    {
+      "name": "AirPods Pro 2 USB-C",
+      "description": "AirPods Pro 2 cổng USB-C mới, chip H2, ANC thế hệ 2, hỗ trợ tính năng trợ thính mới.",
+      "pr": 6990000,
+      "image": [
+        "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_2__vn-vi.jpg"
+      ],
+      "category": "airpods",
+      "specifications": [
+        { "key": "Chipset", "value": "Apple H2" },
+        { "key": "Chống ồn", "value": "ANC thế hệ 2" },
+        { "key": "Tính năng mới", "value": "Hỗ trợ trợ thính (Hearing Aid)" },
+        { "key": "Pin", "value": "Lên đến 30 giờ (kèm hộp sạc)" },
+        { "key": "Cổng sạc", "value": "USB-C / MagSafe" },
+        { "key": "Kháng nước", "value": "IP54" }
+      ],
+      "Gb": [
+        { "label": "Tiêu chuẩn", "price": 6990000 }
+      ],
+      "variants": [
+        { "colorName": "Trắng", "colorCode": "#FFFFFF", "img": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/a/i/airpods_pro_2_sep24_pdp_image_position_7__vn-vi.jpg" }
+      ]
+    }
+  ]
+}
