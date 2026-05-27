@@ -79,9 +79,16 @@ def do_login(driver, email: str, password: str,
     navigate_to(driver, "/login", ui_version)
 
     # Chờ form login xuất hiện
-    WebDriverWait(driver._drv, 20).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="login-email"]'))
-    )
+    try:
+        WebDriverWait(driver._drv, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="login-email"]'))
+        )
+    except Exception as e:
+        driver._drv.save_screenshot(f"fail_{ui_version}.png")
+        src = driver._drv.page_source
+        print(f"\n❌ TIMEOUT url={driver._drv.current_url}")
+        print(f"❌ PAGE_BODY={src[src.find('<body'):src.find('<body')+2000]}")
+        raise
 
     email_el = driver.find_element(
         By.CSS_SELECTOR,
