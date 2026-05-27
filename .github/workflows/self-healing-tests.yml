@@ -103,7 +103,18 @@ jobs:
       - name: Show DB stats before run
         run: python scripts/db_stats.py
         continue-on-error: true
-
+      - name: Check app health
+        run: |
+          echo "=== Frontend ==="
+          curl -s http://localhost:5173 | grep -o "<title>.*</title>"
+          
+          echo "=== Backend API ==="
+          curl -s http://localhost:5000/api/products | head -c 200
+          
+          echo "=== Test login API ==="
+          curl -s -X POST http://localhost:5000/api/auth/login \
+            -H "Content-Type: application/json" \
+            -d '{"email":"admin@gmail.com","password":"password123"}'
       # ─── 8. CHẠY TESTS ──────────────────────────────────────────────
       # Chạy đúng thứ tự: products → register → contact → admin
       # _maybe_retrain_model() tự kích hoạt bên trong khi đủ 140 heals
