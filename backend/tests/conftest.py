@@ -14,15 +14,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from core.Healing_driver_v2 import SelfHealingDriverV2
 from tests.config import BASE_URL, ADMIN_EMAIL, ADMIN_PASS, USER_EMAIL, USER_PASS
-
 IS_CI = os.environ.get("CI", "false").lower() == "true"
-
-
 @pytest.fixture(scope="function")
 def driver():
     opts = Options()
 
     if IS_CI:
+        # GitHub Actions: bắt buộc headless
         opts.add_argument("--headless=new")
         opts.add_argument("--no-sandbox")
         opts.add_argument("--disable-dev-shm-usage")
@@ -33,6 +31,7 @@ def driver():
         opts.add_argument("--allow-running-insecure-content")
         opts.add_argument("--disable-features=VizDisplayCompositor")
     else:
+        # Local: dùng HEADLESS=true nếu muốn chạy không có UI
         if os.getenv("HEADLESS") == "true":
             opts.add_argument("--headless=new")
         opts.add_argument("--no-sandbox")
@@ -41,7 +40,6 @@ def driver():
 
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
-    raw.implicitly_wait(10)  # ← chờ tối đa 10s cho mỗi find_element
 
     healing = SelfHealingDriverV2(
         raw,
@@ -57,38 +55,25 @@ def driver():
         healing.quit()
     except Exception:
         pass
-
-
 def navigate_to(driver, path: str, ui_version: str = ''):
     driver.get(f"{BASE_URL}{path}")
-    # Chờ React mount xong — khi #root có nội dung bên trong
-    try:
-        WebDriverWait(driver._drv, 20).until(
-            lambda d: d.execute_script(
-                "return document.querySelector('#root') !== null && "
-                "document.querySelector('#root').children.length > 0"
-            )
-        )
-    except Exception:
-        pass
     time.sleep(0.5)
 
 
 def do_login(driver, email: str, password: str,
              ui_version: str = "v1", expect_success: bool = True):
+    """
+    Helper đăng nhập — giống hệt v1.
+    SelfHealingDriverV2.find_element() có cùng signature → không cần sửa.
+    """
     navigate_to(driver, "/login", ui_version)
 
-    # Chờ form login xuất hiện
-    try:
-        WebDriverWait(driver._drv, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="login-email"]'))
-        )
-    except Exception as e:
-        driver._drv.save_screenshot(f"fail_{ui_version}.png")
-        src = driver._drv.page_source
-        print(f"\n❌ TIMEOUT url={driver._drv.current_url}")
-        print(f"❌ PAGE_BODY={src[src.find('<body'):src.find('<body')+2000]}")
-        raise
+    # WebDriverWait(driver, 10).until(
+    #     EC.presence_of_element_located((
+    #         By.CSS_SELECTOR,
+    #         '[data-testid="login-email"]'
+    #     ))
+    # )   
 
     email_el = driver.find_element(
         By.CSS_SELECTOR,
@@ -114,13 +99,18 @@ def do_login(driver, email: str, password: str,
         step_name  = "login_button",
         ui_version = ui_version
     )
-    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", btn)
+
+    driver.execute_script(
+    "arguments[0].scrollIntoView({block:'center'});",
+        btn
+    )
+
     time.sleep(0.5)
     driver.execute_script("arguments[0].click();", btn)
     time.sleep(1.5)
 
     page = driver.page_source.lower()
-
+    
     if expect_success:
         assert (
             "khám phá" in page or
@@ -131,7 +121,7 @@ def do_login(driver, email: str, password: str,
         assert (
             "đăng nhập" in page and
             ("thất bại" in page or
-             "sai"      in page or
+             "sai" in page or
              driver.current_url.endswith("/login"))
         ), "Đăng nhập thành công dù expect_success=False"
 
@@ -139,7 +129,7 @@ def do_login(driver, email: str, password: str,
 def do_logout(driver):
     driver.execute_script("sessionStorage.clear();")
     driver.get(f"{BASE_URL}/login")
-    WebDriverWait(driver._drv, 10).until(
+    WebDriverWait(driver, 10).until(
         lambda d: "login" in d.page_source.lower()
-                  or "đăng nhập" in d.page_source.lower()
+                  or "Đăng nhập" in d.page_source.lower()
     )
