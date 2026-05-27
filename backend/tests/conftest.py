@@ -53,7 +53,7 @@ def driver():
 
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
-
+    raw.implicitly_wait(10)
     healing = SelfHealingDriverV2(
         raw,
         test_name    = "apple_shop_suite_v2",
@@ -70,7 +70,12 @@ def driver():
         pass
 def navigate_to(driver, path: str, ui_version: str = ''):
     driver.get(f"{BASE_URL}{path}")
-    time.sleep(0.5)
+    time.sleep(3)  # ← tăng từ 0.5 lên 3 giây
+    # Debug: in ra page source để xem React render được gì
+    import os
+    if os.environ.get("CI"):
+        print(f"\nDEBUG URL: {driver._drv.current_url}")
+        print(f"DEBUG PAGE: {driver._drv.page_source[:1000]}")
 
 
 def do_login(driver, email: str, password: str,
@@ -81,7 +86,7 @@ def do_login(driver, email: str, password: str,
     """
     navigate_to(driver, "/login", ui_version)
 
-    WebDriverWait(driver, 10).until(
+    WebDriverWait(driver.drv, 15).until(
         EC.presence_of_element_located((
             By.CSS_SELECTOR,
             '[data-testid="login-email"]'
