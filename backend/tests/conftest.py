@@ -70,8 +70,16 @@ def driver():
         pass
 def navigate_to(driver, path: str, ui_version: str = ''):
     driver.get(f"{BASE_URL}{path}")
-    time.sleep(3)  # ← tăng từ 0.5 lên 3 giây
-    # Debug: in ra page source để xem React render được gì
+    try:
+        WebDriverWait(driver._drv, 20).until(
+            lambda d: d.execute_script(
+                "return document.querySelector('#root') && "
+                "document.querySelector('#root').children.length > 0"
+            )
+        )
+    except Exception:
+        pass
+    time.sleep(0.5)
     import os
     if os.environ.get("CI"):
         print(f"\nDEBUG URL: {driver._drv.current_url}")
