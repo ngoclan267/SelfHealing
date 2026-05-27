@@ -15,23 +15,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from core.Healing_driver_v2 import SelfHealingDriverV2
 from tests.config import BASE_URL, ADMIN_EMAIL, ADMIN_PASS, USER_EMAIL, USER_PASS
 IS_CI = os.environ.get("CI", "false").lower() == "true"
-def pytest_configure(config):
-    """Inject Chrome headless options khi chạy trên GitHub Actions."""
-    if IS_CI:
-        # Monkey-patch Options.add_argument để tự động thêm headless flags
-        # vào bất kỳ chỗ nào trong code test tạo Options()
-        _original_init = Options.__init__
-
-        def _patched_init(self, *args, **kwargs):
-            _original_init(self, *args, **kwargs)
-            self.add_argument("--headless=new")
-            self.add_argument("--no-sandbox")
-            self.add_argument("--disable-dev-shm-usage")
-            self.add_argument("--disable-gpu")
-            self.add_argument("--window-size=1920,1080")
-
-        Options.__init__ = _patched_init
-
 @pytest.fixture(scope="function")
 def driver():
     opts = Options()
@@ -43,6 +26,10 @@ def driver():
         opts.add_argument("--disable-dev-shm-usage")
         opts.add_argument("--disable-gpu")
         opts.add_argument("--window-size=1920,1080")
+        opts.add_argument("--remote-debugging-port=9222")
+        opts.add_argument("--disable-web-security")
+        opts.add_argument("--allow-running-insecure-content")
+        opts.add_argument("--disable-features=VizDisplayCompositor")
     else:
         # Local: dùng HEADLESS=true nếu muốn chạy không có UI
         if os.getenv("HEADLESS") == "true":
@@ -53,7 +40,7 @@ def driver():
 
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
-    raw.implicitly_wait(10)
+
     healing = SelfHealingDriverV2(
         raw,
         test_name    = "apple_shop_suite_v2",
@@ -70,20 +57,7 @@ def driver():
         pass
 def navigate_to(driver, path: str, ui_version: str = ''):
     driver.get(f"{BASE_URL}{path}")
-    try:
-        WebDriverWait(driver._drv, 20).until(
-            lambda d: d.execute_script(
-                "return document.querySelector('#root') && "
-                "document.querySelector('#root').children.length > 0"
-            )
-        )
-    except Exception:
-        pass
     time.sleep(0.5)
-    import os
-    if os.environ.get("CI"):
-        print(f"\nDEBUG URL: {driver._drv.current_url}")
-        print(f"DEBUG PAGE: {driver._drv.page_source[:1000]}")
 
 
 def do_login(driver, email: str, password: str,
@@ -93,14 +67,14 @@ def do_login(driver, email: str, password: str,
     SelfHealingDriverV2.find_element() có cùng signature → không cần sửa.
     """
     navigate_to(driver, "/login", ui_version)
-    import os
-    if os.environ.get("CI"):
-        print(f"\nDEBUG URL: {driver._drv.current_url}")
-        print(f"DEBUG PAGE:\n{driver._drv.page_source[:2000]}")
 
-    WebDriverWait(driver._drv, 15).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="login-email"]'))
-    )
+    # WebDriverWait(driver, 10).until(
+    #     EC.presence_of_element_located((
+    #         By.CSS_SELECTOR,
+    #         '[data-testid="login-email"]'
+    #     ))
+    # )   
+
     email_el = driver.find_element(
         By.CSS_SELECTOR,
         '[data-testid="login-email"]',
