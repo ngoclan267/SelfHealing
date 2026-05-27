@@ -116,6 +116,7 @@ jobs:
             backend/tests/test_register.py \
             backend/tests/test_contact.py \
             backend/tests/test_admin.py \
+            -v -s \
 
       # ─── 9. THỐNG KÊ DB SAU KHI CHẠY ───────────────────────────────
       - name: Show DB stats after run
