@@ -15,29 +15,28 @@ from webdriver_manager.chrome import ChromeDriverManager
 from core.Healing_driver_v2 import SelfHealingDriverV2
 from tests.config import BASE_URL, ADMIN_EMAIL, ADMIN_PASS, USER_EMAIL, USER_PASS
 IS_CI = os.environ.get("CI", "false").lower() == "true"
+
 @pytest.fixture(scope="function")
 def driver():
     opts = Options()
 
     if IS_CI:
-        # GitHub Actions: bắt buộc headless
-        opts.add_argument("--headless=new")
+        # Dùng Xvfb thay vì headless — KHÔNG thêm --headless nữa
         opts.add_argument("--no-sandbox")
         opts.add_argument("--disable-dev-shm-usage")
         opts.add_argument("--disable-gpu")
-        opts.add_argument("--window-size=1920,1080")
-        opts.add_argument("--remote-debugging-port=9222")
-        opts.add_argument("--disable-web-security")
-        opts.add_argument("--allow-running-insecure-content")
-        opts.add_argument("--disable-features=VizDisplayCompositor")
+        opts.add_argument("--window-size=1920,1080")          # giống local
+        opts.add_argument("--force-device-scale-factor=1")    # fix DPI
+        opts.add_argument("--disable-extensions")
+        opts.add_argument("--hide-scrollbars")
+        opts.add_argument("--font-render-hinting=none")       # font nhất quán
+        # KHÔNG có --headless=new
     else:
-        # Local: dùng HEADLESS=true nếu muốn chạy không có UI
         if os.getenv("HEADLESS") == "true":
             opts.add_argument("--headless=new")
         opts.add_argument("--no-sandbox")
         opts.add_argument("--disable-dev-shm-usage")
-        opts.add_argument("--window-size=1366,768")
-
+        opts.add_argument("--window-size=1920,1080")          # đổi local cũng thành 1920x1080
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
 
