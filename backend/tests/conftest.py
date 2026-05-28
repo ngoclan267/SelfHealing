@@ -30,7 +30,9 @@ def driver():
         opts.add_argument("--disable-extensions")
         opts.add_argument("--hide-scrollbars")
         opts.add_argument("--font-render-hinting=none")       # font nhất quán
-        # KHÔNG có --headless=new
+        opts.add_argument("--enable-font-antialiasing")          
+        opts.add_argument("--disable-lcd-text")                  
+        opts.add_argument("--disable-software-rasterizer") 
     else:
         if os.getenv("HEADLESS") == "true":
             opts.add_argument("--headless=new")

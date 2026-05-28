@@ -80,18 +80,12 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -y \
-            xvfb \
             fonts-liberation \
             fonts-noto \
             fonts-noto-cjk \
             fonts-dejavu-core \
             fontconfig
           fc-cache -f -v
-
-      - name: Start Xvfb virtual display              # ← THÊM TRƯỚC BƯỚC CHROME
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 -ac +extension GLX +render -noreset &
-          sleep 2
 
       - name: Setup Chrome
         run: |
