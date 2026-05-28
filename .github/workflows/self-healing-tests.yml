@@ -16,7 +16,6 @@ jobs:
 
     env:
       CI: "true"
-      # BASE_URL dùng cho toàn bộ test — app chạy trên cổng 5173
       BASE_URL: "http://localhost:5173"
 
     steps:
@@ -37,7 +36,6 @@ jobs:
           pip install -r requirements.txt
 
       # ─── 3. NODE + KHỞI ĐỘNG APP ────────────────────────────────────
-      # App React/Vite cần chạy trước khi test Selenium kết nối vào
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -61,6 +59,7 @@ jobs:
             fi
             sleep 2
           done
+
       # ─── 4. BACKEND Node.js ─────────────────────────────────────────
       - name: Start backend API
         run: |
@@ -75,6 +74,7 @@ jobs:
           done
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
       # ─── 5. CHROME ──────────────────────────────────────────────────
       - name: Setup Chrome
         run: |
@@ -101,6 +101,7 @@ jobs:
       - name: Show DB stats before run
         run: python scripts/db_stats.py
         continue-on-error: true
+
       - name: Check app health
         run: |
           echo "=== Frontend ==="
@@ -113,9 +114,8 @@ jobs:
           curl -s -X POST http://localhost:5000/api/auth/login \
             -H "Content-Type: application/json" \
             -d '{"email":"admin@gmail.com","password":"password123"}'
+
       # ─── 8. CHẠY TESTS ──────────────────────────────────────────────
-      # Chạy đúng thứ tự: products → register → contact → admin
-      # _maybe_retrain_model() tự kích hoạt bên trong khi đủ 140 heals
       - name: Run self-healing tests
         run: |
           mkdir -p reports
@@ -130,6 +130,53 @@ jobs:
             --junitxml=reports/test_results.xml \
             2>&1 | tee reports/test_output.log
         continue-on-error: true
+
+      # ─── 9. XUẤT healing.db RA CSV ──────────────────────────────────
+      - name: Export healing.db to CSV
+        if: always()
+        run: |
+          python - <<'EOF'
+          import sqlite3, csv, os
+
+          db_path = "healing.db"
+          output_dir = "csv_exports"
+
+          if not os.path.exists(db_path):
+              print("❌ Không tìm thấy healing.db")
+              exit(0)
+
+          os.makedirs(output_dir, exist_ok=True)
+          conn = sqlite3.connect(db_path)
+          cursor = conn.cursor()
+
+          cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+          tables = cursor.fetchall()
+          print(f"✅ Tìm thấy {len(tables)} bảng")
+
+          for (table_name,) in tables:
+              cursor.execute(f"SELECT * FROM {table_name}")
+              rows = cursor.fetchall()
+              columns = [desc[0] for desc in cursor.description]
+
+              with open(f"{output_dir}/{table_name}.csv", "w", newline="", encoding="utf-8") as f:
+                  writer = csv.writer(f)
+                  writer.writerow(columns)
+                  writer.writerows(rows)
+
+              print(f"  📄 {table_name}.csv — {len(rows)} dòng")
+
+          conn.close()
+          print("✅ Xuất CSV hoàn tất!")
+          EOF
+
+      - name: Upload CSV kết quả thực nghiệm
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ket-qua-thuc-nghiem-run-${{ github.run_number }}
+          path: csv_exports/
+          retention-days: 30
+
       # ─── 10. UPLOAD REPORTS ─────────────────────────────────────────
       - name: Upload test reports
         uses: actions/upload-artifact@v4
