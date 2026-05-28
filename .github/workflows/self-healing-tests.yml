@@ -17,12 +17,13 @@ jobs:
     env:
       CI: "true"
       BASE_URL: "http://localhost:5173"
-      DISPLAY: ":99"                          # ← Xvfb display
 
     steps:
+      # ─── 1. CHECKOUT ────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # ─── 2. PYTHON ──────────────────────────────────────────────────
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -34,27 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ─── FIX 1: FONT + XVFB ─────────────────────────────────────────
-      - name: Install fonts and display server
-        run: |
-          sudo apt-get update -q
-          sudo apt-get install -y \
-            xvfb \
-            fonts-liberation \
-            fonts-noto \
-            fonts-noto-cjk \
-            fonts-dejavu-core \
-            fontconfig
-          fc-cache -f -v
-          echo "✅ Fonts installed"
-
-      - name: Start Xvfb virtual display
-        run: |
-          Xvfb :99 -screen 0 1920x1080x24 -ac +extension GLX +render -noreset &
-          sleep 2
-          echo "✅ Xvfb started on :99"
-
-      # ─── NODE + APP ──────────────────────────────────────────────────
+      # ─── 3. NODE + KHỞI ĐỘNG APP ────────────────────────────────────
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -70,6 +51,7 @@ jobs:
         working-directory: myapp
         run: |
           npm run dev -- --port 5173 --host 0.0.0.0 &
+          echo "Waiting for dev server..."
           for i in $(seq 1 20); do
             if curl -s http://localhost:5173 > /dev/null 2>&1; then
               echo "✅ Dev server is up!"
@@ -78,6 +60,7 @@ jobs:
             sleep 2
           done
 
+      # ─── 4. BACKEND Node.js ─────────────────────────────────────────
       - name: Start backend API
         run: |
           npm install
@@ -92,7 +75,24 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-      # ─── FIX 2: CHROME VỚI ĐÚNG FLAGS ───────────────────────────────
+      # ─── 5. CHROME ──────────────────────────────────────────────────
+      - name: Install fonts and display server        # ← THÊM TRƯỚC BƯỚC CHROME
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y \
+            xvfb \
+            fonts-liberation \
+            fonts-noto \
+            fonts-noto-cjk \
+            fonts-dejavu-core \
+            fontconfig
+          fc-cache -f -v
+
+      - name: Start Xvfb virtual display              # ← THÊM TRƯỚC BƯỚC CHROME
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -ac +extension GLX +render -noreset &
+          sleep 2
+
       - name: Setup Chrome
         run: |
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -101,6 +101,7 @@ jobs:
           sudo apt-get install -y google-chrome-stable
           google-chrome --version
 
+      # ─── 6. RESTORE healing.db ──────────────────────────────────────
       - name: Restore healing database from cache
         uses: actions/cache@v4
         with:
@@ -113,6 +114,7 @@ jobs:
             healing-db-${{ runner.os }}-${{ github.ref_name }}-
             healing-db-${{ runner.os }}-
 
+      # ─── 7. THỐNG KÊ DB TRƯỚC KHI CHẠY ─────────────────────────────
       - name: Show DB stats before run
         run: python scripts/db_stats.py
         continue-on-error: true
@@ -121,18 +123,19 @@ jobs:
         run: |
           echo "=== Frontend ==="
           curl -s http://localhost:5173 | grep -o "<title>.*</title>"
+          
           echo "=== Backend API ==="
           curl -s http://localhost:5000/api/products | head -c 200
+          
           echo "=== Test login API ==="
           curl -s -X POST http://localhost:5000/api/auth/login \
             -H "Content-Type: application/json" \
             -d '{"email":"admin@gmail.com","password":"password123"}'
 
-      # ─── RUN TESTS QUA XVFB ──────────────────────────────────────────
+      # ─── 8. CHẠY TESTS ──────────────────────────────────────────────
       - name: Run self-healing tests
         run: |
           mkdir -p reports
-          xvfb-run --server-args="-screen 0 1920x1080x24" \
           python -m pytest \
             backend/tests/test_login.py \
             backend/tests/test_products.py \
@@ -145,6 +148,7 @@ jobs:
             2>&1 | tee reports/test_output.log
         continue-on-error: true
 
+      # ─── 9. XUẤT healing.db RA CSV ──────────────────────────────────
       - name: Export healing.db to CSV
         if: always()
         run: |
@@ -190,6 +194,7 @@ jobs:
           path: csv_exports/
           retention-days: 30
 
+      # ─── 10. UPLOAD REPORTS ─────────────────────────────────────────
       - name: Upload test reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -198,6 +203,7 @@ jobs:
           path: reports/
           retention-days: 30
 
+      # ─── 11. BACKUP healing.db ──────────────────────────────────────
       - name: Backup healing database
         uses: actions/upload-artifact@v4
         if: always()
