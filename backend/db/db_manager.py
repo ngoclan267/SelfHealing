@@ -712,25 +712,64 @@ class DBManager:
     def kb_learn(self, step_name: str, old_by: str, old_val: str,
                  new_by: str, new_val: str, confidence: float,
                  similarity_detail: dict, ui_version: str = "v1"):
-        """Lưu hoặc cập nhật một entry vào KB cache."""
+        """Lưu hoặc cập nhật một entry vào KB cache.
+        - Nếu chưa có: INSERT mới.
+        - Nếu đã có và confidence mới CAO HƠN: UPDATE locator + confidence,
+          đồng thời GIỮ LẠI times_used và learned_at gốc.
+        - Nếu đã có nhưng confidence mới THẤP HƠN hoặc BẰNG: bỏ qua,
+          giữ nguyên locator tốt hơn đã lưu trước đó.
+        """
         with self._connect() as conn:
-            conn.execute("""
-                INSERT OR REPLACE INTO knowledge_base (
+            existing = conn.execute("""
+                SELECT confidence, times_used, learned_at
+                FROM knowledge_base
+                WHERE step_name=? AND ui_version=?
+                  AND old_locator_type=? AND old_locator_value=?
+            """, (step_name, ui_version, old_by, old_val)).fetchone()
+
+            if existing is None:
+                # Chưa có → INSERT mới
+                conn.execute("""
+                    INSERT INTO knowledge_base (
+                        step_name, ui_version,
+                        old_locator_type, old_locator_value,
+                        new_locator_type, new_locator_value,
+                        confidence, similarity_detail, learned_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
                     step_name, ui_version,
-                    old_locator_type, old_locator_value,
-                    new_locator_type, new_locator_value,
-                    confidence, similarity_detail, learned_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                step_name, ui_version,
-                old_by, old_val,
-                new_by, new_val,
-                confidence,
-                json.dumps(similarity_detail, ensure_ascii=False),
-                datetime.now().isoformat(),
-            ))
-        logger.debug(f"[KB] Learned: step='{step_name}' "
-                     f"'{old_val}' → '{new_val}' (conf={confidence:.2f})")
+                    old_by, old_val,
+                    new_by, new_val,
+                    confidence,
+                    json.dumps(similarity_detail, ensure_ascii=False),
+                    datetime.now().isoformat(),
+                ))
+                logger.debug(f"[KB] New entry: step='{step_name}' "
+                             f"'{old_val}' → '{new_val}' (conf={confidence:.2f})")
+            elif confidence > existing["confidence"]:
+                # Có rồi nhưng lần này tốt hơn → UPDATE, GIỮ times_used và learned_at
+                conn.execute("""
+                    UPDATE knowledge_base
+                    SET new_locator_type  = ?,
+                        new_locator_value = ?,
+                        confidence        = ?,
+                        similarity_detail = ?
+                    WHERE step_name=? AND ui_version=?
+                      AND old_locator_type=? AND old_locator_value=?
+                """, (
+                    new_by, new_val,
+                    confidence,
+                    json.dumps(similarity_detail, ensure_ascii=False),
+                    step_name, ui_version,
+                    old_by, old_val,
+                ))
+                logger.debug(f"[KB] Updated (better): step='{step_name}' "
+                             f"'{old_val}' → '{new_val}' "
+                             f"(conf {existing['confidence']:.2f} → {confidence:.2f})")
+            else:
+                # Confidence mới thấp hơn hoặc bằng → giữ nguyên locator cũ tốt hơn
+                logger.debug(f"[KB] Kept existing (conf {existing['confidence']:.2f} >= {confidence:.2f}): "
+                             f"step='{step_name}' '{old_val}'")
 
     def kb_increment_usage(self, step_name: str, old_by: str,
                            old_val: str, ui_version: str = "v1"):
