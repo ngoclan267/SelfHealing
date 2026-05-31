@@ -7,23 +7,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .config import ADMIN_EMAIL
 from .conftest import navigate_to
-import os
-import shutil
 
 def switch_ui(version):
-    ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    script = os.path.join(ROOT, "myapp", "src_mutated", "switch_ui.sh")
-    
-    # Tìm Git Bash trên Windows
-    git_bash = r"C:\Program Files\Git\bin\bash.exe"
-    if not os.path.exists(git_bash):
-        git_bash = shutil.which("bash") 
-    subprocess.run([git_bash, script, version], check=True)
+    subprocess.run(["bash", "../myapp/src_mutated/switch_ui.sh", version], shell=True)
+
 def random_email():
     suffix = "".join(random.choices(string.ascii_lowercase, k=6))
     return f"test_{suffix}@gmail.com"
-ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 
+ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 def build_register_cases():
     cases = []
     
@@ -46,6 +38,7 @@ def build_register_cases():
                 # 2. Case Đăng ký thất bại (Kiểm tra xem locator có điền được form bị mutate và chặn lại không)
                 {"email": ADMIN_EMAIL, "password": "anypass", "expect": False, "ui_version": ui, "desc": f"[{ui}] email đã tồn tại → lỗi (Healing Check)"}
             ]
+            
     return cases
 
 @pytest.mark.parametrize(
@@ -53,7 +46,6 @@ def build_register_cases():
     build_register_cases(),
     ids=[c["desc"] for c in build_register_cases()]
 )
-
 def test_register(driver, case):
     print(f"\n {case['desc']}")
     switch_ui(case["ui_version"])
@@ -61,6 +53,7 @@ def test_register(driver, case):
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.TAG_NAME, "form"))
     )
+
     email_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="register-email"]',
         step_name  = "register_email_field",
@@ -68,6 +61,7 @@ def test_register(driver, case):
     )
     email_el.clear()
     email_el.send_keys(case["email"])
+
     pass_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="register-password"]',
         step_name  = "register_password_field",
@@ -75,12 +69,14 @@ def test_register(driver, case):
     )
     pass_el.clear()
     pass_el.send_keys(case["password"])
+
     btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-register"]',
         step_name  = "register_button",
         ui_version = case["ui_version"],
     )
     btn.click()
+
     WebDriverWait(driver, 10).until(
         lambda d: "login"     in (d.current_url or "").lower()
                or "đăng nhập" in (d.page_source or "").lower()
@@ -88,6 +84,7 @@ def test_register(driver, case):
     )
     current_url = driver.current_url or ""
     page = (driver.page_source or "").lower()
+
     if case["expect"]:
         assert "/login" in current_url or "đăng nhập" in page, "Đăng ký thành công nhưng không redirect sang trang login"
         print(" PASSED — redirect sang login")

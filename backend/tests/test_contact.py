@@ -7,22 +7,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException, UnexpectedAlertPresentException
 from .conftest import do_login, navigate_to
 from .config import USER_EMAIL, USER_PASS
-import os
-import shutil
 
 def switch_ui(version):
-    ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    script = os.path.join(ROOT, "myapp", "src_mutated", "switch_ui.sh")
-    # Tìm Git Bash trên Windows
-    git_bash = r"C:\Program Files\Git\bin\bash.exe"
-    if not os.path.exists(git_bash):
-        git_bash = shutil.which("bash")  
-    subprocess.run([git_bash, script, version], check=True)
+    subprocess.run(["bash", "../myapp/src_mutated/switch_ui.sh", version], shell=True)
+
 ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
+
+# Từ khóa thông báo thành công — cover mọi variant text của các UI version
 SUCCESS_KEYWORDS = [
     "cảm ơn", "thành công", "ghi nhận", "đã được gửi",
     "liên hệ lại", "sẽ phản hồi", "sẽ liên hệ", "tin nhắn",
 ]
+
+# Từ khóa yêu cầu đăng nhập — cover mọi variant text của các UI version
 AUTH_REQUIRED_KEYWORDS = [
     "chưa đăng nhập", "đăng nhập ngay", "vui lòng đăng nhập",
     "cần đăng nhập", "yêu cầu đăng nhập", "đăng nhập để tiếp tục",
@@ -30,11 +27,13 @@ AUTH_REQUIRED_KEYWORDS = [
     "yêu cầu tài khoản", "đăng nhập để sử dụng",
 ]
 
+
 def build_contact_cases():
     valid = [
         ("Nguyễn Văn A", "0901234567", "tu-van", "Tôi muốn hỏi về iPhone 16", True, "gửi đầy đủ thông tin"),
         ("Trần Thị B", "0987654321", "bao-hanh", "Giá MacBook Air M3 là bao nhiêu?", True, "gửi với nội dung khác"),
     ]
+
     invalid = [
         ("",      "0901234567", "tu-van", "Test lỗi", False, "thiếu tên"),
         ("Tên A", "",           "tu-van", "Test lỗi", False, "thiếu số điện thoại"),
@@ -44,11 +43,14 @@ def build_contact_cases():
         ("Tên A", "09012345678","tu-van", "Test lỗi", False, "số điện thoại 11 số — dư 1"),
         ("Tên A", "0901234567", "tu-van", "x" * 501,  False, "lời nhắn quá 500 ký tự"),
     ]
+
     edge_valid = [
         ("Tên A", "0901234567", "tu-van", "Test OK",  True, "SĐT đúng 10 số — hợp lệ"),
         ("Tên A", "0901234567", "tu-van", "x" * 500,  True, "lời nhắn đúng 500 ký tự — hợp lệ"),
     ]
+
     cases = []
+
     for ui in ALL_UI_VERSIONS:
         if ui == "v1":
             for name, phone, subject, msg, expect, desc in valid + invalid + edge_valid:
@@ -70,7 +72,9 @@ def build_contact_cases():
                 "name": "", "phone": "", "subject": "", "message": "", "expect": False,
                 "ui_version": ui, "need_login": False, "description": f"[{ui}] contact: chưa đăng nhập (Healing Check)",
             })
+
     return cases
+
 
 def _sync_token(driver):
     token = (
@@ -87,6 +91,7 @@ def _sync_token(driver):
         localStorage.setItem('token', '{token}');
         localStorage.setItem('authToken', '{token}');
     """)
+
 
 def _fill_subject(driver, subject, ui_version):
     if not subject:
@@ -105,6 +110,7 @@ def _fill_subject(driver, subject, ui_version):
     except Exception:
         pass
 
+
 def _fill_and_verify(driver, selector, step_name, ui_version, value, field_label):
     if field_label == "message":
         textareas = driver._drv.find_elements(By.CSS_SELECTOR, "textarea")
@@ -113,6 +119,7 @@ def _fill_and_verify(driver, selector, step_name, ui_version, value, field_label
             el.clear()
             el.send_keys(value)
             return
+
     el = driver.find_element(
         By.CSS_SELECTOR, selector,
         step_name  = step_name,
@@ -120,6 +127,7 @@ def _fill_and_verify(driver, selector, step_name, ui_version, value, field_label
     )
     el.clear()
     el.send_keys(value)
+
 
 def _assert_success(driver):
     """Kiểm tra gửi thành công — cover mọi variant text của các UI version."""
@@ -135,6 +143,7 @@ def _assert_success(driver):
         assert any(kw in page for kw in SUCCESS_KEYWORDS), \
             f"Gửi thất bại: {e}"
 
+
 def _assert_failure(driver, case):
     alert_appeared = False
     try:
@@ -146,6 +155,7 @@ def _assert_failure(driver, case):
     except Exception:
         if alert_appeared:
             raise
+
     assert "/contact" in driver.current_url
     error_els = driver.find_elements(By.CSS_SELECTOR, ".invalid-feedback")
     visible_errors = [el for el in error_els if el.is_displayed()]
@@ -153,25 +163,31 @@ def _assert_failure(driver, case):
     has_error_text = any(kw in page for kw in ["vui lòng", "không được", "phải gồm", "quá ngắn", "quá dài"])
     assert len(visible_errors) > 0 or has_error_text
 
+
 def _check_auth_required(page):
     """Kiểm tra trang có yêu cầu đăng nhập hay không — cover mọi variant text."""
     return any(kw in page for kw in AUTH_REQUIRED_KEYWORDS)
+
 
 @pytest.mark.parametrize(
     "case",
     build_contact_cases(),
     ids=[c["description"] for c in build_contact_cases()]
 )
-
 def test_contact(driver, case):
     print(f"\n {case['description']}")
     switch_ui(case["ui_version"])
+
     if case["need_login"]:
         do_login(driver, USER_EMAIL, USER_PASS, case["ui_version"], expect_success=True)
         _sync_token(driver)
+
     navigate_to(driver, "/contact", case["ui_version"])
+
     if not case["need_login"]:
         page = driver.page_source.lower()
+        # Kiểm tra trang yêu cầu đăng nhập theo nhiều dạng text khác nhau
+        # Hoặc kiểm tra không có form liên hệ (input/textarea) trên trang
         has_auth_msg = _check_auth_required(page)
         has_login_link = "/login" in page
         has_contact_form = len(driver.find_elements(
@@ -180,29 +196,36 @@ def test_contact(driver, case):
         assert has_auth_msg or (has_login_link and not has_contact_form), \
             f"[{case['ui_version']}] Trang contact không yêu cầu đăng nhập khi chưa login"
         return
-    
+
     WebDriverWait(driver, 10).until(
         lambda d: len(d.find_elements(By.CSS_SELECTOR, "input, textarea, select")) >= 1
     )
     _sync_token(driver)
+
     page = driver.page_source.lower()
     if _check_auth_required(page):
         driver.refresh()
         WebDriverWait(driver, 10).until(
             lambda d: len(d.find_elements(By.CSS_SELECTOR, "input, textarea, select")) >= 1
         )
+
     if case["name"]:
         _fill_and_verify(driver, '[data-testid="contact-name"]', "contact_name_field", case["ui_version"], case["name"], "name")
+
     if case["phone"]:
         _fill_and_verify(driver, '[data-testid="contact-phone"]', "contact_phone_field", case["ui_version"], case["phone"], "phone")
+
     _fill_subject(driver, case.get("subject", ""), case["ui_version"])
+
     if case["message"]:
         _fill_and_verify(driver, '[data-testid="contact-mess"]', "contact_mess_field", case["ui_version"], case["message"], "message")
+
     submit = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-contact-submit"]',
         step_name  = "contact_submit_button",
         ui_version = case["ui_version"],
     )
+    # Fallback JS click nếu bị element khác che (vd: v5 có disclaimer overlay)
     try:
         submit.click()
     except ElementClickInterceptedException:
