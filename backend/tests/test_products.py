@@ -16,12 +16,11 @@ import shutil
 def switch_ui(version):
     ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     script = os.path.join(ROOT, "myapp", "src_mutated", "switch_ui.sh")
-    
-    # Tìm Git Bash trên Windows
     git_bash = r"C:\Program Files\Git\bin\bash.exe"
     if not os.path.exists(git_bash):
-        git_bash = shutil.which("bash")  
+        git_bash = shutil.which("bash")
     subprocess.run([git_bash, script, version], check=True)
+
 ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 
 def build_product_cases():
@@ -78,6 +77,7 @@ def build_product_cases():
 
     return cases
 
+
 @pytest.mark.parametrize(
     "case",
     build_product_cases(),
@@ -88,18 +88,27 @@ def test_products(driver, case):
     switch_ui(case["ui_version"])
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], expect_success=True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10)
+
+    # Đợi React render xong trang /product trước khi tìm element
+    try:
+        WebDriverWait(driver, 15).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+        # Đợi thêm ít nhất 1 button hoặc input xuất hiện (React đã mount)
+        WebDriverWait(driver, 15).until(
+            lambda d: len(d.find_elements(By.CSS_SELECTOR, "button, input")) > 0
+        )
+    except Exception:
+        pass
     if case["type"] == "search":
         _run_search(driver, case)
     elif case["type"] == "filter":
         _run_filter(driver, case)
-        
 def _dismiss_any_alert(driver):
     try:
         driver.switch_to.alert.dismiss()
     except Exception:
         pass
-    
 def _count_product_cards(driver):
     cards = driver.find_elements(By.CSS_SELECTOR, ".card, article")
     product_cards = [
@@ -119,7 +128,6 @@ def _reset_filter_to_all(driver):
             driver.execute_script("arguments[0].click();", all_btns[0])
             time.sleep(0.3)
             return
-        # Fallback: select dropdown (v4)
         selects = driver.find_elements(
             By.CSS_SELECTOR,
             'select[data-testid*="filter"], select[id*="filter"], select.form-select'
@@ -129,13 +137,13 @@ def _reset_filter_to_all(driver):
                 Select(selects[0]).select_by_value("Tất cả")
             except Exception:
                 try:
-                    Select(selects[0]).select_by_value("Tất cả loại")  # v12 dùng "Tất cả loại"
+                    Select(selects[0]).select_by_value("Tất cả loại")
                 except Exception:
                     Select(selects[0]).select_by_index(0)
             time.sleep(0.3)
     except Exception:
         pass
-    
+
 def _run_search(driver, case):
     _dismiss_any_alert(driver)
     _reset_filter_to_all(driver)
@@ -190,8 +198,7 @@ def _run_filter(driver, case):
             raise Exception(f"Nhầm delete button, alert: {alert_text}")
         except Exception as alert_err:
             if "Nhầm delete" in str(alert_err):
-                raise  # re-raise để vào fallback select bên dưới
-            # Không có alert → click đúng rồi
+                raise
             filter_found = True
     except Exception:
         selects = driver.find_elements(
@@ -213,14 +220,12 @@ def _run_filter(driver, case):
             f"Healing không phục hồi được"
         )
     _dismiss_any_alert(driver)
-
     try:
         WebDriverWait(driver, 5).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
     except UnexpectedAlertPresentException:
         _dismiss_any_alert(driver)
-
     _dismiss_any_alert(driver)
     cards = _count_product_cards(driver)
     print(f" Lọc '{case['category']}': {cards} sản phẩm")
