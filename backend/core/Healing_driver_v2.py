@@ -12,7 +12,6 @@ LUỒNG TỔNG QUÁT (V2 — Static Weights):
             → lưu healing_event vào SQLite
             → lưu TẤT CẢ candidates vào candidate_scores
             → trả về best element
-
 THIẾT KẾ:
     - Trọng số 5 chiều được định nghĩa tĩnh trong SimilarityEngineV2
     - Toàn bộ dữ liệu healing vẫn được lưu vào SQLite (healing_events,

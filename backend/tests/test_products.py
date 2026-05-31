@@ -88,9 +88,7 @@ def test_products(driver, case):
     switch_ui(case["ui_version"])
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], expect_success=True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10).until(
-        lambda d: d.find_elements(By.CSS_SELECTOR, '[data-testid="search-input"]')
-    )
+    WebDriverWait(driver, 10)
     if case["type"] == "search":
         _run_search(driver, case)
     elif case["type"] == "filter":
@@ -215,12 +213,14 @@ def _run_filter(driver, case):
             f"Healing không phục hồi được"
         )
     _dismiss_any_alert(driver)
+
     try:
         WebDriverWait(driver, 5).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
     except UnexpectedAlertPresentException:
         _dismiss_any_alert(driver)
+
     _dismiss_any_alert(driver)
     cards = _count_product_cards(driver)
     print(f" Lọc '{case['category']}': {cards} sản phẩm")

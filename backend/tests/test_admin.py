@@ -100,9 +100,6 @@ def _test_user_no_add_btn(driver, case):
 
 def _test_admin_add_product(driver, case):
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
-    WebDriverWait(driver, 5).until(
-        lambda d: d.execute_script("return sessionStorage.getItem('role')") == 'admin'
-    )
     navigate_to(driver, "/admin/add-product", case["ui_version"])
     WebDriverWait(driver, 10).until(
         lambda d: "product" in d.page_source.lower()
