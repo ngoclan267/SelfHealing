@@ -35,6 +35,8 @@ def driver():
         opts.add_argument("--window-size=1366,768")
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
+    # yield raw
+    # raw.quit()
     healing = SelfHealingDriverV2(
         raw,
         test_name    = "apple_shop_suite_v2",
