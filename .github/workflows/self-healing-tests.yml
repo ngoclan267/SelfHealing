@@ -16,15 +16,14 @@ jobs:
 
     env:
       CI: "true"
-      # BASE_URL dùng cho toàn bộ test — app chạy trên cổng 5173
       BASE_URL: "http://localhost:5173"
 
     steps:
-      # 1. CHECKOUT 
+      # 1. CHECKOUT
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. PYTHON 
+      # 2. PYTHON
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -36,8 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 3. NODE + KHỞI ĐỘNG APP 
-      # App React/Vite cần chạy trước khi test Selenium kết nối vào
+      # 3. NODE + KHỞI ĐỘNG APP
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -61,7 +59,8 @@ jobs:
             fi
             sleep 2
           done
-      # 4. BACKEND Node.js 
+
+      # 4. BACKEND Node.js
       - name: Start backend API
         run: |
           npm install
@@ -75,16 +74,20 @@ jobs:
           done
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      # 5. CHROME 
+
+      # 5. CHROME — dùng gpg thay apt-key (tương thích Ubuntu 24.04)
       - name: Setup Chrome
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          curl -fsSL https://dl.google.com/linux/linux_signing_key.pub \
+            | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] \
+            https://dl.google.com/linux/chrome/deb/ stable main" \
+            | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update -q
           sudo apt-get install -y google-chrome-stable
           google-chrome --version
 
-      # 6. RESTORE healing.db 
+      # 6. RESTORE healing.db
       - name: Restore healing database from cache
         uses: actions/cache@v4
         with:
@@ -97,25 +100,25 @@ jobs:
             healing-db-${{ runner.os }}-${{ github.ref_name }}-
             healing-db-${{ runner.os }}-
 
-      # 7. THỐNG KÊ DB TRƯỚC KHI CHẠY 
+      # 7. THỐNG KÊ DB TRƯỚC KHI CHẠY
       - name: Show DB stats before run
         run: python scripts/db_stats.py
         continue-on-error: true
+
       - name: Check app health
         run: |
           echo "=== Frontend ==="
           curl -s http://localhost:5173 | grep -o "<title>.*</title>"
-          
+
           echo "=== Backend API ==="
           curl -s http://localhost:5000/api/products | head -c 200
-          
+
           echo "=== Test login API ==="
           curl -s -X POST http://localhost:5000/api/auth/login \
             -H "Content-Type: application/json" \
             -d '{"email":"admin@gmail.com","password":"password123"}'
-      # 8. CHẠY TESTS 
-      # Chạy đúng thứ tự: products → contact → register → admin
-      # _maybe_retrain_model() tự kích hoạt bên trong khi đủ 140 heals
+
+      # 8. CHẠY TESTS
       - name: Run self-healing tests
         run: |
           mkdir -p reports
@@ -129,10 +132,11 @@ jobs:
             --tb=short \
             --junitxml=reports/test_results.xml \
             --html=reports/report.html \
-            --self-contained-html 
+            --self-contained-html \
             2>&1 | tee reports/test_output.log
         continue-on-error: true
-      # 9. UPLOAD REPORTS 
+
+      # 9. UPLOAD REPORTS
       - name: Upload test reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -141,7 +145,7 @@ jobs:
           path: reports/
           retention-days: 30
 
-      #  10. BACKUP healing.db 
+      # 10. BACKUP healing.db
       - name: Backup healing database
         uses: actions/upload-artifact@v4
         if: always()
