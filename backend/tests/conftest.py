@@ -86,6 +86,12 @@ def do_login(driver, email: str, password: str,
     )
     time.sleep(0.5)
     driver.execute_script("arguments[0].click();", btn)
+    # Dismiss alert "Đăng nhập thành công!" nếu có (Login_v1 dùng alert)
+    try:
+        WebDriverWait(driver, 3).until(EC.alert_is_present())
+        driver.switch_to.alert.accept()
+    except Exception:
+        pass
     time.sleep(1.5)
     page = driver.page_source.lower()
     if expect_success:

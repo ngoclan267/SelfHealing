@@ -89,17 +89,10 @@ def test_products(driver, case):
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], expect_success=True)
     navigate_to(driver, "/product", case["ui_version"])
 
-    # Đợi React render xong trang /product trước khi tìm element
-    try:
-        WebDriverWait(driver, 15).until(
-            lambda d: d.execute_script("return document.readyState") == "complete"
-        )
-        # Đợi thêm ít nhất 1 button hoặc input xuất hiện (React đã mount)
-        WebDriverWait(driver, 15).until(
-            lambda d: len(d.find_elements(By.CSS_SELECTOR, "button, input")) > 0
-        )
-    except Exception:
-        pass
+    # Đợi loading spinner biến mất — tất cả v1-v11 đều dùng text này khi loading=true
+    WebDriverWait(driver, 15).until(
+        lambda d: "đang tải sản phẩm" not in d.page_source.lower()
+    )
     if case["type"] == "search":
         _run_search(driver, case)
     elif case["type"] == "filter":

@@ -73,8 +73,9 @@ def test_admin_flow(driver, case):
 def _test_admin_see_add_btn(driver, case):
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.TAG_NAME, "body"))
+    # Đợi loading spinner biến mất
+    WebDriverWait(driver, 15).until(
+        lambda d: "đang tải sản phẩm" not in d.page_source.lower()
     )
     btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-add-product"]',
@@ -87,8 +88,9 @@ def _test_admin_see_add_btn(driver, case):
 def _test_user_no_add_btn(driver, case):
     do_login(driver, USER_EMAIL, USER_PASS, case["ui_version"], True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.TAG_NAME, "body"))
+    # Đợi loading spinner biến mất
+    WebDriverWait(driver, 15).until(
+        lambda d: "đang tải sản phẩm" not in d.page_source.lower()
     )
     btns = (
         driver.find_elements(By.CSS_SELECTOR, '[data-testid="btn-add-product"]') +
@@ -203,11 +205,10 @@ def _test_user_access_admin_route(driver, case):
 def _test_admin_see_crud_buttons(driver, case):
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.TAG_NAME, "body"))
-    )
-    WebDriverWait(driver, 10).until(
-        lambda d: len(d.find_elements(By.CSS_SELECTOR, "button")) >= 1
+    # Đợi loading xong VÀ có ít nhất 1 product card
+    WebDriverWait(driver, 15).until(
+        lambda d: "đang tải sản phẩm" not in d.page_source.lower()
+                  and len(d.find_elements(By.CSS_SELECTOR, ".card, article")) > 0
     )
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     delete_btns = driver.find_elements(
