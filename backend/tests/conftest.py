@@ -35,6 +35,8 @@ def driver():
         opts.add_argument("--window-size=1366,768")
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
+    # yield raw
+    # raw.quit()
     healing = SelfHealingDriverV2(
         raw,
         test_name    = "apple_shop_suite_v2",
@@ -84,6 +86,11 @@ def do_login(driver, email: str, password: str,
     )
     time.sleep(0.5)
     driver.execute_script("arguments[0].click();", btn)
+    try:
+        WebDriverWait(driver, 3).until(EC.alert_is_present())
+        driver.switch_to.alert.accept()
+    except:
+        pass
     time.sleep(1.5)
     page = driver.page_source.lower()
     if expect_success:

@@ -2,41 +2,23 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// V11 Changes:
-// [Visual]      - Outer container: added background color (#fafbfc), padding, borderRadius style
-// [Visual]      - Card: new boxShadow, borderColor changed, borderRadius 14px
-// [Visual]      - Submit button: changed to btn-success, added borderRadius inline style, changed width class
-// [Visual]      - Form heading size changed via inline style; added color
-// [Visual]      - Char counter span: changed fontSize and color style
-// [Context]     - Page heading: "Liên hệ với chúng tôi" → "Gửi yêu cầu hỗ trợ"
-// [Context]     - Label "Họ và tên" → "Tên đầy đủ"; "Số điện thoại" → "Số ĐT liên lạc"; "Lời nhắn" → "Nội dung yêu cầu"
-// [Context]     - Placeholder texts all changed to new descriptive text
-// [Context]     - Submit button text: "Gửi thông tin" → "Gửi yêu cầu ngay"
-// [Context]     - Unauthenticated message: heading/description text changed
-// [Attribute]   - data-testid="contact-name" → data-field="full-name"
-// [Attribute]   - data-testid="contact-phone" → data-field="phone-number"
-// [Attribute]   - data-testid="contact-mess" → data-field="user-message"
-// [Attribute]   - data-testid="btn-contact-submit" → removed (no testid on button)
-// [Attribute]   - data-testid="error-contact-name" → data-error="name-error"
-// [Attribute]   - data-testid="error-contact-phone" → data-error="phone-error"
-// [Attribute]   - data-testid="error-contact-mess" → data-error="message-error"
-// [Attribute]   - id attributes added: id="contact-name", id="contact-phone", id="contact-mess"
-// [Attribute]   - input type for message: kept text but added maxLength="500"
-
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
     const [errors, setErrors]     = useState({ name: '', phone: '', message: '' });
     const token = sessionStorage.getItem('token');
 
+    // ── Validate từng field ───────────────────────────────────────
     const validate = () => {
         const newErrors = { name: '', phone: '', message: '' };
         let isValid = true;
 
+        // Tên: bắt buộc, không chỉ space
         if (!formData.name.trim()) {
             newErrors.name = 'Vui lòng nhập họ và tên.';
             isValid = false;
         }
 
+        // Số điện thoại: bắt buộc, chỉ chứa số, độ dài 9-11 chữ số
         if (!formData.phone.trim()) {
             newErrors.phone = 'Vui lòng nhập số điện thoại.';
             isValid = false;
@@ -45,11 +27,12 @@ const Contact = () => {
             isValid = false;
         }
 
+        // Lời nhắn: bắt buộc, không chỉ space, tối đa 500 ký tự
         if (!formData.message.trim()) {
-            newErrors.message = 'Vui lòng nhập nội dung yêu cầu.';
+            newErrors.message = 'Vui lòng nhập lời nhắn.';
             isValid = false;
         } else if (formData.message.trim().length > 500) {
-            newErrors.message = `Nội dung không được vượt quá 500 ký tự (hiện tại: ${formData.message.trim().length}).`;
+            newErrors.message = `Lời nhắn không được vượt quá 500 ký tự (hiện tại: ${formData.message.trim().length}).`;
             isValid = false;
         }
 
@@ -57,8 +40,11 @@ const Contact = () => {
         return isValid;
     };
 
+    // ── Validate realtime khi người dùng gõ ──────────────────────
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
+
+        // Xóa lỗi của field đó ngay khi người dùng bắt đầu sửa
         if (errors[field]) {
             setErrors({ ...errors, [field]: '' });
         }
@@ -66,6 +52,8 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Chạy validate trước — không gọi API nếu lỗi
         if (!validate()) return;
 
         try {
@@ -82,12 +70,12 @@ const Contact = () => {
         return (
             <div className="container mt-5">
                 <div className="card p-5 text-center shadow-sm border-0">
-                    <h3 className="text-warning fw-bold">Yêu cầu đăng nhập</h3>
+                    <h3 className="text-danger fw-bold">Opps! Bạn chưa đăng nhập</h3>
                     <p className="text-muted">
-                        Bạn cần đăng nhập trước khi gửi yêu cầu hỗ trợ.
+                        Vui lòng đăng nhập để sử dụng tính năng gửi liên hệ.
                     </p>
                     <div className="mt-3">
-                        <Link to="/login" className="btn btn-outline-primary px-4 rounded-pill">
+                        <Link to="/login" className="btn btn-primary px-4 rounded-pill">
                             Đăng nhập ngay
                         </Link>
                     </div>
@@ -97,86 +85,68 @@ const Contact = () => {
     }
 
     return (
-        <div
-            className="container mt-5"
-            style={{ background: '#fafbfc', padding: '24px', borderRadius: '10px' }}
-        >
+        <div className="container mt-5">
             <div className="row justify-content-center">
-                <div
-                    className="col-md-6 card p-4"
-                    style={{
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.10)',
-                        borderRadius: '14px',
-                        border: '1px solid #e3e8ef'
-                    }}
-                >
-                    <h2
-                        className="text-center mb-4"
-                        style={{ fontSize: '1.5rem', color: '#2c3e50' }}
-                    >
-                        Gửi yêu cầu hỗ trợ
-                    </h2>
-
+                <div className="col-md-6 card p-4 shadow">
+                    <h2 className="text-center mb-4">Liên hệ với chúng tôi</h2>
                     <form onSubmit={handleSubmit} noValidate>
 
                         <div className="mb-3">
-                            <label htmlFor="contact-name" className="form-label">Tên đầy đủ</label>
+                            <label className="form-label">Họ và tên</label>
                             <input
                                 type="text"
                                 id="contact-name"
-                                data-field="full-name"
-                                placeholder="Họ và tên đầy đủ của bạn"
+                                data-testid="contact-name"
+                                placeholder="Nhập họ và tên của bạn"
                                 className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                                 value={formData.name}
                                 onChange={(e) => handleChange('name', e.target.value)}
                             />
                             {errors.name && (
-                                <div className="invalid-feedback" data-error="name-error">
+                                <div className="invalid-feedback" data-testid="error-contact-name">
                                     {errors.name}
                                 </div>
                             )}
                         </div>
 
+                        {/* Số điện thoại */}
                         <div className="mb-3">
-                            <label htmlFor="contact-phone" className="form-label">Số ĐT liên lạc</label>
+                            <label className="form-label">Số điện thoại</label>
                             <input
                                 type="text"
                                 id="contact-phone"
-                                data-field="phone-number"
-                                placeholder="Số điện thoại (10 chữ số)"
+                                data-testid="contact-phone"
+                                placeholder="Nhập số điện thoại (10 chữ số)"
                                 className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
                                 value={formData.phone}
                                 onChange={(e) => handleChange('phone', e.target.value)}
                             />
                             {errors.phone && (
-                                <div className="invalid-feedback" data-error="phone-error">
+                                <div className="invalid-feedback" data-testid="error-contact-phone">
                                     {errors.phone}
                                 </div>
                             )}
                         </div>
 
+                        {/* Lời nhắn */}
                         <div className="mb-3">
-                            <label htmlFor="contact-mess" className="form-label">
-                                Nội dung yêu cầu
-                                <span
-                                    className="ms-2"
-                                    style={{ fontSize: '0.8em', color: '#888' }}
-                                >
+                            <label className="form-label">
+                                Lời nhắn
+                                <span className="text-muted ms-2" style={{ fontSize: '0.85em' }}>
                                     ({formData.message.length}/500)
                                 </span>
                             </label>
                             <input
                                 type="text"
                                 id="contact-mess"
-                                data-field="user-message"
-                                placeholder="Mô tả chi tiết vấn đề bạn cần hỗ trợ"
+                                data-testid="contact-mess"
+                                placeholder="Nhập lời nhắn của bạn (tối đa 500 ký tự)"
                                 className={`form-control ${errors.message ? 'is-invalid' : ''}`}
                                 value={formData.message}
-                                maxLength="500"
                                 onChange={(e) => handleChange('message', e.target.value)}
                             />
                             {errors.message && (
-                                <div className="invalid-feedback" data-error="message-error">
+                                <div className="invalid-feedback" data-testid="error-contact-mess">
                                     {errors.message}
                                 </div>
                             )}
@@ -185,10 +155,10 @@ const Contact = () => {
                         <div className="row justify-content-center mb-3">
                             <button
                                 type="submit"
-                                className="btn btn-success fw-bold"
-                                style={{ borderRadius: '20px', padding: '8px 32px' }}
+                                data-testid="btn-contact-submit"
+                                className="btn btn-primary w-17 rounded-pill fw-bold"
                             >
-                                Gửi yêu cầu ngay
+                                Gửi thông tin
                             </button>
                         </div>
                     </form>

@@ -88,7 +88,9 @@ def test_products(driver, case):
     switch_ui(case["ui_version"])
     do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], expect_success=True)
     navigate_to(driver, "/product", case["ui_version"])
-    WebDriverWait(driver, 10)
+    WebDriverWait(driver, 10).until(
+        lambda d: d.find_elements(By.CSS_SELECTOR, '[data-testid="search-input"]')
+    )
     if case["type"] == "search":
         _run_search(driver, case)
     elif case["type"] == "filter":

@@ -129,8 +129,6 @@ jobs:
             -v -s \
             --tb=short \
             --junitxml=reports/test_results.xml \
-            --html=reports/report.html \
-            --self-contained-html 
             2>&1 | tee reports/test_output.log
         continue-on-error: true
       # 9. UPLOAD REPORTS 
