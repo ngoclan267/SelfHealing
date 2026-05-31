@@ -85,7 +85,7 @@ class ExceptionInterceptor:
                 )
             )
 
-        # Case 2: StaleElement → DOM đã re-render
+        # Case 2: StaleElement -> DOM đã re-render
         elif exc_type == StaleElementReferenceException:
             return InterceptionResult(
                 exception_type = ExceptionType.STALE_ELEMENT,
@@ -98,7 +98,7 @@ class ExceptionInterceptor:
                 )
             )
 
-        # Case 3: Timeout → Trang load chậm
+        # Case 3: Timeout -> Trang load chậm
         elif exc_type == TimeoutException:
             return InterceptionResult(
                 exception_type = ExceptionType.TIMEOUT,
@@ -111,7 +111,7 @@ class ExceptionInterceptor:
                 )
             )
 
-        # Case 4: Not Interactable → Element ẩn hoặc disabled
+        # Case 4: Not Interactable -> Element ẩn hoặc disabled
         elif exc_type == ElementNotInteractableException:
             return InterceptionResult(
                 exception_type = ExceptionType.NOT_INTERACTABLE,
@@ -124,7 +124,7 @@ class ExceptionInterceptor:
                 )
             )
 
-        # Case 5: Click bị chặn → Overlay/modal che mất
+        # Case 5: Click bị chặn -> Overlay/modal che mất
         elif exc_type == ElementClickInterceptedException:
             return InterceptionResult(
                 exception_type = ExceptionType.CLICK_INTERCEPTED,
@@ -137,7 +137,7 @@ class ExceptionInterceptor:
                 )
             )
 
-        # Default: Lỗi không xác định → Raise
+        # Default: Lỗi không xác định -> Raise
         else:
             return InterceptionResult(
                 exception_type = ExceptionType.UNKNOWN,

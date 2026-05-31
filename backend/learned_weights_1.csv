@@ -1,4 +1,6 @@
 id,w_attribute,w_semantic,w_structure,w_visual,w_context,accuracy,n_samples,trained_at,notes
-1,0.1017,0.5802,0.0861,0.2115,0.0205,0.832258064516129,465,2026-05-26T00:12:13.602274,retrain #1 | n_samples=465 | accuracy=83.2% | scikit-learn LogisticRegression
-2,0.1246,0.5532,0.0919,0.2228,0.0075,0.8103448275862069,522,2026-05-26T00:18:23.456371,retrain #2 | n_samples=522 | accuracy=81.0% | scikit-learn LogisticRegression
-3,0.1664,0.4563,0.1127,0.2541,0.0104,0.8021806853582555,642,2026-05-26T00:24:08.088879,retrain #3 | n_samples=642 | accuracy=80.2% | scikit-learn LogisticRegression
+1,0.2411,0.4819,0.0932,0.1747,0.0091,1.0,576,2026-05-29T21:36:40.535084,retrain #1 | n_pairs=576 | accuracy=100.0% | pairwise LogisticRegression
+2,0.2849,0.4531,0.0883,0.1705,0.0033,1.0,642,2026-05-29T21:39:47.193496,retrain #2 | n_pairs=642 | accuracy=100.0% | pairwise LogisticRegression
+3,0.2975,0.4316,0.0901,0.1654,0.0154,1.0,680,2026-05-29T21:44:39.945922,retrain #3 | n_pairs=680 | accuracy=100.0% | pairwise LogisticRegression
+4,0.3095,0.4137,0.0967,0.1689,0.0112,1.0,724,2026-05-29T21:50:39.868938,retrain #4 | n_pairs=724 | accuracy=100.0% | pairwise LogisticRegression
+5,0.3348,0.3741,0.112,0.1646,0.0144,1.0,924,2026-05-29T21:56:13.031161,retrain #5 | n_pairs=924 | accuracy=100.0% | pairwise LogisticRegression

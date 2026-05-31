@@ -289,67 +289,63 @@ def _route_segment_sim(url1: Optional[str], url2: Optional[str]) -> float:
     return round(matches / max(len(s1), len(s2)), 3)
 
 def compute_context_score(orig, cand) -> Tuple[float, Dict[str, float]]:
-    """
-    So sánh ngữ cảnh bao quanh phần tử trên trang.
-    """
     ctx = {}
 
-    ctx['form_context'] = _token_set_sim(
-        getattr(orig, 'form_context', None),
-        getattr(cand, 'form_context', None)
-    )
-    ctx['route'] = _route_segment_sim(
-        getattr(orig, 'page_url', None),
-        getattr(cand, 'page_url', None)
+    # Vị trí trong form — phân biệt email field (pos=0) vs password field (pos=1)
+    pos_orig = getattr(orig, 'position_in_form', -1)
+    pos_cand = getattr(cand, 'position_in_form', -1)
+    if pos_orig >= 0 and pos_cand >= 0:
+        ctx['position_in_form'] = 1.0 if pos_orig == pos_cand else max(
+            0.0, 1.0 - abs(pos_orig - pos_cand) * 0.3
+        )
+    else:
+        ctx['position_in_form'] = 0.50
+
+    # Text node ngay trước element — label không chính thức
+    ctx['preceding_text'] = _token_set_sim(
+        getattr(orig, 'preceding_text', None),
+        getattr(cand, 'preceding_text', None)
     )
 
-    # ARIA landmark
+    # Font size — phân biệt heading vs body vs caption
+    fs_orig = getattr(orig, 'computed_font_size', None)
+    fs_cand = getattr(cand, 'computed_font_size', None)
+    if fs_orig and fs_cand:
+        ctx['font_size'] = 1.0 if fs_orig == fs_cand else 0.20
+    else:
+        ctx['font_size'] = 0.50
+
+    # Color — phân biệt primary action vs secondary
+    col_orig = getattr(orig, 'computed_color', None)
+    col_cand = getattr(cand, 'computed_color', None)
+    if col_orig and col_cand:
+        ctx['color'] = 1.0 if col_orig == col_cand else 0.30
+    else:
+        ctx['color'] = 0.50
+
+    # Landmark — giữ lại nhưng giảm trọng số
     lm_orig = getattr(orig, 'nearest_landmark', None)
     lm_cand = getattr(cand, 'nearest_landmark', None)
     if lm_orig and lm_cand:
         ctx['landmark'] = 1.0 if lm_orig == lm_cand else 0.10
     else:
         ctx['landmark'] = 0.40
-        logger.debug(
-            f"[context] nearest_landmark=None (orig={lm_orig}, cand={lm_cand}) "
-            f"— dùng neutral 0.40"
-        )
 
-    # Modal / overlay detection
-    mo_orig = getattr(orig, 'modal_or_overlay', None)
-    mo_cand = getattr(cand, 'modal_or_overlay', None)
-    if mo_orig is not None and mo_cand is not None:
-        ctx['modal'] = 1.0 if mo_orig == mo_cand else 0.0
-    else:
-        ctx['modal'] = 0.50
-        logger.debug(
-            f"[context] modal_or_overlay=None (orig={mo_orig}, cand={mo_cand}) "
-            f"— dùng neutral 0.50"
-        )
-
-    # Shadow DOM depth
-    sd_orig = getattr(orig, 'shadow_root_depth', 0) or 0
-    sd_cand = getattr(cand, 'shadow_root_depth', 0) or 0
-    ctx['shadow'] = max(0.0, 1.0 - abs(sd_orig - sd_cand) * 0.4)
-
-    # Scroll container
+    # Scroll container — giữ lại
     sc_orig = getattr(orig, 'scroll_container_hash', None)
     sc_cand = getattr(cand, 'scroll_container_hash', None)
     if sc_orig and sc_cand:
         ctx['scroll'] = 1.0 if sc_orig == sc_cand else 0.40
     else:
         ctx['scroll'] = 0.40
-        logger.debug(
-            "[context] scroll_container_hash thiếu — dùng neutral 0.40"
-        )
 
     score = (
-        ctx['form_context'] * 0.28 +
-        ctx['route']        * 0.22 +
-        ctx['landmark']     * 0.20 +
-        ctx['modal']        * 0.16 +
-        ctx['shadow']       * 0.08 +
-        ctx['scroll']       * 0.06
+        ctx['position_in_form'] * 0.30 +
+        ctx['preceding_text']   * 0.25 +
+        ctx['font_size']        * 0.20 +
+        ctx['color']            * 0.15 +
+        ctx['landmark']         * 0.06 +
+        ctx['scroll']           * 0.04
     )
     return round(score, 4), {k: round(v, 3) for k, v in ctx.items()}
 

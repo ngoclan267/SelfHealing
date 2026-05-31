@@ -5,10 +5,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .conftest import do_login
 from .config import ADMIN_EMAIL, ADMIN_PASS, USER_EMAIL, USER_PASS, WRONG_PASS
+import os
+import shutil
 
 def switch_ui(version):
-    subprocess.run(f"bash myapp/src_mutated/switch_ui.sh {version}", shell=True)
+    ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    script = os.path.join(ROOT, "myapp", "src_mutated", "switch_ui.sh")
     
+    # Tìm Git Bash trên Windows
+    git_bash = r"C:\Program Files\Git\bin\bash.exe"
+    if not os.path.exists(git_bash):
+        git_bash = shutil.which("bash")
+    
+    subprocess.run([git_bash, script, version], check=True)   
 ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 def build_login_cases():
     base = [
@@ -19,7 +28,6 @@ def build_login_cases():
         ("",          "",         False, "cả hai trường rỗng"),
         ("invalid",   "123456",   False, "email không có @"),
     ]
-
     edges = [
         (ADMIN_EMAIL,              "123456 ",  False, "pass có trailing space"),
         (ADMIN_EMAIL.upper(),      ADMIN_PASS, False, "email viết hoa"),
@@ -33,7 +41,6 @@ def build_login_cases():
         (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 2"),
         (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 3"),
     ]
-
     cases = []
     for ui in ALL_UI_VERSIONS:
         if ui == "v1":
@@ -59,7 +66,6 @@ def build_login_cases():
                 "email": ADMIN_EMAIL, "password": WRONG_PASS, "ui_version": ui, "expect_success": False,
                 "description": f"[{ui}] admin sai mật khẩu (Healing Check)",
             })
-
     return cases
 
 @pytest.mark.parametrize(

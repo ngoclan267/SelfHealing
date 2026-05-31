@@ -1,29 +1,6 @@
-"""
-Module học trọng số 5 chiều bằng Logistic Regression.
-THIẾT KẾ:
-    - Input (X): [attr_score, sem_score, struct_score, visual_score, ctx_score]
-    - Output (y): is_correct (1 = winner, 0 = loser) — lấy từ bảng candidate_scores
-    - Sau khi fit, hệ số |coef[i]| → normalize → trọng số mới cho 5 chiều
-    - Trọng số được lưu vào bảng learned_weights trong SQLite
-    - SimilarityEngineV2 đọc trọng số từ DB thay vì dùng STATIC_WEIGHTS cứng
-
-TRIGGER: Sau mỗi 20 healing event thành công → tự động retrain.
-
-BẢNG learned_weights (tạo bởi DBManager):
-    id            INTEGER PK AUTOINCREMENT
-    trained_at    TEXT     -- ISO timestamp
-    n_samples     INTEGER  -- số dòng training data
-    accuracy      REAL     -- accuracy trên toàn tập train
-    w_attribute   REAL
-    w_semantic    REAL
-    w_structure   REAL
-    w_visual      REAL
-    w_context     REAL
-    notes         TEXT     -- thông tin thêm (vd: "retrain #3")
-"""
-
 import logging
 import sqlite3
+from collections import defaultdict
 from datetime import datetime
 from typing import Dict, Optional, Tuple
 
@@ -46,71 +23,63 @@ DEFAULT_WEIGHTS: Dict[str, float] = {
     'context':   0.12,
 }
 FEATURE_NAMES = ['attribute', 'semantic', 'structure', 'visual', 'context']
+
+
 class LogisticWeightModel:
     """
-    Học trọng số 5 chiều bằng Logistic Regression.
+    Học trọng số 5 chiều bằng Logistic Regression (pairwise).
+
         model = LogisticWeightModel(db_path="healing.db")
-        # Retrain từ dữ liệu trong DB
         result = model.retrain()
-        # Lấy trọng số hiện tại (đã học hoặc mặc định)
         weights = model.get_current_weights()
+
+    Pairwise: thay vì học P(is_correct=1 | features), model học
+    P(winner > loser | winner_feats − loser_feats) trong cùng event.
+    Mỗi cặp (w, l) sinh 2 samples: diff→y=1 và −diff→y=0 (mirror).
     """
 
-    FIRST_TRAIN_AFTER = 140   # train lần đầu sau khi đủ 40 heal thành công
+    FIRST_TRAIN_AFTER = 100  # train lần đầu sau khi đủ 100 heal thành công
     RETRAIN_EVERY     = 20   # sau lần train đầu, cứ thêm 20 heal → retrain lại
 
     def __init__(self, db_path: str = "healing.db"):
         self.db_path = db_path
-        self._weights: Dict[str, float] = {}   # cache in-memory
-        # Tải trọng số mới nhất từ DB vào cache
+        self._weights: Dict[str, float] = {}
         self._weights = self._load_latest_weights_from_db()
 
     def get_current_weights(self) -> Dict[str, float]:
-        """
-        Trả về trọng số đang dùng.
-        Ưu tiên: learned_weights DB -> DEFAULT_WEIGHTS.
-        """
+        """Trả về trọng số đang dùng. Ưu tiên: learned_weights DB -> DEFAULT."""
         if self._weights:
             return dict(self._weights)
         return dict(DEFAULT_WEIGHTS)
 
     def retrain(self) -> Optional[Dict[str, float]]:
         """
-        Đọc dữ liệu từ candidate_scores → train Logistic Regression
+        Đọc dữ liệu từ candidate_scores -> train Logistic Regression (pairwise)
         -> tính trọng số mới -> lưu vào learned_weights.
         Trả về: dict trọng số mới, hoặc None nếu không đủ dữ liệu / lỗi.
         """
         if not _SKLEARN_AVAILABLE:
             logger.error("[LR] scikit-learn không có -> bỏ qua retrain")
             return None
-
         X, y, n = self._load_training_data()
-
-        if n < 10:
-            logger.warning(f"[LR] Chỉ có {n} mẫu — cần ít nhất 10 để train")
+        if n < 20:
+            logger.warning(f"[LR] Chỉ có {n} mẫu pairwise — cần ít nhất 20")
             return None
-
         if len(set(y)) < 2:
             logger.warning("[LR] Chỉ có 1 class trong y -> không thể train")
             return None
-
         try:
-            # Train Logistic Regression
             lr = LogisticRegression(
-                penalty     = 'l2',
-                C=0.1,     
-                max_iter    = 1000,
-                solver      = 'lbfgs',
-                class_weight= 'balanced',   # xử lý imbalance winner/loser
-                random_state= 42,
+                penalty='l2',
+                C=1.0,         
+                max_iter=1000,
+                solver='lbfgs',
+                class_weight='balanced',
+                random_state=42,
             )
             lr.fit(X, y)
-
-            # Tính accuracy trên tập train
             accuracy = float(lr.score(X, y))
-
-            # Chuyển hệ số -> trọng số có nghĩa
-            # coef_ shape: (1, 5) — lấy abs value rồi normalize
+            # |coef| -> normalize -> trọng số
             coefs = np.abs(lr.coef_[0])
             total = coefs.sum()
             if total == 0:
@@ -120,21 +89,17 @@ class LogisticWeightModel:
                 name: round(float(coefs[i] / total), 4)
                 for i, name in enumerate(FEATURE_NAMES)
             }
-
-            # Đếm lần retrain để ghi notes
             retrain_count = self._count_retrain_history()
             notes = (
                 f"retrain #{retrain_count + 1} | "
-                f"n_samples={n} | "
+                f"n_pairs={n} | "
                 f"accuracy={accuracy:.1%} | "
-                f"scikit-learn LogisticRegression"
+                f"pairwise LogisticRegression"
             )
-            # Lưu vào DB
             self._save_weights_to_db(new_weights, n, accuracy, notes)
-            # Cập nhật cache in-memory
             self._weights = new_weights
             logger.info(
-                f"[LR] Retrain xong! accuracy={accuracy:.1%}  n={n}\n"
+                f"[LR] Retrain xong! accuracy={accuracy:.1%}  n_pairs={n}\n"
                 f"     Trọng số mới: {new_weights}"
             )
             self._print_weight_comparison(new_weights)
@@ -145,13 +110,12 @@ class LogisticWeightModel:
 
     def _load_training_data(self) -> Tuple:
         """
-        Đọc dữ liệu từ candidate_scores.
-        Trả về (X: np.ndarray, y: np.ndarray, n: int).
-        Mỗi hàng X = [attr, sem, struct, vis, ctx]; y = is_correct.
+        Đọc raw rows từ candidate_scores (bao gồm healing_event_id),
+        sau đó gọi _build_pairwise_data để tạo pairwise samples.
+        Trả về (X: np.ndarray, y: np.ndarray, n_pairs: int).
         """
         if not _SKLEARN_AVAILABLE:
             return [], [], 0
-
         try:
             with sqlite3.connect(self.db_path) as conn:
                 rows = conn.execute("""
@@ -161,26 +125,66 @@ class LogisticWeightModel:
                         struct_score,
                         visual_score,
                         ctx_score,
-                        is_correct
+                        is_correct,
+                        healing_event_id
                     FROM candidate_scores
-                    WHERE attr_score  IS NOT NULL
-                      AND sem_score   IS NOT NULL
+                    WHERE attr_score   IS NOT NULL
+                      AND sem_score    IS NOT NULL
                       AND struct_score IS NOT NULL
                       AND visual_score IS NOT NULL
-                      AND ctx_score   IS NOT NULL
+                      AND ctx_score    IS NOT NULL
+                      AND healing_event_id     IS NOT NULL
                 """).fetchall()
 
             if not rows:
                 return np.array([]), np.array([]), 0
 
-            X = np.array([[r[0], r[1], r[2], r[3], r[4]] for r in rows],
-                         dtype=float)
-            y = np.array([int(r[5]) for r in rows])
-            return X, y, len(rows)
-
+            return self._build_pairwise_data(rows)
         except Exception as e:
             logger.error(f"[LR] Đọc training data thất bại: {e}")
             return np.array([]), np.array([]), 0
+
+    def _build_pairwise_data(self, rows: list) -> Tuple:
+        """
+        Chuyển raw rows thành pairwise training data.
+        Với mỗi event:
+          - Gom winners (is_correct=1) và losers (is_correct=0)
+          - Tạo mọi cặp (w, l):
+              diff = w_feats − l_feats  ->  y = 1  (winner thắng)
+              −diff                     ->  y = 0  (mirror, bắt buộc để cân bằng)
+          - Bỏ cặp quá giống nhau (|diff|.sum < 1e-6) vì là nhiễu
+        """
+        events: dict = defaultdict(lambda: {'winners': [], 'losers': []})
+        for r in rows:
+            attr, sem, struct, vis, ctx, is_correct, healing_event_id = r
+            feats = np.array([attr, sem, struct, vis, ctx], dtype=float)
+            bucket = 'winners' if int(is_correct) == 1 else 'losers'
+            events[healing_event_id][bucket].append(feats)
+        X_pairs, y_pairs = [], []
+        for healing_event_id, group in events.items():
+            winners = group['winners']
+            losers  = group['losers']
+            if not winners or not losers:
+                # Event thiếu 1 phía (toàn winner hoặc toàn loser) → bỏ qua
+                logger.debug(f"[LR] event {healing_event_id}: bỏ qua (thiếu winner/loser)")
+                continue
+            for w in winners:
+                for l in losers:
+                    diff = w - l
+                    if np.abs(diff).sum() < 1e-6:
+                        continue  # hai candidate giống hệt nhau → nhiễu
+                    X_pairs.append(diff)
+                    y_pairs.append(1)
+                    X_pairs.append(-diff)   # mirror
+                    y_pairs.append(0)
+        if not X_pairs:
+            logger.warning("[LR] Không tạo được cặp pairwise nào từ dữ liệu")
+            return np.array([]), np.array([]), 0
+        return (
+            np.array(X_pairs, dtype=float),
+            np.array(y_pairs, dtype=int),
+            len(X_pairs),
+        )
 
     def _save_weights_to_db(self, weights: Dict[str, float],
                              n_samples: int, accuracy: float, notes: str):

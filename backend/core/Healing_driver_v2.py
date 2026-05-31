@@ -12,7 +12,6 @@ LUỒNG TỔNG QUÁT (V2 — Static Weights):
             → lưu healing_event vào SQLite
             → lưu TẤT CẢ candidates vào candidate_scores
             → trả về best element
-
 THIẾT KẾ:
     - Trọng số 5 chiều được định nghĩa tĩnh trong SimilarityEngineV2
     - Toàn bộ dữ liệu healing vẫn được lưu vào SQLite (healing_events,
@@ -164,7 +163,7 @@ class SelfHealingDriverV2:
             self._active_weights = self._lr_model.get_current_weights()
             self._db_available = False
 
-        self._kb = _SimpleKnowledgeBase(kb_dir)
+        self._kb = _SimpleKnowledgeBase(kb_dir, db=self._db if self._db_available else None)
     # Đếm heal thành công trong DB để trigger retrain
     def _count_successful_heal_in_db(self) ->int:
         """Đếm tổng số heal_event có success=1 trong DB, nếu không có trả về 0"""
@@ -182,21 +181,21 @@ class SelfHealingDriverV2:
     def _maybe_retrain_model(self):
         """
         Kiểm tra điều kiện trigger retrain theo 2 giai đoạn:
-          - Lần đầu : train khi total_success >= FIRST_TRAIN_AFTER (140)
+          - Lần đầu : train khi total_success >= FIRST_TRAIN_AFTER (60)
           - Các lần sau: retrain thêm mỗi khi tích lũy thêm RETRAIN_EVERY (20) heal
         """
         try:
             total_success   = self._count_successful_heal_in_db()
             history_count   = self._lr_model._count_retrain_history()
-            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 140
+            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 60
             retrain_every   = LogisticWeightModel.RETRAIN_EVERY        # 20
 
             # Tính số lần đáng lẽ đã train dựa trên công thức 2 giai đoạn
             if total_success < first_threshold:
-                # Chưa đủ 1400 heal → chưa train lần nào
+                # Chưa đủ 60 heal → chưa train lần nào
                 should_have_trained = 0
             else:
-                # Lần 1 tại heal thứ 140, rồi mỗi 20 heal tiếp theo
+                # Lần 1 tại heal thứ 60, rồi mỗi 20 heal tiếp theo
                 should_have_trained = 1 + (total_success - first_threshold) // retrain_every
 
             logger.debug(
@@ -642,66 +641,25 @@ class SelfHealingDriverV2:
             logger.info(f"[Session] Ended. Total events: {len(self._session_log)}")
 
 class _SimpleKnowledgeBase:
-    """KB đơn giản — cache locator đã heal để tránh heal lại cùng 1 element"""
+    """KB dùng SQLite thay cho file JSON — không mất dữ liệu khi deploy."""
 
-    def __init__(self, kb_dir: str = "knowledge_base"):
-        self.kb_dir   = Path(kb_dir)
-        self.kb_dir.mkdir(exist_ok=True)
-        self.map_file = self.kb_dir / "healing_map.json"
-        self.log_file = self.kb_dir / "healing_log.json"
-        self._map = self._load(self.map_file, {})
-        self._log = self._load(self.log_file, [])
-
-    def _load(self, path, default):
-        if path.exists():
-            try:
-                return json.loads(path.read_text(encoding="utf-8"))
-            except Exception:
-                return default
-        return default
-
-    def _save(self):
-        self.map_file.write_text(
-            json.dumps(self._map, ensure_ascii=False, indent=2),
-            encoding="utf-8"
-        )
-        self.log_file.write_text(
-            json.dumps(self._log, ensure_ascii=False, indent=2),
-            encoding="utf-8"
-        )
+    def __init__(self, kb_dir: str = "knowledge_base", db=None):
+        # kb_dir giữ lại để tương thích tham số cũ, không dùng nữa
+        self._db = db  # DBManager instance
 
     def lookup(self, step, old_by, old_val, ui_ver):
-        key = f"{step}::{ui_ver}::{old_by}::{old_val}"
-        e = self._map.get(key)
-        if e:
-            return e.get("new_locator_type"), e.get("new_locator_value")
-        return None
+        if self._db is None:
+            return None
+        return self._db.kb_lookup(step, old_by, old_val, ui_ver)
 
     def learn(self, step, old_by, old_val, new_by, new_val,
               confidence, detail, ui_ver):
-        key = f"{step}::{ui_ver}::{old_by}::{old_val}"
-        self._map[key] = {
-            "step_name":        step,
-            "ui_version":       ui_ver,
-            "old_locator_type": old_by,
-            "old_locator_value":old_val,
-            "new_locator_type": new_by,
-            "new_locator_value":new_val,
-            "confidence":       confidence,
-            "similarity_detail":detail,
-            "learned_at":       datetime.now().isoformat(),
-            "times_used":       0,
-        }
-        self._save()
+        if self._db is None:
+            return
+        self._db.kb_learn(step, old_by, old_val, new_by, new_val,
+                          confidence, detail, ui_ver)
 
     def increment_usage(self, step, old_by, old_val, ui_ver):
-        key = f"{step}::{ui_ver}::{old_by}::{old_val}"
-        if key in self._map:
-            self._map[key]["times_used"] = (
-                self._map[key].get("times_used", 0) + 1
-            )
-            self._save()
-
-    def add_log(self, entry):
-        self._log.append(entry)
-        self._save()
+        if self._db is None:
+            return
+        self._db.kb_increment_usage(step, old_by, old_val, ui_ver)

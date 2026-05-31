@@ -58,7 +58,8 @@ class ElementSnapshot:
     modal_or_overlay: Optional[bool] = None
     shadow_root_depth: int = 0
     scroll_container_hash: Optional[str] = None
-
+    position_in_form:   int           = -1   
+    preceding_text:     Optional[str] = None
     # Meta 
     step_name: str = ""
     ui_version: str = ""
@@ -324,7 +325,35 @@ def capture_snapshot(
         """, element)
     except Exception:
         form_context = None
+    try:
+        position_in_form = driver.execute_script("""
+            var el = arguments[0];
+            var form = el.closest('form');
+            if (!form) return -1;
+            var inputs = Array.from(form.querySelectorAll(
+                'input:not([type=hidden]),select,textarea,button'
+            ));
+            return inputs.indexOf(el);
+        """, element)
+        position_in_form = int(position_in_form) if position_in_form is not None else -1
+    except Exception:
+        position_in_form = -1
 
+    try:
+        preceding_text = driver.execute_script("""
+            var el = arguments[0];
+            var prev = el.previousSibling;
+            while (prev) {
+                if (prev.nodeType === 3 && prev.textContent.trim())
+                    return prev.textContent.trim();
+                if (prev.nodeType === 1 && prev.textContent.trim())
+                    return prev.textContent.trim().slice(0, 50);
+                prev = prev.previousSibling;
+            }
+            return null;
+        """, element)
+    except Exception:
+        preceding_text = None
     # ARIA landmark — log warning nếu None để dễ debug
     try:
         nearest_landmark = driver.execute_script("""
@@ -422,6 +451,8 @@ def capture_snapshot(
         modal_or_overlay=modal_or_overlay,
         shadow_root_depth=shadow_root_depth,
         scroll_container_hash=scroll_container_hash,
+        position_in_form = position_in_form,
+        preceding_text   = preceding_text,
         # Meta
         step_name=step_name, ui_version=ui_version,
         locator_type=loc_type, locator_value=loc_value,
