@@ -58,7 +58,7 @@ const Login = () =>{
                                 type="email" 
                                 id="login-email"
                                 className="form-control" 
-                                placeholder="name@example.com" 
+                                placeholder="nhap emal" 
                                 required
                                 value={user.email}
                                 onChange={handleEmailChange} 
@@ -71,12 +71,12 @@ const Login = () =>{
                                 type="password" 
                                 id="login-password"
                                 className="form-control" 
-                                placeholder="••••••••" 
+                                placeholder="nhap mat khau của bạn" 
                                 required
                                 onChange={e => setUser({ ...user, password: e.target.value })} 
                             />
                         </div>
-                        <button id="btn-login" role="button" className="btn btn-primary w-100 py-2 fw-bold">Xác nhận &amp; Đăng nhập</button>
+                        <button role="button" className="btn btn-primary w-100 py-2 fw-bold">Xác nhận &amp; Đăng nhập</button>
                     </form>
                     <div className="text-center mt-3">
                         <small className="text-muted">Chưa có tài khoản? <a href="/sign-up" className="text-decoration-none">Tạo tài khoản mới</a></small>
