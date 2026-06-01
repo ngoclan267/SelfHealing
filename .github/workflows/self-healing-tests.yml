@@ -90,7 +90,7 @@ jobs:
             healing.db
             knowledge_base/
             snapshots/
-          key: healing-db-${{ runner.os }}-${{ github.ref_name }}-${{ github.run_number }}
+          key: healing-db-${{ runner.os }}-${{ github.ref_name }}
           restore-keys: |
             healing-db-${{ runner.os }}-${{ github.ref_name }}-
             healing-db-${{ runner.os }}-
@@ -142,12 +142,11 @@ jobs:
 
       # 10. BACKUP healing.db
       - name: Backup healing database
-        uses: actions/upload-artifact@v4
+        uses: actions/cache/save@v4
         if: always()
         with:
-          name: healing-db-run-${{ github.run_number }}
           path: |
             healing.db
             knowledge_base/
             snapshots/
-          retention-days: 90
+          key: healing-db-${{ runner.os }}-${{ github.ref_name }}
