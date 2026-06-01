@@ -2,17 +2,7 @@ import sys
 import os
 import time
 import pytest
-
-def _find_backend() -> str:
-    if os.environ.get("GITHUB_WORKSPACE"):
-        return os.path.join(os.environ["GITHUB_WORKSPACE"], "backend")
-
-    here = os.path.dirname(os.path.abspath(__file__)) 
-    return os.path.abspath(os.path.join(here, ".."))  
-
-ROOT = _find_backend()
-sys.path.insert(0, ROOT)
-
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -28,11 +18,11 @@ logging.basicConfig(
     format = "%(asctime)s [%(levelname)s] %(name)s — %(message)s"
 )
 IS_CI = os.environ.get("CI", "false").lower() == "true"
-
 @pytest.fixture(scope="function")
 def driver():
     opts = Options()
     if IS_CI:
+        # GitHub Actions: bắt buộc headless
         opts.add_argument("--headless=new")
         opts.add_argument("--no-sandbox")
         opts.add_argument("--disable-dev-shm-usage")
@@ -50,19 +40,21 @@ def driver():
         opts.add_argument("--window-size=1366,768")
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
+    # yield raw
+    # raw.quit()
     healing = SelfHealingDriverV2(
         raw,
         test_name    = "apple_shop_suite_v2",
-        snapshot_dir = os.path.join(ROOT, "snapshots"),
-        db_path      = os.path.join(ROOT, "healing.db"),
-        kb_dir       = os.path.join(ROOT, "knowledge_base"),
+        snapshot_dir = "snapshots",
+        db_path      = "healing.db",
+        kb_dir       = "knowledge_base",
     )
     yield healing
     try:
         healing.quit()
     except Exception:
         pass
-
+    
 def navigate_to(driver, path: str):
     driver.get(f"{BASE_URL}{path}")
     time.sleep(0.5)
@@ -70,6 +62,7 @@ def navigate_to(driver, path: str):
 def do_login(driver, email: str, password: str,
             expect_success: bool = True):
     navigate_to(driver, "/login")
+
     email_el = driver.find_element(
         By.CSS_SELECTOR,
         '[data-testid="login-email"]',
@@ -93,11 +86,12 @@ def do_login(driver, email: str, password: str,
         ui_version = "baseline"
     )
     driver.execute_script(
-        "arguments[0].scrollIntoView({block:'center'});",
+    "arguments[0].scrollIntoView({block:'center'});",
         btn
     )
     time.sleep(0.5)
     driver.execute_script("arguments[0].click();", btn)
+    # Dismiss alert "Đăng nhập thành công!" nếu có (Login_v1 dùng alert)
     try:
         WebDriverWait(driver, 3).until(EC.alert_is_present())
         driver.switch_to.alert.accept()
