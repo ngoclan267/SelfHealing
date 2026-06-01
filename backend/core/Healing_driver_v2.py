@@ -233,7 +233,7 @@ class SelfHealingDriverV2:
 
     def find_element(self, by, value,
                      step_name:  str = "",
-                     ui_version: str = "v1",
+                     ui_version: str = "baseline",
                      snapshot:   Optional[ElementSnapshot] = None):
         """
         Tìm element với self-healing.
@@ -325,14 +325,14 @@ class SelfHealingDriverV2:
         original = provided_snapshot
 
         if original is None and self._db_available:
-            snap_dict = self._db.load_snapshot_dict(step_name, "v1")
+            snap_dict = self._db.load_snapshot_dict(step_name, ui_version)
             if snap_dict:
                 original = self._dict_to_snapshot(snap_dict)
                 logger.info(f"[M2] Loaded snapshot from SQLite: "
                             f"tag={original.tag} id={original.id}")
 
         if original is None:
-            original = self._store.load(step_name, "v1")
+            original = self._store.load(step_name, ui_version)
             if original:
                 logger.info(f"[M2] Loaded snapshot from JSON: "
                             f"tag={original.tag} id={original.id}")
@@ -517,7 +517,7 @@ class SelfHealingDriverV2:
         from .Snapshot import ElementSnapshot
         mapping = {
             'step_name':     d.get('step_name', ''),
-            'ui_version':    d.get('ui_version', 'v1'),
+            'ui_version':    d.get('ui_version', 'baseline'),
             'tag':           d.get('tag', 'div'),
             'id':            d.get('el_id'),
             'classes':       d.get('classes', []),
