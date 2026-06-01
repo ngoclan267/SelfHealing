@@ -45,11 +45,6 @@ from .Exception_interceptor import (
 )
 from .Logistic_weight_model import LogisticWeightModel
 logger = logging.getLogger("HealingDriverV2")
-logging.basicConfig(
-    level  = logging.INFO,
-    format = "%(asctime)s [%(levelname)s] %(name)s — %(message)s"
-)
-
 API_BASE = "http://localhost:5000"
 
 class CandidateRanker:
@@ -321,7 +316,7 @@ class SelfHealingDriverV2:
         history_count = self._lr_model._count_retrain_history()
         weight_source = f"LEARNED (retrain #{history_count})" if history_count >0\
             else "STATIC (chưa có đủ dữ liệu để train)"
-        print("\n{-}*65")
+        print(f"\n{'-'*65}")
         print(f"\n'HEALING PIPELINE LR weights:{weight_source}'")
         print(f"{'-'*65}")
 

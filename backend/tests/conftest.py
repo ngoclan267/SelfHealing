@@ -12,6 +12,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from core.Healing_driver_v2 import SelfHealingDriverV2
 from tests.config import BASE_URL, ADMIN_EMAIL, ADMIN_PASS, USER_EMAIL, USER_PASS
+import logging
+logging.basicConfig(
+    level  = logging.INFO,
+    format = "%(asctime)s [%(levelname)s] %(name)s — %(message)s"
+)
 IS_CI = os.environ.get("CI", "false").lower() == "true"
 @pytest.fixture(scope="function")
 def driver():
