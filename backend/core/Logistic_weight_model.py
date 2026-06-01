@@ -24,7 +24,6 @@ DEFAULT_WEIGHTS: Dict[str, float] = {
 }
 FEATURE_NAMES = ['attribute', 'semantic', 'structure', 'visual', 'context']
 
-
 class LogisticWeightModel:
     """
     Học trọng số 5 chiều bằng Logistic Regression (pairwise).

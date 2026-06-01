@@ -15,7 +15,6 @@ from selenium.common.exceptions import (
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
 logger = logging.getLogger("ExceptionInterceptor")
 class ExceptionType(Enum):
     """Phân loại các exception Selenium có thể xảy ra."""
@@ -26,7 +25,6 @@ class ExceptionType(Enum):
     CLICK_INTERCEPTED   = auto()   # Bị element khác che → JS click
     UNKNOWN             = auto()   # Lỗi không rõ → log và raise
 
-
 class HealingStrategy(Enum):
     """Chiến lược xử lý sau khi bắt được exception."""
     TRIGGER_HEALING     = auto()   # Kích hoạt self-healing pipeline
@@ -35,7 +33,6 @@ class HealingStrategy(Enum):
     SCROLL_INTO_VIEW    = auto()   # Cuộn đến element rồi thử lại
     JS_CLICK            = auto()   # Dùng JavaScript để click thay Selenium
     RAISE               = auto()   # Không thể phục hồi → raise exception
-
 
 @dataclass
 class InterceptionResult:
@@ -60,7 +57,6 @@ class ExceptionInterceptor:
        - JS_CLICK         -> dùng JS thay Selenium click
        - RAISE            -> không cứu được → báo lỗi
     """
-
     # Cấu hình retry mặc định
     MAX_STALE_RETRY   = 3    # StaleElement: thử lại tối đa 3 lần
     MAX_TIMEOUT_WAIT  = 10   # Timeout: chờ thêm tối đa 10 giây
