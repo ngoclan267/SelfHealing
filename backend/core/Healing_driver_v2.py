@@ -258,7 +258,7 @@ class SelfHealingDriverV2:
                 snap = capture_snapshot(
                     self._drv, element,
                     step_name  = step_name,
-                    ui_version = "v1",
+                    ui_version = ui_version,
                     loc_type   = str(by),
                     loc_value  = value
                 )

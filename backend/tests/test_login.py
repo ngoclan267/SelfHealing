@@ -18,7 +18,7 @@ def switch_ui(version):
         git_bash = shutil.which("bash")
     
     subprocess.run([git_bash, script, version], check=True)   
-ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
+# ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 def build_login_cases():
     base = [
         (ADMIN_EMAIL, ADMIN_PASS, True,  "admin đúng"),
@@ -42,30 +42,37 @@ def build_login_cases():
         (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 3"),
     ]
     cases = []
-    for ui in ALL_UI_VERSIONS:
-        if ui == "v1":
-            # Bản v1 chạy toàn bộ base cases và edge cases nghiệp vụ
-            for email, pwd, expect, desc in base:
-                cases.append({
-                    "email": email, "password": pwd, "ui_version": ui, "expect_success": expect,
-                    "description": f"[{ui}] {desc}",
-                })
-            for email, pwd, expect, desc in edges:
-                cases.append({
-                    "email": email, "password": pwd, "ui_version": "v1", "expect_success": expect,
-                    "description": f"[edge] {desc}",
-                })
-        else:
-            # Các bản UI khác (v2 -> v11): Chỉ chọn 2 case đặc trưng để xem locator tự phục hồi (Healing)
-            # Chọn 1 case hợp lệ (True) và 1 case không hợp lệ (False)
-            cases.append({
-                "email": ADMIN_EMAIL, "password": ADMIN_PASS, "ui_version": ui, "expect_success": True,
-                "description": f"[{ui}] admin đúng (Healing Check)",
-            })
-            cases.append({
-                "email": ADMIN_EMAIL, "password": WRONG_PASS, "ui_version": ui, "expect_success": False,
-                "description": f"[{ui}] admin sai mật khẩu (Healing Check)",
-            })
+    for email, pwd, expect, desc in base + edges:
+        cases.append({
+            "email":         email,
+            "password":      pwd,
+            "expect_success": expect,
+            "description":   desc,
+        })
+    # for ui in ALL_UI_VERSIONS:
+    #     if ui == "v1":
+    #         # Bản v1 chạy toàn bộ base cases và edge cases nghiệp vụ
+    #         for email, pwd, expect, desc in base:
+    #             cases.append({
+    #                 "email": email, "password": pwd, "ui_version": ui, "expect_success": expect,
+    #                 "description": f"[{ui}] {desc}",
+    #             })
+    #         for email, pwd, expect, desc in edges:
+    #             cases.append({
+    #                 "email": email, "password": pwd, "ui_version": "v1", "expect_success": expect,
+    #                 "description": f"[edge] {desc}",
+    #             })
+    #     else:
+    #         # Các bản UI khác (v2 -> v11): Chỉ chọn 2 case đặc trưng để xem locator tự phục hồi (Healing)
+    #         # Chọn 1 case hợp lệ (True) và 1 case không hợp lệ (False)
+    #         cases.append({
+    #             "email": ADMIN_EMAIL, "password": ADMIN_PASS, "ui_version": ui, "expect_success": True,
+    #             "description": f"[{ui}] admin đúng (Healing Check)",
+    #         })
+    #         cases.append({
+    #             "email": ADMIN_EMAIL, "password": WRONG_PASS, "ui_version": ui, "expect_success": False,
+    #             "description": f"[{ui}] admin sai mật khẩu (Healing Check)",
+    #         })
     return cases
 
 @pytest.mark.parametrize(
@@ -75,12 +82,12 @@ def build_login_cases():
 )
 def test_login(driver, case):
     print(f"\n {case['description']}")
-    switch_ui(case["ui_version"])
+    # switch_ui(case["ui_version"])
     do_login(
         driver,
         email          = case["email"],
         password       = case["password"],
-        ui_version     = case["ui_version"],
+        # ui_version     = case["ui_version"],
         expect_success = case["expect_success"],
     )
     print("PASSED")

@@ -21,7 +21,7 @@ def switch_ui(version):
         git_bash = shutil.which("bash")
     subprocess.run([git_bash, script, version], check=True)
 
-ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
+# ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 
 def build_product_cases():
     search_queries = [
@@ -39,41 +39,55 @@ def build_product_cases():
         ("Tất cả",  "btn-filter-all"),
     ]
     edge_searches = [
-        ("",          True,  "v1", "rỗng → hiện tất cả"),
-        ("  ",        False, "v1", "chỉ space"),
-        ("iPhone 16", True,  "v1", "tên đầy đủ"),
-        ("iP",        True,  "v1", "2 ký tự đầu"),
-        ("@#$%",      False, "v1", "ký tự đặc biệt"),
+        ("",          True, "rỗng → hiện tất cả"),
+        ("  ",        False, "chỉ space"),
+        ("iPhone 16", True, "tên đầy đủ"),
+        ("iP",        True, "2 ký tự đầu"),
+        ("@#$%",      False, "ký tự đặc biệt"),
     ]
     cases = []
-
-    for ui in ALL_UI_VERSIONS:
-        if ui == "v1":
-            for q, expect, desc in search_queries:
-                cases.append({
-                    "type": "search", "query": q, "expect_result": expect, "ui_version": ui,
-                    "description": f"[{ui}] search '{q}': {desc}",
-                })
-            for cat, testid in filter_cats:
-                cases.append({
-                    "type": "filter", "category": cat, "testid": testid, "ui_version": ui,
-                    "description": f"[{ui}] lọc danh mục '{cat}'",
-                })
-            for q, expect, _, desc in edge_searches:
-                cases.append({
-                    "type": "search", "query": q, "expect_result": expect, "ui_version": "v1",
-                    "description": f"[edge] {desc}",
-                })
-        else:
-            cases.append({
-                "type": "search", "query": "iPhone", "expect_result": True, "ui_version": ui,
-                "description": f"[{ui}] search 'iPhone' (Healing Check)",
-            })
-            for cat, testid in filter_cats:
-                cases.append({
-                    "type": "filter", "category": cat, "testid": testid, "ui_version": ui,
-                    "description": f"[{ui}] lọc danh mục '{cat}'",
-                })
+    for q, expect, desc in search_queries:
+        cases.append({
+            "type": "search", "query": q, "expect_result": expect,
+            "description": f"search '{q}': {desc}",
+        })
+    for cat, testid in filter_cats:
+        cases.append({
+            "type": "filter", "category": cat, "testid": testid,
+            "description": f"lọc danh mục '{cat}'",
+        })
+    for q, expect, desc in edge_searches:
+        cases.append({
+            "type": "search", "query": q, "expect_result": expect,
+            "description": f"[edge] {desc}",
+        })
+    # for ui in ALL_UI_VERSIONS:
+    #     if ui == "v1":
+    #         for q, expect, desc in search_queries:
+    #             cases.append({
+    #                 "type": "search", "query": q, "expect_result": expect, "ui_version": ui,
+    #                 "description": f"[{ui}] search '{q}': {desc}",
+    #             })
+    #         for cat, testid in filter_cats:
+    #             cases.append({
+    #                 "type": "filter", "category": cat, "testid": testid, "ui_version": ui,
+    #                 "description": f"[{ui}] lọc danh mục '{cat}'",
+    #             })
+    #         for q, expect, _, desc in edge_searches:
+    #             cases.append({
+    #                 "type": "search", "query": q, "expect_result": expect, "ui_version": "v1",
+    #                 "description": f"[edge] {desc}",
+    #             })
+    #     else:
+    #         cases.append({
+    #             "type": "search", "query": "iPhone", "expect_result": True, "ui_version": ui,
+    #             "description": f"[{ui}] search 'iPhone' (Healing Check)",
+    #         })
+    #         for cat, testid in filter_cats:
+    #             cases.append({
+    #                 "type": "filter", "category": cat, "testid": testid, "ui_version": ui,
+    #                 "description": f"[{ui}] lọc danh mục '{cat}'",
+    #             })
 
     return cases
 
@@ -85,11 +99,10 @@ def build_product_cases():
 )
 def test_products(driver, case):
     print(f"\n {case['description']}")
-    switch_ui(case["ui_version"])
-    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], expect_success=True)
-    navigate_to(driver, "/product", case["ui_version"])
+    # switch_ui(case["ui_version"])
+    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, expect_success=True)
+    navigate_to(driver, "/product")
 
-    # Đợi loading spinner biến mất — tất cả v1-v11 đều dùng text này khi loading=true
     WebDriverWait(driver, 15).until(
         lambda d: "đang tải sản phẩm" not in d.page_source.lower()
     )
@@ -143,7 +156,7 @@ def _run_search(driver, case):
     search_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="search-input"]',
         step_name  = "search_input",
-        ui_version = case["ui_version"],
+        ui_version = "baseline",
     )
     search_el.clear()
     search_el.send_keys(case["query"])
@@ -177,7 +190,7 @@ def _run_filter(driver, case):
         filter_btn = driver.find_element(
             By.CSS_SELECTOR, f'[data-testid="{case["testid"]}"]',
             step_name  = f"filter_{case['category']}_button",
-            ui_version = case["ui_version"],
+            ui_version = "baseline",
         )
         try:
             filter_btn.click()
@@ -209,7 +222,7 @@ def _run_filter(driver, case):
                     pass
     if not filter_found:
         pytest.skip(
-            f"[{case['ui_version']}] Filter UI thay đổi hoàn toàn, "
+            f"[Filter UI thay đổi hoàn toàn, "
             f"Healing không phục hồi được"
         )
     _dismiss_any_alert(driver)

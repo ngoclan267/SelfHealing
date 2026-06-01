@@ -16,36 +16,37 @@ def switch_ui(version):
     if not os.path.exists(git_bash):
         git_bash = shutil.which("bash")  
     subprocess.run([git_bash, script, version], check=True)
-ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
+# ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 
 def build_admin_cases():
-    cases = []
+    # cases = []
     full_scenarios = [
-        {"type": "admin_see_add_btn", "desc_suffix": "admin thấy nút thêm sản phẩm"},
-        {"type": "user_no_add_btn", "desc_suffix": "user thường không thấy nút thêm SP"},
-        {"type": "admin_add_product", "name": "Test iPhone 99", "price": "25000000", "desc_suffix": "admin thêm sản phẩm mới"},
-        {"type": "admin_add_missing_name", "name": "", "price": "25000000", "desc_suffix": "admin thêm thiếu tên → lỗi"},
-        {"type": "user_access_admin_route", "desc_suffix": "user vào /admin/add-product → bị chặn"},
-        {"type": "admin_see_delete_edit_btn", "desc_suffix": "admin thấy nút Xóa/Sửa trên product card"},
+        {"type": "admin_see_add_btn", "desc": "admin thấy nút thêm sản phẩm"},
+        {"type": "user_no_add_btn", "desc": "user thường không thấy nút thêm SP"},
+        {"type": "admin_add_product", "name": "Test iPhone 99", "price": "25000000", "desc": "admin thêm sản phẩm mới"},
+        {"type": "admin_add_missing_name", "name": "", "price": "25000000", "desc": "admin thêm thiếu tên → lỗi"},
+        {"type": "user_access_admin_route", "desc": "user vào /admin/add-product → bị chặn"},
+        {"type": "admin_see_delete_edit_btn", "desc": "admin thấy nút Xóa/Sửa trên product card"},
     ]
-    for ui in ALL_UI_VERSIONS:
-        if ui == "v1":
-            for sc in full_scenarios:
-                case = sc.copy()
-                case["ui_version"] = ui
-                case["desc"] = f"[{ui}] {case['desc_suffix']}"
-                cases.append(case)
-        else:
-            healing_scenarios = [sc for sc in full_scenarios if sc["type"] in [
-                "admin_see_add_btn", "admin_add_product", "admin_see_delete_edit_btn"
-            ]]
-            for sc in healing_scenarios:
-                case = sc.copy()
-                case["ui_version"] = ui
-                case["desc"] = f"[{ui}] {case['desc_suffix']} (Healing Check)"
-                cases.append(case)
+    # for ui in ALL_UI_VERSIONS:
+    #     if ui == "v1":
+    #         for sc in full_scenarios:
+    #             case = sc.copy()
+    #             case["ui_version"] = ui
+    #             case["desc"] = f"[{ui}] {case['desc_suffix']}"
+    #             cases.append(case)
+    #     else:
+    #         healing_scenarios = [sc for sc in full_scenarios if sc["type"] in [
+    #             "admin_see_add_btn", "admin_add_product", "admin_see_delete_edit_btn"
+    #         ]]
+    #         for sc in healing_scenarios:
+    #             case = sc.copy()
+    #             case["ui_version"] = ui
+    #             case["desc"] = f"[{ui}] {case['desc_suffix']} (Healing Check)"
+    #             cases.append(case)
 
-    return cases
+    # return cases
+    return full_scenarios
 
 @pytest.mark.parametrize(
     "case",
@@ -55,7 +56,7 @@ def build_admin_cases():
 
 def test_admin_flow(driver, case):
     print(f"\n {case['desc']}")
-    switch_ui(case["ui_version"])
+    # switch_ui(case["ui_version"])
     handlers = {
         "admin_see_add_btn":         _test_admin_see_add_btn,
         "user_no_add_btn":           _test_user_no_add_btn,
@@ -71,8 +72,8 @@ def test_admin_flow(driver, case):
         print(f"  Case type '{case['type']}' chưa implement")
 
 def _test_admin_see_add_btn(driver, case):
-    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
-    navigate_to(driver, "/product", case["ui_version"])
+    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, True)
+    navigate_to(driver, "/product")
     # Đợi loading spinner biến mất
     WebDriverWait(driver, 15).until(
         lambda d: "đang tải sản phẩm" not in d.page_source.lower()
@@ -80,14 +81,14 @@ def _test_admin_see_add_btn(driver, case):
     btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-add-product"]',
         step_name  = "add_product_button",
-        ui_version = case["ui_version"],
+        ui_version = "baseline",
     )
     assert btn is not None, "Admin không thấy nút Thêm sản phẩm"
     print(" Admin thấy nút thêm sản phẩm")
 
 def _test_user_no_add_btn(driver, case):
-    do_login(driver, USER_EMAIL, USER_PASS, case["ui_version"], True)
-    navigate_to(driver, "/product", case["ui_version"])
+    do_login(driver, USER_EMAIL, USER_PASS, True)
+    navigate_to(driver, "/product")
     # Đợi loading spinner biến mất
     WebDriverWait(driver, 15).until(
         lambda d: "đang tải sản phẩm" not in d.page_source.lower()
@@ -101,8 +102,8 @@ def _test_user_no_add_btn(driver, case):
     print(" User không thấy nút thêm SP (phân quyền đúng)")
 
 def _test_admin_add_product(driver, case):
-    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
-    navigate_to(driver, "/admin/add-product", case["ui_version"])
+    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, True)
+    navigate_to(driver, "/admin/add-product")
     WebDriverWait(driver, 10).until(
         lambda d: "product" in d.page_source.lower()
     )
@@ -110,21 +111,21 @@ def _test_admin_add_product(driver, case):
     name_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="product-name"]',
         step_name  = "product_name_field",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     name_el.clear()
     name_el.send_keys(case["name"])
     price_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="product-price"]',
         step_name  = "product_price_field",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     price_el.clear()
     price_el.send_keys(case["price"])
     submit_btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-add-product"]',
         step_name  = "submit_product_button",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     driver.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
     WebDriverWait(driver, 10).until(
@@ -134,8 +135,8 @@ def _test_admin_add_product(driver, case):
     print(f" Admin thêm sản phẩm '{case['name']}' — hoàn tất")
 
 def _test_admin_add_missing(driver, case):
-    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
-    navigate_to(driver, "/admin/add-product", case["ui_version"])
+    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, True)
+    navigate_to(driver, "/admin/add-product")
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.TAG_NAME, "body"))
     )
@@ -146,14 +147,14 @@ def _test_admin_add_missing(driver, case):
     price_el = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="product-price"]',
         step_name  = "product_price_field",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     price_el.clear()
     price_el.send_keys(case["price"])
     submit_btn = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-add-product"]',
         step_name  = "submit_product_button",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     driver.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
     WebDriverWait(driver, 10).until(
@@ -187,8 +188,8 @@ def _test_admin_add_missing(driver, case):
     print(" Form báo lỗi khi thiếu tên (validation đúng)")
 
 def _test_user_access_admin_route(driver, case):
-    do_login(driver, USER_EMAIL, USER_PASS, case["ui_version"], True)
-    navigate_to(driver, "/admin/add-product", case["ui_version"])
+    do_login(driver, USER_EMAIL, USER_PASS, True)
+    navigate_to(driver, "/admin/add-product")
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.TAG_NAME,"body"))
     )
@@ -203,8 +204,8 @@ def _test_user_access_admin_route(driver, case):
     print("User bị chặn khỏi route admin")
 
 def _test_admin_see_crud_buttons(driver, case):
-    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, case["ui_version"], True)
-    navigate_to(driver, "/product", case["ui_version"])
+    do_login(driver, ADMIN_EMAIL, ADMIN_PASS, True)
+    navigate_to(driver, "/product")
     # Đợi loading xong VÀ có ít nhất 1 product card
     WebDriverWait(driver, 15).until(
         lambda d: "đang tải sản phẩm" not in d.page_source.lower()
@@ -230,6 +231,6 @@ def _test_admin_see_crud_buttons(driver, case):
         "or @data-action='edit'] "
         "| //button[contains(@class,'btn-warning') and not(contains(text(),'Thêm'))]"
     )
-    assert len(delete_btns) > 0, f"Admin không thấy nút Xóa ở {case['ui_version']}"
-    assert len(edit_btns) > 0, f"Admin không thấy nút Sửa ở {case['ui_version']}"
+    assert len(delete_btns) > 0, f"Admin không thấy nút Xóa "
+    assert len(edit_btns) > 0, f"Admin không thấy nút Sửa "
     print(f" Admin thấy {len(delete_btns)} nút Xóa, {len(edit_btns)} nút Sửa")

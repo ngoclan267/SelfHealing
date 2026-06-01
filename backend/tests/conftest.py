@@ -50,19 +50,19 @@ def driver():
     except Exception:
         pass
     
-def navigate_to(driver, path: str, ui_version: str = ''):
+def navigate_to(driver, path: str):
     driver.get(f"{BASE_URL}{path}")
     time.sleep(0.5)
 
 def do_login(driver, email: str, password: str,
-             ui_version: str = "v1", expect_success: bool = True):
-    navigate_to(driver, "/login", ui_version)
+            expect_success: bool = True):
+    navigate_to(driver, "/login")
 
     email_el = driver.find_element(
         By.CSS_SELECTOR,
         '[data-testid="login-email"]',
         step_name  = "email_field",
-        ui_version = ui_version
+        ui_version = "baseline"
     )
     email_el.clear()
     email_el.send_keys(email)
@@ -70,7 +70,7 @@ def do_login(driver, email: str, password: str,
         By.CSS_SELECTOR,
         '[data-testid="login-password"]',
         step_name  = "password_field",
-        ui_version = ui_version
+        ui_version = "baseline"
     )
     pass_el.clear()
     pass_el.send_keys(password)
@@ -78,7 +78,7 @@ def do_login(driver, email: str, password: str,
         By.CSS_SELECTOR,
         '[data-testid="btn-login"]',
         step_name  = "login_button",
-        ui_version = ui_version
+        ui_version = "baseline"
     )
     driver.execute_script(
     "arguments[0].scrollIntoView({block:'center'});",

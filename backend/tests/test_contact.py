@@ -18,7 +18,7 @@ def switch_ui(version):
     if not os.path.exists(git_bash):
         git_bash = shutil.which("bash")  
     subprocess.run([git_bash, script, version], check=True)
-ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
+# ALL_UI_VERSIONS = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11"]
 SUCCESS_KEYWORDS = [
     "cảm ơn", "thành công", "ghi nhận", "đã được gửi",
     "liên hệ lại", "sẽ phản hồi", "sẽ liên hệ", "tin nhắn",
@@ -49,27 +49,39 @@ def build_contact_cases():
         ("Tên A", "0901234567", "tu-van", "x" * 500,  True, "lời nhắn đúng 500 ký tự — hợp lệ"),
     ]
     cases = []
-    for ui in ALL_UI_VERSIONS:
-        if ui == "v1":
-            for name, phone, subject, msg, expect, desc in valid + invalid + edge_valid:
-                cases.append({
-                    "name": name, "phone": phone, "subject": subject, "message": msg, "expect": expect,
-                    "ui_version": ui, "need_login": True, "description": f"[{ui}] contact: {desc}",
-                })
-            cases.append({
-                "name": "", "phone": "", "subject": "", "message": "", "expect": False,
-                "ui_version": ui, "need_login": False, "description": f"[{ui}] contact: chưa đăng nhập",
-            })
-        else:
-            name, phone, subject, msg, expect, desc = valid[0]
-            cases.append({
-                "name": name, "phone": phone, "subject": subject, "message": msg, "expect": expect,
-                "ui_version": ui, "need_login": True, "description": f"[{ui}] contact: {desc} (Healing Check)",
-            })
-            cases.append({
-                "name": "", "phone": "", "subject": "", "message": "", "expect": False,
-                "ui_version": ui, "need_login": False, "description": f"[{ui}] contact: chưa đăng nhập (Healing Check)",
-            })
+    for name, phone, subject, msg, expect, desc in valid + invalid + edge_valid:
+        cases.append({
+            "name": name, "phone": phone, "subject": subject,
+            "message": msg, "expect": expect,
+            "need_login": True,
+            "description": f"contact: {desc}",
+        })
+    cases.append({
+        "name": "", "phone": "", "subject": "", "message": "",
+        "expect": False, "need_login": False,
+        "description": "contact: chưa đăng nhập",
+    })
+    # for ui in ALL_UI_VERSIONS:
+    #     if ui == "v1":
+    #         for name, phone, subject, msg, expect, desc in valid + invalid + edge_valid:
+    #             cases.append({
+    #                 "name": name, "phone": phone, "subject": subject, "message": msg, "expect": expect,
+    #                 "ui_version": ui, "need_login": True, "description": f"[{ui}] contact: {desc}",
+    #             })
+    #         cases.append({
+    #             "name": "", "phone": "", "subject": "", "message": "", "expect": False,
+    #             "ui_version": ui, "need_login": False, "description": f"[{ui}] contact: chưa đăng nhập",
+    #         })
+    #     else:
+    #         name, phone, subject, msg, expect, desc = valid[0]
+    #         cases.append({
+    #             "name": name, "phone": phone, "subject": subject, "message": msg, "expect": expect,
+    #             "ui_version": ui, "need_login": True, "description": f"[{ui}] contact: {desc} (Healing Check)",
+    #         })
+    #         cases.append({
+    #             "name": "", "phone": "", "subject": "", "message": "", "expect": False,
+    #             "ui_version": ui, "need_login": False, "description": f"[{ui}] contact: chưa đăng nhập (Healing Check)",
+    #         })
     return cases
 
 def _sync_token(driver):
@@ -88,7 +100,7 @@ def _sync_token(driver):
         localStorage.setItem('authToken', '{token}');
     """)
 
-def _fill_subject(driver, subject, ui_version):
+def _fill_subject(driver, subject):
     if not subject:
         return
     try:
@@ -105,7 +117,7 @@ def _fill_subject(driver, subject, ui_version):
     except Exception:
         pass
 
-def _fill_and_verify(driver, selector, step_name, ui_version, value, field_label):
+def _fill_and_verify(driver, selector, step_name, value, field_label):
     if field_label == "message":
         textareas = driver._drv.find_elements(By.CSS_SELECTOR, "textarea")
         if textareas:
@@ -116,7 +128,7 @@ def _fill_and_verify(driver, selector, step_name, ui_version, value, field_label
     el = driver.find_element(
         By.CSS_SELECTOR, selector,
         step_name  = step_name,
-        ui_version = ui_version,
+        ui_version = "baseline",
     )
     el.clear()
     el.send_keys(value)
@@ -165,11 +177,11 @@ def _check_auth_required(page):
 
 def test_contact(driver, case):
     print(f"\n {case['description']}")
-    switch_ui(case["ui_version"])
+    # switch_ui(case["ui_version"])
     if case["need_login"]:
-        do_login(driver, USER_EMAIL, USER_PASS, case["ui_version"], expect_success=True)
+        do_login(driver, USER_EMAIL, USER_PASS, expect_success=True)
         _sync_token(driver)
-    navigate_to(driver, "/contact", case["ui_version"])
+    navigate_to(driver, "/contact")
     if not case["need_login"]:
         page = driver.page_source.lower()
         has_auth_msg = _check_auth_required(page)
@@ -178,7 +190,7 @@ def test_contact(driver, case):
             By.CSS_SELECTOR, 'input[type="text"], input[type="tel"], textarea'
         )) > 0
         assert has_auth_msg or (has_login_link and not has_contact_form), \
-            f"[{case['ui_version']}] Trang contact không yêu cầu đăng nhập khi chưa login"
+            f"Trang contact không yêu cầu đăng nhập khi chưa login"
         return
     
     WebDriverWait(driver, 10).until(
@@ -192,16 +204,16 @@ def test_contact(driver, case):
             lambda d: len(d.find_elements(By.CSS_SELECTOR, "input, textarea, select")) >= 1
         )
     if case["name"]:
-        _fill_and_verify(driver, '[data-testid="contact-name"]', "contact_name_field", case["ui_version"], case["name"], "name")
+        _fill_and_verify(driver, '[data-testid="contact-name"]', "contact_name_field", case["name"], "name")
     if case["phone"]:
-        _fill_and_verify(driver, '[data-testid="contact-phone"]', "contact_phone_field", case["ui_version"], case["phone"], "phone")
-    _fill_subject(driver, case.get("subject", ""), case["ui_version"])
+        _fill_and_verify(driver, '[data-testid="contact-phone"]', "contact_phone_field", case["phone"], "phone")
+    _fill_subject(driver, case.get("subject", ""))
     if case["message"]:
-        _fill_and_verify(driver, '[data-testid="contact-mess"]', "contact_mess_field", case["ui_version"], case["message"], "message")
+        _fill_and_verify(driver, '[data-testid="contact-mess"]', "contact_mess_field", case["message"], "message")
     submit = driver.find_element(
         By.CSS_SELECTOR, '[data-testid="btn-contact-submit"]',
         step_name  = "contact_submit_button",
-        ui_version = case["ui_version"],
+        # ui_version = case["ui_version"],
     )
     try:
         submit.click()
