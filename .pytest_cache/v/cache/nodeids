@@ -15,5 +15,20 @@
   "backend/tests/test_login.py::test_login[pass c\\u1ef1c d\\xe0i]",
   "backend/tests/test_login.py::test_login[pass c\\xf3 trailing space]",
   "backend/tests/test_login.py::test_login[pass r\\u1ed7ng]",
-  "backend/tests/test_login.py::test_login[user \\u0111\\xfang]"
+  "backend/tests/test_login.py::test_login[user \\u0111\\xfang]",
+  "backend/tests/test_products.py::test_products[[edge] 2 k\\xfd t\\u1ef1 \\u0111\\u1ea7u]",
+  "backend/tests/test_products.py::test_products[[edge] ch\\u1ec9 space]",
+  "backend/tests/test_products.py::test_products[[edge] k\\xfd t\\u1ef1 \\u0111\\u1eb7c bi\\u1ec7t]",
+  "backend/tests/test_products.py::test_products[[edge] r\\u1ed7ng \\u2192 hi\\u1ec7n t\\u1ea5t c\\u1ea3]",
+  "backend/tests/test_products.py::test_products[[edge] t\\xean \\u0111\\u1ea7y \\u0111\\u1ee7]",
+  "backend/tests/test_products.py::test_products[l\\u1ecdc danh m\\u1ee5c 'T\\u1ea5t c\\u1ea3']",
+  "backend/tests/test_products.py::test_products[l\\u1ecdc danh m\\u1ee5c 'airpods']",
+  "backend/tests/test_products.py::test_products[l\\u1ecdc danh m\\u1ee5c 'ipad']",
+  "backend/tests/test_products.py::test_products[l\\u1ecdc danh m\\u1ee5c 'iphone']",
+  "backend/tests/test_products.py::test_products[l\\u1ecdc danh m\\u1ee5c 'macbook']",
+  "backend/tests/test_products.py::test_products[search 'IPHONE': ch\\u1eef hoa]",
+  "backend/tests/test_products.py::test_products[search 'MacBook': macbook]",
+  "backend/tests/test_products.py::test_products[search 'iPhone': t\\u1eeb kh\\xf3a th\\u1ef1c t\\u1ebf]",
+  "backend/tests/test_products.py::test_products[search 'iphone': ch\\u1eef th\\u01b0\\u1eddng]",
+  "backend/tests/test_products.py::test_products[search 'xyz9999': kh\\xf4ng t\\u1ed3n t\\u1ea1i]"
 ]

@@ -1,21 +1,3 @@
-"""
-db/db_manager.py  —  SQLite Database Manager
-═══════════════════════════════════════════════════════════════════════
-
-MỤC ĐÍCH:
-    Lưu trữ snapshot và healing log vào SQLite.
-
-SCHEMA — 3 bảng:
-    snapshots        : fingerprint element tại lúc test PASS
-    healing_events   : lịch sử mỗi lần healing
-    candidate_scores : tất cả ứng viên của mỗi lần healing
-                       (winner + losers, dùng để phân tích sau này)
-
-LUỒNG DỮ LIỆU:
-    Test PASS → save_snapshot()
-    Healing   → save_healing_event() + save_candidate_scores()
-"""
-
 import sqlite3
 import json
 from pathlib import Path
@@ -221,7 +203,31 @@ class DBManager:
                     trained_at    TEXT,              -- ISO timestamp, set lúc insert
                     notes         TEXT               -- thông tin thêm (vd: "retrain #3")
                 );
+                -- ═══════════════════════════════════════════════════
+                -- BẢNG 5: knowledge_base
+                -- Cache locator đã heal, thay thế healing_map.json
+                -- ═══════════════════════════════════════════════════
+                CREATE TABLE IF NOT EXISTS knowledge_base (
+                    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+                    step_name           TEXT NOT NULL,
+                    ui_version          TEXT NOT NULL,
+                    old_locator_type    TEXT NOT NULL,
+                    old_locator_value   TEXT NOT NULL,
+                    new_locator_type    TEXT NOT NULL,
+                    new_locator_value   TEXT NOT NULL,
+                    confidence          REAL DEFAULT 0,
+                    similarity_detail   TEXT,           -- JSON dict
+                    times_used          INTEGER DEFAULT 0,
+                    learned_at          TEXT DEFAULT (datetime('now')),
+                    last_used_at        TEXT,
+                    UNIQUE(step_name, ui_version, old_locator_type, old_locator_value)
+                        ON CONFLICT REPLACE
+                );
+
+                CREATE INDEX IF NOT EXISTS idx_kb_lookup
+                    ON knowledge_base(step_name, ui_version, old_locator_type, old_locator_value);
             """)
+
 
     def _connect(self) -> sqlite3.Connection:
         """
@@ -670,3 +676,83 @@ class DBManager:
             }
             for row in rows
         ]
+    def kb_lookup(self, step_name: str, old_by: str,
+                  old_val: str, ui_version: str = "v1") -> Optional[Tuple[str, str]]:
+        """Tra cache KB. Trả về (new_by, new_val) hoặc None nếu không có."""
+        with self._connect() as conn:
+            row = conn.execute("""
+                SELECT new_locator_type, new_locator_value
+                FROM knowledge_base
+                WHERE step_name=? AND ui_version=?
+                  AND old_locator_type=? AND old_locator_value=?
+            """, (step_name, ui_version, old_by, old_val)).fetchone()
+
+        if row:
+            return row["new_locator_type"], row["new_locator_value"]
+        return None
+
+    def kb_learn(self, step_name: str, old_by: str, old_val: str,
+                 new_by: str, new_val: str, confidence: float,
+                 similarity_detail: dict, ui_version: str = "v1"):
+        """Lưu hoặc cập nhật một entry vào KB cache."""
+        with self._connect() as conn:
+            conn.execute("""
+                INSERT OR REPLACE INTO knowledge_base (
+                    step_name, ui_version,
+                    old_locator_type, old_locator_value,
+                    new_locator_type, new_locator_value,
+                    confidence, similarity_detail, learned_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                step_name, ui_version,
+                old_by, old_val,
+                new_by, new_val,
+                confidence,
+                json.dumps(similarity_detail, ensure_ascii=False),
+                datetime.now().isoformat(),
+            ))
+        logger.debug(f"[KB] Learned: step='{step_name}' "
+                     f"'{old_val}' → '{new_val}' (conf={confidence:.2f})")
+
+    def kb_increment_usage(self, step_name: str, old_by: str,
+                           old_val: str, ui_version: str = "v1"):
+        """Tăng counter mỗi khi cache hit được dùng thành công."""
+        with self._connect() as conn:
+            conn.execute("""
+                UPDATE knowledge_base
+                SET times_used   = times_used + 1,
+                    last_used_at = datetime('now')
+                WHERE step_name=? AND ui_version=?
+                  AND old_locator_type=? AND old_locator_value=?
+            """, (step_name, ui_version, old_by, old_val))
+
+    def kb_get_all(self) -> List[Dict]:
+        """Lấy toàn bộ KB — dùng để debug hoặc export."""
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM knowledge_base ORDER BY learned_at DESC"
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def kb_stats(self) -> Dict:
+        """Thống kê nhanh bảng knowledge_base."""
+        with self._connect() as conn:
+            total = conn.execute(
+                "SELECT COUNT(*) FROM knowledge_base"
+            ).fetchone()[0]
+            hits = conn.execute(
+                "SELECT SUM(times_used) FROM knowledge_base"
+            ).fetchone()[0] or 0
+            by_version = conn.execute("""
+                SELECT ui_version, COUNT(*) as entries,
+                       SUM(times_used) as total_hits
+                FROM knowledge_base
+                GROUP BY ui_version
+                ORDER BY ui_version
+            """).fetchall()
+
+        return {
+            "total_entries": total,
+            "total_hits":    hits,
+            "by_version":    [dict(r) for r in by_version],
+        }

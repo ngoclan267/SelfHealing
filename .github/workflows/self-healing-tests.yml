@@ -83,17 +83,17 @@ jobs:
           google-chrome --version
 
       # 6. RESTORE healing.db
+      # Key cố định (không đổi theo branch) → DB tích lũy xuyên suốt mọi run
       - name: Restore healing database from cache
         uses: actions/cache@v4
         with:
           path: |
-            healing.db
-            knowledge_base/
-            snapshots/
-          key: healing-db-${{ runner.os }}-${{ github.ref_name }}
+            backend/healing.db
+            backend/knowledge_base/
+            backend/snapshots/
+          key: healing-db-${{ runner.os }}-persistent
           restore-keys: |
-            healing-db-${{ runner.os }}-${{ github.ref_name }}-
-            healing-db-${{ runner.os }}-
+            backend/healing.db-${{ runner.os }}-
 
       # 7. THỐNG KÊ DB TRƯỚC KHI CHẠY
       - name: Show DB stats before run
@@ -115,23 +115,22 @@ jobs:
 
       # 8. CHẠY TESTS
       - name: Run self-healing tests
+        working-directory: backend
         run: |
-          mkdir -p reports
+          mkdir -p ../reports
           python -m pytest \
-            backend/tests/test_login.py \
-            backend/tests/test_products.py \
-            backend/tests/test_contact.py \
-            backend/tests/test_register.py \
-            backend/tests/test_admin.py \
+            tests/test_login.py \
+            tests/test_products.py \
+            tests/test_contact.py \
+            tests/test_register.py \
+            tests/test_admin.py \
             -v -s \
             --tb=short \
-            --junitxml=reports/test_results.xml \
-            --html=reports/report.html \
-            --self-contained-html \
-            2>&1 | tee reports/test_output.log
+            --junitxml=../reports/test_results.xml \
+            2>&1 | tee ../reports/test_output.log
         continue-on-error: true
 
-      # 9. UPLOAD REPORTS
+      # 9. UPLOAD REPORTS (zip)
       - name: Upload test reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -141,12 +140,13 @@ jobs:
           retention-days: 30
 
       # 10. BACKUP healing.db
+      # Key phải khớp với key ở bước Restore
       - name: Backup healing database
         uses: actions/cache/save@v4
         if: always()
         with:
           path: |
-            healing.db
-            knowledge_base/
-            snapshots/
-          key: healing-db-${{ runner.os }}-${{ github.ref_name }}
+            backend/healing.db
+            backend/knowledge_base/
+            backend/snapshots/
+          key: healing-db-${{ runner.os }}-persistent
