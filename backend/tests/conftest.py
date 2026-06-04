@@ -40,20 +40,20 @@ def driver():
         opts.add_argument("--window-size=1366,768")
     svc = Service(ChromeDriverManager().install())
     raw = webdriver.Chrome(service=svc, options=opts)
-    yield raw
-    raw.quit()
-    # healing = SelfHealingDriverV2(
-    #     raw,
-    #     test_name    = "apple_shop_suite_v2",
-    #     snapshot_dir = "snapshots",
-    #     db_path      = "healing.db",
-    #     kb_dir       = "knowledge_base",
-    # )
-    # yield healing
-    # try:
-    #     healing.quit()
-    # except Exception:
-    #     pass
+    # yield raw
+    # raw.quit()
+    healing = SelfHealingDriverV2(
+        raw,
+        test_name    = "apple_shop_suite_v2",
+        snapshot_dir = "snapshots",
+        db_path      = "healing.db",
+        kb_dir       = "knowledge_base",
+    )
+    yield healing
+    try:
+        healing.quit()
+    except Exception:
+        pass
     
 def navigate_to(driver, path: str):
     driver.get(f"{BASE_URL}{path}")
