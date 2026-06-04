@@ -78,16 +78,14 @@ class LogisticWeightModel:
             )
             lr.fit(X, y)
             accuracy = float(lr.score(X, y))
-            # coef -> normalize -> trọng số. Nếu coef âm -> =0
-            coefs = lr.coef_[0]
-            coefs_positive = np.maximum(coefs, 0)
-            total = coefs_positive.sum()
-            if total == 0:  # toàn bộ coef âm -> model không học được gì có ích
-                logger.warning("[LR] Toàn bộ coef ≤ 0 → giữ weights cũ")
+            # |coef| -> normalize -> trọng số
+            coefs = np.abs(lr.coef_[0])
+            total = coefs.sum()
+            if total == 0:
+                logger.warning("[LR] Tất cả coef = 0 -> giữ DEFAULT_WEIGHTS")
                 return None
-
             new_weights = {
-                name: round(float(coefs_positive[i] / total), 4)
+                name: round(float(coefs[i] / total), 4)
                 for i, name in enumerate(FEATURE_NAMES)
             }
             retrain_count = self._count_retrain_history()
