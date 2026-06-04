@@ -119,6 +119,10 @@ jobs:
           mkdir -p reports
           python -m pytest \
             backend/tests/test_login.py \
+            backend/tests/test_products.py \
+            backend/tests/test_contact.py \
+            backend/tests/test_register.py \
+            backend/tests/test_admin.py \
             -v -s \
             --tb=short \
             --junitxml=reports/test_results.xml \
