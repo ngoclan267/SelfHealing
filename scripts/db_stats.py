@@ -40,7 +40,7 @@ def print_stats():
             failed = total - success
 
             print(f"  Heal events total   : {total}")
-            print(f"  ├─ Successful heals : {success}  ← dùng để tính train threshold")
+            print(f"  ├─ Successful heals : {success} ")
             print(f"  └─ Failed heals     : {failed}")
 
             # ── Training threshold ────────────────────────────────────
