@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-// V7: Structure + Visual
+// V8: Attribute + Context
 const Register = () => {
     const [user, setUser] = useState({ email: '', password: '', role: 'user' });
     const [emailError, setEmailError]=useState('');
@@ -24,47 +24,50 @@ const Register = () => {
     };
 
     return (
-        // Structure: row/col wrapping thay đổi
-        <div className="row justify-content-center mt-5">
-            <div className="col-12 col-sm-8 col-md-5">
-                <div className="text-center mb-3">
-                    <h3 className="fw-bold">Đăng ký tài khoản</h3>
+        <div className="container py-5">
+            <div className="card mx-auto shadow-lg" style={{ maxWidth: '420px', borderRadius: '12px' }}>
+                <div className="card-header bg-success text-white text-center py-3">
+                    {/* Context: heading thay đổi */}
+                    <h4 className="mb-0 fw-bold">Tạo tài khoản miễn phí</h4>
                 </div>
-                <div className="card border-0 shadow-lg rounded-4 p-4">
-                    {/* Structure: link moved to TOP of form area */}
-                    <div className="text-center mb-3 pb-2 border-bottom">
-                        <small className="text-muted">Đã có tài khoản? <Link to="/login" className="text-dark fw-bold text-decoration-none">Đăng nhập</Link></small>
-                    </div>
+                <div className="card-body p-4">
                     <form onSubmit={handleRegister}>
                         <div className="mb-3">
-                            <label className="form-label small fw-bold">Email</label>
+                            {/* Attribute: id thay đổi; Context: label thay đổi */}
+                            <label className="form-label small fw-bold text-muted" htmlFor="new-user-email">Địa chỉ Email</label>
                             <input 
                                 type="email" 
-                                id="register-email"
-                                data-testid="field-register-email"
-                                className="form-control form-control-lg"
-                                placeholder="name@example.com" 
+                                id="new-user-email"
+                                data-testid="register-email_v8"
+                                className="form-control form-control-sm rounded-3"
+                                placeholder="Dùng để đăng nhập sau này"
                                 required
+                                autoComplete="email"
                                 value={user.email}
                                 onChange={handleEmailChange} 
                             />
-                            {emailError&&<div className='invalid-feedback d-block small text-danger mt-1'>{emailError}</div>}
+                            {emailError&&<div className='invalid-feedback d-block'>{emailError}</div>}
                         </div>
                         <div className="mb-3">
-                            <label className="form-label small fw-bold">Mật khẩu</label>
+                            <label className="form-label small fw-bold text-muted" htmlFor="new-user-password">Thiết lập mật khẩu</label>
                             <input 
                                 type="password" 
-                                id="register-password"
-                                data-testid="field-register-password"
-                                className="form-control form-control-lg"
-                                placeholder="••••••••" 
+                                id="new-user-password"
+                                data-testid="register-password_v8"
+                                className="form-control form-control-sm rounded-3"
+                                placeholder="Tối thiểu 6 ký tự, nên dùng ký tự đặc biệt"
                                 required
+                                minLength={6}
+                                autoComplete="new-password"
                                 onChange={e => setUser({ ...user, password: e.target.value })} 
                             />
                         </div>
-                        {/* Visual: btn-success -> btn-dark */}
-                        <button data-testid="action-register" className="btn btn-dark w-100 py-3 fw-bold mt-2 rounded-3">Đăng ký</button>
+                        {/* Context: button text thay đổi; Attribute: id thêm */}
+                        <button id="submit-register" data-testid="btn-register_v8" className="btn btn-success w-100 fw-bold rounded-3 mt-2">Tạo tài khoản ngay</button>
                     </form>
+                </div>
+                <div className="card-footer text-center bg-light">
+                    <small className="text-muted">Đã có tài khoản rồi? <Link to="/login" className="text-success text-decoration-none fw-semibold">Đăng nhập</Link></small>
                 </div>
             </div>
         </div>
