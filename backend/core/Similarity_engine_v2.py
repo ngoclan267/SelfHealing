@@ -21,8 +21,8 @@ STATIC_WEIGHTS: Dict[str, float] = {
     'attribute': 0.27,
     'semantic':  0.24,
     'structure': 0.2,
-    'visual':    0.17,
-    'context':   0.12,
+    'visual':    0.12,
+    'context':   0.17,
 }
 
 # HEALING DECISION

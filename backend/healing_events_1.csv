@@ -1,104 +1,104 @@
 id,step_name,ui_version,original_by,original_value,healed_by,healed_value,attr_score,sem_score,struct_score,visual_score,ctx_score,total_score,healing_success,action,healed_at
-1,email_field,v2,css selector,[data-testid="login-email"],xpath,//input[@placeholder='name@example.com'],0.7467,1,0.8479,0.7524,0.365,0.7829,1,AUTO_FIX,5/29/2026 14:02
-2,password_field,v2,css selector,[data-testid="login-password"],xpath,//input[@placeholder='••••••••'],0.93,1,0.88,0.7396,0.365,0.8366,1,AUTO_FIX,5/29/2026 14:02
-3,login_button,v2,css selector,[data-testid="btn-login"],id,btn-login,0.93,0.6359,1,0.7298,0.365,0.7716,1,AUTO_FIX,5/29/2026 14:02
-4,search_input,v2,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Gõ tên hàng hoá c?n tìm...'],0.55,1,0.7286,0.7545,0.615,0.7363,1,AUTO_FIX,5/29/2026 14:02
-5,filter_iphone_button,v2,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='Apple iPhone'],0.93,0.8733,0.88,0.7441,0.365,0.807,1,AUTO_FIX,5/29/2026 14:02
-6,filter_ipad_button,v2,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='Apple iPad'],0.93,0.8371,0.88,0.7454,0.365,0.7985,1,AUTO_FIX,5/29/2026 14:03
-7,filter_macbook_button,v2,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MacBook'],0.93,1,0.88,0.7414,0.365,0.8369,1,AUTO_FIX,5/29/2026 14:03
-8,filter_airpods_button,v2,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AirPods'],0.93,1,0.88,0.7459,0.365,0.8377,1,AUTO_FIX,5/29/2026 14:04
-9,filter_T?t c?_button,v2,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?t c? danh m?c'],0.93,0.8371,0.88,0.7229,0.615,0.8247,1,AUTO_FIX,5/29/2026 14:04
-10,email_field,v3,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v3-login-email'],0.9916,1,0.815,0.7556,0.615,0.873,1,AUTO_FIX,5/29/2026 14:04
-11,password_field,v3,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v3-login-password'],0.9932,1,0.815,0.7454,0.615,0.8717,1,AUTO_FIX,5/29/2026 14:04
-12,login_button,v3,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v3-btn-login'],0.99,1,0.62,0.7343,0.615,0.8299,1,AUTO_FIX,5/29/2026 14:04
-13,search_input,v3,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v3-prod-search'],0.6723,1,0.6986,0.7545,0.615,0.7633,1,AUTO_FIX,5/29/2026 14:05
-14,filter_iphone_button,v3,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v3-prod-filter-iphone'],0.9816,1,0.7249,0.7471,0.615,0.8508,1,AUTO_FIX,5/29/2026 14:05
-15,filter_ipad_button,v3,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v3-prod-filter-ipad'],0.9794,1,0.7167,0.7457,0.615,0.8483,1,AUTO_FIX,5/29/2026 14:06
-16,filter_macbook_button,v3,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v3-prod-filter-macbook'],0.9825,1,0.6999,0.7443,0.615,0.8456,1,AUTO_FIX,5/29/2026 14:06
-17,filter_airpods_button,v3,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v3-prod-filter-airpods'],0.9825,1,0.6874,0.742,0.615,0.8427,1,AUTO_FIX,5/29/2026 14:07
-18,filter_T?t c?_button,v3,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v3-prod-filter-all'],0.9781,1,0.7417,0.7481,0.615,0.8534,1,AUTO_FIX,5/29/2026 14:07
-19,email_field,v4,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v4-login-email'],0.796,1,0.8449,0.668,0.365,0.7813,1,AUTO_FIX,5/29/2026 14:07
-20,password_field,v4,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v4-login-password'],0.8282,1,0.8584,0.6488,0.365,0.7894,1,AUTO_FIX,5/29/2026 14:07
-21,login_button,v4,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v4-btn-login'],0.902,1,0.9606,0.6102,0.365,0.8232,1,AUTO_FIX,5/29/2026 14:07
-22,search_input,v4,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v4-search-input'],0.5189,1,0.641,0.6328,0.365,0.6597,1,SUGGEST,5/29/2026 14:07
-23,filter_iphone_button,v4,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v4-btn-filter-iphone'],0.7743,1,0.7721,0.6579,0.365,0.7591,1,AUTO_FIX,5/29/2026 14:08
-24,filter_ipad_button,v4,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v4-btn-filter-ipad'],0.7736,1,0.7596,0.6876,0.365,0.7615,1,AUTO_FIX,5/29/2026 14:08
-25,filter_macbook_button,v4,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v4-btn-filter-macbook'],0.7746,1,0.7596,0.5401,0.365,0.7367,1,AUTO_FIX,5/29/2026 14:09
-26,filter_airpods_button,v4,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v4-btn-filter-airpods'],0.7746,1,0.7721,0.5401,0.365,0.7392,1,AUTO_FIX,5/29/2026 14:09
-27,filter_T?t c?_button,v4,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v4-btn-filter-all'],0.7732,1,0.7891,0.6236,0.615,0.7864,1,AUTO_FIX,5/29/2026 14:10
-28,email_field,v5,css selector,[data-testid="login-email"],xpath,//input[@placeholder='name@example.com'],0.93,1,0.83,0.6329,0.365,0.8085,1,AUTO_FIX,5/29/2026 14:10
-29,password_field,v5,css selector,[data-testid="login-password"],xpath,//input[@placeholder='••••••••'],0.93,1,0.83,0.5889,0.365,0.801,1,AUTO_FIX,5/29/2026 14:10
-30,login_button,v5,css selector,[data-testid="btn-login"],id,btn-login,0.93,1,0.9625,0.5788,0.365,0.8258,1,AUTO_FIX,5/29/2026 14:10
-31,search_input,v5,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Tìm ki?m s?n ph?m (Vi?t dúng chính t?...)'],0.64,1,0.7286,0.673,0.615,0.7467,1,AUTO_FIX,5/29/2026 14:10
-32,filter_iphone_button,v5,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.93,1,0.88,0.6656,0.365,0.8241,1,AUTO_FIX,5/29/2026 14:11
-33,filter_ipad_button,v5,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.93,1,0.88,0.6652,0.365,0.824,1,AUTO_FIX,5/29/2026 14:11
-34,filter_macbook_button,v5,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.93,1,0.88,0.6645,0.365,0.8239,1,AUTO_FIX,5/29/2026 14:12
-35,filter_airpods_button,v5,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.93,1,0.88,0.6638,0.365,0.8237,1,AUTO_FIX,5/29/2026 14:12
-36,filter_T?t c?_button,v5,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.88,0.6662,0.615,0.8542,1,AUTO_FIX,5/29/2026 14:13
-37,email_field,v6,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v6-login-email'],0.2708,1,0.7882,0.7524,0.365,0.6425,1,SUGGEST,5/29/2026 14:13
-38,password_field,v6,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v6-login-password'],0.3832,1,0.7612,0.7396,0.365,0.6652,1,SUGGEST,5/29/2026 14:13
-39,login_button,v6,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v6-btn-login'],0.6925,0.6891,0.931,0.7298,0.365,0.7064,1,AUTO_FIX,5/29/2026 14:13
-40,search_input,v6,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v6-prod-search'],0.3523,1,0.6832,0.7545,0.615,0.6738,1,SUGGEST,5/29/2026 14:13
-41,filter_iphone_button,v6,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v6-prod-filter-iphone'],0.9016,1,0.88,0.7471,0.365,0.8302,1,AUTO_FIX,5/29/2026 14:14
-42,filter_ipad_button,v6,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v6-prod-filter-ipad'],0.8994,1,0.88,0.7457,0.365,0.8294,1,AUTO_FIX,5/29/2026 14:14
-43,filter_macbook_button,v6,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v6-prod-filter-macbook'],0.9025,1,0.88,0.7443,0.365,0.83,1,AUTO_FIX,5/29/2026 14:15
-44,filter_airpods_button,v6,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v6-prod-filter-airpods'],0.9025,1,0.88,0.742,0.365,0.8296,1,AUTO_FIX,5/29/2026 14:15
-45,filter_T?t c?_button,v6,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v6-prod-filter-all'],0.8981,1,0.88,0.7481,0.615,0.8595,1,AUTO_FIX,5/29/2026 14:16
-46,email_field,v7,css selector,[data-testid="login-email"],xpath,//input[@placeholder='yourname@domain.com'],0.33,1,0.867,0.6398,0.365,0.6551,1,SUGGEST,5/29/2026 14:16
-47,password_field,v7,css selector,[data-testid="login-password"],xpath,//input[@placeholder='Nh?p m?t kh?u c?a b?n'],0.33,1,0.8718,0.7286,0.365,0.6711,1,SUGGEST,5/29/2026 14:16
-48,login_button,v7,css selector,[data-testid="btn-login"],id,submit-access,0.42,0.74,0.6949,0.681,0.615,0.6195,1,SUGGEST,5/29/2026 14:16
-49,search_input,v7,css selector,[data-testid="search-input"],xpath,//input[@data-testid='product-search'],0.9623,1,0.8757,0.7037,0.615,0.8684,1,AUTO_FIX,5/29/2026 14:16
-50,filter_iphone_button,v7,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='category-iphone'],0.8271,1,0.8751,0.6845,0.365,0.7985,1,AUTO_FIX,5/29/2026 14:17
-51,filter_ipad_button,v7,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='category-ipad'],0.8233,1,0.8751,0.6835,0.365,0.7973,1,AUTO_FIX,5/29/2026 14:17
-52,filter_macbook_button,v7,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='category-macbook'],0.8286,1,0.8751,0.6812,0.365,0.7983,1,AUTO_FIX,5/29/2026 14:18
-53,filter_airpods_button,v7,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='category-airpods'],0.8286,1,0.8751,0.6775,0.365,0.7977,1,AUTO_FIX,5/29/2026 14:18
-54,filter_T?t c?_button,v7,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='category-all'],0.8797,1,0.8751,0.6843,0.615,0.8427,1,AUTO_FIX,5/29/2026 14:19
-55,email_field,v8,css selector,[data-testid="login-email"],xpath,//input[@data-testid='login-email_v8'],0.4916,0.87,0.7849,0.7488,0.365,0.6696,1,SUGGEST,5/29/2026 14:19
-56,password_field,v8,css selector,[data-testid="login-password"],xpath,//input[@data-testid='login-password_v8'],0.4666,0.87,0.769,0.744,0.365,0.6589,1,SUGGEST,5/29/2026 14:19
-57,login_button,v8,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='btn-login_v8'],0.7233,1,0.9811,0.7419,0.365,0.8014,1,AUTO_FIX,5/29/2026 14:19
-58,search_input,v8,css selector,[data-testid="search-input"],name,search,0.315,1,0.6868,0.7545,0.615,0.6645,1,SUGGEST,5/29/2026 14:19
-59,filter_iphone_button,v8,css selector,[data-testid="btn-filter-iphone"],id,filter-btn-iphone,0.64,1,0.5741,0.7471,0.365,0.6984,1,SUGGEST,5/29/2026 14:20
-60,filter_ipad_button,v8,css selector,[data-testid="btn-filter-ipad"],id,filter-btn-ipad,0.64,1,0.5756,0.7457,0.365,0.6985,1,SUGGEST,5/29/2026 14:20
-61,filter_macbook_button,v8,css selector,[data-testid="btn-filter-macbook"],id,filter-btn-macbook,0.64,1,0.5733,0.7443,0.365,0.6978,1,SUGGEST,5/29/2026 14:21
-62,filter_airpods_button,v8,css selector,[data-testid="btn-filter-airpods"],id,filter-btn-airpods,0.64,1,0.5733,0.742,0.365,0.6974,1,SUGGEST,5/29/2026 14:21
-63,filter_T?t c?_button,v8,css selector,[data-testid="btn-filter-all"],id,filter-btn-all,0.64,1,0.5763,0.7481,0.615,0.729,1,AUTO_FIX,5/29/2026 14:22
-64,email_field,v9,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v9-email-input'],0.5136,0.87,0.757,0.7477,0.615,0.6998,1,SUGGEST,5/29/2026 14:22
-65,password_field,v9,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v9-password-input'],0.704,0.87,0.8252,0.736,0.365,0.7328,1,AUTO_FIX,5/29/2026 14:22
-66,login_button,v9,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v9-submit-login'],0.6427,0.8733,0.4542,0.7272,0.615,0.6714,1,SUGGEST,5/29/2026 14:22
-67,search_input,v9,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v9-search'],0.9045,1,0.8511,0.7545,0.615,0.8565,1,AUTO_FIX,5/29/2026 14:22
-68,filter_iphone_button,v9,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v9-filter-iphone'],0.9894,1,0.88,0.7471,0.365,0.8539,1,AUTO_FIX,5/29/2026 14:23
-69,filter_ipad_button,v9,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v9-filter-ipad'],0.9879,1,0.88,0.7457,0.365,0.8533,1,AUTO_FIX,5/29/2026 14:23
-70,filter_macbook_button,v9,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v9-filter-macbook'],0.99,1,0.88,0.7443,0.365,0.8536,1,AUTO_FIX,5/29/2026 14:24
-71,filter_airpods_button,v9,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v9-filter-airpods'],0.99,1,0.88,0.742,0.365,0.8532,1,AUTO_FIX,5/29/2026 14:24
-72,filter_T?t c?_button,v9,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v9-filter-all'],0.987,1,0.88,0.7481,0.615,0.8835,1,AUTO_FIX,5/29/2026 14:25
-73,email_field,v10,css selector,[data-testid="login-email"],xpath,//input[@aria-label='Tài kho?n email dang nh?p'],0.2242,0.87,0.6075,0.7004,0.365,0.5537,1,SUGGEST,5/29/2026 14:25
-74,password_field,v10,css selector,[data-testid="login-password"],xpath,//input[@aria-label='M?t kh?u dang nh?p'],0.27,0.87,0.6049,0.6634,0.365,0.5593,1,SUGGEST,5/29/2026 14:25
-75,login_button,v10,css selector,[data-testid="btn-login"],xpath,//button[@aria-label='Xác nh?n và dang nh?p'],0.4657,0.6545,0.493,0.6404,0.615,0.5641,1,SUGGEST,5/29/2026 14:25
-76,search_input,v10,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Tìm ki?m s?n ph?m (Vi?t dúng chính t?...)'],0.93,1,0.88,0.7545,0.615,0.8692,1,AUTO_FIX,5/29/2026 14:25
-77,filter_iphone_button,v10,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.93,1,0.8023,0.6749,0.615,0.8401,1,AUTO_FIX,5/29/2026 14:26
-78,filter_ipad_button,v10,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.93,1,0.7898,0.6999,0.615,0.8418,1,AUTO_FIX,5/29/2026 14:26
-79,filter_macbook_button,v10,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.93,1,0.7773,0.697,0.615,0.8388,1,AUTO_FIX,5/29/2026 14:27
-80,filter_airpods_button,v10,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.93,1,0.7648,0.742,0.615,0.844,1,AUTO_FIX,5/29/2026 14:27
-81,filter_T?t c?_button,v10,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.8193,0.7481,0.615,0.8559,1,AUTO_FIX,5/29/2026 14:28
-82,email_field,v11,css selector,[data-testid="login-email"],xpath,//input[@data-testid='auth-field-email'],0.4396,0.87,0.8129,0.6616,0.365,0.6463,1,SUGGEST,5/29/2026 14:28
-83,password_field,v11,css selector,[data-testid="login-password"],xpath,//input[@data-testid='auth-field-password'],0.6291,0.87,0.8151,0.6246,0.365,0.6917,1,SUGGEST,5/29/2026 14:28
-84,login_button,v11,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='auth-submit-btn'],0.6135,1,0.81,0.6032,0.365,0.714,1,AUTO_FIX,5/29/2026 14:28
-85,search_input,v11,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Nh?p tên s?n ph?m c?n tìm...'],0.855,1,0.88,0.7355,0.615,0.8457,1,AUTO_FIX,5/29/2026 14:28
-86,filter_iphone_button,v11,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.842,1,0.88,0.7287,0.365,0.811,1,AUTO_FIX,5/29/2026 14:28
-87,filter_ipad_button,v11,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.842,1,0.88,0.7277,0.365,0.8108,1,AUTO_FIX,5/29/2026 14:29
-88,filter_macbook_button,v11,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.842,1,0.88,0.7263,0.365,0.8106,1,AUTO_FIX,5/29/2026 14:29
-89,filter_airpods_button,v11,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.842,1,0.88,0.7248,0.365,0.8104,1,AUTO_FIX,5/29/2026 14:30
-90,filter_T?t c?_button,v11,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.88,0.7294,0.615,0.8649,1,AUTO_FIX,5/29/2026 14:31
-91,contact_name_field,v2,css selector,[data-testid="contact-name"],xpath,//input[@placeholder='H? và tên d?y d?'],0.8737,1,0.88,0.7512,0.365,0.8234,1,AUTO_FIX,5/29/2026 14:35
-92,contact_phone_field,v2,css selector,[data-testid="contact-phone"],xpath,//input[@placeholder='S? di?n tho?i d? chúng tôi liên l?c'],0.8625,1,0.88,0.738,0.365,0.8181,1,AUTO_FIX,5/29/2026 14:35
-93,contact_mess_field,v2,css selector,[data-testid="contact-mess"],xpath,//input[@placeholder='Mô t? v?n d? b?n c?n du?c h? tr?'],0.845,1,0.88,0.7245,0.365,0.8111,1,AUTO_FIX,5/29/2026 14:35
-94,contact_submit_button,v2,css selector,[data-testid="btn-contact-submit"],xpath,//button[normalize-space(text())='G?i yêu c?u'],0.93,0.5583,0.88,0.716,0.615,0.7566,1,AUTO_FIX,5/29/2026 14:35
-95,contact_name_field,v3,css selector,[data-testid="contact-name"],xpath,//input[@data-testid='v3-ct-name'],0.9745,1,0.845,0.7512,0.615,0.8736,1,AUTO_FIX,5/29/2026 14:36
-96,contact_phone_field,v3,css selector,[data-testid="contact-phone"],xpath,//input[@data-testid='v3-ct-phone'],0.9767,1,0.845,0.738,0.615,0.872,1,AUTO_FIX,5/29/2026 14:36
-97,contact_mess_field,v3,css selector,[data-testid="contact-mess"],xpath,//input[@data-testid='v3-ct-message'],0.9692,1,0.845,0.7245,0.615,0.8676,1,AUTO_FIX,5/29/2026 14:36
-98,contact_submit_button,v3,css selector,[data-testid="btn-contact-submit"],xpath,//button[@data-testid='v3-ct-btn-submit'],0.9712,1,0.8545,0.6092,0.615,0.8505,1,AUTO_FIX,5/29/2026 14:36
-99,contact_name_field,v4,css selector,[data-testid="contact-name"],xpath,//input[@data-testid='v4-contact-name'],0.8822,1,0.8411,0.7146,0.365,0.8117,1,AUTO_FIX,5/29/2026 14:36
-100,contact_phone_field,v4,css selector,[data-testid="contact-phone"],xpath,//input[@data-testid='v4-contact-phone'],0.8828,1,0.8411,0.7061,0.365,0.8104,1,AUTO_FIX,5/29/2026 14:36
+1,email_field,v2,css selector,[data-testid="login-email"],xpath,//input[@placeholder='name@example.com'],0.7467,1,0.8479,0.7524,0.365,0.763527,1,AUTO_FIX,5/29/2026 14:02
+2,password_field,v2,css selector,[data-testid="login-password"],xpath,//input[@placeholder='••••••••'],0.93,1,0.88,0.7396,0.365,0.817902,1,AUTO_FIX,5/29/2026 14:02
+3,login_button,v2,css selector,[data-testid="btn-login"],id,btn-login,0.93,0.6359,1,0.7298,0.365,0.753342,1,AUTO_FIX,5/29/2026 14:02
+4,search_input,v2,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Gõ tên hàng hoá c?n tìm...'],0.55,1,0.7286,0.7545,0.615,0.72931,1,AUTO_FIX,5/29/2026 14:02
+5,filter_iphone_button,v2,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='Apple iPhone'],0.93,0.8733,0.88,0.7441,0.365,0.788034,1,AUTO_FIX,5/29/2026 14:02
+6,filter_ipad_button,v2,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='Apple iPad'],0.93,0.8371,0.88,0.7454,0.365,0.779502,1,AUTO_FIX,5/29/2026 14:03
+7,filter_macbook_button,v2,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MacBook'],0.93,1,0.88,0.7414,0.365,0.818118,1,AUTO_FIX,5/29/2026 14:03
+8,filter_airpods_button,v2,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AirPods'],0.93,1,0.88,0.7459,0.365,0.818658,1,AUTO_FIX,5/29/2026 14:04
+9,filter_T?t c?_button,v2,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?t c? danh m?c'],0.93,0.8371,0.88,0.7229,0.615,0.819302,1,AUTO_FIX,5/29/2026 14:04
+10,email_field,v3,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v3-login-email'],0.9916,1,0.815,0.7556,0.615,0.865954,1,AUTO_FIX,5/29/2026 14:04
+11,password_field,v3,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v3-login-password'],0.9932,1,0.815,0.7454,0.615,0.865162,1,AUTO_FIX,5/29/2026 14:04
+12,login_button,v3,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v3-btn-login'],0.99,1,0.62,0.7343,0.615,0.823966,1,AUTO_FIX,5/29/2026 14:04
+13,search_input,v3,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v3-prod-search'],0.6723,1,0.6986,0.7545,0.615,0.756331,1,AUTO_FIX,5/29/2026 14:05
+14,filter_iphone_button,v3,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v3-prod-filter-iphone'],0.9816,1,0.7249,0.7471,0.615,0.844214,1,AUTO_FIX,5/29/2026 14:05
+15,filter_ipad_button,v3,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v3-prod-filter-ipad'],0.9794,1,0.7167,0.7457,0.615,0.841812,1,AUTO_FIX,5/29/2026 14:06
+16,filter_macbook_button,v3,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v3-prod-filter-macbook'],0.9825,1,0.6999,0.7443,0.615,0.839121,1,AUTO_FIX,5/29/2026 14:06
+17,filter_airpods_button,v3,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v3-prod-filter-airpods'],0.9825,1,0.6874,0.742,0.615,0.836345,1,AUTO_FIX,5/29/2026 14:07
+18,filter_T?t c?_button,v3,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v3-prod-filter-all'],0.9781,1,0.7417,0.7481,0.615,0.846749,1,AUTO_FIX,5/29/2026 14:07
+19,email_field,v4,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v4-login-email'],0.796,1,0.8449,0.668,0.365,0.76611,1,AUTO_FIX,5/29/2026 14:07
+20,password_field,v4,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v4-login-password'],0.8282,1,0.8584,0.6488,0.365,0.7752,1,AUTO_FIX,5/29/2026 14:07
+21,login_button,v4,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v4-btn-login'],0.902,1,0.9606,0.6102,0.365,0.810934,1,AUTO_FIX,5/29/2026 14:07
+22,search_input,v4,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v4-search-input'],0.5189,1,0.641,0.6328,0.365,0.646289,1,SUGGEST,5/29/2026 14:07
+23,filter_iphone_button,v4,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v4-btn-filter-iphone'],0.7743,1,0.7721,0.6579,0.365,0.744479,1,AUTO_FIX,5/29/2026 14:08
+24,filter_ipad_button,v4,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v4-btn-filter-ipad'],0.7736,1,0.7596,0.6876,0.365,0.745354,1,AUTO_FIX,5/29/2026 14:08
+25,filter_macbook_button,v4,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v4-btn-filter-macbook'],0.7746,1,0.7596,0.5401,0.365,0.727924,1,AUTO_FIX,5/29/2026 14:09
+26,filter_airpods_button,v4,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v4-btn-filter-airpods'],0.7746,1,0.7721,0.5401,0.365,0.730424,1,AUTO_FIX,5/29/2026 14:09
+27,filter_T?t c?_button,v4,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v4-btn-filter-all'],0.7732,1,0.7891,0.6236,0.615,0.785966,1,AUTO_FIX,5/29/2026 14:10
+28,email_field,v5,css selector,[data-testid="login-email"],xpath,//input[@placeholder='name@example.com'],0.93,1,0.83,0.6329,0.365,0.795098,1,AUTO_FIX,5/29/2026 14:10
+29,password_field,v5,css selector,[data-testid="login-password"],xpath,//input[@placeholder='••••••••'],0.93,1,0.83,0.5889,0.365,0.789818,1,AUTO_FIX,5/29/2026 14:10
+30,login_button,v5,css selector,[data-testid="btn-login"],id,btn-login,0.93,1,0.9625,0.5788,0.365,0.815106,1,AUTO_FIX,5/29/2026 14:10
+31,search_input,v5,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Tìm ki?m s?n ph?m (Vi?t dúng chính t?...)'],0.64,1,0.7286,0.673,0.615,0.74383,1,AUTO_FIX,5/29/2026 14:10
+32,filter_iphone_button,v5,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.93,1,0.88,0.6656,0.365,0.809022,1,AUTO_FIX,5/29/2026 14:11
+33,filter_ipad_button,v5,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.93,1,0.88,0.6652,0.365,0.808974,1,AUTO_FIX,5/29/2026 14:11
+34,filter_macbook_button,v5,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.93,1,0.88,0.6645,0.365,0.80889,1,AUTO_FIX,5/29/2026 14:12
+35,filter_airpods_button,v5,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.93,1,0.88,0.6638,0.365,0.808806,1,AUTO_FIX,5/29/2026 14:12
+36,filter_T?t c?_button,v5,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.88,0.6662,0.615,0.851594,1,AUTO_FIX,5/29/2026 14:13
+37,email_field,v6,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v6-login-email'],0.2708,1,0.7882,0.7524,0.365,0.623094,1,SUGGEST,5/29/2026 14:13
+38,password_field,v6,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v6-login-password'],0.3832,1,0.7612,0.7396,0.365,0.646506,1,SUGGEST,5/29/2026 14:13
+39,login_button,v6,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v6-btn-login'],0.6925,0.6891,0.931,0.7298,0.365,0.688185,1,SUGGEST,5/29/2026 14:13
+40,search_input,v6,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v6-prod-search'],0.3523,1,0.6832,0.7545,0.615,0.666851,1,SUGGEST,5/29/2026 14:13
+41,filter_iphone_button,v6,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v6-prod-filter-iphone'],0.9016,1,0.88,0.7471,0.365,0.811134,1,AUTO_FIX,5/29/2026 14:14
+42,filter_ipad_button,v6,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v6-prod-filter-ipad'],0.8994,1,0.88,0.7457,0.365,0.810372,1,AUTO_FIX,5/29/2026 14:14
+43,filter_macbook_button,v6,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v6-prod-filter-macbook'],0.9025,1,0.88,0.7443,0.365,0.811041,1,AUTO_FIX,5/29/2026 14:15
+44,filter_airpods_button,v6,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v6-prod-filter-airpods'],0.9025,1,0.88,0.742,0.365,0.810765,1,AUTO_FIX,5/29/2026 14:15
+45,filter_T?t c?_button,v6,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v6-prod-filter-all'],0.8981,1,0.88,0.7481,0.615,0.852809,1,AUTO_FIX,5/29/2026 14:16
+46,email_field,v7,css selector,[data-testid="login-email"],xpath,//input[@placeholder='yourname@domain.com'],0.33,1,0.867,0.6398,0.365,0.641326,1,SUGGEST,5/29/2026 14:16
+47,password_field,v7,css selector,[data-testid="login-password"],xpath,//input[@placeholder='Nh?p m?t kh?u c?a b?n'],0.33,1,0.8718,0.7286,0.365,0.652942,1,SUGGEST,5/29/2026 14:16
+48,login_button,v7,css selector,[data-testid="btn-login"],id,submit-access,0.42,0.74,0.6949,0.681,0.615,0.61625,1,SUGGEST,5/29/2026 14:16
+49,search_input,v7,css selector,[data-testid="search-input"],xpath,//input[@data-testid='product-search'],0.9623,1,0.8757,0.7037,0.615,0.863955,1,AUTO_FIX,5/29/2026 14:16
+50,filter_iphone_button,v7,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='category-iphone'],0.8271,1,0.8751,0.6845,0.365,0.782527,1,AUTO_FIX,5/29/2026 14:17
+51,filter_ipad_button,v7,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='category-ipad'],0.8233,1,0.8751,0.6835,0.365,0.781381,1,AUTO_FIX,5/29/2026 14:17
+52,filter_macbook_button,v7,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='category-macbook'],0.8286,1,0.8751,0.6812,0.365,0.782536,1,AUTO_FIX,5/29/2026 14:18
+53,filter_airpods_button,v7,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='category-airpods'],0.8286,1,0.8751,0.6775,0.365,0.782092,1,AUTO_FIX,5/29/2026 14:18
+54,filter_T?t c?_button,v7,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='category-all'],0.8797,1,0.8751,0.6843,0.615,0.839205,1,AUTO_FIX,5/29/2026 14:19
+55,email_field,v8,css selector,[data-testid="login-email"],xpath,//input[@data-testid='login-email_v8'],0.4916,0.87,0.7849,0.7488,0.365,0.650418,1,SUGGEST,5/29/2026 14:19
+56,password_field,v8,css selector,[data-testid="login-password"],xpath,//input[@data-testid='login-password_v8'],0.4666,0.87,0.769,0.744,0.365,0.639912,1,SUGGEST,5/29/2026 14:19
+57,login_button,v8,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='btn-login_v8'],0.7233,1,0.9811,0.7419,0.365,0.782589,1,AUTO_FIX,5/29/2026 14:19
+58,search_input,v8,css selector,[data-testid="search-input"],name,search,0.315,1,0.6868,0.7545,0.615,0.6575,1,SUGGEST,5/29/2026 14:19
+59,filter_iphone_button,v8,css selector,[data-testid="btn-filter-iphone"],id,filter-btn-iphone,0.64,1,0.5741,0.7471,0.365,0.679322,1,SUGGEST,5/29/2026 14:20
+60,filter_ipad_button,v8,css selector,[data-testid="btn-filter-ipad"],id,filter-btn-ipad,0.64,1,0.5756,0.7457,0.365,0.679454,1,SUGGEST,5/29/2026 14:20
+61,filter_macbook_button,v8,css selector,[data-testid="btn-filter-macbook"],id,filter-btn-macbook,0.64,1,0.5733,0.7443,0.365,0.678826,1,SUGGEST,5/29/2026 14:21
+62,filter_airpods_button,v8,css selector,[data-testid="btn-filter-airpods"],id,filter-btn-airpods,0.64,1,0.5733,0.742,0.365,0.67855,1,SUGGEST,5/29/2026 14:21
+63,filter_T?t c?_button,v8,css selector,[data-testid="btn-filter-all"],id,filter-btn-all,0.64,1,0.5763,0.7481,0.615,0.722382,1,AUTO_FIX,5/29/2026 14:22
+64,email_field,v9,css selector,[data-testid="login-email"],xpath,//input[@data-testid='v9-email-input'],0.5136,0.87,0.757,0.7477,0.615,0.693146,1,SUGGEST,5/29/2026 14:22
+65,password_field,v9,css selector,[data-testid="login-password"],xpath,//input[@data-testid='v9-password-input'],0.704,0.87,0.8252,0.736,0.365,0.71429,1,AUTO_FIX,5/29/2026 14:22
+66,login_button,v9,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='v9-submit-login'],0.6427,0.8733,0.4542,0.7272,0.615,0.665775,1,SUGGEST,5/29/2026 14:22
+67,search_input,v9,css selector,[data-testid="search-input"],xpath,//input[@data-testid='v9-search'],0.9045,1,0.8511,0.7545,0.615,0.849525,1,AUTO_FIX,5/29/2026 14:22
+68,filter_iphone_button,v9,css selector,[data-testid="btn-filter-iphone"],xpath,//button[@data-testid='v9-filter-iphone'],0.9894,1,0.88,0.7471,0.365,0.83484,1,AUTO_FIX,5/29/2026 14:23
+69,filter_ipad_button,v9,css selector,[data-testid="btn-filter-ipad"],xpath,//button[@data-testid='v9-filter-ipad'],0.9879,1,0.88,0.7457,0.365,0.834267,1,AUTO_FIX,5/29/2026 14:23
+70,filter_macbook_button,v9,css selector,[data-testid="btn-filter-macbook"],xpath,//button[@data-testid='v9-filter-macbook'],0.99,1,0.88,0.7443,0.365,0.834666,1,AUTO_FIX,5/29/2026 14:24
+71,filter_airpods_button,v9,css selector,[data-testid="btn-filter-airpods"],xpath,//button[@data-testid='v9-filter-airpods'],0.99,1,0.88,0.742,0.365,0.83439,1,AUTO_FIX,5/29/2026 14:24
+72,filter_T?t c?_button,v9,css selector,[data-testid="btn-filter-all"],xpath,//button[@data-testid='v9-filter-all'],0.987,1,0.88,0.7481,0.615,0.876812,1,AUTO_FIX,5/29/2026 14:25
+73,email_field,v10,css selector,[data-testid="login-email"],xpath,//input[@aria-label='Tài kho?n email dang nh?p'],0.2242,0.87,0.6075,0.7004,0.365,0.536932,1,SUGGEST,5/29/2026 14:25
+74,password_field,v10,css selector,[data-testid="login-password"],xpath,//input[@aria-label='M?t kh?u dang nh?p'],0.27,0.87,0.6049,0.6634,0.365,0.544338,1,SUGGEST,5/29/2026 14:25
+75,login_button,v10,css selector,[data-testid="btn-login"],xpath,//button[@aria-label='Xác nh?n và dang nh?p'],0.4657,0.6545,0.493,0.6404,0.615,0.562817,1,SUGGEST,5/29/2026 14:25
+76,search_input,v10,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Tìm ki?m s?n ph?m (Vi?t dúng chính t?...)'],0.93,1,0.88,0.7545,0.615,0.86219,1,AUTO_FIX,5/29/2026 14:25
+77,filter_iphone_button,v10,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.93,1,0.8023,0.6749,0.615,0.837098,1,AUTO_FIX,5/29/2026 14:26
+78,filter_ipad_button,v10,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.93,1,0.7898,0.6999,0.615,0.837598,1,AUTO_FIX,5/29/2026 14:26
+79,filter_macbook_button,v10,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.93,1,0.7773,0.697,0.615,0.83475,1,AUTO_FIX,5/29/2026 14:27
+80,filter_airpods_button,v10,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.93,1,0.7648,0.742,0.615,0.83765,1,AUTO_FIX,5/29/2026 14:27
+81,filter_T?t c?_button,v10,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.8193,0.7481,0.615,0.849282,1,AUTO_FIX,5/29/2026 14:28
+82,email_field,v11,css selector,[data-testid="login-email"],xpath,//input[@data-testid='auth-field-email'],0.4396,0.87,0.8129,0.6616,0.365,0.631514,1,SUGGEST,5/29/2026 14:28
+83,password_field,v11,css selector,[data-testid="login-password"],xpath,//input[@data-testid='auth-field-password'],0.6291,0.87,0.8151,0.6246,0.365,0.678679,1,SUGGEST,5/29/2026 14:28
+84,login_button,v11,css selector,[data-testid="btn-login"],xpath,//button[@data-testid='auth-submit-btn'],0.6135,1,0.81,0.6032,0.365,0.702079,1,AUTO_FIX,5/29/2026 14:28
+85,search_input,v11,css selector,[data-testid="search-input"],xpath,//input[@placeholder='Nh?p tên s?n ph?m c?n tìm...'],0.855,1,0.88,0.7355,0.615,0.83966,1,AUTO_FIX,5/29/2026 14:28
+86,filter_iphone_button,v11,css selector,[data-testid="btn-filter-iphone"],xpath,//button[normalize-space(text())='IPHONE'],0.842,1,0.88,0.7287,0.365,0.792834,1,AUTO_FIX,5/29/2026 14:28
+87,filter_ipad_button,v11,css selector,[data-testid="btn-filter-ipad"],xpath,//button[normalize-space(text())='IPAD'],0.842,1,0.88,0.7277,0.365,0.792714,1,AUTO_FIX,5/29/2026 14:29
+88,filter_macbook_button,v11,css selector,[data-testid="btn-filter-macbook"],xpath,//button[normalize-space(text())='MACBOOK'],0.842,1,0.88,0.7263,0.365,0.792546,1,AUTO_FIX,5/29/2026 14:29
+89,filter_airpods_button,v11,css selector,[data-testid="btn-filter-airpods"],xpath,//button[normalize-space(text())='AIRPODS'],0.842,1,0.88,0.7248,0.365,0.792366,1,AUTO_FIX,5/29/2026 14:30
+90,filter_T?t c?_button,v11,css selector,[data-testid="btn-filter-all"],xpath,//button[normalize-space(text())='T?T C?'],0.93,1,0.88,0.7294,0.615,0.859178,1,AUTO_FIX,5/29/2026 14:31
+91,contact_name_field,v2,css selector,[data-testid="contact-name"],xpath,//input[@placeholder='H? và tên d?y d?'],0.8737,1,0.88,0.7512,0.365,0.804093,1,AUTO_FIX,5/29/2026 14:35
+92,contact_phone_field,v2,css selector,[data-testid="contact-phone"],xpath,//input[@placeholder='S? di?n tho?i d? chúng tôi liên l?c'],0.8625,1,0.88,0.738,0.365,0.799485,1,AUTO_FIX,5/29/2026 14:35
+93,contact_mess_field,v2,css selector,[data-testid="contact-mess"],xpath,//input[@placeholder='Mô t? v?n d? b?n c?n du?c h? tr?'],0.845,1,0.88,0.7245,0.365,0.79314,1,AUTO_FIX,5/29/2026 14:35
+94,contact_submit_button,v2,css selector,[data-testid="btn-contact-submit"],xpath,//button[normalize-space(text())='G?i yêu c?u'],0.93,0.5583,0.88,0.716,0.615,0.751562,1,AUTO_FIX,5/29/2026 14:35
+95,contact_name_field,v3,css selector,[data-testid="contact-name"],xpath,//input[@data-testid='v3-ct-name'],0.9745,1,0.845,0.7512,0.615,0.866809,1,AUTO_FIX,5/29/2026 14:36
+96,contact_phone_field,v3,css selector,[data-testid="contact-phone"],xpath,//input[@data-testid='v3-ct-phone'],0.9767,1,0.845,0.738,0.615,0.865819,1,AUTO_FIX,5/29/2026 14:36
+97,contact_mess_field,v3,css selector,[data-testid="contact-mess"],xpath,//input[@data-testid='v3-ct-message'],0.9692,1,0.845,0.7245,0.615,0.862174,1,AUTO_FIX,5/29/2026 14:36
+98,contact_submit_button,v3,css selector,[data-testid="btn-contact-submit"],xpath,//button[@data-testid='v3-ct-btn-submit'],0.9712,1,0.8545,0.6092,0.615,0.850778,1,AUTO_FIX,5/29/2026 14:36
+99,contact_name_field,v4,css selector,[data-testid="contact-name"],xpath,//input[@data-testid='v4-contact-name'],0.8822,1,0.8411,0.7146,0.365,0.794216,1,AUTO_FIX,5/29/2026 14:36
+100,contact_phone_field,v4,css selector,[data-testid="contact-phone"],xpath,//input[@data-testid='v4-contact-phone'],0.8828,1,0.8411,0.7061,0.365,0.793358,1,AUTO_FIX,5/29/2026 14:36
 101,contact_mess_field,v4,css selector,[data-testid="contact-mess"],xpath,//input[@data-testid='v4-contact-mess'],0.8822,1,0.8411,0.6848,0.365,0.8959,1,AUTO_FIX,5/29/2026 14:36
 102,contact_submit_button,v4,css selector,[data-testid="btn-contact-submit"],xpath,//button[@data-testid='v4-btn-contact-submit'],0.806,1,0.725,0.6171,0.365,0.8549,1,AUTO_FIX,5/29/2026 14:36
 103,contact_name_field,v5,css selector,[data-testid="contact-name"],xpath,//input[@placeholder='Nh?p h? và tên c?a b?n'],0.93,1,0.845,0.5985,0.365,0.8928,1,AUTO_FIX,5/29/2026 14:37

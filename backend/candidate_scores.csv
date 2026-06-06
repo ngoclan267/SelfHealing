@@ -1,751 +1,751 @@
 id,healing_event_id,step_name,ui_version,attr_score,sem_score,struct_score,visual_score,ctx_score,total_score,cand_tag,cand_testid,cand_text,is_correct,recorded_at
-1,1,email_field,v2,0.7467,1.0,0.8479,0.7524,0.365,0.7829,input,,,1,2026-05-30 10:11:27
-2,1,email_field,v2,0.3633,1.0,0.7832,0.6526,0.365,0.6495,input,,,0,2026-05-30 10:11:27
-3,2,password_field,v2,0.93,1.0,0.88,0.7396,0.365,0.8366,input,,,1,2026-05-30 10:11:27
-4,2,password_field,v2,0.5467,0.95,0.8086,0.7356,0.365,0.7062,input,,,0,2026-05-30 10:11:27
-5,3,login_button,v2,0.93,0.6359,1.0,0.7298,0.365,0.7716,button,,Xác nhận & Đăng nhập,1,2026-05-30 10:11:27
-6,4,search_input,v2,0.55,1.0,0.7286,0.7545,0.615,0.7363,input,,,1,2026-05-30 10:11:31
-7,5,filter_iphone_button,v2,0.93,0.8733,0.88,0.7441,0.365,0.807,button,,Apple iPhone,1,2026-05-30 10:12:02
-8,5,filter_iphone_button,v2,0.93,0.715,0.8626,0.7086,0.365,0.7595,button,,Apple iPad,0,2026-05-30 10:12:02
-9,5,filter_iphone_button,v2,0.93,0.7954,0.8376,0.575,0.365,0.7511,button,,AirPods,0,2026-05-30 10:12:02
-10,5,filter_iphone_button,v2,0.842,0.6562,0.8626,0.6681,0.615,0.7447,button,,Tất cả danh mục,0,2026-05-30 10:12:02
-11,5,filter_iphone_button,v2,0.93,0.6785,0.8501,0.642,0.365,0.7369,button,,MacBook,0,2026-05-30 10:12:02
-12,5,filter_iphone_button,v2,0.7729,0.6861,0.679,0.5411,0.615,0.6749,button,,Gỡ khỏi danh sách,0,2026-05-30 10:12:02
-13,6,filter_ipad_button,v2,0.93,0.8371,0.88,0.7454,0.365,0.7985,button,,Apple iPad,1,2026-05-30 10:12:36
-14,6,filter_ipad_button,v2,0.93,0.8273,0.8501,0.639,0.365,0.7721,button,,AirPods,0,2026-05-30 10:12:36
-15,6,filter_ipad_button,v2,0.93,0.715,0.8626,0.6947,0.365,0.7571,button,,Apple iPhone,0,2026-05-30 10:12:36
-16,6,filter_ipad_button,v2,0.93,0.6891,0.8626,0.7008,0.365,0.7519,button,,MacBook,0,2026-05-30 10:12:36
-17,6,filter_ipad_button,v2,0.842,0.66,0.8501,0.6012,0.615,0.7318,button,,Tất cả danh mục,0,2026-05-30 10:12:36
-18,6,filter_ipad_button,v2,0.7729,0.6924,0.6665,0.538,0.615,0.6734,button,,Gỡ khỏi danh sách,0,2026-05-30 10:12:36
-19,7,filter_macbook_button,v2,0.93,1.0,0.88,0.7414,0.365,0.8369,button,,MacBook,1,2026-05-30 10:13:11
-20,7,filter_macbook_button,v2,0.93,0.7286,0.8626,0.6873,0.365,0.7591,button,,AirPods,0,2026-05-30 10:13:11
-21,7,filter_macbook_button,v2,0.93,0.6647,0.8626,0.7273,0.365,0.7506,button,,Apple iPad,0,2026-05-30 10:13:11
-22,7,filter_macbook_button,v2,0.93,0.7,0.8501,0.6514,0.365,0.7437,button,,Apple iPhone,0,2026-05-30 10:13:11
-23,7,filter_macbook_button,v2,0.842,0.6891,0.8376,0.5549,0.615,0.7284,button,,Tất cả danh mục,0,2026-05-30 10:13:11
-24,7,filter_macbook_button,v2,0.7729,0.6833,0.654,0.5439,0.615,0.6697,button,,Gỡ khỏi danh sách,0,2026-05-30 10:13:11
-25,8,filter_airpods_button,v2,0.93,1.0,0.88,0.7459,0.365,0.8377,button,,AirPods,1,2026-05-30 10:13:44
-26,8,filter_airpods_button,v2,0.93,0.7988,0.8501,0.658,0.365,0.7685,button,,Apple iPad,0,2026-05-30 10:13:44
-27,8,filter_airpods_button,v2,0.93,0.7286,0.8626,0.723,0.365,0.7652,button,,MacBook,0,2026-05-30 10:13:44
-28,8,filter_airpods_button,v2,0.93,0.78,0.8376,0.5736,0.365,0.7471,button,,Apple iPhone,0,2026-05-30 10:13:44
-29,8,filter_airpods_button,v2,0.842,0.6545,0.8251,0.5376,0.615,0.7146,button,,Tất cả danh mục,0,2026-05-30 10:13:44
-30,8,filter_airpods_button,v2,0.7729,0.6833,0.6415,0.5425,0.615,0.667,button,,Gỡ khỏi danh sách,0,2026-05-30 10:13:44
-31,9,filter_Tất cả_button,v2,0.93,0.8371,0.88,0.7229,0.615,0.8247,button,,Tất cả danh mục,1,2026-05-30 10:14:17
-32,9,filter_Tất cả_button,v2,0.842,0.6622,0.8626,0.7222,0.365,0.7254,button,,Apple iPhone,0,2026-05-30 10:14:17
-33,9,filter_Tất cả_button,v2,0.842,0.6675,0.8501,0.6489,0.365,0.7117,button,,Apple iPad,0,2026-05-30 10:14:17
-34,9,filter_Tất cả_button,v2,0.842,0.6785,0.8376,0.5788,0.365,0.6999,button,,MacBook,0,2026-05-30 10:14:17
-35,9,filter_Tất cả_button,v2,0.7729,0.6861,0.6952,0.5404,0.615,0.6781,button,,Gỡ khỏi danh sách,0,2026-05-30 10:14:17
-36,9,filter_Tất cả_button,v2,0.7729,0.6861,0.6938,0.5404,0.615,0.6778,button,,Gỡ khỏi danh sách,0,2026-05-30 10:14:17
-37,10,email_field,v3,0.9916,1.0,0.815,0.7556,0.615,0.873,input,v3-login-email,,1,2026-05-30 10:14:33
-38,10,email_field,v3,0.3983,1.0,0.7182,0.6586,0.615,0.6769,input,v3-login-password,,0,2026-05-30 10:14:33
-39,11,password_field,v3,0.9932,1.0,0.815,0.7454,0.615,0.8717,input,v3-login-password,,1,2026-05-30 10:14:34
-40,11,password_field,v3,0.3983,0.95,0.7182,0.7321,0.615,0.6774,input,v3-login-email,,0,2026-05-30 10:14:34
-41,12,login_button,v3,0.99,1.0,0.62,0.7343,0.615,0.8299,button,v3-btn-login,Đăng nhập,1,2026-05-30 10:14:34
-42,13,search_input,v3,0.6723,1.0,0.6986,0.7545,0.615,0.7633,input,v3-prod-search,,1,2026-05-30 10:14:37
-43,14,filter_iphone_button,v3,0.9816,1.0,0.7249,0.7471,0.615,0.8508,button,v3-prod-filter-iphone,IPHONE,1,2026-05-30 10:15:10
-44,14,filter_iphone_button,v3,0.9689,0.772,0.7292,0.7255,0.615,0.7899,button,v3-prod-filter-ipad,IPAD,0,2026-05-30 10:15:10
-45,14,filter_iphone_button,v3,0.9695,0.7954,0.7249,0.6148,0.615,0.776,button,v3-prod-filter-airpods,AIRPODS,0,2026-05-30 10:15:10
-46,14,filter_iphone_button,v3,0.9623,0.6785,0.7249,0.6846,0.615,0.7578,button,v3-prod-filter-macbook,MACBOOK,0,2026-05-30 10:15:10
-47,14,filter_iphone_button,v3,0.874,0.62,0.7249,0.7044,0.615,0.7233,button,v3-prod-filter-all,TẤT CẢ,0,2026-05-30 10:15:10
-48,14,filter_iphone_button,v3,0.7879,0.7044,0.6703,0.5404,0.615,0.6815,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:15:10
-49,15,filter_ipad_button,v3,0.9794,1.0,0.7167,0.7457,0.615,0.8483,button,v3-prod-filter-ipad,IPAD,1,2026-05-30 10:15:44
-50,15,filter_ipad_button,v3,0.9716,0.8273,0.7124,0.6754,0.615,0.792,button,v3-prod-filter-airpods,AIRPODS,0,2026-05-30 10:15:44
-51,15,filter_ipad_button,v3,0.9689,0.772,0.7124,0.6981,0.615,0.7818,button,v3-prod-filter-iphone,IPHONE,0,2026-05-30 10:15:44
-52,15,filter_ipad_button,v3,0.9641,0.6891,0.7124,0.7352,0.615,0.767,button,v3-prod-filter-macbook,MACBOOK,0,2026-05-30 10:15:44
-53,15,filter_ipad_button,v3,0.8802,0.62,0.7124,0.6421,0.615,0.7119,button,v3-prod-filter-all,TẤT CẢ,0,2026-05-30 10:15:44
-54,15,filter_ipad_button,v3,0.791,0.6675,0.6578,0.5373,0.615,0.6705,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:15:44
-55,16,filter_macbook_button,v3,0.9825,1.0,0.6999,0.7443,0.615,0.8456,button,v3-prod-filter-macbook,MACBOOK,1,2026-05-30 10:16:16
-56,16,filter_macbook_button,v3,0.965,0.7286,0.6999,0.7229,0.615,0.7721,button,v3-prod-filter-airpods,AIRPODS,0,2026-05-30 10:16:16
-57,16,filter_macbook_button,v3,0.9641,0.6891,0.7042,0.7027,0.615,0.7598,button,v3-prod-filter-ipad,IPAD,0,2026-05-30 10:16:16
-58,16,filter_macbook_button,v3,0.9623,0.6785,0.6999,0.6478,0.615,0.7466,button,v3-prod-filter-iphone,IPHONE,0,2026-05-30 10:16:16
-59,16,filter_macbook_button,v3,0.877,0.6785,0.6999,0.5881,0.615,0.7134,button,v3-prod-filter-all,TẤT CẢ,0,2026-05-30 10:16:16
-60,16,filter_macbook_button,v3,0.7925,0.66,0.6442,0.5433,0.615,0.6674,button,v3-prod-delete-6a1ab25940c4b06963190282,Xóa sản phẩm,0,2026-05-30 10:16:16
-61,17,filter_airpods_button,v3,0.9825,1.0,0.6874,0.742,0.615,0.8427,button,v3-prod-filter-airpods,AIRPODS,1,2026-05-30 10:16:50
-62,17,filter_airpods_button,v3,0.965,0.7286,0.6874,0.6832,0.615,0.7628,button,v3-prod-filter-macbook,MACBOOK,0,2026-05-30 10:16:50
-63,17,filter_airpods_button,v3,0.9678,0.7582,0.6917,0.6312,0.615,0.7627,button,v3-prod-filter-ipad,IPAD,0,2026-05-30 10:16:50
-64,17,filter_airpods_button,v3,0.9695,0.7954,0.6874,0.5725,0.615,0.7613,button,v3-prod-filter-iphone,IPHONE,0,2026-05-30 10:16:50
-65,17,filter_airpods_button,v3,0.877,0.62,0.6874,0.5408,0.615,0.6888,button,v3-prod-filter-all,TẤT CẢ,0,2026-05-30 10:16:50
-66,17,filter_airpods_button,v3,0.7901,0.7,0.6328,0.5418,0.615,0.6738,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:16:50
-67,18,filter_Tất cả_button,v3,0.9781,1.0,0.7417,0.7481,0.615,0.8534,button,v3-prod-filter-all,TẤT CẢ,1,2026-05-30 10:17:23
-68,18,filter_Tất cả_button,v3,0.874,0.62,0.7417,0.7283,0.615,0.7307,button,v3-prod-filter-iphone,IPHONE,0,2026-05-30 10:17:23
-69,18,filter_Tất cả_button,v3,0.877,0.6785,0.7417,0.6229,0.615,0.7277,button,v3-prod-filter-macbook,MACBOOK,0,2026-05-30 10:17:23
-70,18,filter_Tất cả_button,v3,0.8802,0.62,0.746,0.6702,0.615,0.7234,button,v3-prod-filter-ipad,IPAD,0,2026-05-30 10:17:23
-71,18,filter_Tất cả_button,v3,0.877,0.62,0.7417,0.551,0.615,0.7014,button,v3-prod-filter-airpods,AIRPODS,0,2026-05-30 10:17:23
-72,18,filter_Tất cả_button,v3,0.7887,0.7044,0.6862,0.5397,0.615,0.6848,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:17:23
-73,19,email_field,v4,0.796,1.0,0.8449,0.668,0.365,0.7813,input,v4-login-email,,1,2026-05-30 10:17:39
-74,19,email_field,v4,0.3861,1.0,0.7828,0.5615,0.365,0.6401,input,v4-login-password,,0,2026-05-30 10:17:39
-75,20,password_field,v4,0.8282,1.0,0.8584,0.6488,0.365,0.7894,input,v4-login-password,,1,2026-05-30 10:17:40
-76,20,password_field,v4,0.4167,0.95,0.79,0.7488,0.365,0.6696,input,v4-login-email,,0,2026-05-30 10:17:40
-77,21,login_button,v4,0.902,1.0,0.9606,0.6102,0.365,0.8232,button,v4-btn-login,ĐĂNG NHẬP,1,2026-05-30 10:17:40
-78,22,search_input,v4,0.5189,1.0,0.641,0.6328,0.365,0.6597,input,v4-search-input,,1,2026-05-30 10:17:43
-79,23,filter_iphone_button,v4,0.7743,1.0,0.7721,0.6579,0.365,0.7591,button,v4-btn-filter-iphone,IPHONE,1,2026-05-30 10:18:14
-80,23,filter_iphone_button,v4,0.7616,0.7954,0.7596,0.7037,0.365,0.7119,button,v4-btn-filter-airpods,AIRPODS,0,2026-05-30 10:18:14
-81,23,filter_iphone_button,v4,0.762,0.772,0.7471,0.7457,0.365,0.711,button,v4-btn-filter-ipad,IPAD,0,2026-05-30 10:18:14
-82,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.6779,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,Xóa sản phẩm,0,2026-05-30 10:18:14
-83,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.6779,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,Xóa sản phẩm,0,2026-05-30 10:18:14
-84,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.6779,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:18:14
-85,24,filter_ipad_button,v4,0.7736,1.0,0.7596,0.6876,0.365,0.7615,button,v4-btn-filter-ipad,IPAD,1,2026-05-30 10:18:48
-86,24,filter_ipad_button,v4,0.7644,0.8273,0.7721,0.6419,0.365,0.7123,button,v4-btn-filter-airpods,AIRPODS,0,2026-05-30 10:18:48
-87,24,filter_ipad_button,v4,0.762,0.772,0.7891,0.5953,0.365,0.6938,button,v4-btn-filter-iphone,IPHONE,0,2026-05-30 10:18:48
-88,24,filter_ipad_button,v4,0.7625,0.62,0.7596,0.5433,0.615,0.6728,button,v4-btn-filter-all,TẤT CẢ,0,2026-05-30 10:18:48
-89,24,filter_ipad_button,v4,0.7678,0.6675,0.6711,0.5429,0.615,0.6678,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,Xóa sản phẩm,0,2026-05-30 10:18:48
-90,24,filter_ipad_button,v4,0.7678,0.6675,0.6711,0.5429,0.615,0.6678,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,Xóa sản phẩm,0,2026-05-30 10:18:48
-91,25,filter_macbook_button,v4,0.7746,1.0,0.7596,0.5401,0.365,0.7367,button,v4-btn-filter-macbook,MACBOOK,1,2026-05-30 10:19:22
-92,25,filter_macbook_button,v4,0.758,0.6785,0.7471,0.5373,0.615,0.6821,button,v4-btn-filter-all,TẤT CẢ,0,2026-05-30 10:19:22
-93,25,filter_macbook_button,v4,0.7567,0.7286,0.7891,0.5832,0.365,0.6799,button,v4-btn-filter-airpods,AIRPODS,0,2026-05-30 10:19:22
-94,25,filter_macbook_button,v4,0.7567,0.6891,0.7721,0.63,0.365,0.675,button,v4-btn-filter-ipad,IPAD,0,2026-05-30 10:19:22
-95,25,filter_macbook_button,v4,0.7689,0.66,0.6574,0.5383,0.615,0.6628,button,v4-btn-delete-6a1ab1b640c4b0696318f81a,Xóa sản phẩm,0,2026-05-30 10:19:22
-96,25,filter_macbook_button,v4,0.7689,0.66,0.6574,0.5383,0.615,0.6628,button,v4-btn-delete-6a1ab21b40c4b0696318fd4b,Xóa sản phẩm,0,2026-05-30 10:19:22
-97,26,filter_airpods_button,v4,0.7746,1.0,0.7721,0.5401,0.365,0.7392,button,v4-btn-filter-airpods,AIRPODS,1,2026-05-30 10:19:55
-98,26,filter_airpods_button,v4,0.7616,0.7954,0.7596,0.5394,0.365,0.6839,button,v4-btn-filter-iphone,IPHONE,0,2026-05-30 10:19:55
-99,26,filter_airpods_button,v4,0.7606,0.7582,0.7891,0.5529,0.365,0.6829,button,v4-btn-filter-ipad,IPAD,0,2026-05-30 10:19:55
-100,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5568,0.615,0.6726,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,Xóa sản phẩm,0,2026-05-30 10:19:55
-101,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5401,0.615,0.6698,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,Xóa sản phẩm,0,2026-05-30 10:19:55
-102,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5401,0.615,0.6698,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:19:55
-103,27,filter_Tất cả_button,v4,0.7732,1.0,0.7891,0.6236,0.615,0.7864,button,v4-btn-filter-all,TẤT CẢ,1,2026-05-30 10:20:28
-104,27,filter_Tất cả_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.6816,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,Xóa sản phẩm,0,2026-05-30 10:20:28
-105,27,filter_Tất cả_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.6816,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,Xóa sản phẩm,0,2026-05-30 10:20:28
-106,27,filter_Tất cả_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.6816,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:20:28
-107,27,filter_Tất cả_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.6816,button,v4-btn-delete-6a0d531fd7e08f5e9abf6182,Xóa sản phẩm,0,2026-05-30 10:20:28
-108,27,filter_Tất cả_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.6816,button,v4-btn-delete-6a0d531fd7e08f5e9abf618f,Xóa sản phẩm,0,2026-05-30 10:20:28
-109,28,email_field,v5,0.93,1.0,0.83,0.6329,0.365,0.8085,input,,,1,2026-05-30 10:20:44
-110,28,email_field,v5,0.3633,1.0,0.7332,0.5411,0.365,0.6205,input,,,0,2026-05-30 10:20:44
-111,29,password_field,v5,0.93,1.0,0.83,0.5889,0.365,0.801,input,,,1,2026-05-30 10:20:45
-112,29,password_field,v5,0.3633,0.95,0.7332,0.7211,0.365,0.6391,input,,,0,2026-05-30 10:20:45
-113,30,login_button,v5,0.93,1.0,0.9625,0.5788,0.365,0.8258,button,,Đăng nhập,1,2026-05-30 10:20:45
-114,31,search_input,v5,0.64,1.0,0.7286,0.673,0.615,0.7467,input,,,1,2026-05-30 10:20:49
-115,32,filter_iphone_button,v5,0.93,1.0,0.88,0.6656,0.365,0.8241,button,,IPHONE,1,2026-05-30 10:21:20
-116,32,filter_iphone_button,v5,0.93,0.772,0.8626,0.6547,0.365,0.764,button,,IPAD,0,2026-05-30 10:21:20
-117,32,filter_iphone_button,v5,0.93,0.7954,0.8376,0.579,0.365,0.7517,button,,AIRPODS,0,2026-05-30 10:21:20
-118,32,filter_iphone_button,v5,0.93,0.6785,0.8501,0.6319,0.365,0.7352,button,,MACBOOK,0,2026-05-30 10:21:20
-119,32,filter_iphone_button,v5,0.842,0.62,0.8626,0.6447,0.615,0.7321,button,,TẤT CẢ,0,2026-05-30 10:21:20
-120,32,filter_iphone_button,v5,0.7729,0.7044,0.679,0.5404,0.615,0.6792,button,,Xóa sản phẩm,0,2026-05-30 10:21:20
-121,33,filter_ipad_button,v5,0.93,1.0,0.88,0.6652,0.365,0.824,button,,IPAD,1,2026-05-30 10:21:54
-122,33,filter_ipad_button,v5,0.93,0.8273,0.8501,0.6251,0.365,0.7697,button,,AIRPODS,0,2026-05-30 10:21:54
-123,33,filter_ipad_button,v5,0.93,0.772,0.8626,0.6404,0.365,0.7616,button,,IPHONE,0,2026-05-30 10:21:54
-124,33,filter_ipad_button,v5,0.93,0.6891,0.8626,0.6587,0.365,0.7448,button,,MACBOOK,0,2026-05-30 10:21:54
-125,33,filter_ipad_button,v5,0.842,0.62,0.8501,0.6008,0.615,0.7221,button,,TẤT CẢ,0,2026-05-30 10:21:54
-126,33,filter_ipad_button,v5,0.7729,0.6675,0.6665,0.5373,0.615,0.6673,button,,Xóa sản phẩm,0,2026-05-30 10:21:54
-127,34,filter_macbook_button,v5,0.93,1.0,0.88,0.6645,0.365,0.8239,button,,MACBOOK,1,2026-05-30 10:22:28
-128,34,filter_macbook_button,v5,0.93,0.7286,0.8626,0.6542,0.365,0.7535,button,,AIRPODS,0,2026-05-30 10:22:28
-129,34,filter_macbook_button,v5,0.93,0.6891,0.8626,0.6414,0.365,0.7418,button,,IPAD,0,2026-05-30 10:22:28
-130,34,filter_macbook_button,v5,0.93,0.6785,0.8501,0.6048,0.365,0.7306,button,,IPHONE,0,2026-05-30 10:22:28
-131,34,filter_macbook_button,v5,0.842,0.6785,0.8376,0.5556,0.615,0.726,button,,TẤT CẢ,0,2026-05-30 10:22:28
-132,34,filter_macbook_button,v5,0.7729,0.66,0.654,0.5433,0.615,0.664,button,,Xóa sản phẩm,0,2026-05-30 10:22:28
-133,35,filter_airpods_button,v5,0.93,1.0,0.88,0.6638,0.365,0.8237,button,,AIRPODS,1,2026-05-30 10:23:01
-134,35,filter_airpods_button,v5,0.93,0.7286,0.8626,0.6311,0.365,0.7496,button,,MACBOOK,0,2026-05-30 10:23:01
-135,35,filter_airpods_button,v5,0.93,0.7582,0.8501,0.5914,0.365,0.7474,button,,IPAD,0,2026-05-30 10:23:01
-136,35,filter_airpods_button,v5,0.93,0.7954,0.8376,0.5425,0.365,0.7455,button,,IPHONE,0,2026-05-30 10:23:01
-137,35,filter_airpods_button,v5,0.842,0.62,0.8251,0.5408,0.615,0.7069,button,,TẤT CẢ,0,2026-05-30 10:23:01
-138,35,filter_airpods_button,v5,0.7729,0.7,0.6415,0.5418,0.615,0.6709,button,,Xóa sản phẩm,0,2026-05-30 10:23:01
-139,36,filter_Tất cả_button,v5,0.93,1.0,0.88,0.6662,0.615,0.8542,button,,TẤT CẢ,1,2026-05-30 10:23:34
-140,36,filter_Tất cả_button,v5,0.842,0.62,0.8626,0.6581,0.365,0.7043,button,,IPHONE,0,2026-05-30 10:23:34
-141,36,filter_Tất cả_button,v5,0.842,0.6785,0.8376,0.5851,0.365,0.701,button,,MACBOOK,0,2026-05-30 10:23:34
-142,36,filter_Tất cả_button,v5,0.842,0.62,0.8501,0.6214,0.365,0.6956,button,,IPAD,0,2026-05-30 10:23:34
-143,36,filter_Tất cả_button,v5,0.7729,0.7044,0.6952,0.5397,0.615,0.6823,button,,Xóa sản phẩm,0,2026-05-30 10:23:34
-144,36,filter_Tất cả_button,v5,0.7729,0.7044,0.6938,0.5397,0.615,0.682,button,,Xóa sản phẩm,0,2026-05-30 10:23:34
-145,37,email_field,v6,0.2708,1.0,0.7882,0.7524,0.365,0.6425,input,v6-login-email,,1,2026-05-30 10:23:50
-146,37,email_field,v6,0.0717,1.0,0.7334,0.6526,0.365,0.5608,input,v6-login-password,,0,2026-05-30 10:23:50
-147,38,password_field,v6,0.3832,1.0,0.7612,0.7396,0.365,0.6652,input,v6-login-password,,1,2026-05-30 10:23:50
-148,38,password_field,v6,0.255,0.95,0.7408,0.7356,0.365,0.6139,input,v6-login-email,,0,2026-05-30 10:23:50
-149,39,login_button,v6,0.6925,0.6891,0.931,0.7298,0.365,0.7064,button,v6-btn-login,Truy cập ngay,1,2026-05-30 10:23:51
-150,40,search_input,v6,0.3523,1.0,0.6832,0.7545,0.615,0.6738,input,v6-prod-search,,1,2026-05-30 10:23:54
-151,41,filter_iphone_button,v6,0.9016,1.0,0.88,0.7471,0.365,0.8302,button,v6-prod-filter-iphone,IPHONE,1,2026-05-30 10:24:27
-152,41,filter_iphone_button,v6,0.8889,0.772,0.8626,0.7255,0.365,0.7649,button,v6-prod-filter-ipad,IPAD,0,2026-05-30 10:24:27
-153,41,filter_iphone_button,v6,0.8895,0.7954,0.8376,0.6148,0.365,0.7469,button,v6-prod-filter-airpods,AIRPODS,0,2026-05-30 10:24:27
-154,41,filter_iphone_button,v6,0.8823,0.6785,0.8501,0.6846,0.365,0.7313,button,v6-prod-filter-macbook,MACBOOK,0,2026-05-30 10:24:27
-155,41,filter_iphone_button,v6,0.794,0.62,0.8626,0.7044,0.615,0.7292,button,v6-prod-filter-all,TẤT CẢ,0,2026-05-30 10:24:27
-156,41,filter_iphone_button,v6,0.7079,0.7044,0.679,0.5404,0.615,0.6617,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:24:27
-157,42,filter_ipad_button,v6,0.8994,1.0,0.88,0.7457,0.365,0.8294,button,v6-prod-filter-ipad,IPAD,1,2026-05-30 10:25:01
-158,42,filter_ipad_button,v6,0.8916,0.8273,0.8501,0.6754,0.365,0.7679,button,v6-prod-filter-airpods,AIRPODS,0,2026-05-30 10:25:01
-159,42,filter_ipad_button,v6,0.8889,0.772,0.8626,0.6981,0.365,0.7603,button,v6-prod-filter-iphone,IPHONE,0,2026-05-30 10:25:01
-160,42,filter_ipad_button,v6,0.8841,0.6891,0.8626,0.7352,0.365,0.7454,button,v6-prod-filter-macbook,MACBOOK,0,2026-05-30 10:25:01
-161,42,filter_ipad_button,v6,0.8002,0.62,0.8501,0.6421,0.615,0.7178,button,v6-prod-filter-all,TẤT CẢ,0,2026-05-30 10:25:01
-162,42,filter_ipad_button,v6,0.711,0.6675,0.6665,0.5373,0.615,0.6506,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:25:01
-163,43,filter_macbook_button,v6,0.9025,1.0,0.88,0.7443,0.365,0.83,button,v6-prod-filter-macbook,MACBOOK,1,2026-05-30 10:25:34
-164,43,filter_macbook_button,v6,0.885,0.7286,0.8626,0.7229,0.365,0.753,button,v6-prod-filter-airpods,AIRPODS,0,2026-05-30 10:25:34
-165,43,filter_macbook_button,v6,0.8841,0.6891,0.8626,0.7027,0.365,0.7399,button,v6-prod-filter-ipad,IPAD,0,2026-05-30 10:25:34
-166,43,filter_macbook_button,v6,0.8823,0.6785,0.8501,0.6478,0.365,0.725,button,v6-prod-filter-iphone,IPHONE,0,2026-05-30 10:25:34
-167,43,filter_macbook_button,v6,0.797,0.6785,0.8376,0.5881,0.615,0.7193,button,v6-prod-filter-all,TẤT CẢ,0,2026-05-30 10:25:34
-168,43,filter_macbook_button,v6,0.7125,0.66,0.6527,0.5433,0.615,0.6475,button,v6-prod-delete-6a1ab25940c4b06963190282,Xóa sản phẩm,0,2026-05-30 10:25:34
-169,44,filter_airpods_button,v6,0.9025,1.0,0.88,0.742,0.365,0.8296,button,v6-prod-filter-airpods,AIRPODS,1,2026-05-30 10:26:09
-170,44,filter_airpods_button,v6,0.885,0.7286,0.8626,0.6832,0.365,0.7463,button,v6-prod-filter-macbook,MACBOOK,0,2026-05-30 10:26:09
-171,44,filter_airpods_button,v6,0.8878,0.7582,0.8501,0.6312,0.365,0.7428,button,v6-prod-filter-ipad,IPAD,0,2026-05-30 10:26:09
-172,44,filter_airpods_button,v6,0.8895,0.7954,0.8376,0.5725,0.365,0.7397,button,v6-prod-filter-iphone,IPHONE,0,2026-05-30 10:26:09
-173,44,filter_airpods_button,v6,0.797,0.62,0.8251,0.5408,0.615,0.6947,button,v6-prod-filter-all,TẤT CẢ,0,2026-05-30 10:26:09
-174,44,filter_airpods_button,v6,0.7101,0.7,0.6415,0.5418,0.615,0.6539,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:26:09
-175,45,filter_Tất cả_button,v6,0.8981,1.0,0.88,0.7481,0.615,0.8595,button,v6-prod-filter-all,TẤT CẢ,1,2026-05-30 10:26:41
-176,45,filter_Tất cả_button,v6,0.794,0.62,0.8626,0.7283,0.365,0.7033,button,v6-prod-filter-iphone,IPHONE,0,2026-05-30 10:26:41
-177,45,filter_Tất cả_button,v6,0.797,0.6785,0.8376,0.6229,0.365,0.6952,button,v6-prod-filter-macbook,MACBOOK,0,2026-05-30 10:26:41
-178,45,filter_Tất cả_button,v6,0.8002,0.62,0.8501,0.6702,0.365,0.6926,button,v6-prod-filter-ipad,IPAD,0,2026-05-30 10:26:41
-179,45,filter_Tất cả_button,v6,0.797,0.62,0.8251,0.551,0.365,0.6665,button,v6-prod-filter-airpods,AIRPODS,0,2026-05-30 10:26:41
-180,45,filter_Tất cả_button,v6,0.7087,0.7044,0.6952,0.5397,0.615,0.665,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:26:41
-181,46,email_field,v7,0.33,1.0,0.867,0.6398,0.365,0.6551,input,,,1,2026-05-30 10:26:58
-182,46,email_field,v7,0.23,1.0,0.8101,0.7483,0.365,0.6351,input,,,0,2026-05-30 10:26:58
-183,47,password_field,v7,0.33,1.0,0.8718,0.7286,0.365,0.6711,input,,,1,2026-05-30 10:26:58
-184,47,password_field,v7,0.23,0.95,0.8194,0.7278,0.365,0.6215,input,,,0,2026-05-30 10:26:58
-185,48,login_button,v7,0.42,0.74,0.6949,0.681,0.615,0.6195,button,,TRUY CẬP →,1,2026-05-30 10:26:58
-186,49,search_input,v7,0.9623,1.0,0.8757,0.7037,0.615,0.8684,input,product-search,,1,2026-05-30 10:27:02
-187,50,filter_iphone_button,v7,0.8271,1.0,0.8751,0.6845,0.365,0.7985,button,category-iphone,IPHONE,1,2026-05-30 10:27:33
-188,50,filter_iphone_button,v7,0.8113,0.772,0.8577,0.6694,0.365,0.7335,button,category-ipad,IPAD,0,2026-05-30 10:27:33
-189,50,filter_iphone_button,v7,0.8026,0.62,0.8577,0.6708,0.615,0.7249,button,category-all,TẤT CẢ,0,2026-05-30 10:27:33
-190,50,filter_iphone_button,v7,0.813,0.7954,0.8327,0.6001,0.365,0.7228,button,category-airpods,AIRPODS,0,2026-05-30 10:27:33
-191,50,filter_iphone_button,v7,0.8045,0.6785,0.8452,0.6515,0.365,0.7036,button,category-macbook,MACBOOK,0,2026-05-30 10:27:33
-192,50,filter_iphone_button,v7,0.7879,0.62,0.6669,0.5556,0.615,0.6632,button,delete-product-6a0d531fd7e08f5e9abf614b,Xóa,0,2026-05-30 10:27:33
-193,51,filter_ipad_button,v7,0.8233,1.0,0.8751,0.6835,0.365,0.7973,button,category-ipad,IPAD,1,2026-05-30 10:28:07
-194,51,filter_ipad_button,v7,0.8149,0.8273,0.8452,0.6509,0.365,0.7421,button,category-airpods,AIRPODS,0,2026-05-30 10:28:07
-195,51,filter_ipad_button,v7,0.8113,0.772,0.8577,0.6667,0.365,0.733,button,category-iphone,IPHONE,0,2026-05-30 10:28:07
-196,51,filter_ipad_button,v7,0.8093,0.62,0.8452,0.6322,0.615,0.7176,button,category-all,TẤT CẢ,0,2026-05-30 10:28:07
-197,51,filter_ipad_button,v7,0.8059,0.6891,0.8577,0.6813,0.365,0.7141,button,category-macbook,MACBOOK,0,2026-05-30 10:28:07
-198,51,filter_ipad_button,v7,0.791,0.7286,0.6544,0.5734,0.615,0.6906,button,delete-product-6a0d531fd7e08f5e9abf6166,Xóa,0,2026-05-30 10:28:07
-199,52,filter_macbook_button,v7,0.8286,1.0,0.8751,0.6812,0.365,0.7983,button,category-macbook,MACBOOK,1,2026-05-30 10:28:40
-200,52,filter_macbook_button,v7,0.808,0.7286,0.8577,0.6758,0.365,0.7233,button,category-airpods,AIRPODS,0,2026-05-30 10:28:40
-201,52,filter_macbook_button,v7,0.8067,0.6785,0.8327,0.583,0.615,0.7201,button,category-all,TẤT CẢ,0,2026-05-30 10:28:40
-202,52,filter_macbook_button,v7,0.8059,0.6891,0.8577,0.6588,0.365,0.7103,button,category-ipad,IPAD,0,2026-05-30 10:28:40
-203,52,filter_macbook_button,v7,0.8045,0.6785,0.8452,0.626,0.365,0.6993,button,category-iphone,IPHONE,0,2026-05-30 10:28:40
-204,52,filter_macbook_button,v7,0.7901,0.696,0.6419,0.6009,0.615,0.6847,button,delete-product-6a0d531fd7e08f5e9abf6166,Xóa,0,2026-05-30 10:28:40
-205,53,filter_airpods_button,v7,0.8286,1.0,0.8751,0.6775,0.365,0.7977,button,category-airpods,AIRPODS,1,2026-05-30 10:29:14
-206,53,filter_airpods_button,v7,0.808,0.7286,0.8577,0.6427,0.365,0.7176,button,category-macbook,MACBOOK,0,2026-05-30 10:29:14
-207,53,filter_airpods_button,v7,0.8104,0.7582,0.8452,0.6053,0.365,0.7165,button,category-ipad,IPAD,0,2026-05-30 10:29:14
-208,53,filter_airpods_button,v7,0.813,0.7954,0.8327,0.5616,0.365,0.7162,button,category-iphone,IPHONE,0,2026-05-30 10:29:14
-209,53,filter_airpods_button,v7,0.8067,0.62,0.8202,0.5387,0.615,0.696,button,category-all,TẤT CẢ,0,2026-05-30 10:29:14
-210,53,filter_airpods_button,v7,0.7876,0.696,0.6294,0.6052,0.615,0.6823,button,delete-product-6a0d531fd7e08f5e9abf6166,Xóa,0,2026-05-30 10:29:14
-211,54,filter_Tất cả_button,v7,0.8797,1.0,0.8751,0.6843,0.615,0.8427,button,category-all,TẤT CẢ,1,2026-05-30 10:29:49
-212,54,filter_Tất cả_button,v7,0.8026,0.62,0.8577,0.6685,0.365,0.6945,button,category-iphone,IPHONE,0,2026-05-30 10:29:49
-213,54,filter_Tất cả_button,v7,0.8067,0.6785,0.8327,0.6028,0.365,0.6935,button,category-macbook,MACBOOK,0,2026-05-30 10:29:49
-214,54,filter_Tất cả_button,v7,0.8093,0.62,0.8452,0.6306,0.365,0.6874,button,category-ipad,IPAD,0,2026-05-30 10:29:49
-215,54,filter_Tất cả_button,v7,0.7887,0.62,0.6828,0.5887,0.615,0.6722,button,delete-product-6a0d531fd7e08f5e9abf614b,Xóa,0,2026-05-30 10:29:49
-216,54,filter_Tất cả_button,v7,0.8067,0.62,0.8202,0.5445,0.365,0.667,button,category-airpods,AIRPODS,0,2026-05-30 10:29:49
-217,55,email_field,v8,0.4916,0.87,0.7849,0.7488,0.365,0.6696,input,login-email_v8,,1,2026-05-30 10:30:06
-218,55,email_field,v8,0.2925,0.87,0.741,0.6585,0.365,0.5917,input,login-password_v8,,0,2026-05-30 10:30:06
-219,56,password_field,v8,0.4666,0.87,0.769,0.744,0.365,0.6589,input,login-password_v8,,1,2026-05-30 10:30:06
-220,56,password_field,v8,0.3383,0.82,0.7451,0.7416,0.365,0.607,input,login-email_v8,,0,2026-05-30 10:30:06
-221,57,login_button,v8,0.7233,1.0,0.9811,0.7419,0.365,0.8014,button,btn-login_v8,Đăng nhập,1,2026-05-30 10:30:06
-222,58,search_input,v8,0.315,1.0,0.6868,0.7545,0.615,0.6645,input,,,1,2026-05-30 10:30:10
-223,59,filter_iphone_button,v8,0.64,1.0,0.5741,0.7471,0.365,0.6984,button,,IPHONE,1,2026-05-30 10:30:41
-224,59,filter_iphone_button,v8,0.7467,0.6707,0.7707,0.5397,0.365,0.6523,button,,Đăng xuất,0,2026-05-30 10:30:41
-225,59,filter_iphone_button,v8,0.64,0.772,0.5631,0.7255,0.365,0.6378,button,,IPAD,0,2026-05-30 10:30:41
-226,59,filter_iphone_button,v8,0.64,0.7954,0.5358,0.6148,0.365,0.6192,button,,AIRPODS,0,2026-05-30 10:30:41
-227,59,filter_iphone_button,v8,0.64,0.6785,0.5483,0.6846,0.365,0.6055,button,,MACBOOK,0,2026-05-30 10:30:41
-228,59,filter_iphone_button,v8,0.552,0.62,0.5638,0.7044,0.615,0.6041,button,,TẤT CẢ,0,2026-05-30 10:30:41
-229,60,filter_ipad_button,v8,0.64,1.0,0.5756,0.7457,0.365,0.6985,button,,IPAD,1,2026-05-30 10:31:16
-230,60,filter_ipad_button,v8,0.7467,0.62,0.7832,0.5429,0.365,0.6431,button,,Đăng xuất,0,2026-05-30 10:31:16
-231,60,filter_ipad_button,v8,0.64,0.8273,0.5483,0.6754,0.365,0.6396,button,,AIRPODS,0,2026-05-30 10:31:16
-232,60,filter_ipad_button,v8,0.64,0.772,0.5616,0.6981,0.365,0.6329,button,,IPHONE,0,2026-05-30 10:31:16
-233,60,filter_ipad_button,v8,0.64,0.6891,0.5608,0.7352,0.365,0.6191,button,,MACBOOK,0,2026-05-30 10:31:16
-234,60,filter_ipad_button,v8,0.552,0.62,0.5513,0.6421,0.615,0.5911,button,,TẤT CẢ,0,2026-05-30 10:31:16
-235,61,filter_macbook_button,v8,0.64,1.0,0.5733,0.7443,0.365,0.6978,button,,MACBOOK,1,2026-05-30 10:31:49
-236,61,filter_macbook_button,v8,0.7467,0.62,0.7957,0.5373,0.365,0.6447,button,,Đăng xuất,0,2026-05-30 10:31:49
-237,61,filter_macbook_button,v8,0.64,0.7286,0.5608,0.7229,0.365,0.6265,button,,AIRPODS,0,2026-05-30 10:31:49
-238,61,filter_macbook_button,v8,0.64,0.6891,0.5631,0.7027,0.365,0.6141,button,,IPAD,0,2026-05-30 10:31:49
-239,61,filter_macbook_button,v8,0.64,0.6785,0.5491,0.6478,0.365,0.5994,button,,IPHONE,0,2026-05-30 10:31:49
-240,61,filter_macbook_button,v8,0.552,0.6785,0.5388,0.5881,0.615,0.5934,button,,TẤT CẢ,0,2026-05-30 10:31:49
-241,62,filter_airpods_button,v8,0.64,1.0,0.5733,0.742,0.365,0.6974,button,,AIRPODS,1,2026-05-30 10:32:23
-242,62,filter_airpods_button,v8,0.7467,0.62,0.7832,0.5387,0.365,0.6424,button,,Đăng xuất,0,2026-05-30 10:32:23
-243,62,filter_airpods_button,v8,0.64,0.7286,0.5608,0.6832,0.365,0.6198,button,,MACBOOK,0,2026-05-30 10:32:23
-244,62,filter_airpods_button,v8,0.64,0.7582,0.5506,0.6312,0.365,0.616,button,,IPAD,0,2026-05-30 10:32:23
-245,62,filter_airpods_button,v8,0.64,0.7954,0.5366,0.5725,0.365,0.6121,button,,IPHONE,0,2026-05-30 10:32:23
-246,62,filter_airpods_button,v8,0.4829,0.696,0.5439,0.5408,0.615,0.5719,button,,Xóa,0,2026-05-30 10:32:23
-247,63,filter_Tất cả_button,v8,0.64,1.0,0.5763,0.7481,0.615,0.729,button,,TẤT CẢ,1,2026-05-30 10:32:56
-248,63,filter_Tất cả_button,v8,0.7467,0.7213,0.7627,0.5404,0.365,0.6629,button,,Đăng xuất,0,2026-05-30 10:32:56
-249,63,filter_Tất cả_button,v8,0.552,0.62,0.5616,0.7283,0.365,0.5778,button,,IPHONE,0,2026-05-30 10:32:56
-250,63,filter_Tất cả_button,v8,0.552,0.6785,0.5358,0.6229,0.365,0.5687,button,,MACBOOK,0,2026-05-30 10:32:56
-251,63,filter_Tất cả_button,v8,0.552,0.62,0.5506,0.6702,0.365,0.5657,button,,IPAD,0,2026-05-30 10:32:56
-252,63,filter_Tất cả_button,v8,0.4829,0.62,0.5939,0.5425,0.615,0.564,button,,Xóa,0,2026-05-30 10:32:56
-253,64,email_field,v9,0.5136,0.87,0.757,0.7477,0.615,0.6998,input,v9-email-input,,1,2026-05-30 10:33:13
-254,64,email_field,v9,0.2742,0.87,0.7299,0.6515,0.365,0.5834,input,v9-password-input,,0,2026-05-30 10:33:13
-255,65,password_field,v9,0.704,0.87,0.8252,0.736,0.365,0.7328,input,v9-password-input,,1,2026-05-30 10:33:13
-256,65,password_field,v9,0.4625,0.82,0.7203,0.7325,0.615,0.6641,input,v9-email-input,,0,2026-05-30 10:33:13
-257,66,login_button,v9,0.6427,0.8733,0.4542,0.7272,0.615,0.6714,button,v9-submit-login,Xác nhận đăng nhập,1,2026-05-30 10:33:13
-258,67,search_input,v9,0.9045,1.0,0.8511,0.7545,0.615,0.8565,input,v9-search,,1,2026-05-30 10:33:17
-259,68,filter_iphone_button,v9,0.9894,1.0,0.88,0.7471,0.365,0.8539,button,v9-filter-iphone,IPHONE,1,2026-05-30 10:33:50
-260,68,filter_iphone_button,v9,0.9752,0.772,0.8626,0.7255,0.365,0.7882,button,v9-filter-ipad,IPAD,0,2026-05-30 10:33:50
-261,68,filter_iphone_button,v9,0.9753,0.7954,0.8376,0.6148,0.365,0.7701,button,v9-filter-airpods,AIRPODS,0,2026-05-30 10:33:50
-262,68,filter_iphone_button,v9,0.9671,0.6785,0.8501,0.6846,0.365,0.7542,button,v9-filter-macbook,MACBOOK,0,2026-05-30 10:33:50
-263,68,filter_iphone_button,v9,0.8793,0.62,0.8626,0.7044,0.615,0.7523,button,v9-filter-all,TẤT CẢ,0,2026-05-30 10:33:50
-264,68,filter_iphone_button,v9,0.7814,0.7213,0.686,0.5422,0.615,0.6873,button,v9-edit-6a0d531fd7e08f5e9abf627e,Chỉnh sửa,0,2026-05-30 10:33:50
-265,69,filter_ipad_button,v9,0.9879,1.0,0.88,0.7457,0.365,0.8533,button,v9-filter-ipad,IPAD,1,2026-05-30 10:34:25
-266,69,filter_ipad_button,v9,0.9781,0.8273,0.8501,0.6754,0.365,0.7913,button,v9-filter-airpods,AIRPODS,0,2026-05-30 10:34:25
-267,69,filter_ipad_button,v9,0.9752,0.772,0.8626,0.6981,0.365,0.7836,button,v9-filter-iphone,IPHONE,0,2026-05-30 10:34:25
-268,69,filter_ipad_button,v9,0.9694,0.6891,0.8626,0.7352,0.365,0.7684,button,v9-filter-macbook,MACBOOK,0,2026-05-30 10:34:25
-269,69,filter_ipad_button,v9,0.887,0.62,0.8501,0.6421,0.615,0.7413,button,v9-filter-all,TẤT CẢ,0,2026-05-30 10:34:25
-270,69,filter_ipad_button,v9,0.7848,0.6785,0.6699,0.539,0.615,0.6741,button,v9-edit-6a0d531fd7e08f5e9abf61ed,Chỉnh sửa,0,2026-05-30 10:34:25
-271,70,filter_macbook_button,v9,0.99,1.0,0.88,0.7443,0.365,0.8536,button,v9-filter-macbook,MACBOOK,1,2026-05-30 10:34:58
-272,70,filter_macbook_button,v9,0.97,0.7286,0.8626,0.7229,0.365,0.776,button,v9-filter-airpods,AIRPODS,0,2026-05-30 10:34:58
-273,70,filter_macbook_button,v9,0.9694,0.6891,0.8626,0.7027,0.365,0.7629,button,v9-filter-ipad,IPAD,0,2026-05-30 10:34:58
-274,70,filter_macbook_button,v9,0.9671,0.6785,0.8501,0.6478,0.365,0.7479,button,v9-filter-iphone,IPHONE,0,2026-05-30 10:34:58
-275,70,filter_macbook_button,v9,0.8826,0.6785,0.8376,0.5881,0.615,0.7424,button,v9-filter-all,TẤT CẢ,0,2026-05-30 10:34:58
-276,70,filter_macbook_button,v9,0.7813,0.6675,0.661,0.5439,0.615,0.6696,button,v9-edit-6a1ab25940c4b06963190282,Chỉnh sửa,0,2026-05-30 10:34:58
-277,71,filter_airpods_button,v9,0.99,1.0,0.88,0.742,0.365,0.8532,button,v9-filter-airpods,AIRPODS,1,2026-05-30 10:35:32
-278,71,filter_airpods_button,v9,0.97,0.7286,0.8626,0.6832,0.365,0.7692,button,v9-filter-macbook,MACBOOK,0,2026-05-30 10:35:32
-279,71,filter_airpods_button,v9,0.9737,0.7582,0.8501,0.6312,0.365,0.766,button,v9-filter-ipad,IPAD,0,2026-05-30 10:35:32
-280,71,filter_airpods_button,v9,0.9753,0.7954,0.8376,0.5725,0.365,0.7629,button,v9-filter-iphone,IPHONE,0,2026-05-30 10:35:32
-281,71,filter_airpods_button,v9,0.8826,0.62,0.8251,0.5408,0.615,0.7179,button,v9-filter-all,TẤT CẢ,0,2026-05-30 10:35:32
-282,71,filter_airpods_button,v9,0.7841,0.6675,0.6449,0.5436,0.615,0.6671,button,v9-edit-6a0d531fd7e08f5e9abf61ed,Chỉnh sửa,0,2026-05-30 10:35:32
-283,72,filter_Tất cả_button,v9,0.987,1.0,0.88,0.7481,0.615,0.8835,button,v9-filter-all,TẤT CẢ,1,2026-05-30 10:36:06
-284,72,filter_Tất cả_button,v9,0.8793,0.62,0.8626,0.7283,0.365,0.7263,button,v9-filter-iphone,IPHONE,0,2026-05-30 10:36:06
-285,72,filter_Tất cả_button,v9,0.8826,0.6785,0.8376,0.6229,0.365,0.7184,button,v9-filter-macbook,MACBOOK,0,2026-05-30 10:36:06
-286,72,filter_Tất cả_button,v9,0.887,0.62,0.8501,0.6702,0.365,0.716,button,v9-filter-ipad,IPAD,0,2026-05-30 10:36:06
-287,72,filter_Tất cả_button,v9,0.8826,0.62,0.8251,0.551,0.365,0.6896,button,v9-filter-airpods,AIRPODS,0,2026-05-30 10:36:06
-288,72,filter_Tất cả_button,v9,0.782,0.6707,0.7021,0.5415,0.615,0.6784,button,v9-edit-6a0d531fd7e08f5e9abf627e,Chỉnh sửa,0,2026-05-30 10:36:06
-289,73,email_field,v10,0.2242,0.87,0.6075,0.7004,0.365,0.5537,input,,,1,2026-05-30 10:36:22
-290,73,email_field,v10,0.0275,0.87,0.5379,0.5759,0.365,0.4655,input,,,0,2026-05-30 10:36:22
-291,74,password_field,v10,0.27,0.87,0.6049,0.6634,0.365,0.5593,input,,,1,2026-05-30 10:36:23
-292,74,password_field,v10,0.0733,0.82,0.5365,0.7659,0.365,0.4979,input,,,0,2026-05-30 10:36:23
-293,75,login_button,v10,0.4657,0.6545,0.493,0.6404,0.615,0.5641,button,,Vào tài khoản,1,2026-05-30 10:36:23
-294,76,search_input,v10,0.93,1.0,0.88,0.7545,0.615,0.8692,input,,,1,2026-05-30 10:36:26
-295,77,filter_iphone_button,v10,0.93,1.0,0.8023,0.6749,0.615,0.8401,button,,IPHONE,1,2026-05-30 10:36:59
-296,77,filter_iphone_button,v10,0.93,0.772,0.8023,0.744,0.615,0.7971,button,,IPAD,0,2026-05-30 10:36:59
-297,77,filter_iphone_button,v10,0.93,0.7954,0.8023,0.6148,0.615,0.7808,button,,AIRPODS,0,2026-05-30 10:36:59
-298,77,filter_iphone_button,v10,0.93,0.6785,0.8023,0.7363,0.615,0.7734,button,,MACBOOK,0,2026-05-30 10:36:59
-299,77,filter_iphone_button,v10,0.842,0.62,0.8023,0.7044,0.615,0.7301,button,,TẤT CẢ,0,2026-05-30 10:36:59
-300,77,filter_iphone_button,v10,0.7971,0.7044,0.6628,0.5436,0.615,0.683,button,btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:36:59
-301,78,filter_ipad_button,v10,0.93,1.0,0.7898,0.6999,0.615,0.8418,button,,IPAD,1,2026-05-30 10:37:33
-302,78,filter_ipad_button,v10,0.93,0.8273,0.7898,0.6754,0.615,0.7962,button,,AIRPODS,0,2026-05-30 10:37:33
-303,78,filter_ipad_button,v10,0.93,0.772,0.7898,0.7301,0.615,0.7923,button,,IPHONE,0,2026-05-30 10:37:33
-304,78,filter_ipad_button,v10,0.93,0.6891,0.7898,0.7352,0.615,0.7732,button,,MACBOOK,0,2026-05-30 10:37:33
-305,78,filter_ipad_button,v10,0.842,0.62,0.7898,0.6421,0.615,0.7171,button,,TẤT CẢ,0,2026-05-30 10:37:33
-306,78,filter_ipad_button,v10,0.7991,0.7286,0.6541,0.5383,0.615,0.6868,button,btn-edit-6a1ab2d740c4b06963190d08,Sửa,0,2026-05-30 10:37:33
-307,79,filter_macbook_button,v10,0.93,1.0,0.7773,0.697,0.615,0.8388,button,,MACBOOK,1,2026-05-30 10:38:06
-308,79,filter_macbook_button,v10,0.93,0.7286,0.7773,0.7229,0.615,0.7781,button,,AIRPODS,0,2026-05-30 10:38:06
-309,79,filter_macbook_button,v10,0.93,0.6785,0.7773,0.7458,0.615,0.77,button,,IPHONE,0,2026-05-30 10:38:06
-310,79,filter_macbook_button,v10,0.93,0.6891,0.7773,0.6447,0.615,0.7553,button,,IPAD,0,2026-05-30 10:38:06
-311,79,filter_macbook_button,v10,0.842,0.6785,0.7773,0.5881,0.615,0.7194,button,,TẤT CẢ,0,2026-05-30 10:38:06
-312,79,filter_macbook_button,v10,0.8003,0.696,0.645,0.5324,0.615,0.6764,button,btn-edit-6a1ab25940c4b06963190282,Sửa,0,2026-05-30 10:38:06
-313,80,filter_airpods_button,v10,0.93,1.0,0.7648,0.742,0.615,0.844,button,,AIRPODS,1,2026-05-30 10:38:40
-314,80,filter_airpods_button,v10,0.93,0.7954,0.7648,0.6922,0.615,0.7864,button,,IPHONE,0,2026-05-30 10:38:40
-315,80,filter_airpods_button,v10,0.93,0.7286,0.7648,0.6231,0.615,0.7587,button,,MACBOOK,0,2026-05-30 10:38:40
-316,80,filter_airpods_button,v10,0.93,0.7582,0.7648,0.5697,0.615,0.7567,button,,IPAD,0,2026-05-30 10:38:40
-317,80,filter_airpods_button,v10,0.842,0.62,0.7648,0.5408,0.615,0.6948,button,,TẤT CẢ,0,2026-05-30 10:38:40
-318,80,filter_airpods_button,v10,0.7993,0.7,0.6253,0.5422,0.615,0.6748,button,btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:38:40
-319,81,filter_Tất cả_button,v10,0.93,1.0,0.8193,0.7481,0.615,0.8559,button,,TẤT CẢ,1,2026-05-30 10:39:14
-320,81,filter_Tất cả_button,v10,0.842,0.6785,0.8193,0.6826,0.615,0.7439,button,,MACBOOK,0,2026-05-30 10:39:14
-321,81,filter_Tất cả_button,v10,0.842,0.62,0.8193,0.7252,0.615,0.7371,button,,IPAD,0,2026-05-30 10:39:14
-322,81,filter_Tất cả_button,v10,0.842,0.62,0.8193,0.6141,0.615,0.7182,button,,IPHONE,0,2026-05-30 10:39:14
-323,81,filter_Tất cả_button,v10,0.842,0.62,0.8193,0.551,0.615,0.7075,button,,AIRPODS,0,2026-05-30 10:39:14
-324,81,filter_Tất cả_button,v10,0.7986,0.7044,0.6787,0.5443,0.615,0.6867,button,btn-delete-6a0d531fd7e08f5e9abf6174,Xóa sản phẩm,0,2026-05-30 10:39:14
-325,82,email_field,v11,0.4396,0.87,0.8129,0.6616,0.365,0.6463,input,auth-field-email,,1,2026-05-30 10:39:30
-326,82,email_field,v11,0.126,0.87,0.7372,0.5383,0.365,0.5256,input,auth-field-password,,0,2026-05-30 10:39:30
-327,83,password_field,v11,0.6291,0.87,0.8151,0.6246,0.365,0.6917,input,auth-field-password,,1,2026-05-30 10:39:31
-328,83,password_field,v11,0.3093,0.82,0.7433,0.7429,0.365,0.5991,input,auth-field-email,,0,2026-05-30 10:39:31
-329,84,login_button,v11,0.6135,1.0,0.81,0.6032,0.365,0.714,button,auth-submit-btn,Đăng nhập,1,2026-05-30 10:39:31
-330,85,search_input,v11,0.855,1.0,0.88,0.7355,0.615,0.8457,input,,,1,2026-05-30 10:39:34
-331,86,filter_iphone_button,v11,0.842,1.0,0.88,0.7287,0.365,0.811,button,,IPHONE,1,2026-05-30 10:40:05
-332,86,filter_iphone_button,v11,0.842,0.772,0.8626,0.7113,0.365,0.7499,button,,IPAD,0,2026-05-30 10:40:05
-333,86,filter_iphone_button,v11,0.842,0.62,0.8626,0.6934,0.615,0.7403,button,,TẤT CẢ,0,2026-05-30 10:40:05
-334,86,filter_iphone_button,v11,0.842,0.7954,0.8376,0.6092,0.365,0.7331,button,,AIRPODS,0,2026-05-30 10:40:05
-335,86,filter_iphone_button,v11,0.842,0.6785,0.8501,0.6754,0.365,0.7188,button,,MACBOOK,0,2026-05-30 10:40:05
-336,86,filter_iphone_button,v11,0.7729,0.62,0.679,0.5415,0.615,0.6591,button,,Xóa,0,2026-05-30 10:40:05
-337,87,filter_ipad_button,v11,0.842,1.0,0.88,0.7277,0.365,0.8108,button,,IPAD,1,2026-05-30 10:40:39
-338,87,filter_ipad_button,v11,0.842,0.8273,0.8501,0.6668,0.365,0.7531,button,,AIRPODS,0,2026-05-30 10:40:39
-339,87,filter_ipad_button,v11,0.842,0.772,0.8626,0.6879,0.365,0.7459,button,,IPHONE,0,2026-05-30 10:40:39
-340,87,filter_ipad_button,v11,0.842,0.6891,0.8626,0.7187,0.365,0.7312,button,,MACBOOK,0,2026-05-30 10:40:39
-341,87,filter_ipad_button,v11,0.842,0.62,0.8501,0.6356,0.615,0.728,button,,TẤT CẢ,0,2026-05-30 10:40:39
-342,87,filter_ipad_button,v11,0.7729,0.7286,0.6665,0.5443,0.615,0.6832,button,,Xóa,0,2026-05-30 10:40:39
-343,88,filter_macbook_button,v11,0.842,1.0,0.88,0.7263,0.365,0.8106,button,,MACBOOK,1,2026-05-30 10:41:13
-344,88,filter_macbook_button,v11,0.842,0.7286,0.8626,0.7091,0.365,0.7391,button,,AIRPODS,0,2026-05-30 10:41:13
-345,88,filter_macbook_button,v11,0.842,0.6785,0.8376,0.5831,0.615,0.7306,button,,TẤT CẢ,0,2026-05-30 10:41:13
-346,88,filter_macbook_button,v11,0.842,0.6891,0.8626,0.6915,0.365,0.7266,button,,IPAD,0,2026-05-30 10:41:13
-347,88,filter_macbook_button,v11,0.842,0.6785,0.8501,0.6408,0.365,0.7129,button,,IPHONE,0,2026-05-30 10:41:13
-348,88,filter_macbook_button,v11,0.7729,0.696,0.654,0.539,0.615,0.672,button,,Xóa,0,2026-05-30 10:41:13
-349,89,filter_airpods_button,v11,0.842,1.0,0.88,0.7248,0.365,0.8104,button,,AIRPODS,1,2026-05-30 10:41:46
-350,89,filter_airpods_button,v11,0.842,0.7286,0.8626,0.6742,0.365,0.7331,button,,MACBOOK,0,2026-05-30 10:41:46
-351,89,filter_airpods_button,v11,0.842,0.7582,0.8501,0.6249,0.365,0.7294,button,,IPAD,0,2026-05-30 10:41:46
-352,89,filter_airpods_button,v11,0.842,0.7954,0.8376,0.568,0.365,0.7261,button,,IPHONE,0,2026-05-30 10:41:46
-353,89,filter_airpods_button,v11,0.842,0.62,0.8251,0.5408,0.615,0.7069,button,,TẤT CẢ,0,2026-05-30 10:41:46
-354,89,filter_airpods_button,v11,0.7729,0.696,0.6415,0.5404,0.615,0.6697,button,,Xóa,0,2026-05-30 10:41:46
-355,90,filter_Tất cả_button,v11,0.93,1.0,0.88,0.7294,0.615,0.8649,button,,TẤT CẢ,1,2026-05-30 10:42:20
-356,90,filter_Tất cả_button,v11,0.842,0.62,0.8626,0.7143,0.365,0.7139,button,,IPHONE,0,2026-05-30 10:42:20
-357,90,filter_Tất cả_button,v11,0.842,0.6785,0.8376,0.6169,0.365,0.7064,button,,MACBOOK,0,2026-05-30 10:42:20
-358,90,filter_Tất cả_button,v11,0.842,0.62,0.8501,0.6619,0.365,0.7025,button,,IPAD,0,2026-05-30 10:42:20
-359,90,filter_Tất cả_button,v11,0.842,0.62,0.8251,0.5468,0.365,0.6779,button,,AIRPODS,0,2026-05-30 10:42:20
-360,90,filter_Tất cả_button,v11,0.7467,0.7213,0.7627,0.5404,0.365,0.6629,button,,Đăng xuất,0,2026-05-30 10:42:20
-361,91,contact_name_field,v2,0.8737,1.0,0.88,0.7512,0.365,0.8234,input,,,1,2026-05-30 10:46:43
-362,91,contact_name_field,v2,0.6467,1.0,0.8618,0.6495,0.365,0.7412,input,,,0,2026-05-30 10:46:43
-363,91,contact_name_field,v2,0.6531,1.0,0.8652,0.5475,0.365,0.7263,input,,,0,2026-05-30 10:46:43
-364,92,contact_phone_field,v2,0.8625,1.0,0.88,0.738,0.365,0.8181,input,,,1,2026-05-30 10:46:44
-365,92,contact_phone_field,v2,0.6467,0.95,0.8618,0.7348,0.365,0.7437,input,,,0,2026-05-30 10:46:44
-366,92,contact_phone_field,v2,0.6467,1.0,0.8545,0.6368,0.365,0.7376,input,,,0,2026-05-30 10:46:44
-367,93,contact_mess_field,v2,0.845,1.0,0.88,0.7245,0.365,0.8111,input,,,1,2026-05-30 10:46:45
-368,93,contact_mess_field,v2,0.6467,0.95,0.8545,0.7492,0.365,0.7447,input,,,0,2026-05-30 10:46:45
-369,93,contact_mess_field,v2,0.6467,0.95,0.8652,0.6472,0.365,0.7295,input,,,0,2026-05-30 10:46:45
-370,94,contact_submit_button,v2,0.93,0.5583,0.88,0.716,0.615,0.7566,button,,Gửi yêu cầu,1,2026-05-30 10:46:45
-371,94,contact_submit_button,v2,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:46:45
-372,95,contact_name_field,v3,0.9745,1.0,0.845,0.7512,0.615,0.8736,input,v3-ct-name,,1,2026-05-30 10:47:17
-373,95,contact_name_field,v3,0.6846,1.0,0.8268,0.6495,0.615,0.7744,input,v3-ct-phone,,0,2026-05-30 10:47:17
-374,95,contact_name_field,v3,0.6954,1.0,0.8302,0.5475,0.615,0.7607,input,v3-ct-message,,0,2026-05-30 10:47:17
-375,96,contact_phone_field,v3,0.9767,1.0,0.845,0.738,0.615,0.872,input,v3-ct-phone,,1,2026-05-30 10:47:18
-376,96,contact_phone_field,v3,0.6846,0.95,0.8268,0.7348,0.615,0.7769,input,v3-ct-name,,0,2026-05-30 10:47:18
-377,96,contact_phone_field,v3,0.6738,1.0,0.8195,0.6368,0.615,0.7679,input,v3-ct-message,,0,2026-05-30 10:47:18
-378,97,contact_mess_field,v3,0.9692,1.0,0.845,0.7245,0.615,0.8676,input,v3-ct-message,,1,2026-05-30 10:47:18
-379,97,contact_mess_field,v3,0.6766,0.95,0.8195,0.7492,0.615,0.7757,input,v3-ct-phone,,0,2026-05-30 10:47:18
-380,97,contact_mess_field,v3,0.6993,0.95,0.8302,0.6472,0.615,0.7667,input,v3-ct-name,,0,2026-05-30 10:47:18
-381,98,contact_submit_button,v3,0.9712,1.0,0.8545,0.6092,0.615,0.8505,button,v3-ct-btn-submit,Gửi thông tin,1,2026-05-30 10:47:19
-382,98,contact_submit_button,v3,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:47:19
-383,99,contact_name_field,v4,0.8822,1.0,0.8411,0.7146,0.365,0.8117,input,v4-contact-name,,1,2026-05-30 10:47:51
-384,99,contact_name_field,v4,0.5942,1.0,0.8229,0.6413,0.365,0.7178,input,v4-contact-phone,,0,2026-05-30 10:47:51
-385,99,contact_name_field,v4,0.6093,1.0,0.8263,0.5348,0.365,0.7045,input,v4-contact-mess,,0,2026-05-30 10:47:51
-386,100,contact_phone_field,v4,0.8828,1.0,0.8411,0.7061,0.365,0.8104,input,v4-contact-phone,,1,2026-05-30 10:47:52
-387,100,contact_phone_field,v4,0.5942,0.95,0.8229,0.6728,0.365,0.7112,input,v4-contact-name,,0,2026-05-30 10:47:52
-388,100,contact_phone_field,v4,0.5873,1.0,0.8156,0.6103,0.365,0.7092,input,v4-contact-mess,,0,2026-05-30 10:47:52
-389,101,contact_mess_field,v4,0.8822,1.0,0.8411,0.6848,0.365,0.8066,input,v4-contact-mess,,1,2026-05-30 10:47:52
-390,101,contact_mess_field,v4,0.5873,0.95,0.8156,0.6968,0.365,0.7119,input,v4-contact-phone,,0,2026-05-30 10:47:52
-391,101,contact_mess_field,v4,0.6093,0.95,0.8263,0.5956,0.365,0.7028,input,v4-contact-name,,0,2026-05-30 10:47:52
-392,102,contact_submit_button,v4,0.806,1.0,0.725,0.6171,0.365,0.7513,button,v4-btn-contact-submit,Gửi thông tin,1,2026-05-30 10:47:53
-393,102,contact_submit_button,v4,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:47:53
-394,103,contact_name_field,v5,0.93,1.0,0.845,0.5985,0.365,0.8056,input,,,1,2026-05-30 10:48:26
-395,103,contact_name_field,v5,0.6674,1.0,0.8302,0.5257,0.365,0.7194,input,,,0,2026-05-30 10:48:26
-396,103,contact_name_field,v5,0.6542,1.0,0.8268,0.5257,0.365,0.7152,input,,,0,2026-05-30 10:48:26
-397,104,contact_phone_field,v5,0.93,1.0,0.845,0.5555,0.365,0.7983,input,,,1,2026-05-30 10:48:26
-398,104,contact_phone_field,v5,0.6542,0.95,0.8268,0.683,0.365,0.7299,input,,,0,2026-05-30 10:48:26
-399,104,contact_phone_field,v5,0.6523,1.0,0.8195,0.5257,0.365,0.7132,input,,,0,2026-05-30 10:48:26
-400,105,contact_mess_field,v5,0.93,1.0,0.845,0.5257,0.365,0.7933,input,,,1,2026-05-30 10:48:27
-401,105,contact_mess_field,v5,0.6674,0.95,0.8302,0.7335,0.365,0.7427,input,,,0,2026-05-30 10:48:27
-402,105,contact_mess_field,v5,0.6523,0.95,0.8195,0.6412,0.365,0.7208,input,,,0,2026-05-30 10:48:27
-403,106,contact_submit_button,v5,0.93,1.0,0.8545,0.5261,0.615,0.8252,button,,Gửi thông tin,1,2026-05-30 10:48:28
-404,106,contact_submit_button,v5,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:48:28
-405,107,contact_name_field,v6,0.4997,1.0,0.7816,0.7512,0.365,0.7027,input,v6-contact-name,,1,2026-05-30 10:49:01
-406,107,contact_name_field,v6,0.37,1.0,0.764,0.6495,0.365,0.6469,input,v6-contact-phone,,0,2026-05-30 10:49:01
-407,107,contact_name_field,v6,0.3783,1.0,0.7564,0.5475,0.365,0.6303,input,v6-contact-mess,,0,2026-05-30 10:49:01
-408,108,contact_phone_field,v6,0.4691,1.0,0.7816,0.738,0.365,0.6922,input,v6-contact-phone,,1,2026-05-30 10:49:02
-409,108,contact_phone_field,v6,0.37,0.95,0.7659,0.7348,0.365,0.6498,input,v6-contact-name,,0,2026-05-30 10:49:02
-410,108,contact_phone_field,v6,0.365,1.0,0.7545,0.6368,0.365,0.6415,input,v6-contact-mess,,0,2026-05-30 10:49:02
-411,109,contact_mess_field,v6,0.4238,1.0,0.7693,0.7245,0.365,0.6753,input,v6-contact-mess,,1,2026-05-30 10:49:02
-412,109,contact_mess_field,v6,0.365,0.95,0.764,0.7492,0.365,0.6505,input,v6-contact-phone,,0,2026-05-30 10:49:02
-413,109,contact_mess_field,v6,0.3847,0.95,0.768,0.6472,0.365,0.6393,input,v6-contact-name,,0,2026-05-30 10:49:02
-414,110,contact_submit_button,v6,0.9146,0.8328,0.88,0.716,0.615,0.8183,button,v6-btn-contact-submit,Gửi tin nhắn,1,2026-05-30 10:49:03
-415,110,contact_submit_button,v6,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:49:03
-416,111,contact_name_field,v7,0.9879,1.0,0.865,0.511,0.365,0.8104,input,ctrl-contact-name,,1,2026-05-30 10:49:45
-417,111,contact_name_field,v7,0.7008,1.0,0.8468,0.5585,0.365,0.7373,input,ctrl-contact-phone,,0,2026-05-30 10:49:45
-418,111,contact_name_field,v7,0.7157,1.0,0.8502,0.4768,0.365,0.7281,input,ctrl-contact-mess,,0,2026-05-30 10:49:45
-419,112,contact_phone_field,v7,0.9887,1.0,0.865,0.5537,0.365,0.8179,input,ctrl-contact-phone,,1,2026-05-30 10:49:46
-420,112,contact_phone_field,v7,0.7008,0.95,0.8468,0.5547,0.365,0.7247,input,ctrl-contact-name,,0,2026-05-30 10:49:46
-421,112,contact_phone_field,v7,0.6943,1.0,0.8395,0.5025,0.365,0.7246,input,ctrl-contact-mess,,0,2026-05-30 10:49:46
-422,113,contact_mess_field,v7,0.9879,1.0,0.865,0.5503,0.365,0.8171,input,ctrl-contact-mess,,1,2026-05-30 10:49:47
-423,113,contact_mess_field,v7,0.7157,0.95,0.8502,0.558,0.365,0.7299,input,ctrl-contact-name,,0,2026-05-30 10:49:47
-424,113,contact_mess_field,v7,0.6943,0.95,0.8395,0.5095,0.365,0.7138,input,ctrl-contact-phone,,0,2026-05-30 10:49:47
-425,114,contact_submit_button,v7,0.848,1.0,0.8344,0.5514,0.615,0.8034,button,submit-contact,Gửi thông tin,1,2026-05-30 10:49:47
-426,114,contact_submit_button,v7,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:49:47
-427,115,contact_name_field,v8,0.6085,0.87,0.8079,0.7222,0.365,0.7012,input,contact-name_v8,,1,2026-05-30 10:50:20
-428,115,contact_name_field,v8,0.49,0.87,0.7846,0.6195,0.365,0.6471,input,contact-phone_v8,,0,2026-05-30 10:50:20
-429,115,contact_name_field,v8,0.4994,0.87,0.7892,0.5397,0.365,0.637,input,contact-mess_v8,,0,2026-05-30 10:50:20
-430,116,contact_phone_field,v8,0.5753,0.87,0.8095,0.7085,0.365,0.6903,input,contact-phone_v8,,1,2026-05-30 10:50:20
-431,116,contact_phone_field,v8,0.49,0.82,0.7915,0.763,0.365,0.6609,input,contact-name_v8,,0,2026-05-30 10:50:20
-432,116,contact_phone_field,v8,0.485,0.87,0.7798,0.6068,0.365,0.6427,input,contact-mess_v8,,0,2026-05-30 10:50:20
-433,117,contact_mess_field,v8,0.5078,0.87,0.7964,0.6947,0.365,0.6671,input,contact-mess_v8,,1,2026-05-30 10:50:21
-434,117,contact_mess_field,v8,0.485,0.82,0.7846,0.7742,0.365,0.6601,input,contact-phone_v8,,0,2026-05-30 10:50:21
-435,117,contact_mess_field,v8,0.4919,0.82,0.7939,0.6773,0.365,0.6473,input,contact-name_v8,,0,2026-05-30 10:50:21
-436,118,contact_submit_button,v8,0.6313,0.7916,0.7212,0.6822,0.615,0.6944,button,btn-contact-submit_v8,Gửi yêu cầu hỗ trợ,1,2026-05-30 10:50:22
-437,118,contact_submit_button,v8,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:50:22
-438,119,contact_name_field,v9,0.7839,0.87,0.7933,0.6445,0.615,0.7625,input,v9-contact-name,,1,2026-05-30 10:50:54
-439,119,contact_name_field,v9,0.5,0.87,0.7645,0.739,0.615,0.6961,input,v9-contact-phone,,0,2026-05-30 10:50:54
-440,120,contact_phone_field,v9,0.6866,0.87,0.7852,0.7252,0.615,0.7483,input,v9-contact-phone,,1,2026-05-30 10:50:55
-441,120,contact_phone_field,v9,0.6082,0.82,0.774,0.728,0.615,0.7134,input,v9-contact-name,,0,2026-05-30 10:50:55
-442,121,contact_submit_button,v9,0.9167,0.7783,0.8545,0.5867,0.615,0.7787,button,v9-contact-submit,Gửi yêu cầu,1,2026-05-30 10:50:55
-443,121,contact_submit_button,v9,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:50:55
-444,122,contact_name_field,v10,0.3892,0.87,0.7585,0.6787,0.365,0.6248,input,,,1,2026-05-30 10:51:27
-445,122,contact_name_field,v10,0.1458,0.87,0.7388,0.551,0.365,0.5334,input,,,0,2026-05-30 10:51:27
-446,123,contact_phone_field,v10,0.3117,0.87,0.756,0.6407,0.365,0.5969,input,,,1,2026-05-30 10:51:28
-447,123,contact_phone_field,v10,0.2458,0.82,0.7418,0.768,0.365,0.5859,input,,,0,2026-05-30 10:51:28
-448,124,contact_submit_button,v10,0.7243,0.8227,0.8222,0.5247,0.615,0.7204,button,,Gửi tin nhắn ngay,1,2026-05-30 10:51:28
-449,124,contact_submit_button,v10,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:51:28
-450,125,contact_name_field,v11,0.8962,0.87,0.88,0.7333,0.365,0.7952,input,,,1,2026-05-30 10:52:00
-451,125,contact_name_field,v11,0.6467,0.87,0.8618,0.6316,0.365,0.7069,input,,,0,2026-05-30 10:52:00
-452,125,contact_name_field,v11,0.6527,0.87,0.8652,0.5383,0.365,0.6934,input,,,0,2026-05-30 10:52:00
-453,126,contact_phone_field,v11,0.9171,0.87,0.88,0.7206,0.365,0.7987,input,,,1,2026-05-30 10:52:01
-454,126,contact_phone_field,v11,0.6467,0.82,0.8618,0.7516,0.365,0.7153,input,,,0,2026-05-30 10:52:01
-455,126,contact_phone_field,v11,0.6467,0.87,0.8545,0.6176,0.365,0.7031,input,,,0,2026-05-30 10:52:01
-456,127,contact_mess_field,v11,0.8447,0.87,0.88,0.7058,0.365,0.7767,input,,,1,2026-05-30 10:52:02
-457,127,contact_mess_field,v11,0.6467,0.82,0.8545,0.7646,0.365,0.7161,input,,,0,2026-05-30 10:52:02
-458,127,contact_mess_field,v11,0.6587,0.82,0.8652,0.6641,0.365,0.7044,input,,,0,2026-05-30 10:52:02
-459,128,contact_submit_button,v11,0.7833,0.7772,0.844,0.6969,0.615,0.7591,button,,Gửi yêu cầu ngay,1,2026-05-30 10:52:03
-460,128,contact_submit_button,v11,0.7414,0.7582,0.7516,0.4799,0.365,0.6578,button,,Đăng xuất,0,2026-05-30 10:52:03
-461,129,register_email_field,v2,0.93,1.0,0.88,0.7524,0.365,0.8388,input,,,1,2026-05-30 10:54:03
-462,129,register_email_field,v2,0.5467,1.0,0.8125,0.6526,0.365,0.7049,input,,,0,2026-05-30 10:54:03
-463,130,register_password_field,v2,0.93,1.0,0.88,0.7396,0.365,0.8366,input,,,1,2026-05-30 10:54:04
-464,130,register_password_field,v2,0.5467,0.95,0.8125,0.7356,0.365,0.707,input,,,0,2026-05-30 10:54:04
-465,131,register_button,v2,0.93,0.6313,1.0,0.7298,0.365,0.7705,button,,Hoàn tất đăng ký,1,2026-05-30 10:54:04
-466,132,register_email_field,v3,0.9785,1.0,0.815,0.7524,0.615,0.8689,input,v3-reg-email,,1,2026-05-30 10:54:34
-467,132,register_email_field,v3,0.5708,1.0,0.7475,0.6526,0.615,0.7284,input,v3-reg-password,,0,2026-05-30 10:54:34
-468,133,register_password_field,v3,0.9825,1.0,0.815,0.7396,0.615,0.8678,input,v3-reg-password,,1,2026-05-30 10:54:34
-469,133,register_password_field,v3,0.566,0.95,0.7475,0.7356,0.615,0.7292,input,v3-reg-email,,0,2026-05-30 10:54:34
-470,134,register_button,v3,0.959,1.0,0.5973,0.7298,0.615,0.8163,button,v3-reg-btn-submit,Đăng ký,1,2026-05-30 10:54:34
-471,135,register_email_field,v4,0.8832,1.0,0.8271,0.6112,0.365,0.7916,input,v4-register-email,,1,2026-05-30 10:55:04
-472,135,register_email_field,v4,0.4778,1.0,0.7674,0.5387,0.365,0.6579,input,v4-register-password,,0,2026-05-30 10:55:04
-473,136,register_password_field,v4,0.8843,1.0,0.8299,0.5919,0.365,0.7892,input,v4-register-password,,1,2026-05-30 10:55:05
-474,136,register_password_field,v4,0.4778,0.95,0.7674,0.6492,0.365,0.6646,input,v4-register-email,,0,2026-05-30 10:55:05
-475,137,register_button,v4,0.8665,1.0,0.9339,0.578,0.365,0.8028,button,v4-btn-register,Đăng ký,1,2026-05-30 10:55:05
-476,138,register_email_field,v5,0.93,1.0,0.83,0.6326,0.365,0.8084,input,,,1,2026-05-30 10:55:35
-477,138,register_email_field,v5,0.5467,1.0,0.7625,0.5411,0.365,0.6759,input,,,0,2026-05-30 10:55:35
-478,139,register_password_field,v5,0.93,1.0,0.83,0.5889,0.365,0.801,input,,,1,2026-05-30 10:55:35
-479,139,register_password_field,v5,0.5467,0.95,0.7625,0.7206,0.365,0.6944,input,,,0,2026-05-30 10:55:35
-480,140,register_button,v5,0.93,1.0,0.9403,0.5786,0.365,0.8213,button,,Đăng ký,1,2026-05-30 10:55:36
-481,141,register_email_field,v6,0.4557,1.0,0.7941,0.7524,0.365,0.6936,input,v6-register-email,,1,2026-05-30 10:56:06
-482,141,register_email_field,v6,0.2612,1.0,0.7584,0.6526,0.365,0.6169,input,v6-register-password,,0,2026-05-30 10:56:06
-483,142,register_password_field,v6,0.3843,1.0,0.7877,0.7104,0.365,0.6659,input,v6-register-password,,1,2026-05-30 10:56:06
-484,142,register_password_field,v6,0.2612,0.95,0.7378,0.7356,0.365,0.6149,input,v6-register-email,,0,2026-05-30 10:56:06
-485,143,register_button,v6,0.9122,0.696,1.0,0.7003,0.365,0.7762,button,v6-btn-register,Tạo tài khoản,1,2026-05-30 10:56:07
-486,144,register_email_field,v7,0.8776,1.0,0.8421,0.6721,0.365,0.8034,input,field-register-email,,1,2026-05-30 10:56:36
-487,144,register_email_field,v7,0.4745,1.0,0.7824,0.5674,0.365,0.6649,input,field-register-password,,0,2026-05-30 10:56:36
-488,145,register_password_field,v7,0.8795,1.0,0.8449,0.6499,0.365,0.8007,input,field-register-password,,1,2026-05-30 10:56:36
-489,145,register_password_field,v7,0.4745,0.95,0.7824,0.7156,0.365,0.678,input,field-register-email,,0,2026-05-30 10:56:36
-490,146,register_button,v7,0.8648,1.0,0.9669,0.6274,0.365,0.8173,button,action-register,Đăng ký,1,2026-05-30 10:56:37
-491,147,register_email_field,v8,0.5391,0.87,0.8145,0.7488,0.365,0.6884,input,register-email_v8,,1,2026-05-30 10:57:06
-492,147,register_email_field,v8,0.3445,0.87,0.7562,0.6585,0.365,0.6088,input,register-password_v8,,0,2026-05-30 10:57:06
-493,148,register_password_field,v8,0.5402,0.87,0.8199,0.744,0.365,0.6889,input,register-password_v8,,1,2026-05-30 10:57:07
-494,148,register_password_field,v8,0.3445,0.82,0.7562,0.7416,0.365,0.6109,input,register-email_v8,,0,2026-05-30 10:57:07
-495,149,register_button,v8,0.6394,0.6808,0.846,0.7419,0.365,0.6752,button,btn-register_v8,Tạo tài khoản ngay,1,2026-05-30 10:57:07
-496,150,register_email_field,v9,0.671,0.87,0.7777,0.7477,0.615,0.7464,input,v9-reg-email,,1,2026-05-30 10:57:37
-497,150,register_email_field,v9,0.4741,0.87,0.7541,0.6515,0.365,0.6422,input,v9-reg-password,,0,2026-05-30 10:57:37
-498,151,register_password_field,v9,0.675,0.87,0.8162,0.736,0.365,0.7232,input,v9-reg-password,,1,2026-05-30 10:57:38
-499,151,register_password_field,v9,0.4693,0.82,0.7191,0.7325,0.615,0.6657,input,v9-reg-email,,0,2026-05-30 10:57:38
-500,152,register_button,v9,0.8903,0.8513,0.5973,0.7358,0.615,0.763,button,v9-reg-submit,Hoàn tất đăng ký,1,2026-05-30 10:57:38
-501,153,register_email_field,v10,0.379,0.87,0.7512,0.5794,0.365,0.6037,input,v10-email-field,,1,2026-05-30 10:58:07
-502,153,register_email_field,v10,0.1641,0.87,0.6951,0.7039,0.365,0.5556,input,v10-pw-field,,0,2026-05-30 10:58:07
-503,154,register_password_field,v10,0.2726,0.87,0.7332,0.7651,0.365,0.6029,input,v10-pw-field,,1,2026-05-30 10:58:08
-504,154,register_password_field,v10,0.1708,0.82,0.6943,0.6669,0.365,0.5389,input,v10-email-field,,0,2026-05-30 10:58:08
-505,155,register_button,v10,0.8158,0.6808,0.5452,0.644,0.615,0.676,button,v10-create-account,Tạo tài khoản ngay,1,2026-05-30 10:58:08
-506,156,register_email_field,v11,0.4,1.0,0.6896,0.7274,0.365,0.6534,input,,,1,2026-05-30 10:58:38
-507,156,register_email_field,v11,0.3,1.0,0.6596,0.6261,0.365,0.6032,input,,,0,2026-05-30 10:58:38
-508,157,register_password_field,v11,0.4,1.0,0.685,0.7139,0.365,0.6502,input,,,1,2026-05-30 10:58:39
-509,157,register_password_field,v11,0.3,0.95,0.6631,0.7601,0.365,0.6146,input,,,0,2026-05-30 10:58:39
-510,158,register_button,v11,0.8357,0.8513,0.964,0.7017,0.365,0.7858,button,,Hoàn tất đăng ký,1,2026-05-30 10:58:39
-511,159,add_product_button,v2,0.93,0.8652,0.88,0.7611,0.615,0.8379,a,,Tạo sản phẩm,1,2026-05-30 11:01:13
-512,159,add_product_button,v2,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:01:13
-513,159,add_product_button,v2,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:01:13
-514,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.66,a,,Chi tiết sản phẩm,0,2026-05-30 11:01:13
-515,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.66,a,,Chi tiết sản phẩm,0,2026-05-30 11:01:13
-516,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.66,a,,Chi tiết sản phẩm,0,2026-05-30 11:01:13
-517,160,product_name_field,v2,0.93,1.0,0.88,0.747,0.365,0.8379,input,,,1,2026-05-30 11:01:32
-518,160,product_name_field,v2,0.69,1.0,0.8459,0.647,0.615,0.7793,input,,,0,2026-05-30 11:01:32
-519,160,product_name_field,v2,0.69,1.0,0.8252,0.5401,0.615,0.757,input,,,0,2026-05-30 11:01:32
-520,160,product_name_field,v2,0.69,1.0,0.8283,0.5285,0.615,0.7556,input,,,0,2026-05-30 11:01:32
-521,160,product_name_field,v2,0.69,1.0,0.8283,0.5285,0.615,0.7556,input,,,0,2026-05-30 11:01:32
-522,160,product_name_field,v2,0.59,1.0,0.8058,0.5401,0.615,0.7261,input,,,0,2026-05-30 11:01:32
-523,161,product_price_field,v2,0.93,1.0,0.88,0.7399,0.365,0.8367,input,,,1,2026-05-30 11:01:34
-524,161,product_price_field,v2,0.69,1.0,0.8311,0.5096,0.615,0.753,input,,,0,2026-05-30 11:01:34
-525,161,product_price_field,v2,0.59,1.0,0.8236,0.5418,0.615,0.7299,input,,,0,2026-05-30 11:01:34
-526,161,product_price_field,v2,0.59,1.0,0.8096,0.5215,0.615,0.7237,input,,,0,2026-05-30 11:01:34
-527,161,product_price_field,v2,0.59,1.0,0.8096,0.5215,0.615,0.7237,input,,,0,2026-05-30 11:01:34
-528,161,product_price_field,v2,0.59,1.0,0.8096,0.5096,0.615,0.7217,input,,,0,2026-05-30 11:01:34
-529,162,submit_product_button,v2,0.93,0.6533,0.88,0.6203,0.365,0.7331,button,,XÁC NHẬN ĐĂNG SẢN PHẨM,1,2026-05-30 11:01:36
-530,162,submit_product_button,v2,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:01:36
-531,162,submit_product_button,v2,0.6375,0.7286,0.5812,0.6059,0.365,0.61,button,,+ Thêm màu sắc mới,0,2026-05-30 11:01:36
-532,162,submit_product_button,v2,0.6375,0.7312,0.5812,0.4979,0.365,0.5923,button,,+ Thêm phiên bản lưu trữ,0,2026-05-30 11:01:36
-533,162,submit_product_button,v2,0.6375,0.7503,0.5812,0.4141,0.365,0.5826,button,,+ Bổ sung thông số,0,2026-05-30 11:01:36
-534,162,submit_product_button,v2,0.6729,0.62,0.5164,0.4085,0.615,0.577,button,,×,0,2026-05-30 11:01:36
-535,163,add_product_button,v3,0.9627,1.0,0.8406,0.7632,0.615,0.8716,a,v3-prod-btn-add,+ Thêm sản phẩm mới,1,2026-05-30 11:02:19
-536,163,add_product_button,v3,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:02:19
-537,163,add_product_button,v3,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:02:19
-538,163,add_product_button,v3,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:02:19
-539,163,add_product_button,v3,0.7812,0.6011,0.6931,0.5433,0.365,0.63,a,v3-prod-view-6a0d531fd7e08f5e9abf61c5,Xem chi tiết,0,2026-05-30 11:02:19
-540,163,add_product_button,v3,0.7812,0.6011,0.6915,0.5433,0.365,0.6296,a,v3-prod-view-6a1ab1b640c4b0696318f81a,Xem chi tiết,0,2026-05-30 11:02:19
-541,164,product_name_field,v3,0.9682,1.0,0.8496,0.747,0.365,0.8421,input,v3-ap-name,,1,2026-05-30 11:02:38
-542,164,product_name_field,v3,0.7143,1.0,0.8157,0.647,0.615,0.7798,input,v3-ap-image,,0,2026-05-30 11:02:38
-543,164,product_name_field,v3,0.7325,1.0,0.8009,0.517,0.615,0.7596,input,v3-ap-spec-key-0,,0,2026-05-30 11:02:38
-544,164,product_name_field,v3,0.7325,1.0,0.7981,0.517,0.615,0.7591,input,v3-ap-spec-val-0,,0,2026-05-30 11:02:38
-545,164,product_name_field,v3,0.71,1.0,0.8009,0.517,0.615,0.7536,input,v3-ap-gb-label-0,,0,2026-05-30 11:02:38
-546,164,product_name_field,v3,0.61,1.0,0.7786,0.517,0.615,0.7221,input,v3-ap-gb-price-0,,0,2026-05-30 11:02:38
-547,165,product_price_field,v3,0.9708,1.0,0.8496,0.7399,0.365,0.8416,input,v3-ap-price,,1,2026-05-30 11:02:40
-548,165,product_price_field,v3,0.7238,1.0,0.804,0.5331,0.615,0.7607,input,v3-ap-gb-price-0,,0,2026-05-30 11:02:40
-549,165,product_price_field,v3,0.6133,1.0,0.7935,0.5418,0.615,0.7302,input,v3-ap-image,,0,2026-05-30 11:02:40
-550,165,product_price_field,v3,0.6093,1.0,0.7825,0.5331,0.615,0.7254,input,v3-ap-spec-key-0,,0,2026-05-30 11:02:40
-551,165,product_price_field,v3,0.6045,1.0,0.7825,0.5331,0.615,0.7241,input,v3-ap-spec-val-0,,0,2026-05-30 11:02:40
-552,165,product_price_field,v3,0.6045,1.0,0.7825,0.5331,0.615,0.7241,input,v3-ap-gb-label-0,,0,2026-05-30 11:02:40
-553,166,submit_product_button,v3,0.9559,1.0,0.6037,0.6203,0.615,0.7981,button,v3-ap-submit,ĐĂNG BÁN SẢN PHẨM,1,2026-05-30 11:02:42
-554,166,submit_product_button,v3,0.6681,0.7467,0.6678,0.6062,0.365,0.64,button,v3-ap-add-variant,+ Thêm biến thể màu,0,2026-05-30 11:02:42
-555,166,submit_product_button,v3,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:02:42
-556,166,submit_product_button,v3,0.6634,0.6851,0.6678,0.494,0.365,0.6049,button,v3-ap-add-gb,+ Thêm lựa chọn GB,0,2026-05-30 11:02:42
-557,166,submit_product_button,v3,0.6713,0.715,0.6678,0.4123,0.365,0.6003,button,v3-ap-add-spec,+ Thêm thông số,0,2026-05-30 11:02:42
-558,166,submit_product_button,v3,0.6962,0.62,0.4873,0.4435,0.615,0.5834,button,v3-ap-rm-spec-0,×,0,2026-05-30 11:02:42
-559,167,add_product_button,v4,0.9056,1.0,0.8174,0.5473,0.615,0.8148,a,v4-btn-add-product,+ Thêm sản phẩm mới,1,2026-05-30 11:03:24
-560,167,add_product_button,v4,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:03:24
-561,167,add_product_button,v4,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:03:24
-562,167,add_product_button,v4,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:03:24
-563,167,add_product_button,v4,0.7595,0.6038,0.6916,0.5285,0.365,0.6219,a,v4-btn-view-6a0d531fd7e08f5e9abf61ed,Xem chi tiết,0,2026-05-30 11:03:24
-564,167,add_product_button,v4,0.7595,0.6011,0.6931,0.5285,0.365,0.6216,a,v4-btn-view-6a0d531fd7e08f5e9abf619d,Xem chi tiết,0,2026-05-30 11:03:24
-565,168,product_name_field,v4,0.7482,1.0,0.8169,0.6563,0.365,0.7608,input,v4-ap-name,,1,2026-05-30 11:03:44
-566,168,product_name_field,v4,0.5125,1.0,0.761,0.5121,0.615,0.6914,input,v4-ap-spec-val-0,,0,2026-05-30 11:03:44
-567,168,product_name_field,v4,0.5125,1.0,0.7516,0.5058,0.615,0.6885,input,v4-ap-spec-key-0,,0,2026-05-30 11:03:44
-568,168,product_name_field,v4,0.505,1.0,0.7441,0.5051,0.615,0.6848,input,v4-ap-variant-name-0,,0,2026-05-30 11:03:44
-569,168,product_name_field,v4,0.49,1.0,0.7516,0.5058,0.615,0.6824,input,v4-ap-gb-label-0,,0,2026-05-30 11:03:44
-570,168,product_name_field,v4,0.4926,1.0,0.741,0.5051,0.615,0.6809,input,v4-ap-variant-img-0,,0,2026-05-30 11:03:44
-571,169,product_price_field,v4,0.7508,1.0,0.7901,0.5497,0.365,0.738,input,v4-ap-price,,1,2026-05-30 11:03:45
-572,169,product_price_field,v4,0.5038,1.0,0.7511,0.5352,0.615,0.691,input,v4-ap-gb-price-0,,0,2026-05-30 11:03:45
-573,169,product_price_field,v4,0.4812,0.95,0.7265,0.5138,0.615,0.6644,input,v4-ap-variant-code-0,,0,2026-05-30 11:03:45
-574,169,product_price_field,v4,0.3893,1.0,0.7261,0.5415,0.615,0.6562,input,v4-ap-spec-key-0,,0,2026-05-30 11:03:45
-575,169,product_price_field,v4,0.3845,1.0,0.7354,0.5352,0.615,0.6557,input,v4-ap-spec-val-0,,0,2026-05-30 11:03:45
-576,169,product_price_field,v4,0.3912,1.0,0.7186,0.5422,0.615,0.6553,input,v4-ap-variant-name-0,,0,2026-05-30 11:03:45
-577,170,submit_product_button,v4,0.7359,1.0,0.9037,0.4851,0.365,0.7457,button,v4-ap-submit,ĐĂNG BÁN SẢN PHẨM,1,2026-05-30 11:03:47
-578,170,submit_product_button,v4,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:03:47
-579,170,submit_product_button,v4,0.6438,0.715,0.5273,0.516,0.365,0.5824,button,v4-ap-add-spec,+ Thêm thông số,0,2026-05-30 11:03:47
-580,170,submit_product_button,v4,0.6406,0.7467,0.5273,0.4169,0.365,0.5723,button,v4-ap-add-variant,+ Thêm biến thể màu,0,2026-05-30 11:03:47
-581,170,submit_product_button,v4,0.6359,0.6851,0.5273,0.4782,0.365,0.5667,button,v4-ap-add-gb,+ Thêm lựa chọn GB,0,2026-05-30 11:03:47
-582,170,submit_product_button,v4,0.6312,0.62,0.5209,0.4032,0.615,0.5657,button,v4-ap-rm-variant-0,×,0,2026-05-30 11:03:47
-583,171,add_product_button,v5,0.93,1.0,0.88,0.6847,0.615,0.8573,a,,+ Thêm sản phẩm mới,1,2026-05-30 11:04:31
-584,171,add_product_button,v5,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:04:31
-585,171,add_product_button,v5,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:04:31
-586,171,add_product_button,v5,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:04:31
-587,171,add_product_button,v5,0.765,0.6038,0.6715,0.5433,0.365,0.6219,a,,Xem chi tiết,0,2026-05-30 11:04:31
-588,171,add_product_button,v5,0.765,0.6038,0.6715,0.5433,0.365,0.6219,a,,Xem chi tiết,0,2026-05-30 11:04:31
-589,172,product_name_field,v5,0.93,1.0,0.86,0.5893,0.365,0.8071,input,,,1,2026-05-30 11:04:50
-590,172,product_name_field,v5,0.7125,1.0,0.8252,0.5401,0.615,0.763,input,,,0,2026-05-30 11:04:50
-591,172,product_name_field,v5,0.7125,1.0,0.8283,0.5285,0.615,0.7617,input,,,0,2026-05-30 11:04:50
-592,172,product_name_field,v5,0.69,1.0,0.8283,0.5285,0.615,0.7556,input,,,0,2026-05-30 11:04:50
-593,172,product_name_field,v5,0.69,1.0,0.8659,0.5047,0.365,0.7291,input,,,0,2026-05-30 11:04:50
-594,172,product_name_field,v5,0.59,1.0,0.8058,0.5401,0.615,0.7261,input,,,0,2026-05-30 11:04:50
-595,173,product_price_field,v5,0.93,1.0,0.86,0.5894,0.365,0.8071,input,,,1,2026-05-30 11:04:52
-596,173,product_price_field,v5,0.69,1.0,0.8311,0.5096,0.615,0.753,input,,,0,2026-05-30 11:04:52
-597,173,product_price_field,v5,0.59,1.0,0.8096,0.5215,0.615,0.7237,input,,,0,2026-05-30 11:04:52
-598,173,product_price_field,v5,0.59,1.0,0.8096,0.5215,0.615,0.7237,input,,,0,2026-05-30 11:04:52
-599,173,product_price_field,v5,0.59,1.0,0.8096,0.5096,0.615,0.7217,input,,,0,2026-05-30 11:04:52
-600,173,product_price_field,v5,0.59,1.0,0.8436,0.5418,0.365,0.7039,input,,,0,2026-05-30 11:04:52
-601,174,submit_product_button,v5,0.93,1.0,0.86,0.5355,0.365,0.7979,button,,ĐĂNG BÁN SẢN PHẨM,1,2026-05-30 11:04:54
-602,174,submit_product_button,v5,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:04:54
-603,174,submit_product_button,v5,0.6375,0.715,0.6012,0.5841,0.365,0.6071,button,,+ Thêm thông số,0,2026-05-30 11:04:54
-604,174,submit_product_button,v5,0.6375,0.6851,0.6012,0.5285,0.365,0.5904,button,,+ Thêm lựa chọn GB,0,2026-05-30 11:04:54
-605,174,submit_product_button,v5,0.6375,0.7467,0.6012,0.4155,0.365,0.586,button,,+ Thêm biến thể màu,0,2026-05-30 11:04:54
-606,174,submit_product_button,v5,0.6729,0.62,0.5164,0.4085,0.615,0.577,button,,×,0,2026-05-30 11:04:54
-607,175,add_product_button,v6,0.8827,0.9486,0.88,0.7637,0.615,0.8456,a,v6-prod-btn-add,+ Tạo sản phẩm mới,1,2026-05-30 11:05:37
-608,175,add_product_button,v6,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:05:37
-609,175,add_product_button,v6,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:05:37
-610,175,add_product_button,v6,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:05:37
-611,175,add_product_button,v6,0.71,0.6713,0.668,0.5303,0.365,0.6204,a,,Quản lý liên hệ,0,2026-05-30 11:05:37
-612,175,add_product_button,v6,0.7012,0.6011,0.6731,0.5433,0.365,0.6044,a,v6-prod-view-6a0d531fd7e08f5e9abf61c5,Xem chi tiết,0,2026-05-30 11:05:37
-613,176,product_name_field,v6,0.71,1.0,0.8252,0.5401,0.615,0.7624,input,v6-ap-spec-val-0,,1,2026-05-30 11:05:57
-614,176,product_name_field,v6,0.71,1.0,0.8283,0.5285,0.615,0.761,input,v6-ap-spec-key-0,,0,2026-05-30 11:05:57
-615,176,product_name_field,v6,0.71,1.0,0.8283,0.5285,0.615,0.761,input,v6-ap-gb-label-0,,0,2026-05-30 11:05:57
-616,176,product_name_field,v6,0.61,1.0,0.8058,0.5401,0.615,0.7315,input,v6-ap-gb-price-0,,0,2026-05-30 11:05:57
-617,176,product_name_field,v6,0.615,1.0,0.8009,0.5156,0.615,0.7277,input,v6-ap-variant-name-0,,0,2026-05-30 11:05:57
-618,176,product_name_field,v6,0.6026,1.0,0.798,0.5156,0.615,0.7238,input,v6-ap-variant-img-0,,0,2026-05-30 11:05:57
-619,177,product_price_field,v6,0.7238,1.0,0.8311,0.5096,0.615,0.7621,input,v6-ap-gb-price-0,,1,2026-05-30 11:05:59
-620,177,product_price_field,v6,0.6093,1.0,0.8096,0.5215,0.615,0.7289,input,v6-ap-spec-key-0,,0,2026-05-30 11:05:59
-621,177,product_price_field,v6,0.6045,1.0,0.8096,0.5215,0.615,0.7276,input,v6-ap-gb-label-0,,0,2026-05-30 11:05:59
-622,177,product_price_field,v6,0.6045,0.95,0.8096,0.5096,0.615,0.7136,input,v6-ap-spec-val-0,,0,2026-05-30 11:05:59
-623,177,product_price_field,v6,0.5019,1.0,0.7863,0.5345,0.615,0.6974,input,v6-ap-variant-img-0,,0,2026-05-30 11:05:59
-624,177,product_price_field,v6,0.5012,1.0,0.7834,0.5345,0.615,0.6967,input,v6-ap-variant-name-0,,0,2026-05-30 11:05:59
-625,178,submit_product_button,v6,0.8759,0.8733,0.88,0.6203,0.365,0.7713,button,v6-ap-submit,XÁC NHẬN ĐĂNG SẢN PHẨM,1,2026-05-30 11:06:00
-626,178,submit_product_button,v6,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:06:00
-627,178,submit_product_button,v6,0.6681,0.7286,0.5812,0.6059,0.365,0.6183,button,v6-ap-add-variant,+ Thêm màu sắc mới,0,2026-05-30 11:06:00
-628,178,submit_product_button,v6,0.6634,0.7312,0.5812,0.4979,0.365,0.5993,button,v6-ap-add-gb,+ Thêm phiên bản lưu trữ,0,2026-05-30 11:06:00
-629,178,submit_product_button,v6,0.6713,0.7503,0.5812,0.4141,0.365,0.5918,button,v6-ap-add-spec,+ Bổ sung thông số,0,2026-05-30 11:06:00
-630,178,submit_product_button,v6,0.6962,0.62,0.5164,0.4085,0.615,0.5833,button,v6-ap-rm-spec-0,×,0,2026-05-30 11:06:00
-631,179,add_product_button,v7,0.8893,0.9553,0.86,0.5359,0.365,0.7763,a,product-add-btn,+ Thêm sản phẩm,1,2026-05-30 11:06:45
-632,179,add_product_button,v7,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:06:45
-633,179,add_product_button,v7,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:06:45
-634,179,add_product_button,v7,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:06:45
-635,179,add_product_button,v7,0.7944,0.6038,0.6458,0.5278,0.365,0.6221,a,view-product-6a0d531fd7e08f5e9abf61ed,Xem chi tiết,0,2026-05-30 11:06:45
-636,179,add_product_button,v7,0.7944,0.6038,0.6458,0.5278,0.365,0.6221,a,view-product-6a0d531fd7e08f5e9abf61fa,Xem chi tiết,0,2026-05-30 11:06:45
-637,180,product_name_field,v7,0.6714,1.0,0.9383,0.5212,0.365,0.7413,input,,,1,2026-05-30 11:07:04
-638,180,product_name_field,v7,0.47,1.0,0.875,0.6815,0.365,0.7016,input,,,0,2026-05-30 11:07:04
-639,180,product_name_field,v7,0.47,1.0,0.9224,0.5212,0.365,0.6838,input,,,0,2026-05-30 11:07:04
-640,180,product_name_field,v7,0.47,1.0,0.8961,0.5184,0.365,0.678,input,,,0,2026-05-30 11:07:04
-641,180,product_name_field,v7,0.47,1.0,0.8961,0.5184,0.365,0.678,input,,,0,2026-05-30 11:07:04
-642,180,product_name_field,v7,0.47,1.0,0.8929,0.5184,0.365,0.6774,input,,,0,2026-05-30 11:07:04
-643,181,product_price_field,v7,0.62,1.0,0.9352,0.5261,0.365,0.7277,input,,,1,2026-05-30 11:07:06
-644,181,product_price_field,v7,0.47,1.0,0.9018,0.5289,0.365,0.681,input,,,0,2026-05-30 11:07:06
-645,181,product_price_field,v7,0.37,1.0,0.8557,0.6095,0.365,0.6585,input,,,0,2026-05-30 11:07:06
-646,181,product_price_field,v7,0.46,0.95,0.8393,0.5499,0.365,0.6573,input,,,0,2026-05-30 11:07:06
-647,181,product_price_field,v7,0.37,1.0,0.896,0.5261,0.365,0.6523,input,,,0,2026-05-30 11:07:06
-648,181,product_price_field,v7,0.37,1.0,0.8737,0.5289,0.365,0.6484,input,,,0,2026-05-30 11:07:06
-649,182,submit_product_button,v7,0.61,0.8498,0.6398,0.4484,0.615,0.6466,button,,ĐĂNG SẢN PHẨM LÊN HỆ THỐNG,1,2026-05-30 11:07:08
-650,182,submit_product_button,v7,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:07:08
-651,182,submit_product_button,v7,0.61,0.6913,0.6598,0.519,0.365,0.5946,button,,+ Thêm đặc điểm,0,2026-05-30 11:07:08
-652,182,submit_product_button,v7,0.61,0.7388,0.6598,0.4162,0.365,0.5885,button,,+ Thêm phối màu,0,2026-05-30 11:07:08
-653,182,submit_product_button,v7,0.61,0.6675,0.6598,0.4158,0.365,0.5713,button,,+ Thêm cấu hình,0,2026-05-30 11:07:08
-654,182,submit_product_button,v7,0.61,0.62,0.6326,0.4032,0.365,0.5524,button,,×,0,2026-05-30 11:07:08
-655,183,add_product_button,v8,0.64,0.9136,0.7625,0.7514,0.615,0.7461,a,,Thêm sản phẩm mới vào kho,1,2026-05-30 11:07:52
-656,183,add_product_button,v8,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:07:52
-657,183,add_product_button,v8,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:07:52
-658,183,add_product_button,v8,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:07:52
-659,183,add_product_button,v8,0.71,0.6713,0.668,0.5303,0.365,0.6204,a,,Quản lý liên hệ,0,2026-05-30 11:07:52
-660,183,add_product_button,v8,0.475,0.6038,0.5713,0.5433,0.365,0.5236,a,,Xem chi tiết,0,2026-05-30 11:07:52
-661,184,product_name_field,v8,0.55,1.0,0.7164,0.7837,0.365,0.7088,input,,,1,2026-05-30 11:08:11
-662,184,product_name_field,v8,0.4,1.0,0.6684,0.5401,0.615,0.6473,input,,,0,2026-05-30 11:08:11
-663,184,product_name_field,v8,0.4,1.0,0.6684,0.5285,0.615,0.6453,input,,,0,2026-05-30 11:08:11
-664,184,product_name_field,v8,0.4,1.0,0.6684,0.5285,0.615,0.6453,input,,,0,2026-05-30 11:08:11
-665,184,product_name_field,v8,0.3,1.0,0.6489,0.5401,0.615,0.6164,input,,,0,2026-05-30 11:08:11
-666,184,product_name_field,v8,0.3,1.0,0.6921,0.647,0.365,0.6132,input,,,0,2026-05-30 11:08:11
-667,185,product_price_field,v8,0.64,1.0,0.7191,0.7621,0.365,0.73,input,,,1,2026-05-30 11:08:13
-668,185,product_price_field,v8,0.4,1.0,0.6743,0.5096,0.615,0.6433,input,,,0,2026-05-30 11:08:13
-669,185,product_price_field,v8,0.3,1.0,0.6528,0.5215,0.615,0.614,input,,,0,2026-05-30 11:08:13
-670,185,product_price_field,v8,0.3,1.0,0.6528,0.5215,0.615,0.614,input,,,0,2026-05-30 11:08:13
-671,185,product_price_field,v8,0.3,1.0,0.6528,0.5096,0.615,0.612,input,,,0,2026-05-30 11:08:13
-672,185,product_price_field,v8,0.3,1.0,0.6921,0.5418,0.365,0.5953,input,,,0,2026-05-30 11:08:13
-673,186,submit_product_button,v8,0.64,0.9329,0.7326,0.6203,0.365,0.6925,button,,ĐĂNG TẢI SẢN PHẨM,1,2026-05-30 11:08:14
-674,186,submit_product_button,v8,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:08:14
-675,186,submit_product_button,v8,0.3475,0.7181,0.4591,0.6028,0.365,0.5043,button,,+ Thêm màu mới,0,2026-05-30 11:08:14
-676,186,submit_product_button,v8,0.3475,0.7467,0.4632,0.4951,0.365,0.4936,button,,+ Thêm phiên bản GB,0,2026-05-30 11:08:14
-677,186,submit_product_button,v8,0.3475,0.7432,0.4615,0.4169,0.365,0.4792,button,,+ Thêm dòng thông số,0,2026-05-30 11:08:14
-678,186,submit_product_button,v8,0.3829,0.62,0.4035,0.4085,0.615,0.4761,button,,−,0,2026-05-30 11:08:14
-679,187,add_product_button,v9,0.9809,0.8944,0.88,0.7632,0.615,0.859,a,v9-btn-new-product,Đăng sản phẩm mới,1,2026-05-30 11:08:59
-680,187,add_product_button,v9,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:08:59
-681,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.6618,a,v9-view-6a1ab2d740c4b06963190d08,Chi tiết sản phẩm,0,2026-05-30 11:08:59
-682,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.6618,a,v9-view-6a1ab3d640c4b06963192258,Chi tiết sản phẩm,0,2026-05-30 11:08:59
-683,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.6618,a,v9-view-6a1ac3d240c4b069631a0cf2,Chi tiết sản phẩm,0,2026-05-30 11:08:59
-684,187,add_product_button,v9,0.771,0.7624,0.6715,0.5433,0.365,0.6616,a,v9-view-6a0d531fd7e08f5e9abf61ed,Chi tiết sản phẩm,0,2026-05-30 11:08:59
-685,188,product_name_field,v9,0.7968,1.0,0.8064,0.747,0.365,0.7872,input,v9-name,,1,2026-05-30 11:09:18
-686,188,product_name_field,v9,0.7068,1.0,0.7782,0.5285,0.615,0.7501,input,v9-gb-label-0,,0,2026-05-30 11:09:18
-687,188,product_name_field,v9,0.7124,1.0,0.7551,0.5401,0.615,0.749,input,v9-spec-val-0,,0,2026-05-30 11:09:18
-688,188,product_name_field,v9,0.7124,1.0,0.7577,0.5285,0.615,0.7475,input,v9-spec-key-0,,0,2026-05-30 11:09:18
-689,188,product_name_field,v9,0.711,1.0,0.7953,0.6085,0.365,0.7383,input,v9-image,,0,2026-05-30 11:09:18
-690,188,product_name_field,v9,0.6124,1.0,0.756,0.5401,0.615,0.7222,input,v9-gb-price-0,,0,2026-05-30 11:09:18
-691,189,product_price_field,v9,0.89,1.0,0.8064,0.7399,0.365,0.8112,input,v9-price,,1,2026-05-30 11:09:20
-692,189,product_price_field,v9,0.7223,1.0,0.7813,0.5096,0.615,0.7517,input,v9-gb-price-0,,0,2026-05-30 11:09:20
-693,189,product_price_field,v9,0.6008,1.0,0.7598,0.5215,0.615,0.7166,input,v9-gb-label-0,,0,2026-05-30 11:09:20
-694,189,product_price_field,v9,0.6115,1.0,0.7395,0.5215,0.615,0.7155,input,v9-spec-key-0,,0,2026-05-30 11:09:20
-695,189,product_price_field,v9,0.6062,1.0,0.7395,0.5096,0.615,0.712,input,v9-spec-val-0,,0,2026-05-30 11:09:20
-696,189,product_price_field,v9,0.61,1.0,0.7705,0.5418,0.365,0.6947,input,v9-image,,0,2026-05-30 11:09:20
-697,190,submit_product_button,v9,0.9417,0.861,0.6597,0.5818,0.365,0.7355,button,v9-submit,XÁC NHẬN & ĐĂNG SẢN PHẨM,1,2026-05-30 11:09:22
-698,190,submit_product_button,v9,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:09:22
-699,190,submit_product_button,v9,0.6713,0.6935,0.5271,0.5894,0.365,0.5971,button,v9-add-variant,+ Thêm màu sắc,0,2026-05-30 11:09:22
-700,190,submit_product_button,v9,0.6667,0.7,0.5271,0.5706,0.365,0.5942,button,v9-add-gb,+ Thêm mức dung lượng,0,2026-05-30 11:09:22
-701,190,submit_product_button,v9,0.6752,0.7503,0.5271,0.4141,0.365,0.582,button,v9-add-spec,+ Bổ sung thông số,0,2026-05-30 11:09:22
-702,190,submit_product_button,v9,0.6979,0.62,0.4755,0.4085,0.615,0.5756,button,v9-del-spec-0,✕,0,2026-05-30 11:09:22
-703,191,add_product_button,v10,0.9918,1.0,0.88,0.7632,0.615,0.8873,a,btn-add-product_v10,+ Thêm sản phẩm mới,1,2026-05-30 11:10:07
-704,191,add_product_button,v10,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:10:07
-705,191,add_product_button,v10,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:10:07
-706,191,add_product_button,v10,0.71,0.8128,0.6805,0.5441,0.365,0.6592,a,,Sản phẩm,0,2026-05-30 11:10:07
-707,191,add_product_button,v10,0.7883,0.6038,0.6715,0.5433,0.365,0.6282,a,btn-view-6a0d531fd7e08f5e9abf61ed,Xem chi tiết,0,2026-05-30 11:10:07
-708,191,add_product_button,v10,0.7883,0.6011,0.6731,0.5433,0.365,0.6279,a,btn-view-6a0d531fd7e08f5e9abf619d,Xem chi tiết,0,2026-05-30 11:10:07
-709,192,product_name_field,v10,0.711,1.0,0.734,0.731,0.615,0.7768,input,cell-a-0,,1,2026-05-30 11:10:26
-710,192,product_name_field,v10,0.704,1.0,0.7438,0.6088,0.615,0.7561,input,cell-b-0,,0,2026-05-30 11:10:26
-711,192,product_name_field,v10,0.704,1.0,0.734,0.553,0.615,0.7447,input,cell-c-0,,0,2026-05-30 11:10:26
-712,192,product_name_field,v10,0.604,1.0,0.7243,0.5082,0.615,0.7081,input,cell-d-0,,0,2026-05-30 11:10:26
-713,192,product_name_field,v10,0.594,1.0,0.7151,0.5124,0.615,0.7043,input,cell-f-0,,0,2026-05-30 11:10:26
-714,192,product_name_field,v10,0.501,0.95,0.679,0.4771,0.615,0.654,input,cell-e-0,,0,2026-05-30 11:10:26
-715,193,product_price_field,v10,0.7033,1.0,0.747,0.5418,0.615,0.7452,input,cell-d-0,,1,2026-05-30 11:10:29
-716,193,product_price_field,v10,0.6033,1.0,0.7254,0.5418,0.615,0.7139,input,cell-b-0,,0,2026-05-30 11:10:29
-717,193,product_price_field,v10,0.6033,1.0,0.7156,0.5418,0.615,0.7119,input,cell-c-0,,0,2026-05-30 11:10:29
-718,193,product_price_field,v10,0.5833,0.95,0.6717,0.6468,0.615,0.7036,input,cell-e-0,,0,2026-05-30 11:10:29
-719,193,product_price_field,v10,0.4933,1.0,0.687,0.6967,0.615,0.7028,input,cell-f-0,,0,2026-05-30 11:10:29
-720,193,product_price_field,v10,0.6033,0.95,0.7156,0.5403,0.615,0.6997,input,cell-a-0,,0,2026-05-30 11:10:29
-721,194,submit_product_button,v10,0.8833,0.848,0.5814,0.4986,0.615,0.7169,button,publish-btn,LƯU & XUẤT BẢN SẢN PHẨM,1,2026-05-30 11:10:30
-722,194,submit_product_button,v10,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:10:30
-723,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.5568,button,ctrl-01,+ Thêm,0,2026-05-30 11:10:30
-724,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.5568,button,ctrl-02,+ Thêm,0,2026-05-30 11:10:30
-725,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.5568,button,ctrl-03,+ Thêm,0,2026-05-30 11:10:30
-726,194,submit_product_button,v10,0.5758,0.62,0.4857,0.4008,0.615,0.5433,button,rm-var-0,🗑,0,2026-05-30 11:10:30
-727,195,add_product_button,v11,0.8043,0.8575,0.8161,0.7464,0.615,0.7869,a,,Thêm hàng mới,1,2026-05-30 11:11:15
-728,195,add_product_button,v11,0.71,0.6635,0.6981,0.5794,0.615,0.6629,a,,Giới thiệu,0,2026-05-30 11:11:15
-729,195,add_product_button,v11,0.71,0.6635,0.7278,0.5282,0.615,0.6601,a,,Phone Shop,0,2026-05-30 11:11:15
-730,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.6601,a,,Chi tiết sản phẩm,0,2026-05-30 11:11:15
-731,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.6601,a,,Chi tiết sản phẩm,0,2026-05-30 11:11:15
-732,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.6601,a,,Chi tiết sản phẩm,0,2026-05-30 11:11:15
-733,196,product_name_field,v11,0.84,1.0,0.88,0.7279,0.365,0.8103,input,,,1,2026-05-30 11:11:34
-734,196,product_name_field,v11,0.69,1.0,0.8459,0.6283,0.615,0.7761,input,,,0,2026-05-30 11:11:34
-735,196,product_name_field,v11,0.69,1.0,0.8252,0.539,0.615,0.7568,input,,,0,2026-05-30 11:11:34
-736,196,product_name_field,v11,0.69,1.0,0.8283,0.5278,0.615,0.7555,input,,,0,2026-05-30 11:11:34
-737,196,product_name_field,v11,0.69,1.0,0.8283,0.5278,0.615,0.7555,input,,,0,2026-05-30 11:11:34
-738,196,product_name_field,v11,0.59,1.0,0.8058,0.539,0.615,0.7259,input,,,0,2026-05-30 11:11:34
-739,197,product_price_field,v11,0.93,1.0,0.88,0.7226,0.365,0.8337,input,,,1,2026-05-30 11:11:37
-740,197,product_price_field,v11,0.69,1.0,0.8311,0.5107,0.615,0.7531,input,,,0,2026-05-30 11:11:37
-741,197,product_price_field,v11,0.59,1.0,0.8236,0.5411,0.615,0.7298,input,,,0,2026-05-30 11:11:37
-742,197,product_price_field,v11,0.59,1.0,0.8096,0.5222,0.615,0.7238,input,,,0,2026-05-30 11:11:37
-743,197,product_price_field,v11,0.59,1.0,0.8096,0.5222,0.615,0.7238,input,,,0,2026-05-30 11:11:37
-744,197,product_price_field,v11,0.59,1.0,0.8096,0.5107,0.615,0.7218,input,,,0,2026-05-30 11:11:37
-745,198,submit_product_button,v11,0.8671,0.8733,0.8612,0.6186,0.365,0.7649,button,,XÁC NHẬN ĐĂNG SẢN PHẨM,1,2026-05-30 11:11:38
-746,198,submit_product_button,v11,0.7375,0.7662,0.617,0.4099,0.365,0.6199,button,,Đăng xuất,0,2026-05-30 11:11:38
-747,198,submit_product_button,v11,0.6375,0.7638,0.5812,0.6067,0.365,0.6186,button,,+ Thêm phiên bản màu,0,2026-05-30 11:11:38
-748,198,submit_product_button,v11,0.6375,0.6907,0.5812,0.5083,0.365,0.5843,button,,+ Thêm tùy chọn dung lượng,0,2026-05-30 11:11:38
-749,198,submit_product_button,v11,0.6729,0.62,0.5005,0.4085,0.615,0.5738,button,,×,0,2026-05-30 11:11:38
-750,198,submit_product_button,v11,0.6729,0.62,0.5005,0.4085,0.615,0.5738,button,,×,0,2026-05-30 11:11:38
+1,1,email_field,v2,0.7467,1,0.8479,0.7524,0.365,0.763527,input,,,1,5/30/2026 10:11
+2,1,email_field,v2,0.3633,1,0.7832,0.6526,0.365,0.635093,input,,,0,5/30/2026 10:11
+3,2,password_field,v2,0.93,1,0.88,0.7396,0.365,0.817902,input,,,1,5/30/2026 10:11
+4,2,password_field,v2,0.5467,0.95,0.8086,0.7356,0.365,0.687651,input,,,0,5/30/2026 10:11
+5,3,login_button,v2,0.93,0.6359,1,0.7298,0.365,0.753342,button,,X�c nh?n & �ang nh?p,1,5/30/2026 10:11
+6,4,search_input,v2,0.55,1,0.7286,0.7545,0.615,0.72931,input,,,1,5/30/2026 10:11
+7,5,filter_iphone_button,v2,0.93,0.8733,0.88,0.7441,0.365,0.788034,button,,Apple iPhone,1,5/30/2026 10:12
+8,5,filter_iphone_button,v2,0.93,0.715,0.8626,0.7086,0.365,0.742302,button,,Apple iPad,0,5/30/2026 10:12
+9,5,filter_iphone_button,v2,0.93,0.7954,0.8376,0.575,0.365,0.740566,button,,AirPods,0,5/30/2026 10:12
+10,5,filter_iphone_button,v2,0.842,0.6562,0.8626,0.6681,0.615,0.74207,button,,T?t c? danh m?c,0,5/30/2026 10:12
+11,5,filter_iphone_button,v2,0.93,0.6785,0.8501,0.642,0.365,0.72305,button,,MacBook,0,5/30/2026 10:12
+12,5,filter_iphone_button,v2,0.7729,0.6861,0.679,0.5411,0.615,0.678629,button,,G? kh?i danh s�ch,0,5/30/2026 10:12
+13,6,filter_ipad_button,v2,0.93,0.8371,0.88,0.7454,0.365,0.779502,button,,Apple iPad,1,5/30/2026 10:12
+14,6,filter_ipad_button,v2,0.93,0.8273,0.8501,0.639,0.365,0.758402,button,,AirPods,0,5/30/2026 10:12
+15,6,filter_ipad_button,v2,0.93,0.715,0.8626,0.6947,0.365,0.740634,button,,Apple iPhone,0,5/30/2026 10:12
+16,6,filter_ipad_button,v2,0.93,0.6891,0.8626,0.7008,0.365,0.73515,button,,MacBook,0,5/30/2026 10:12
+17,6,filter_ipad_button,v2,0.842,0.66,0.8501,0.6012,0.615,0.732454,button,,T?t c? danh m?c,0,5/30/2026 10:12
+18,6,filter_ipad_button,v2,0.7729,0.6924,0.6665,0.538,0.615,0.677269,button,,G? kh?i danh s�ch,0,5/30/2026 10:12
+19,7,filter_macbook_button,v2,0.93,1,0.88,0.7414,0.365,0.818118,button,,MacBook,1,5/30/2026 10:13
+20,7,filter_macbook_button,v2,0.93,0.7286,0.8626,0.6873,0.365,0.74301,button,,AirPods,0,5/30/2026 10:13
+21,7,filter_macbook_button,v2,0.93,0.6647,0.8626,0.7273,0.365,0.732474,button,,Apple iPad,0,5/30/2026 10:13
+22,7,filter_macbook_button,v2,0.93,0.7,0.8501,0.6514,0.365,0.729338,button,,Apple iPhone,0,5/30/2026 10:13
+23,7,filter_macbook_button,v2,0.842,0.6891,0.8376,0.5549,0.615,0.731382,button,,T?t c? danh m?c,0,5/30/2026 10:13
+24,7,filter_macbook_button,v2,0.7729,0.6833,0.654,0.5439,0.615,0.673293,button,,G? kh?i danh s�ch,0,5/30/2026 10:13
+25,8,filter_airpods_button,v2,0.93,1,0.88,0.7459,0.365,0.818658,button,,AirPods,1,5/30/2026 10:13
+26,8,filter_airpods_button,v2,0.93,0.7988,0.8501,0.658,0.365,0.753842,button,,Apple iPad,0,5/30/2026 10:13
+27,8,filter_airpods_button,v2,0.93,0.7286,0.8626,0.723,0.365,0.747294,button,,MacBook,0,5/30/2026 10:13
+28,8,filter_airpods_button,v2,0.93,0.78,0.8376,0.5736,0.365,0.736702,button,,Apple iPhone,0,5/30/2026 10:13
+29,8,filter_airpods_button,v2,0.842,0.6545,0.8251,0.5376,0.615,0.718502,button,,T?t c? danh m?c,0,5/30/2026 10:13
+30,8,filter_airpods_button,v2,0.7729,0.6833,0.6415,0.5425,0.615,0.670625,button,,G? kh?i danh s�ch,0,5/30/2026 10:13
+31,9,filter_T?t c?_button,v2,0.93,0.8371,0.88,0.7229,0.615,0.819302,button,,T?t c? danh m?c,1,5/30/2026 10:14
+32,9,filter_T?t c?_button,v2,0.842,0.6622,0.8626,0.7222,0.365,0.707502,button,,Apple iPhone,0,5/30/2026 10:14
+33,9,filter_T?t c?_button,v2,0.842,0.6675,0.8501,0.6489,0.365,0.697478,button,,Apple iPad,0,5/30/2026 10:14
+34,9,filter_T?t c?_button,v2,0.842,0.6785,0.8376,0.5788,0.365,0.689206,button,,MacBook,0,5/30/2026 10:14
+35,9,filter_T?t c?_button,v2,0.7729,0.6861,0.6952,0.5404,0.615,0.681785,button,,G? kh?i danh s�ch,0,5/30/2026 10:14
+36,9,filter_T?t c?_button,v2,0.7729,0.6861,0.6938,0.5404,0.615,0.681505,button,,G? kh?i danh s�ch,0,5/30/2026 10:14
+37,10,email_field,v3,0.9916,1,0.815,0.7556,0.615,0.865954,input,v3-login-email,,1,5/30/2026 10:14
+38,10,email_field,v3,0.3983,1,0.7182,0.6586,0.615,0.674763,input,v3-login-password,,0,5/30/2026 10:14
+39,11,password_field,v3,0.9932,1,0.815,0.7454,0.615,0.865162,input,v3-login-password,,1,5/30/2026 10:14
+40,11,password_field,v3,0.3983,0.95,0.7182,0.7321,0.615,0.671583,input,v3-login-email,,0,5/30/2026 10:14
+41,12,login_button,v3,0.99,1,0.62,0.7343,0.615,0.823966,button,v3-btn-login,�ang nh?p,1,5/30/2026 10:14
+42,13,search_input,v3,0.6723,1,0.6986,0.7545,0.615,0.756331,input,v3-prod-search,,1,5/30/2026 10:14
+43,14,filter_iphone_button,v3,0.9816,1,0.7249,0.7471,0.615,0.844214,button,v3-prod-filter-iphone,IPHONE,1,5/30/2026 10:15
+44,14,filter_iphone_button,v3,0.9689,0.772,0.7292,0.7255,0.615,0.784333,button,v3-prod-filter-ipad,IPAD,0,5/30/2026 10:15
+45,14,filter_iphone_button,v3,0.9695,0.7954,0.7249,0.6148,0.615,0.775967,button,v3-prod-filter-airpods,AIRPODS,0,5/30/2026 10:15
+46,14,filter_iphone_button,v3,0.9623,0.6785,0.7249,0.6846,0.615,0.754343,button,v3-prod-filter-macbook,MACBOOK,0,5/30/2026 10:15
+47,14,filter_iphone_button,v3,0.874,0.62,0.7249,0.7044,0.615,0.718838,button,v3-prod-filter-all,T?T C?,0,5/30/2026 10:15
+48,14,filter_iphone_button,v3,0.7879,0.7044,0.6703,0.5404,0.615,0.685247,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:15
+49,15,filter_ipad_button,v3,0.9794,1,0.7167,0.7457,0.615,0.841812,button,v3-prod-filter-ipad,IPAD,1,5/30/2026 10:15
+50,15,filter_ipad_button,v3,0.9716,0.8273,0.7124,0.6754,0.615,0.788962,button,v3-prod-filter-airpods,AIRPODS,0,5/30/2026 10:15
+51,15,filter_ipad_button,v3,0.9689,0.772,0.7124,0.6981,0.615,0.777685,button,v3-prod-filter-iphone,IPHONE,0,5/30/2026 10:15
+52,15,filter_ipad_button,v3,0.9641,0.6891,0.7124,0.7352,0.615,0.760945,button,v3-prod-filter-macbook,MACBOOK,0,5/30/2026 10:15
+53,15,filter_ipad_button,v3,0.8802,0.62,0.7124,0.6421,0.615,0.710536,button,v3-prod-filter-all,T?T C?,0,5/30/2026 10:15
+54,15,filter_ipad_button,v3,0.791,0.6675,0.6578,0.5373,0.615,0.674356,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:15
+55,16,filter_macbook_button,v3,0.9825,1,0.6999,0.7443,0.615,0.839121,button,v3-prod-filter-macbook,MACBOOK,1,5/30/2026 10:16
+56,16,filter_macbook_button,v3,0.965,0.7286,0.6999,0.7229,0.615,0.766692,button,v3-prod-filter-airpods,AIRPODS,0,5/30/2026 10:16
+57,16,filter_macbook_button,v3,0.9641,0.6891,0.7042,0.7027,0.615,0.755405,button,v3-prod-filter-ipad,IPAD,0,5/30/2026 10:16
+58,16,filter_macbook_button,v3,0.9623,0.6785,0.6999,0.6478,0.615,0.744927,button,v3-prod-filter-iphone,IPHONE,0,5/30/2026 10:16
+59,16,filter_macbook_button,v3,0.877,0.6785,0.6999,0.5881,0.615,0.714732,button,v3-prod-filter-all,T?T C?,0,5/30/2026 10:16
+60,16,filter_macbook_button,v3,0.7925,0.66,0.6442,0.5433,0.615,0.670961,button,v3-prod-delete-6a1ab25940c4b06963190282,X�a s?n ph?m,0,5/30/2026 10:16
+61,17,filter_airpods_button,v3,0.9825,1,0.6874,0.742,0.615,0.836345,button,v3-prod-filter-airpods,AIRPODS,1,5/30/2026 10:16
+62,17,filter_airpods_button,v3,0.965,0.7286,0.6874,0.6832,0.615,0.759428,button,v3-prod-filter-macbook,MACBOOK,0,5/30/2026 10:16
+63,17,filter_airpods_button,v3,0.9678,0.7582,0.6917,0.6312,0.615,0.761908,button,v3-prod-filter-ipad,IPAD,0,5/30/2026 10:16
+64,17,filter_airpods_button,v3,0.9695,0.7954,0.6874,0.5725,0.615,0.763391,button,v3-prod-filter-iphone,IPHONE,0,5/30/2026 10:16
+65,17,filter_airpods_button,v3,0.877,0.62,0.6874,0.5408,0.615,0.692516,button,v3-prod-filter-all,T?T C?,0,5/30/2026 10:16
+66,17,filter_airpods_button,v3,0.7901,0.7,0.6328,0.5418,0.615,0.677453,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:16
+67,18,filter_T?t c?_button,v3,0.9781,1,0.7417,0.7481,0.615,0.846749,button,v3-prod-filter-all,T?T C?,1,5/30/2026 10:17
+68,18,filter_T?t c?_button,v3,0.874,0.62,0.7417,0.7283,0.615,0.725066,button,v3-prod-filter-iphone,IPHONE,0,5/30/2026 10:17
+69,18,filter_T?t c?_button,v3,0.877,0.6785,0.7417,0.6229,0.615,0.727268,button,v3-prod-filter-macbook,MACBOOK,0,5/30/2026 10:17
+70,18,filter_T?t c?_button,v3,0.8802,0.62,0.746,0.6702,0.615,0.720628,button,v3-prod-filter-ipad,IPAD,0,5/30/2026 10:17
+71,18,filter_T?t c?_button,v3,0.877,0.62,0.7417,0.551,0.615,0.7046,button,v3-prod-filter-airpods,AIRPODS,0,5/30/2026 10:17
+72,18,filter_T?t c?_button,v3,0.7887,0.7044,0.6862,0.5397,0.615,0.688559,button,v3-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:17
+73,19,email_field,v4,0.796,1,0.8449,0.668,0.365,0.76611,input,v4-login-email,,1,5/30/2026 10:17
+74,19,email_field,v4,0.3861,1,0.7828,0.5615,0.365,0.630237,input,v4-login-password,,0,5/30/2026 10:17
+75,20,password_field,v4,0.8282,1,0.8584,0.6488,0.365,0.7752,input,v4-login-password,,1,5/30/2026 10:17
+76,20,password_field,v4,0.4167,0.95,0.79,0.7488,0.365,0.650415,input,v4-login-email,,0,5/30/2026 10:17
+77,21,login_button,v4,0.902,1,0.9606,0.6102,0.365,0.810934,button,v4-btn-login,�ANG NH?P,1,5/30/2026 10:17
+78,22,search_input,v4,0.5189,1,0.641,0.6328,0.365,0.646289,input,v4-search-input,,1,5/30/2026 10:17
+79,23,filter_iphone_button,v4,0.7743,1,0.7721,0.6579,0.365,0.744479,button,v4-btn-filter-iphone,IPHONE,1,5/30/2026 10:18
+80,23,filter_iphone_button,v4,0.7616,0.7954,0.7596,0.7037,0.365,0.694942,button,v4-btn-filter-airpods,AIRPODS,0,5/30/2026 10:18
+81,23,filter_iphone_button,v4,0.762,0.772,0.7471,0.7457,0.365,0.691974,button,v4-btn-filter-ipad,IPAD,0,5/30/2026 10:18
+82,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.681619,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,X�a s?n ph?m,0,5/30/2026 10:18
+83,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.681619,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,X�a s?n ph?m,0,5/30/2026 10:18
+84,23,filter_iphone_button,v4,0.7643,0.7044,0.6836,0.5411,0.615,0.681619,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:18
+85,24,filter_ipad_button,v4,0.7736,1,0.7596,0.6876,0.365,0.745354,button,v4-btn-filter-ipad,IPAD,1,5/30/2026 10:18
+86,24,filter_ipad_button,v4,0.7644,0.8273,0.7721,0.6419,0.365,0.698438,button,v4-btn-filter-airpods,AIRPODS,0,5/30/2026 10:18
+87,24,filter_ipad_button,v4,0.762,0.772,0.7891,0.5953,0.365,0.682326,button,v4-btn-filter-iphone,IPHONE,0,5/30/2026 10:18
+88,24,filter_ipad_button,v4,0.7625,0.62,0.7596,0.5433,0.615,0.676341,button,v4-btn-filter-all,T?T C?,0,5/30/2026 10:18
+89,24,filter_ipad_button,v4,0.7678,0.6675,0.6711,0.5429,0.615,0.671424,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,X�a s?n ph?m,0,5/30/2026 10:18
+90,24,filter_ipad_button,v4,0.7678,0.6675,0.6711,0.5429,0.615,0.671424,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,X�a s?n ph?m,0,5/30/2026 10:18
+91,25,filter_macbook_button,v4,0.7746,1,0.7596,0.5401,0.365,0.727924,button,v4-btn-filter-macbook,MACBOOK,1,5/30/2026 10:19
+92,25,filter_macbook_button,v4,0.758,0.6785,0.7471,0.5373,0.615,0.685946,button,v4-btn-filter-all,T?T C?,0,5/30/2026 10:19
+93,25,filter_macbook_button,v4,0.7567,0.7286,0.7891,0.5832,0.365,0.669027,button,v4-btn-filter-airpods,AIRPODS,0,5/30/2026 10:19
+94,25,filter_macbook_button,v4,0.7567,0.6891,0.7721,0.63,0.365,0.661763,button,v4-btn-filter-ipad,IPAD,0,5/30/2026 10:19
+95,25,filter_macbook_button,v4,0.7689,0.66,0.6574,0.5383,0.615,0.666629,button,v4-btn-delete-6a1ab1b640c4b0696318f81a,X�a s?n ph?m,0,5/30/2026 10:19
+96,25,filter_macbook_button,v4,0.7689,0.66,0.6574,0.5383,0.615,0.666629,button,v4-btn-delete-6a1ab21b40c4b0696318fd4b,X�a s?n ph?m,0,5/30/2026 10:19
+97,26,filter_airpods_button,v4,0.7746,1,0.7721,0.5401,0.365,0.730424,button,v4-btn-filter-airpods,AIRPODS,1,5/30/2026 10:19
+98,26,filter_airpods_button,v4,0.7616,0.7954,0.7596,0.5394,0.365,0.675226,button,v4-btn-filter-iphone,IPHONE,0,5/30/2026 10:19
+99,26,filter_airpods_button,v4,0.7606,0.7582,0.7891,0.5529,0.365,0.673548,button,v4-btn-filter-ipad,IPAD,0,5/30/2026 10:19
+100,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5568,0.615,0.675514,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,X�a s?n ph?m,0,5/30/2026 10:19
+101,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5401,0.615,0.67351,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,X�a s?n ph?m,0,5/30/2026 10:19
+102,26,filter_airpods_button,v4,0.7664,0.7,0.6461,0.5401,0.615,0.67351,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:19
+103,27,filter_T?t c?_button,v4,0.7732,1,0.7891,0.6236,0.615,0.785966,button,v4-btn-filter-all,T?T C?,1,5/30/2026 10:20
+104,27,filter_T?t c?_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.685261,button,v4-btn-delete-6a0d531fd7e08f5e9abf614b,X�a s?n ph?m,0,5/30/2026 10:20
+105,27,filter_T?t c?_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.685261,button,v4-btn-delete-6a0d531fd7e08f5e9abf6166,X�a s?n ph?m,0,5/30/2026 10:20
+106,27,filter_T?t c?_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.685261,button,v4-btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:20
+107,27,filter_T?t c?_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.685261,button,v4-btn-delete-6a0d531fd7e08f5e9abf6182,X�a s?n ph?m,0,5/30/2026 10:20
+108,27,filter_T?t c?_button,v4,0.7657,0.7044,0.6995,0.5418,0.615,0.685261,button,v4-btn-delete-6a0d531fd7e08f5e9abf618f,X�a s?n ph?m,0,5/30/2026 10:20
+109,28,email_field,v5,0.93,1,0.83,0.6329,0.365,0.795098,input,,,1,5/30/2026 10:20
+110,28,email_field,v5,0.3633,1,0.7332,0.5411,0.365,0.611713,input,,,0,5/30/2026 10:20
+111,29,password_field,v5,0.93,1,0.83,0.5889,0.365,0.789818,input,,,1,5/30/2026 10:20
+112,29,password_field,v5,0.3633,0.95,0.7332,0.7211,0.365,0.621313,input,,,0,5/30/2026 10:20
+113,30,login_button,v5,0.93,1,0.9625,0.5788,0.365,0.815106,button,,�ang nh?p,1,5/30/2026 10:20
+114,31,search_input,v5,0.64,1,0.7286,0.673,0.615,0.74383,input,,,1,5/30/2026 10:20
+115,32,filter_iphone_button,v5,0.93,1,0.88,0.6656,0.365,0.809022,button,,IPHONE,1,5/30/2026 10:21
+116,32,filter_iphone_button,v5,0.93,0.772,0.8626,0.6547,0.365,0.749514,button,,IPAD,0,5/30/2026 10:21
+117,32,filter_iphone_button,v5,0.93,0.7954,0.8376,0.579,0.365,0.741046,button,,AIRPODS,0,5/30/2026 10:21
+118,32,filter_iphone_button,v5,0.93,0.6785,0.8501,0.6319,0.365,0.721838,button,,MACBOOK,0,5/30/2026 10:21
+119,32,filter_iphone_button,v5,0.842,0.62,0.8626,0.6447,0.615,0.730574,button,,T?T C?,0,5/30/2026 10:21
+120,32,filter_iphone_button,v5,0.7729,0.7044,0.679,0.5404,0.615,0.682937,button,,X�a s?n ph?m,0,5/30/2026 10:21
+121,33,filter_ipad_button,v5,0.93,1,0.88,0.6652,0.365,0.808974,button,,IPAD,1,5/30/2026 10:21
+122,33,filter_ipad_button,v5,0.93,0.8273,0.8501,0.6251,0.365,0.756734,button,,AIRPODS,0,5/30/2026 10:21
+123,33,filter_ipad_button,v5,0.93,0.772,0.8626,0.6404,0.365,0.747798,button,,IPHONE,0,5/30/2026 10:21
+124,33,filter_ipad_button,v5,0.93,0.6891,0.8626,0.6587,0.365,0.730098,button,,MACBOOK,0,5/30/2026 10:21
+125,33,filter_ipad_button,v5,0.842,0.62,0.8501,0.6008,0.615,0.722806,button,,T?T C?,0,5/30/2026 10:21
+126,33,filter_ipad_button,v5,0.7729,0.6675,0.6665,0.5373,0.615,0.671209,button,,X�a s?n ph?m,0,5/30/2026 10:21
+127,34,filter_macbook_button,v5,0.93,1,0.88,0.6645,0.365,0.80889,button,,MACBOOK,1,5/30/2026 10:22
+128,34,filter_macbook_button,v5,0.93,0.7286,0.8626,0.6542,0.365,0.739038,button,,AIRPODS,0,5/30/2026 10:22
+129,34,filter_macbook_button,v5,0.93,0.6891,0.8626,0.6414,0.365,0.728022,button,,IPAD,0,5/30/2026 10:22
+130,34,filter_macbook_button,v5,0.93,0.6785,0.8501,0.6048,0.365,0.718586,button,,IPHONE,0,5/30/2026 10:22
+131,34,filter_macbook_button,v5,0.842,0.6785,0.8376,0.5556,0.615,0.728922,button,,T?T C?,0,5/30/2026 10:22
+132,34,filter_macbook_button,v5,0.7729,0.66,0.654,0.5433,0.615,0.667629,button,,X�a s?n ph?m,0,5/30/2026 10:22
+133,35,filter_airpods_button,v5,0.93,1,0.88,0.6638,0.365,0.808806,button,,AIRPODS,1,5/30/2026 10:23
+134,35,filter_airpods_button,v5,0.93,0.7286,0.8626,0.6311,0.365,0.736266,button,,MACBOOK,0,5/30/2026 10:23
+135,35,filter_airpods_button,v5,0.93,0.7582,0.8501,0.5914,0.365,0.736106,button,,IPAD,0,5/30/2026 10:23
+136,35,filter_airpods_button,v5,0.93,0.7954,0.8376,0.5425,0.365,0.736666,button,,IPHONE,0,5/30/2026 10:23
+137,35,filter_airpods_button,v5,0.842,0.62,0.8251,0.5408,0.615,0.710606,button,,T?T C?,0,5/30/2026 10:23
+138,35,filter_airpods_button,v5,0.7729,0.7,0.6415,0.5418,0.615,0.674549,button,,X�a s?n ph?m,0,5/30/2026 10:23
+139,36,filter_T?t c?_button,v5,0.93,1,0.88,0.6662,0.615,0.851594,button,,T?T C?,1,5/30/2026 10:23
+140,36,filter_T?t c?_button,v5,0.842,0.62,0.8626,0.6581,0.365,0.689682,button,,IPHONE,0,5/30/2026 10:23
+141,36,filter_T?t c?_button,v5,0.842,0.6785,0.8376,0.5851,0.365,0.689962,button,,MACBOOK,0,5/30/2026 10:23
+142,36,filter_T?t c?_button,v5,0.842,0.62,0.8501,0.6214,0.365,0.682778,button,,IPAD,0,5/30/2026 10:23
+143,36,filter_T?t c?_button,v5,0.7729,0.7044,0.6952,0.5397,0.615,0.686093,button,,X�a s?n ph?m,0,5/30/2026 10:23
+144,36,filter_T?t c?_button,v5,0.7729,0.7044,0.6938,0.5397,0.615,0.685813,button,,X�a s?n ph?m,0,5/30/2026 10:23
+145,37,email_field,v6,0.2708,1,0.7882,0.7524,0.365,0.623094,input,v6-login-email,,1,5/30/2026 10:23
+146,37,email_field,v6,0.0717,1,0.7334,0.6526,0.365,0.546401,input,v6-login-password,,0,5/30/2026 10:23
+147,38,password_field,v6,0.3832,1,0.7612,0.7396,0.365,0.646506,input,v6-login-password,,1,5/30/2026 10:23
+148,38,password_field,v6,0.255,0.95,0.7408,0.7356,0.365,0.595332,input,v6-login-email,,0,5/30/2026 10:23
+149,39,login_button,v6,0.6925,0.6891,0.931,0.7298,0.365,0.688185,button,v6-btn-login,Truy c?p ngay,1,5/30/2026 10:23
+150,40,search_input,v6,0.3523,1,0.6832,0.7545,0.615,0.666851,input,v6-prod-search,,1,5/30/2026 10:23
+151,41,filter_iphone_button,v6,0.9016,1,0.88,0.7471,0.365,0.811134,button,v6-prod-filter-iphone,IPHONE,1,5/30/2026 10:24
+152,41,filter_iphone_button,v6,0.8889,0.772,0.8626,0.7255,0.365,0.746913,button,v6-prod-filter-ipad,IPAD,0,5/30/2026 10:24
+153,41,filter_iphone_button,v6,0.8895,0.7954,0.8376,0.6148,0.365,0.734407,button,v6-prod-filter-airpods,AIRPODS,0,5/30/2026 10:24
+154,41,filter_iphone_button,v6,0.8823,0.6785,0.8501,0.6846,0.365,0.715283,button,v6-prod-filter-macbook,MACBOOK,0,5/30/2026 10:24
+155,41,filter_iphone_button,v6,0.794,0.62,0.8626,0.7044,0.615,0.724778,button,v6-prod-filter-all,T?T C?,0,5/30/2026 10:24
+156,41,filter_iphone_button,v6,0.7079,0.7044,0.679,0.5404,0.615,0.665387,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:24
+157,42,filter_ipad_button,v6,0.8994,1,0.88,0.7457,0.365,0.810372,button,v6-prod-filter-ipad,IPAD,1,5/30/2026 10:25
+158,42,filter_ipad_button,v6,0.8916,0.8273,0.8501,0.6754,0.365,0.752402,button,v6-prod-filter-airpods,AIRPODS,0,5/30/2026 10:25
+159,42,filter_ipad_button,v6,0.8889,0.772,0.8626,0.6981,0.365,0.743625,button,v6-prod-filter-iphone,IPHONE,0,5/30/2026 10:25
+160,42,filter_ipad_button,v6,0.8841,0.6891,0.8626,0.7352,0.365,0.726885,button,v6-prod-filter-macbook,MACBOOK,0,5/30/2026 10:25
+161,42,filter_ipad_button,v6,0.8002,0.62,0.8501,0.6421,0.615,0.716476,button,v6-prod-filter-all,T?T C?,0,5/30/2026 10:25
+162,42,filter_ipad_button,v6,0.711,0.6675,0.6665,0.5373,0.615,0.654496,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:25
+163,43,filter_macbook_button,v6,0.9025,1,0.88,0.7443,0.365,0.811041,button,v6-prod-filter-macbook,MACBOOK,1,5/30/2026 10:25
+164,43,filter_macbook_button,v6,0.885,0.7286,0.8626,0.7229,0.365,0.735132,button,v6-prod-filter-airpods,AIRPODS,0,5/30/2026 10:25
+165,43,filter_macbook_button,v6,0.8841,0.6891,0.8626,0.7027,0.365,0.722985,button,v6-prod-filter-ipad,IPAD,0,5/30/2026 10:25
+166,43,filter_macbook_button,v6,0.8823,0.6785,0.8501,0.6478,0.365,0.710867,button,v6-prod-filter-iphone,IPHONE,0,5/30/2026 10:25
+167,43,filter_macbook_button,v6,0.797,0.6785,0.8376,0.5881,0.615,0.720672,button,v6-prod-filter-all,T?T C?,0,5/30/2026 10:25
+168,43,filter_macbook_button,v6,0.7125,0.66,0.6527,0.5433,0.615,0.651061,button,v6-prod-delete-6a1ab25940c4b06963190282,X�a s?n ph?m,0,5/30/2026 10:25
+169,44,filter_airpods_button,v6,0.9025,1,0.88,0.742,0.365,0.810765,button,v6-prod-filter-airpods,AIRPODS,1,5/30/2026 10:26
+170,44,filter_airpods_button,v6,0.885,0.7286,0.8626,0.6832,0.365,0.730368,button,v6-prod-filter-macbook,MACBOOK,0,5/30/2026 10:26
+171,44,filter_airpods_button,v6,0.8878,0.7582,0.8501,0.6312,0.365,0.729488,button,v6-prod-filter-ipad,IPAD,0,5/30/2026 10:26
+172,44,filter_airpods_button,v6,0.8895,0.7954,0.8376,0.5725,0.365,0.729331,button,v6-prod-filter-iphone,IPHONE,0,5/30/2026 10:26
+173,44,filter_airpods_button,v6,0.797,0.62,0.8251,0.5408,0.615,0.698456,button,v6-prod-filter-all,T?T C?,0,5/30/2026 10:26
+174,44,filter_airpods_button,v6,0.7101,0.7,0.6415,0.5418,0.615,0.657593,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:26
+175,45,filter_T?t c?_button,v6,0.8981,1,0.88,0.7481,0.615,0.852809,button,v6-prod-filter-all,T?T C?,1,5/30/2026 10:26
+176,45,filter_T?t c?_button,v6,0.794,0.62,0.8626,0.7283,0.365,0.685146,button,v6-prod-filter-iphone,IPHONE,0,5/30/2026 10:26
+177,45,filter_T?t c?_button,v6,0.797,0.6785,0.8376,0.6229,0.365,0.682348,button,v6-prod-filter-macbook,MACBOOK,0,5/30/2026 10:26
+178,45,filter_T?t c?_button,v6,0.8002,0.62,0.8501,0.6702,0.365,0.677348,button,v6-prod-filter-ipad,IPAD,0,5/30/2026 10:26
+179,45,filter_T?t c?_button,v6,0.797,0.62,0.8251,0.551,0.365,0.65718,button,v6-prod-filter-airpods,AIRPODS,0,5/30/2026 10:26
+180,45,filter_T?t c?_button,v6,0.7087,0.7044,0.6952,0.5397,0.615,0.668759,button,v6-prod-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:26
+181,46,email_field,v7,0.33,1,0.867,0.6398,0.365,0.641326,input,,,1,5/30/2026 10:26
+182,46,email_field,v7,0.23,1,0.8101,0.7483,0.365,0.615966,input,,,0,5/30/2026 10:26
+183,47,password_field,v7,0.33,1,0.8718,0.7286,0.365,0.652942,input,,,1,5/30/2026 10:26
+184,47,password_field,v7,0.23,0.95,0.8194,0.7278,0.365,0.603366,input,,,0,5/30/2026 10:26
+185,48,login_button,v7,0.42,0.74,0.6949,0.681,0.615,0.61625,button,,TRUY C?P ?,1,5/30/2026 10:26
+186,49,search_input,v7,0.9623,1,0.8757,0.7037,0.615,0.863955,input,product-search,,1,5/30/2026 10:27
+187,50,filter_iphone_button,v7,0.8271,1,0.8751,0.6845,0.365,0.782527,button,category-iphone,IPHONE,1,5/30/2026 10:27
+188,50,filter_iphone_button,v7,0.8113,0.772,0.8577,0.6694,0.365,0.718249,button,category-ipad,IPAD,0,5/30/2026 10:27
+189,50,filter_iphone_button,v7,0.8026,0.62,0.8577,0.6708,0.615,0.722088,button,category-all,T?T C?,0,5/30/2026 10:27
+190,50,filter_iphone_button,v7,0.813,0.7954,0.8327,0.6001,0.365,0.711008,button,category-airpods,AIRPODS,0,5/30/2026 10:27
+191,50,filter_iphone_button,v7,0.8045,0.6785,0.8452,0.6515,0.365,0.689325,button,category-macbook,MACBOOK,0,5/30/2026 10:27
+192,50,filter_iphone_button,v7,0.7879,0.62,0.6669,0.5556,0.615,0.666135,button,delete-product-6a0d531fd7e08f5e9abf614b,X�a,0,5/30/2026 10:27
+193,51,filter_ipad_button,v7,0.8233,1,0.8751,0.6835,0.365,0.781381,button,category-ipad,IPAD,1,5/30/2026 10:28
+194,51,filter_ipad_button,v7,0.8149,0.8273,0.8452,0.6509,0.365,0.727773,button,category-airpods,AIRPODS,0,5/30/2026 10:28
+195,51,filter_ipad_button,v7,0.8113,0.772,0.8577,0.6667,0.365,0.717925,button,category-iphone,IPHONE,0,5/30/2026 10:28
+196,51,filter_ipad_button,v7,0.8093,0.62,0.8452,0.6322,0.615,0.716765,button,category-all,T?T C?,0,5/30/2026 10:28
+197,51,filter_ipad_button,v7,0.8059,0.6891,0.8577,0.6813,0.365,0.698323,button,category-macbook,MACBOOK,0,5/30/2026 10:28
+198,51,filter_ipad_button,v7,0.791,0.7286,0.6544,0.5734,0.615,0.692672,button,delete-product-6a0d531fd7e08f5e9abf6166,X�a,0,5/30/2026 10:28
+199,52,filter_macbook_button,v7,0.8286,1,0.8751,0.6812,0.365,0.782536,button,category-macbook,MACBOOK,1,5/30/2026 10:28
+200,52,filter_macbook_button,v7,0.808,0.7286,0.8577,0.6758,0.365,0.70771,button,category-airpods,AIRPODS,0,5/30/2026 10:28
+201,52,filter_macbook_button,v7,0.8067,0.6785,0.8327,0.583,0.615,0.721699,button,category-all,T?T C?,0,5/30/2026 10:28
+202,52,filter_macbook_button,v7,0.8059,0.6891,0.8577,0.6588,0.365,0.695623,button,category-ipad,IPAD,0,5/30/2026 10:28
+203,52,filter_macbook_button,v7,0.8045,0.6785,0.8452,0.626,0.365,0.686265,button,category-iphone,IPHONE,0,5/30/2026 10:28
+204,52,filter_macbook_button,v7,0.7901,0.696,0.6419,0.6009,0.615,0.685405,button,delete-product-6a0d531fd7e08f5e9abf6166,X�a,0,5/30/2026 10:28
+205,53,filter_airpods_button,v7,0.8286,1,0.8751,0.6775,0.365,0.782092,button,category-airpods,AIRPODS,1,5/30/2026 10:29
+206,53,filter_airpods_button,v7,0.808,0.7286,0.8577,0.6427,0.365,0.703738,button,category-macbook,MACBOOK,0,5/30/2026 10:29
+207,53,filter_airpods_button,v7,0.8104,0.7582,0.8452,0.6053,0.365,0.704502,button,category-ipad,IPAD,0,5/30/2026 10:29
+208,53,filter_airpods_button,v7,0.813,0.7954,0.8327,0.5616,0.365,0.706388,button,category-iphone,IPHONE,0,5/30/2026 10:29
+209,53,filter_airpods_button,v7,0.8067,0.62,0.8202,0.5387,0.615,0.699843,button,category-all,T?T C?,0,5/30/2026 10:29
+210,53,filter_airpods_button,v7,0.7876,0.696,0.6294,0.6052,0.615,0.682746,button,delete-product-6a0d531fd7e08f5e9abf6166,X�a,0,5/30/2026 10:29
+211,54,filter_T?t c?_button,v7,0.8797,1,0.8751,0.6843,0.615,0.839205,button,category-all,T?T C?,1,5/30/2026 10:29
+212,54,filter_T?t c?_button,v7,0.8026,0.62,0.8577,0.6685,0.365,0.679312,button,category-iphone,IPHONE,0,5/30/2026 10:29
+213,54,filter_T?t c?_button,v7,0.8067,0.6785,0.8327,0.6028,0.365,0.681575,button,category-macbook,MACBOOK,0,5/30/2026 10:29
+214,54,filter_T?t c?_button,v7,0.8093,0.62,0.8452,0.6306,0.365,0.674073,button,category-ipad,IPAD,0,5/30/2026 10:29
+215,54,filter_T?t c?_button,v7,0.7887,0.62,0.6828,0.5887,0.615,0.673503,button,delete-product-6a0d531fd7e08f5e9abf614b,X�a,0,5/30/2026 10:29
+216,54,filter_T?t c?_button,v7,0.8067,0.62,0.8202,0.5445,0.365,0.658039,button,category-airpods,AIRPODS,0,5/30/2026 10:29
+217,55,email_field,v8,0.4916,0.87,0.7849,0.7488,0.365,0.650418,input,login-email_v8,,1,5/30/2026 10:30
+218,55,email_field,v8,0.2925,0.87,0.741,0.6585,0.365,0.577045,input,login-password_v8,,0,5/30/2026 10:30
+219,56,password_field,v8,0.4666,0.87,0.769,0.744,0.365,0.639912,input,login-password_v8,,1,5/30/2026 10:30
+220,56,password_field,v8,0.3383,0.82,0.7451,0.7416,0.365,0.588203,input,login-email_v8,,0,5/30/2026 10:30
+221,57,login_button,v8,0.7233,1,0.9811,0.7419,0.365,0.782589,button,btn-login_v8,�ang nh?p,1,5/30/2026 10:30
+222,58,search_input,v8,0.315,1,0.6868,0.7545,0.615,0.6575,input,,,1,5/30/2026 10:30
+223,59,filter_iphone_button,v8,0.64,1,0.5741,0.7471,0.365,0.679322,button,,IPHONE,1,5/30/2026 10:30
+224,59,filter_iphone_button,v8,0.7467,0.6707,0.7707,0.5397,0.365,0.643531,button,,�ang xu?t,0,5/30/2026 10:30
+225,59,filter_iphone_button,v8,0.64,0.772,0.5631,0.7255,0.365,0.61981,button,,IPAD,0,5/30/2026 10:30
+226,59,filter_iphone_button,v8,0.64,0.7954,0.5358,0.6148,0.365,0.606682,button,,AIRPODS,0,5/30/2026 10:30
+227,59,filter_iphone_button,v8,0.64,0.6785,0.5483,0.6846,0.365,0.589502,button,,MACBOOK,0,5/30/2026 10:30
+228,59,filter_iphone_button,v8,0.552,0.62,0.5638,0.7044,0.615,0.599678,button,,T?T C?,0,5/30/2026 10:30
+229,60,filter_ipad_button,v8,0.64,1,0.5756,0.7457,0.365,0.679454,button,,IPAD,1,5/30/2026 10:31
+230,60,filter_ipad_button,v8,0.7467,0.62,0.7832,0.5429,0.365,0.634247,button,,�ang xu?t,0,5/30/2026 10:31
+231,60,filter_ipad_button,v8,0.64,0.8273,0.5483,0.6754,0.365,0.62411,button,,AIRPODS,0,5/30/2026 10:31
+232,60,filter_ipad_button,v8,0.64,0.772,0.5616,0.6981,0.365,0.616222,button,,IPHONE,0,5/30/2026 10:31
+233,60,filter_ipad_button,v8,0.64,0.6891,0.5608,0.7352,0.365,0.600618,button,,MACBOOK,0,5/30/2026 10:31
+234,60,filter_ipad_button,v8,0.552,0.62,0.5513,0.6421,0.615,0.589702,button,,T?T C?,0,5/30/2026 10:31
+235,61,filter_macbook_button,v8,0.64,1,0.5733,0.7443,0.365,0.678826,button,,MACBOOK,1,5/30/2026 10:31
+236,61,filter_macbook_button,v8,0.7467,0.62,0.7957,0.5373,0.365,0.636075,button,,�ang xu?t,0,5/30/2026 10:31
+237,61,filter_macbook_button,v8,0.64,0.7286,0.5608,0.7229,0.365,0.608622,button,,AIRPODS,0,5/30/2026 10:31
+238,61,filter_macbook_button,v8,0.64,0.6891,0.5631,0.7027,0.365,0.597178,button,,IPAD,0,5/30/2026 10:31
+239,61,filter_macbook_button,v8,0.64,0.6785,0.5491,0.6478,0.365,0.585246,button,,IPHONE,0,5/30/2026 10:31
+240,61,filter_macbook_button,v8,0.552,0.6785,0.5388,0.5881,0.615,0.594762,button,,T?T C?,0,5/30/2026 10:31
+241,62,filter_airpods_button,v8,0.64,1,0.5733,0.742,0.365,0.67855,button,,AIRPODS,1,5/30/2026 10:32
+242,62,filter_airpods_button,v8,0.7467,0.62,0.7832,0.5387,0.365,0.633743,button,,�ang xu?t,0,5/30/2026 10:32
+243,62,filter_airpods_button,v8,0.64,0.7286,0.5608,0.6832,0.365,0.603858,button,,MACBOOK,0,5/30/2026 10:32
+244,62,filter_airpods_button,v8,0.64,0.7582,0.5506,0.6312,0.365,0.602682,button,,IPAD,0,5/30/2026 10:32
+245,62,filter_airpods_button,v8,0.64,0.7954,0.5366,0.5725,0.365,0.601766,button,,IPHONE,0,5/30/2026 10:32
+246,62,filter_airpods_button,v8,0.4829,0.696,0.5439,0.5408,0.615,0.575649,button,,X�a,0,5/30/2026 10:32
+247,63,filter_T?t c?_button,v8,0.64,1,0.5763,0.7481,0.615,0.722382,button,,T?T C?,1,5/30/2026 10:32
+248,63,filter_T?t c?_button,v8,0.7467,0.7213,0.7627,0.5404,0.365,0.654159,button,,�ang xu?t,0,5/30/2026 10:32
+249,63,filter_T?t c?_button,v8,0.552,0.62,0.5616,0.7283,0.365,0.559606,button,,IPHONE,0,5/30/2026 10:32
+250,63,filter_T?t c?_button,v8,0.552,0.6785,0.5358,0.6229,0.365,0.555838,button,,MACBOOK,0,5/30/2026 10:32
+251,63,filter_T?t c?_button,v8,0.552,0.62,0.5506,0.6702,0.365,0.550434,button,,IPAD,0,5/30/2026 10:32
+252,63,filter_T?t c?_button,v8,0.4829,0.62,0.5939,0.5425,0.615,0.567613,button,,X�a,0,5/30/2026 10:32
+253,64,email_field,v9,0.5136,0.87,0.757,0.7477,0.615,0.693146,input,v9-email-input,,1,5/30/2026 10:33
+254,64,email_field,v9,0.2742,0.87,0.7299,0.6515,0.365,0.569044,input,v9-password-input,,0,5/30/2026 10:33
+255,65,password_field,v9,0.704,0.87,0.8252,0.736,0.365,0.71429,input,v9-password-input,,1,5/30/2026 10:33
+256,65,password_field,v9,0.4625,0.82,0.7203,0.7325,0.615,0.658185,input,v9-email-input,,0,5/30/2026 10:33
+257,66,login_button,v9,0.6427,0.8733,0.4542,0.7272,0.615,0.665775,button,v9-submit-login,X�c nh?n dang nh?p,1,5/30/2026 10:33
+258,67,search_input,v9,0.9045,1,0.8511,0.7545,0.615,0.849525,input,v9-search,,1,5/30/2026 10:33
+259,68,filter_iphone_button,v9,0.9894,1,0.88,0.7471,0.365,0.83484,button,v9-filter-iphone,IPHONE,1,5/30/2026 10:33
+260,68,filter_iphone_button,v9,0.9752,0.772,0.8626,0.7255,0.365,0.770214,button,v9-filter-ipad,IPAD,0,5/30/2026 10:33
+261,68,filter_iphone_button,v9,0.9753,0.7954,0.8376,0.6148,0.365,0.757573,button,v9-filter-airpods,AIRPODS,0,5/30/2026 10:33
+262,68,filter_iphone_button,v9,0.9671,0.6785,0.8501,0.6846,0.365,0.738179,button,v9-filter-macbook,MACBOOK,0,5/30/2026 10:33
+263,68,filter_iphone_button,v9,0.8793,0.62,0.8626,0.7044,0.615,0.747809,button,v9-filter-all,T?T C?,0,5/30/2026 10:33
+264,68,filter_iphone_button,v9,0.7814,0.7213,0.686,0.5422,0.615,0.690904,button,v9-edit-6a0d531fd7e08f5e9abf627e,Ch?nh s?a,0,5/30/2026 10:33
+265,69,filter_ipad_button,v9,0.9879,1,0.88,0.7457,0.365,0.834267,button,v9-filter-ipad,IPAD,1,5/30/2026 10:34
+266,69,filter_ipad_button,v9,0.9781,0.8273,0.8501,0.6754,0.365,0.775757,button,v9-filter-airpods,AIRPODS,0,5/30/2026 10:34
+267,69,filter_ipad_button,v9,0.9752,0.772,0.8626,0.6981,0.365,0.766926,button,v9-filter-iphone,IPHONE,0,5/30/2026 10:34
+268,69,filter_ipad_button,v9,0.9694,0.6891,0.8626,0.7352,0.365,0.749916,button,v9-filter-macbook,MACBOOK,0,5/30/2026 10:34
+269,69,filter_ipad_button,v9,0.887,0.62,0.8501,0.6421,0.615,0.739912,button,v9-filter-all,T?T C?,0,5/30/2026 10:34
+270,69,filter_ipad_button,v9,0.7848,0.6785,0.6699,0.539,0.615,0.677946,button,v9-edit-6a0d531fd7e08f5e9abf61ed,Ch?nh s?a,0,5/30/2026 10:34
+271,70,filter_macbook_button,v9,0.99,1,0.88,0.7443,0.365,0.834666,button,v9-filter-macbook,MACBOOK,1,5/30/2026 10:34
+272,70,filter_macbook_button,v9,0.97,0.7286,0.8626,0.7229,0.365,0.758082,button,v9-filter-airpods,AIRPODS,0,5/30/2026 10:34
+273,70,filter_macbook_button,v9,0.9694,0.6891,0.8626,0.7027,0.365,0.746016,button,v9-filter-ipad,IPAD,0,5/30/2026 10:34
+274,70,filter_macbook_button,v9,0.9671,0.6785,0.8501,0.6478,0.365,0.733763,button,v9-filter-iphone,IPHONE,0,5/30/2026 10:34
+275,70,filter_macbook_button,v9,0.8826,0.6785,0.8376,0.5881,0.615,0.743784,button,v9-filter-all,T?T C?,0,5/30/2026 10:34
+276,70,filter_macbook_button,v9,0.7813,0.6675,0.661,0.5439,0.615,0.673169,button,v9-edit-6a1ab25940c4b06963190282,Ch?nh s?a,0,5/30/2026 10:34
+277,71,filter_airpods_button,v9,0.99,1,0.88,0.742,0.365,0.83439,button,v9-filter-airpods,AIRPODS,1,5/30/2026 10:35
+278,71,filter_airpods_button,v9,0.97,0.7286,0.8626,0.6832,0.365,0.753318,button,v9-filter-macbook,MACBOOK,0,5/30/2026 10:35
+279,71,filter_airpods_button,v9,0.9737,0.7582,0.8501,0.6312,0.365,0.752681,button,v9-filter-ipad,IPAD,0,5/30/2026 10:35
+280,71,filter_airpods_button,v9,0.9753,0.7954,0.8376,0.5725,0.365,0.752497,button,v9-filter-iphone,IPHONE,0,5/30/2026 10:35
+281,71,filter_airpods_button,v9,0.8826,0.62,0.8251,0.5408,0.615,0.721568,button,v9-filter-all,T?T C?,0,5/30/2026 10:35
+282,71,filter_airpods_button,v9,0.7841,0.6675,0.6449,0.5436,0.615,0.670669,button,v9-edit-6a0d531fd7e08f5e9abf61ed,Ch?nh s?a,0,5/30/2026 10:35
+283,72,filter_T?t c?_button,v9,0.987,1,0.88,0.7481,0.615,0.876812,button,v9-filter-all,T?T C?,1,5/30/2026 10:36
+284,72,filter_T?t c?_button,v9,0.8793,0.62,0.8626,0.7283,0.365,0.708177,button,v9-filter-iphone,IPHONE,0,5/30/2026 10:36
+285,72,filter_T?t c?_button,v9,0.8826,0.6785,0.8376,0.6229,0.365,0.70546,button,v9-filter-macbook,MACBOOK,0,5/30/2026 10:36
+286,72,filter_T?t c?_button,v9,0.887,0.62,0.8501,0.6702,0.365,0.700784,button,v9-filter-ipad,IPAD,0,5/30/2026 10:36
+287,72,filter_T?t c?_button,v9,0.8826,0.62,0.8251,0.551,0.365,0.680292,button,v9-filter-airpods,AIRPODS,0,5/30/2026 10:36
+288,72,filter_T?t c?_button,v9,0.782,0.6707,0.7021,0.5415,0.615,0.682058,button,v9-edit-6a0d531fd7e08f5e9abf627e,Ch?nh s?a,0,5/30/2026 10:36
+289,73,email_field,v10,0.2242,0.87,0.6075,0.7004,0.365,0.536932,input,,,1,5/30/2026 10:36
+290,73,email_field,v10,0.0275,0.87,0.5379,0.5759,0.365,0.454963,input,,,0,5/30/2026 10:36
+291,74,password_field,v10,0.27,0.87,0.6049,0.6634,0.365,0.544338,input,,,1,5/30/2026 10:36
+292,74,password_field,v10,0.0733,0.82,0.5365,0.7659,0.365,0.477849,input,,,0,5/30/2026 10:36
+293,75,login_button,v10,0.4657,0.6545,0.493,0.6404,0.615,0.562817,button,,V�o t�i kho?n,1,5/30/2026 10:36
+294,76,search_input,v10,0.93,1,0.88,0.7545,0.615,0.86219,input,,,1,5/30/2026 10:36
+295,77,filter_iphone_button,v10,0.93,1,0.8023,0.6749,0.615,0.837098,button,,IPHONE,1,5/30/2026 10:36
+296,77,filter_iphone_button,v10,0.93,0.772,0.8023,0.744,0.615,0.79067,button,,IPAD,0,5/30/2026 10:36
+297,77,filter_iphone_button,v10,0.93,0.7954,0.8023,0.6148,0.615,0.780782,button,,AIRPODS,0,5/30/2026 10:36
+298,77,filter_iphone_button,v10,0.93,0.6785,0.8023,0.7363,0.615,0.767306,button,,MACBOOK,0,5/30/2026 10:36
+299,77,filter_iphone_button,v10,0.842,0.62,0.8023,0.7044,0.615,0.725678,button,,T?T C?,0,5/30/2026 10:36
+300,77,filter_iphone_button,v10,0.7971,0.7044,0.6628,0.5436,0.615,0.686615,button,btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:36
+301,78,filter_ipad_button,v10,0.93,1,0.7898,0.6999,0.615,0.837598,button,,IPAD,1,5/30/2026 10:37
+302,78,filter_ipad_button,v10,0.93,0.8273,0.7898,0.6754,0.615,0.79321,button,,AIRPODS,0,5/30/2026 10:37
+303,78,filter_ipad_button,v10,0.93,0.772,0.7898,0.7301,0.615,0.786502,button,,IPHONE,0,5/30/2026 10:37
+304,78,filter_ipad_button,v10,0.93,0.6891,0.7898,0.7352,0.615,0.767218,button,,MACBOOK,0,5/30/2026 10:37
+305,78,filter_ipad_button,v10,0.842,0.62,0.7898,0.6421,0.615,0.715702,button,,T?T C?,0,5/30/2026 10:37
+306,78,filter_ipad_button,v10,0.7991,0.7286,0.6541,0.5383,0.615,0.690587,button,btn-edit-6a1ab2d740c4b06963190d08,S?a,0,5/30/2026 10:37
+307,79,filter_macbook_button,v10,0.93,1,0.7773,0.697,0.615,0.83475,button,,MACBOOK,1,5/30/2026 10:38
+308,79,filter_macbook_button,v10,0.93,0.7286,0.7773,0.7229,0.615,0.772722,button,,AIRPODS,0,5/30/2026 10:38
+309,79,filter_macbook_button,v10,0.93,0.6785,0.7773,0.7458,0.615,0.763446,button,,IPHONE,0,5/30/2026 10:38
+310,79,filter_macbook_button,v10,0.93,0.6891,0.7773,0.6447,0.615,0.753858,button,,IPAD,0,5/30/2026 10:38
+311,79,filter_macbook_button,v10,0.842,0.6785,0.7773,0.5881,0.615,0.720762,button,,T?T C?,0,5/30/2026 10:38
+312,79,filter_macbook_button,v10,0.8003,0.696,0.645,0.5324,0.615,0.680559,button,btn-edit-6a1ab25940c4b06963190282,S?a,0,5/30/2026 10:38
+313,80,filter_airpods_button,v10,0.93,1,0.7648,0.742,0.615,0.83765,button,,AIRPODS,1,5/30/2026 10:38
+314,80,filter_airpods_button,v10,0.93,0.7954,0.7648,0.6922,0.615,0.78257,button,,IPHONE,0,5/30/2026 10:38
+315,80,filter_airpods_button,v10,0.93,0.7286,0.7648,0.6231,0.615,0.758246,button,,MACBOOK,0,5/30/2026 10:38
+316,80,filter_airpods_button,v10,0.93,0.7582,0.7648,0.5697,0.615,0.758942,button,,IPAD,0,5/30/2026 10:38
+317,80,filter_airpods_button,v10,0.842,0.62,0.7648,0.5408,0.615,0.698546,button,,T?T C?,0,5/30/2026 10:38
+318,80,filter_airpods_button,v10,0.7993,0.7,0.6253,0.5422,0.615,0.678485,button,btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:38
+319,81,filter_T?t c?_button,v10,0.93,1,0.8193,0.7481,0.615,0.849282,button,,T?T C?,1,5/30/2026 10:39
+320,81,filter_T?t c?_button,v10,0.842,0.6785,0.8193,0.6826,0.615,0.740502,button,,MACBOOK,0,5/30/2026 10:39
+321,81,filter_T?t c?_button,v10,0.842,0.62,0.8193,0.7252,0.615,0.731574,button,,IPAD,0,5/30/2026 10:39
+322,81,filter_T?t c?_button,v10,0.842,0.62,0.8193,0.6141,0.615,0.718242,button,,IPHONE,0,5/30/2026 10:39
+323,81,filter_T?t c?_button,v10,0.842,0.62,0.8193,0.551,0.615,0.71067,button,,AIRPODS,0,5/30/2026 10:39
+324,81,filter_T?t c?_button,v10,0.7986,0.7044,0.6787,0.5443,0.615,0.690284,button,btn-delete-6a0d531fd7e08f5e9abf6174,X�a s?n ph?m,0,5/30/2026 10:39
+325,82,email_field,v11,0.4396,0.87,0.8129,0.6616,0.365,0.631514,input,auth-field-email,,1,5/30/2026 10:39
+326,82,email_field,v11,0.126,0.87,0.7372,0.5383,0.365,0.516906,input,auth-field-password,,0,5/30/2026 10:39
+327,83,password_field,v11,0.6291,0.87,0.8151,0.6246,0.365,0.678679,input,auth-field-password,,1,5/30/2026 10:39
+328,83,password_field,v11,0.3093,0.82,0.7433,0.7429,0.365,0.580169,input,auth-field-email,,0,5/30/2026 10:39
+329,84,login_button,v11,0.6135,1,0.81,0.6032,0.365,0.702079,button,auth-submit-btn,�ang nh?p,1,5/30/2026 10:39
+330,85,search_input,v11,0.855,1,0.88,0.7355,0.615,0.83966,input,,,1,5/30/2026 10:39
+331,86,filter_iphone_button,v11,0.842,1,0.88,0.7287,0.365,0.792834,button,,IPHONE,1,5/30/2026 10:40
+332,86,filter_iphone_button,v11,0.842,0.772,0.8626,0.7113,0.365,0.732546,button,,IPAD,0,5/30/2026 10:40
+333,86,filter_iphone_button,v11,0.842,0.62,0.8626,0.6934,0.615,0.736418,button,,T?T C?,0,5/30/2026 10:40
+334,86,filter_iphone_button,v11,0.842,0.7954,0.8376,0.6092,0.365,0.72091,button,,AIRPODS,0,5/30/2026 10:40
+335,86,filter_iphone_button,v11,0.842,0.6785,0.8501,0.6754,0.365,0.703298,button,,MACBOOK,0,5/30/2026 10:40
+336,86,filter_iphone_button,v11,0.7729,0.62,0.679,0.5415,0.615,0.662813,button,,X�a,0,5/30/2026 10:40
+337,87,filter_ipad_button,v11,0.842,1,0.88,0.7277,0.365,0.792714,button,,IPAD,1,5/30/2026 10:40
+338,87,filter_ipad_button,v11,0.842,0.8273,0.8501,0.6668,0.365,0.737978,button,,AIRPODS,0,5/30/2026 10:40
+339,87,filter_ipad_button,v11,0.842,0.772,0.8626,0.6879,0.365,0.729738,button,,IPHONE,0,5/30/2026 10:40
+340,87,filter_ipad_button,v11,0.842,0.6891,0.8626,0.7187,0.365,0.713538,button,,MACBOOK,0,5/30/2026 10:40
+341,87,filter_ipad_button,v11,0.842,0.62,0.8501,0.6356,0.615,0.726982,button,,T?T C?,0,5/30/2026 10:40
+342,87,filter_ipad_button,v11,0.7729,0.7286,0.6665,0.5443,0.615,0.686713,button,,X�a,0,5/30/2026 10:40
+343,88,filter_macbook_button,v11,0.842,1,0.88,0.7263,0.365,0.792546,button,,MACBOOK,1,5/30/2026 10:41
+344,88,filter_macbook_button,v11,0.842,0.7286,0.8626,0.7091,0.365,0.721866,button,,AIRPODS,0,5/30/2026 10:41
+345,88,filter_macbook_button,v11,0.842,0.6785,0.8376,0.5831,0.615,0.732222,button,,T?T C?,0,5/30/2026 10:41
+346,88,filter_macbook_button,v11,0.842,0.6891,0.8626,0.6915,0.365,0.710274,button,,IPAD,0,5/30/2026 10:41
+347,88,filter_macbook_button,v11,0.842,0.6785,0.8501,0.6408,0.365,0.699146,button,,IPHONE,0,5/30/2026 10:41
+348,88,filter_macbook_button,v11,0.7729,0.696,0.654,0.539,0.615,0.675753,button,,X�a,0,5/30/2026 10:41
+349,89,filter_airpods_button,v11,0.842,1,0.88,0.7248,0.365,0.792366,button,,AIRPODS,1,5/30/2026 10:41
+350,89,filter_airpods_button,v11,0.842,0.7286,0.8626,0.6742,0.365,0.717678,button,,MACBOOK,0,5/30/2026 10:41
+351,89,filter_airpods_button,v11,0.842,0.7582,0.8501,0.6249,0.365,0.716366,button,,IPAD,0,5/30/2026 10:41
+352,89,filter_airpods_button,v11,0.842,0.7954,0.8376,0.568,0.365,0.715966,button,,IPHONE,0,5/30/2026 10:41
+353,89,filter_airpods_button,v11,0.842,0.62,0.8251,0.5408,0.615,0.710606,button,,T?T C?,0,5/30/2026 10:41
+354,89,filter_airpods_button,v11,0.7729,0.696,0.6415,0.5404,0.615,0.673421,button,,X�a,0,5/30/2026 10:41
+355,90,filter_T?t c?_button,v11,0.93,1,0.88,0.7294,0.615,0.859178,button,,T?T C?,1,5/30/2026 10:42
+356,90,filter_T?t c?_button,v11,0.842,0.62,0.8626,0.7143,0.365,0.696426,button,,IPHONE,0,5/30/2026 10:42
+357,90,filter_T?t c?_button,v11,0.842,0.6785,0.8376,0.6169,0.365,0.693778,button,,MACBOOK,0,5/30/2026 10:42
+358,90,filter_T?t c?_button,v11,0.842,0.62,0.8501,0.6619,0.365,0.687638,button,,IPAD,0,5/30/2026 10:42
+359,90,filter_T?t c?_button,v11,0.842,0.62,0.8251,0.5468,0.365,0.668826,button,,AIRPODS,0,5/30/2026 10:42
+360,90,filter_T?t c?_button,v11,0.7467,0.7213,0.7627,0.5404,0.365,0.654159,button,,�ang xu?t,0,5/30/2026 10:42
+361,91,contact_name_field,v2,0.8737,1,0.88,0.7512,0.365,0.804093,input,,,1,5/30/2026 10:46
+362,91,contact_name_field,v2,0.6467,1,0.8618,0.6495,0.365,0.726959,input,,,0,5/30/2026 10:46
+363,91,contact_name_field,v2,0.6531,1,0.8652,0.5475,0.365,0.717127,input,,,0,5/30/2026 10:46
+364,92,contact_phone_field,v2,0.8625,1,0.88,0.738,0.365,0.799485,input,,,1,5/30/2026 10:46
+365,92,contact_phone_field,v2,0.6467,0.95,0.8618,0.7348,0.365,0.725195,input,,,0,5/30/2026 10:46
+366,92,contact_phone_field,v2,0.6467,1,0.8545,0.6368,0.365,0.723975,input,,,0,5/30/2026 10:46
+367,93,contact_mess_field,v2,0.845,1,0.88,0.7245,0.365,0.79314,input,,,1,5/30/2026 10:46
+368,93,contact_mess_field,v2,0.6467,0.95,0.8545,0.7492,0.365,0.725463,input,,,0,5/30/2026 10:46
+369,93,contact_mess_field,v2,0.6467,0.95,0.8652,0.6472,0.365,0.715363,input,,,0,5/30/2026 10:46
+370,94,contact_submit_button,v2,0.93,0.5583,0.88,0.716,0.615,0.751562,button,,G?i y�u c?u,1,5/30/2026 10:46
+371,94,contact_submit_button,v2,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:46
+372,95,contact_name_field,v3,0.9745,1,0.845,0.7512,0.615,0.866809,input,v3-ct-name,,1,5/30/2026 10:47
+373,95,contact_name_field,v3,0.6846,1,0.8268,0.6495,0.615,0.772692,input,v3-ct-phone,,0,5/30/2026 10:47
+374,95,contact_name_field,v3,0.6954,1,0.8302,0.5475,0.615,0.764048,input,v3-ct-message,,0,5/30/2026 10:47
+375,96,contact_phone_field,v3,0.9767,1,0.845,0.738,0.615,0.865819,input,v3-ct-phone,,1,5/30/2026 10:47
+376,96,contact_phone_field,v3,0.6846,0.95,0.8268,0.7348,0.615,0.770928,input,v3-ct-name,,0,5/30/2026 10:47
+377,96,contact_phone_field,v3,0.6738,1,0.8195,0.6368,0.615,0.766792,input,v3-ct-message,,0,5/30/2026 10:47
+378,97,contact_mess_field,v3,0.9692,1,0.845,0.7245,0.615,0.862174,input,v3-ct-message,,1,5/30/2026 10:47
+379,97,contact_mess_field,v3,0.6766,0.95,0.8195,0.7492,0.615,0.769036,input,v3-ct-phone,,0,5/30/2026 10:47
+380,97,contact_mess_field,v3,0.6993,0.95,0.8302,0.6472,0.615,0.765065,input,v3-ct-name,,0,5/30/2026 10:47
+381,98,contact_submit_button,v3,0.9712,1,0.8545,0.6092,0.615,0.850778,button,v3-ct-btn-submit,G?i th�ng tin,1,5/30/2026 10:47
+382,98,contact_submit_button,v3,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:47
+383,99,contact_name_field,v4,0.8822,1,0.8411,0.7146,0.365,0.794216,input,v4-contact-name,,1,5/30/2026 10:47
+384,99,contact_name_field,v4,0.5942,1,0.8229,0.6413,0.365,0.70402,input,v4-contact-phone,,0,5/30/2026 10:47
+385,99,contact_name_field,v4,0.6093,1,0.8263,0.5348,0.365,0.695997,input,v4-contact-mess,,0,5/30/2026 10:47
+386,100,contact_phone_field,v4,0.8828,1,0.8411,0.7061,0.365,0.793358,input,v4-contact-phone,,1,5/30/2026 10:47
+387,100,contact_phone_field,v4,0.5942,0.95,0.8229,0.6728,0.365,0.6958,input,v4-contact-name,,0,5/30/2026 10:47
+388,100,contact_phone_field,v4,0.5873,1,0.8156,0.6103,0.365,0.696977,input,v4-contact-mess,,0,5/30/2026 10:47
+389,101,contact_mess_field,v4,0.8822,1,0.8411,0.6848,0.365,0.79064,input,v4-contact-mess,,1,5/30/2026 10:47
+390,101,contact_mess_field,v4,0.5873,0.95,0.8156,0.6968,0.365,0.695357,input,v4-contact-phone,,0,5/30/2026 10:47
+391,101,contact_mess_field,v4,0.6093,0.95,0.8263,0.5956,0.365,0.691293,input,v4-contact-name,,0,5/30/2026 10:47
+392,102,contact_submit_button,v4,0.806,1,0.725,0.6171,0.365,0.738722,button,v4-btn-contact-submit,G?i th�ng tin,1,5/30/2026 10:47
+393,102,contact_submit_button,v4,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:47
+394,103,contact_name_field,v5,0.93,1,0.845,0.5985,0.365,0.79397,input,,,1,5/30/2026 10:48
+395,103,contact_name_field,v5,0.6674,1,0.8302,0.5257,0.365,0.711372,input,,,0,5/30/2026 10:48
+396,103,contact_name_field,v5,0.6542,1,0.8268,0.5257,0.365,0.707128,input,,,0,5/30/2026 10:48
+397,104,contact_phone_field,v5,0.93,1,0.845,0.5555,0.365,0.78881,input,,,1,5/30/2026 10:48
+398,104,contact_phone_field,v5,0.6542,0.95,0.8268,0.683,0.365,0.714004,input,,,0,5/30/2026 10:48
+399,104,contact_phone_field,v5,0.6523,1,0.8195,0.5257,0.365,0.705155,input,,,0,5/30/2026 10:48
+400,105,contact_mess_field,v5,0.93,1,0.845,0.5257,0.365,0.785234,input,,,1,5/30/2026 10:48
+401,105,contact_mess_field,v5,0.6674,0.95,0.8302,0.7335,0.365,0.724308,input,,,0,5/30/2026 10:48
+402,105,contact_mess_field,v5,0.6523,0.95,0.8195,0.6412,0.365,0.707015,input,,,0,5/30/2026 10:48
+403,106,contact_submit_button,v5,0.93,1,0.8545,0.5261,0.615,0.829682,button,,G?i th�ng tin,1,5/30/2026 10:48
+404,106,contact_submit_button,v5,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:48
+405,107,contact_name_field,v6,0.4997,1,0.7816,0.7512,0.365,0.683433,input,v6-contact-name,,1,5/30/2026 10:49
+406,107,contact_name_field,v6,0.37,1,0.764,0.6495,0.365,0.63269,input,v6-contact-phone,,0,5/30/2026 10:49
+407,107,contact_name_field,v6,0.3783,1,0.7564,0.5475,0.365,0.621171,input,v6-contact-mess,,0,5/30/2026 10:49
+408,108,contact_phone_field,v6,0.4691,1,0.7816,0.738,0.365,0.673587,input,v6-contact-phone,,1,5/30/2026 10:49
+409,108,contact_phone_field,v6,0.37,0.95,0.7659,0.7348,0.365,0.631306,input,v6-contact-name,,0,5/30/2026 10:49
+410,108,contact_phone_field,v6,0.365,1,0.7545,0.6368,0.365,0.627916,input,v6-contact-mess,,0,5/30/2026 10:49
+411,109,contact_mess_field,v6,0.4238,1,0.7693,0.7245,0.365,0.657276,input,v6-contact-mess,,1,5/30/2026 10:49
+412,109,contact_mess_field,v6,0.365,0.95,0.764,0.7492,0.365,0.631304,input,v6-contact-phone,,0,5/30/2026 10:49
+413,109,contact_mess_field,v6,0.3847,0.95,0.768,0.6472,0.365,0.625183,input,v6-contact-name,,0,5/30/2026 10:49
+414,110,contact_submit_button,v6,0.9146,0.8328,0.88,0.716,0.615,0.813284,button,v6-btn-contact-submit,G?i tin nh?n,1,5/30/2026 10:49
+415,110,contact_submit_button,v6,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:49
+416,111,contact_name_field,v7,0.9879,1,0.865,0.511,0.365,0.803103,input,ctrl-contact-name,,1,5/30/2026 10:49
+417,111,contact_name_field,v7,0.7008,1,0.8468,0.5585,0.365,0.727646,input,ctrl-contact-phone,,0,5/30/2026 10:49
+418,111,contact_name_field,v7,0.7157,1,0.8502,0.4768,0.365,0.722545,input,ctrl-contact-mess,,0,5/30/2026 10:49
+419,112,contact_phone_field,v7,0.9887,1,0.865,0.5537,0.365,0.808443,input,ctrl-contact-phone,,1,5/30/2026 10:49
+420,112,contact_phone_field,v7,0.7008,0.95,0.8468,0.5547,0.365,0.71519,input,ctrl-contact-name,,0,5/30/2026 10:49
+421,112,contact_phone_field,v7,0.6943,1,0.8395,0.5025,0.365,0.717711,input,ctrl-contact-mess,,0,5/30/2026 10:49
+422,113,contact_mess_field,v7,0.9879,1,0.865,0.5503,0.365,0.807819,input,ctrl-contact-mess,,1,5/30/2026 10:49
+423,113,contact_mess_field,v7,0.7157,0.95,0.8502,0.558,0.365,0.720289,input,ctrl-contact-name,,0,5/30/2026 10:49
+424,113,contact_mess_field,v7,0.6943,0.95,0.8395,0.5095,0.365,0.706551,input,ctrl-contact-phone,,0,5/30/2026 10:49
+425,114,contact_submit_button,v7,0.848,1,0.8344,0.5514,0.615,0.806558,button,submit-contact,G?i th�ng tin,1,5/30/2026 10:49
+426,114,contact_submit_button,v7,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:49
+427,115,contact_name_field,v8,0.6085,0.87,0.8079,0.7222,0.365,0.683389,input,contact-name_v8,,1,5/30/2026 10:50
+428,115,contact_name_field,v8,0.49,0.87,0.7846,0.6195,0.365,0.63441,input,contact-phone_v8,,0,5/30/2026 10:50
+429,115,contact_name_field,v8,0.4994,0.87,0.7892,0.5397,0.365,0.628292,input,contact-mess_v8,,0,5/30/2026 10:50
+430,116,contact_phone_field,v8,0.5753,0.87,0.8095,0.7085,0.365,0.673101,input,contact-phone_v8,,1,5/30/2026 10:50
+431,116,contact_phone_field,v8,0.49,0.82,0.7915,0.763,0.365,0.64101,input,contact-name_v8,,0,5/30/2026 10:50
+432,116,contact_phone_field,v8,0.485,0.87,0.7798,0.6068,0.365,0.630576,input,contact-mess_v8,,0,5/30/2026 10:50
+433,117,contact_mess_field,v8,0.5078,0.87,0.7964,0.6947,0.365,0.6506,input,contact-mess_v8,,1,5/30/2026 10:50
+434,117,contact_mess_field,v8,0.485,0.82,0.7846,0.7742,0.365,0.639624,input,contact-phone_v8,,0,5/30/2026 10:50
+435,117,contact_mess_field,v8,0.4919,0.82,0.7939,0.6773,0.365,0.631719,input,contact-name_v8,,0,5/30/2026 10:50
+436,118,contact_submit_button,v8,0.6313,0.7916,0.7212,0.6822,0.615,0.691089,button,btn-contact-submit_v8,G?i y�u c?u h? tr?,1,5/30/2026 10:50
+437,118,contact_submit_button,v8,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:50
+438,119,contact_name_field,v9,0.7839,0.87,0.7933,0.6445,0.615,0.761003,input,v9-contact-name,,1,5/30/2026 10:50
+439,119,contact_name_field,v9,0.5,0.87,0.7645,0.739,0.615,0.68993,input,v9-contact-phone,,0,5/30/2026 10:50
+440,120,contact_phone_field,v9,0.6866,0.87,0.7852,0.7252,0.615,0.742796,input,v9-contact-phone,,1,5/30/2026 10:50
+441,120,contact_phone_field,v9,0.6082,0.82,0.774,0.728,0.615,0.707724,input,v9-contact-name,,0,5/30/2026 10:50
+442,121,contact_submit_button,v9,0.9167,0.7783,0.8545,0.5867,0.615,0.780155,button,v9-contact-submit,G?i y�u c?u,1,5/30/2026 10:50
+443,121,contact_submit_button,v9,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:50
+444,122,contact_name_field,v10,0.3892,0.87,0.7585,0.6787,0.365,0.609078,input,,,1,5/30/2026 10:51
+445,122,contact_name_field,v10,0.1458,0.87,0.7388,0.551,0.365,0.524096,input,,,0,5/30/2026 10:51
+446,123,contact_phone_field,v10,0.3117,0.87,0.756,0.6407,0.365,0.583093,input,,,1,5/30/2026 10:51
+447,123,contact_phone_field,v10,0.2458,0.82,0.7418,0.768,0.365,0.565736,input,,,0,5/30/2026 10:51
+448,124,contact_submit_button,v10,0.7243,0.8227,0.8222,0.5247,0.615,0.724963,button,,G?i tin nh?n ngay,1,5/30/2026 10:51
+449,124,contact_submit_button,v10,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:51
+450,125,contact_name_field,v11,0.8962,0.87,0.88,0.7333,0.365,0.77682,input,,,1,5/30/2026 10:52
+451,125,contact_name_field,v11,0.6467,0.87,0.8618,0.6316,0.365,0.693611,input,,,0,5/30/2026 10:52
+452,125,contact_name_field,v11,0.6527,0.87,0.8652,0.5383,0.365,0.684715,input,,,0,5/30/2026 10:52
+453,126,contact_phone_field,v11,0.9171,0.87,0.88,0.7206,0.365,0.780939,input,,,1,5/30/2026 10:52
+454,126,contact_phone_field,v11,0.6467,0.82,0.8618,0.7516,0.365,0.696011,input,,,0,5/30/2026 10:52
+455,126,contact_phone_field,v11,0.6467,0.87,0.8545,0.6176,0.365,0.690471,input,,,0,5/30/2026 10:52
+456,127,contact_mess_field,v11,0.8447,0.87,0.88,0.7058,0.365,0.759615,input,,,1,5/30/2026 10:52
+457,127,contact_mess_field,v11,0.6467,0.82,0.8545,0.7646,0.365,0.696111,input,,,0,5/30/2026 10:52
+458,127,contact_mess_field,v11,0.6587,0.82,0.8652,0.6641,0.365,0.689431,input,,,0,5/30/2026 10:52
+459,128,contact_submit_button,v11,0.7833,0.7772,0.844,0.6969,0.615,0.754997,button,,G?i y�u c?u ngay,1,5/30/2026 10:52
+460,128,contact_submit_button,v11,0.7414,0.7582,0.7516,0.4799,0.365,0.652104,button,,�ang xu?t,0,5/30/2026 10:52
+461,129,register_email_field,v2,0.93,1,0.88,0.7524,0.365,0.819438,input,,,1,5/30/2026 10:54
+462,129,register_email_field,v2,0.5467,1,0.8125,0.6526,0.365,0.690471,input,,,0,5/30/2026 10:54
+463,130,register_password_field,v2,0.93,1,0.88,0.7396,0.365,0.817902,input,,,1,5/30/2026 10:54
+464,130,register_password_field,v2,0.5467,0.95,0.8125,0.7356,0.365,0.688431,input,,,0,5/30/2026 10:54
+465,131,register_button,v2,0.93,0.6313,1,0.7298,0.365,0.752238,button,,Ho�n t?t dang k�,1,5/30/2026 10:54
+466,132,register_email_field,v3,0.9785,1,0.815,0.7524,0.615,0.862033,input,v3-reg-email,,1,5/30/2026 10:54
+467,132,register_email_field,v3,0.5708,1,0.7475,0.6526,0.615,0.726478,input,v3-reg-password,,0,5/30/2026 10:54
+468,133,register_password_field,v3,0.9825,1,0.815,0.7396,0.615,0.861577,input,v3-reg-password,,1,5/30/2026 10:54
+469,133,register_password_field,v3,0.566,0.95,0.7475,0.7356,0.615,0.723142,input,v3-reg-email,,0,5/30/2026 10:54
+470,134,register_button,v3,0.959,1,0.5973,0.7298,0.615,0.810516,button,v3-reg-btn-submit,�ang k�,1,5/30/2026 10:54
+471,135,register_email_field,v4,0.8832,1,0.8271,0.6112,0.365,0.779278,input,v4-register-email,,1,5/30/2026 10:55
+472,135,register_email_field,v4,0.4778,1,0.7674,0.5387,0.365,0.64918,input,v4-register-password,,0,5/30/2026 10:55
+473,136,register_password_field,v4,0.8843,1,0.8299,0.5919,0.365,0.777819,input,v4-register-password,,1,5/30/2026 10:55
+474,136,register_password_field,v4,0.4778,0.95,0.7674,0.6492,0.365,0.65044,input,v4-register-email,,0,5/30/2026 10:55
+475,137,register_button,v4,0.8665,1,0.9339,0.578,0.365,0.792145,button,v4-btn-register,�ang k�,1,5/30/2026 10:55
+476,138,register_email_field,v5,0.93,1,0.83,0.6326,0.365,0.795062,input,,,1,5/30/2026 10:55
+477,138,register_email_field,v5,0.5467,1,0.7625,0.5411,0.365,0.667091,input,,,0,5/30/2026 10:55
+478,139,register_password_field,v5,0.93,1,0.83,0.5889,0.365,0.789818,input,,,1,5/30/2026 10:55
+479,139,register_password_field,v5,0.5467,0.95,0.7625,0.7206,0.365,0.676631,input,,,0,5/30/2026 10:55
+480,140,register_button,v5,0.93,1,0.9403,0.5786,0.365,0.810642,button,,�ang k�,1,5/30/2026 10:55
+481,141,register_email_field,v6,0.4557,1,0.7941,0.7524,0.365,0.674197,input,v6-register-email,,1,5/30/2026 10:56
+482,141,register_email_field,v6,0.2612,1,0.7584,0.6526,0.365,0.602566,input,v6-register-password,,0,5/30/2026 10:56
+483,142,register_password_field,v6,0.3843,1,0.7877,0.7104,0.365,0.648599,input,v6-register-password,,1,5/30/2026 10:56
+484,142,register_password_field,v6,0.2612,0.95,0.7378,0.7356,0.365,0.596406,input,v6-register-email,,0,5/30/2026 10:56
+485,143,register_button,v6,0.9122,0.696,1,0.7003,0.365,0.75942,button,v6-btn-register,T?o t�i kho?n,1,5/30/2026 10:56
+486,144,register_email_field,v7,0.8776,1,0.8421,0.6721,0.365,0.788074,input,field-register-email,,1,5/30/2026 10:56
+487,144,register_email_field,v7,0.4745,1,0.7824,0.5674,0.365,0.654733,input,field-register-password,,0,5/30/2026 10:56
+488,145,register_password_field,v7,0.8795,1,0.8449,0.6499,0.365,0.786483,input,field-register-password,,1,5/30/2026 10:56
+489,145,register_password_field,v7,0.4745,0.95,0.7824,0.7156,0.365,0.660517,input,field-register-email,,0,5/30/2026 10:56
+490,146,register_button,v7,0.8648,1,0.9669,0.6274,0.365,0.804214,button,action-register,�ang k�,1,5/30/2026 10:56
+491,147,register_email_field,v8,0.5391,0.87,0.8145,0.7488,0.365,0.669163,input,register-email_v8,,1,5/30/2026 10:57
+492,147,register_email_field,v8,0.3445,0.87,0.7562,0.6585,0.365,0.594125,input,register-password_v8,,0,5/30/2026 10:57
+493,148,register_password_field,v8,0.5402,0.87,0.8199,0.744,0.365,0.669964,input,register-password_v8,,1,5/30/2026 10:57
+494,148,register_password_field,v8,0.3445,0.82,0.7562,0.7416,0.365,0.592097,input,register-email_v8,,0,5/30/2026 10:57
+495,149,register_button,v8,0.6394,0.6808,0.846,0.7419,0.365,0.656308,button,btn-register_v8,T?o t�i kho?n ngay,1,5/30/2026 10:57
+496,150,register_email_field,v9,0.671,0.87,0.7777,0.7477,0.615,0.739784,input,v9-reg-email,,1,5/30/2026 10:57
+497,150,register_email_field,v9,0.4741,0.87,0.7541,0.6515,0.365,0.627857,input,v9-reg-password,,0,5/30/2026 10:57
+498,151,register_password_field,v9,0.675,0.87,0.8162,0.736,0.365,0.70466,input,v9-reg-password,,1,5/30/2026 10:57
+499,151,register_password_field,v9,0.4693,0.82,0.7191,0.7325,0.615,0.659781,input,v9-reg-email,,0,5/30/2026 10:57
+500,152,register_button,v9,0.8903,0.8513,0.5973,0.7358,0.615,0.756999,button,v9-reg-submit,Ho�n t?t dang k�,1,5/30/2026 10:57
+501,153,register_email_field,v10,0.379,0.87,0.7512,0.5794,0.365,0.592948,input,v10-email-field,,1,5/30/2026 10:58
+502,153,register_email_field,v10,0.1641,0.87,0.6951,0.7039,0.365,0.538645,input,v10-pw-field,,0,5/30/2026 10:58
+503,154,register_password_field,v10,0.2726,0.87,0.7332,0.7651,0.365,0.582904,input,v10-pw-field,,1,5/30/2026 10:58
+504,154,register_password_field,v10,0.1708,0.82,0.6943,0.6669,0.365,0.523854,input,v10-email-field,,0,5/30/2026 10:58
+505,155,register_button,v10,0.8158,0.6808,0.5452,0.644,0.615,0.674528,button,v10-create-account,T?o t�i kho?n ngay,1,5/30/2026 10:58
+506,156,register_email_field,v11,0.4,1,0.6896,0.7274,0.365,0.635258,input,,,1,5/30/2026 10:58
+507,156,register_email_field,v11,0.3,1,0.6596,0.6261,0.365,0.590102,input,,,0,5/30/2026 10:58
+508,157,register_password_field,v11,0.4,1,0.685,0.7139,0.365,0.632718,input,,,1,5/30/2026 10:58
+509,157,register_password_field,v11,0.3,0.95,0.6631,0.7601,0.365,0.594882,input,,,0,5/30/2026 10:58
+510,158,register_button,v11,0.8357,0.8513,0.964,0.7017,0.365,0.769005,button,,Ho�n t?t dang k�,1,5/30/2026 10:58
+511,159,add_product_button,v2,0.93,0.8652,0.88,0.7611,0.615,0.83063,a,,T?o s?n ph?m,1,5/30/2026 11:01
+512,159,add_product_button,v2,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:01
+513,159,add_product_button,v2,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:01
+514,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.651072,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:01
+515,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.651072,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:01
+516,159,add_product_button,v2,0.765,0.7624,0.6715,0.5433,0.365,0.651072,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:01
+517,160,product_name_field,v2,0.93,1,0.88,0.747,0.365,0.81879,input,,,1,5/30/2026 11:01
+518,160,product_name_field,v2,0.69,1,0.8459,0.647,0.615,0.77767,input,,,0,5/30/2026 11:01
+519,160,product_name_field,v2,0.69,1,0.8252,0.5401,0.615,0.760702,input,,,0,5/30/2026 11:01
+520,160,product_name_field,v2,0.69,1,0.8283,0.5285,0.615,0.75993,input,,,0,5/30/2026 11:01
+521,160,product_name_field,v2,0.69,1,0.8283,0.5285,0.615,0.75993,input,,,0,5/30/2026 11:01
+522,160,product_name_field,v2,0.59,1,0.8058,0.5401,0.615,0.729822,input,,,0,5/30/2026 11:01
+523,161,product_price_field,v2,0.93,1,0.88,0.7399,0.365,0.817938,input,,,1,5/30/2026 11:01
+524,161,product_price_field,v2,0.69,1,0.8311,0.5096,0.615,0.758222,input,,,0,5/30/2026 11:01
+525,161,product_price_field,v2,0.59,1,0.8236,0.5418,0.615,0.733586,input,,,0,5/30/2026 11:01
+526,161,product_price_field,v2,0.59,1,0.8096,0.5215,0.615,0.72835,input,,,0,5/30/2026 11:01
+527,161,product_price_field,v2,0.59,1,0.8096,0.5215,0.615,0.72835,input,,,0,5/30/2026 11:01
+528,161,product_price_field,v2,0.59,1,0.8096,0.5096,0.615,0.726922,input,,,0,5/30/2026 11:01
+529,162,submit_product_button,v2,0.93,0.6533,0.88,0.6203,0.365,0.720378,button,,X�C NH?N �ANG S?N PH?M,1,5/30/2026 11:01
+530,162,submit_product_button,v2,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:01
+531,162,submit_product_button,v2,0.6375,0.7286,0.5812,0.6059,0.365,0.597987,button,,+ Th�m m�u s?c m?i,0,5/30/2026 11:01
+532,162,submit_product_button,v2,0.6375,0.7312,0.5812,0.4979,0.365,0.585651,button,,+ Th�m phi�n b?n luu tr?,0,5/30/2026 11:01
+533,162,submit_product_button,v2,0.6375,0.7503,0.5812,0.4141,0.365,0.580179,button,,+ B? sung th�ng s?,0,5/30/2026 11:01
+534,162,submit_product_button,v2,0.6729,0.62,0.5164,0.4085,0.615,0.587333,button,,�,0,5/30/2026 11:01
+535,163,add_product_button,v3,0.9627,1,0.8406,0.7632,0.615,0.864183,a,v3-prod-btn-add,+ Th�m s?n ph?m m?i,1,5/30/2026 11:02
+536,163,add_product_button,v3,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:02
+537,163,add_product_button,v3,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:02
+538,163,add_product_button,v3,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:02
+539,163,add_product_button,v3,0.7812,0.6011,0.6931,0.5433,0.365,0.621054,a,v3-prod-view-6a0d531fd7e08f5e9abf61c5,Xem chi ti?t,0,5/30/2026 11:02
+540,163,add_product_button,v3,0.7812,0.6011,0.6915,0.5433,0.365,0.620734,a,v3-prod-view-6a1ab1b640c4b0696318f81a,Xem chi ti?t,0,5/30/2026 11:02
+541,164,product_name_field,v3,0.9682,1,0.8496,0.747,0.365,0.823024,input,v3-ap-name,,1,5/30/2026 11:02
+542,164,product_name_field,v3,0.7143,1,0.8157,0.647,0.615,0.778191,input,v3-ap-image,,0,5/30/2026 11:02
+543,164,product_name_field,v3,0.7325,1,0.8009,0.517,0.615,0.764545,input,v3-ap-spec-key-0,,0,5/30/2026 11:02
+544,164,product_name_field,v3,0.7325,1,0.7981,0.517,0.615,0.763985,input,v3-ap-spec-val-0,,0,5/30/2026 11:02
+545,164,product_name_field,v3,0.71,1,0.8009,0.517,0.615,0.75847,input,v3-ap-gb-label-0,,0,5/30/2026 11:02
+546,164,product_name_field,v3,0.61,1,0.7786,0.517,0.615,0.72701,input,v3-ap-gb-price-0,,0,5/30/2026 11:02
+547,165,product_price_field,v3,0.9708,1,0.8496,0.7399,0.365,0.822874,input,v3-ap-price,,1,5/30/2026 11:02
+548,165,product_price_field,v3,0.7238,1,0.804,0.5331,0.615,0.764748,input,v3-ap-gb-price-0,,0,5/30/2026 11:02
+549,165,product_price_field,v3,0.6133,1,0.7935,0.5418,0.615,0.733857,input,v3-ap-image,,0,5/30/2026 11:02
+550,165,product_price_field,v3,0.6093,1,0.7825,0.5331,0.615,0.729533,input,v3-ap-spec-key-0,,0,5/30/2026 11:02
+551,165,product_price_field,v3,0.6045,1,0.7825,0.5331,0.615,0.728237,input,v3-ap-spec-val-0,,0,5/30/2026 11:02
+552,165,product_price_field,v3,0.6045,1,0.7825,0.5331,0.615,0.728237,input,v3-ap-gb-label-0,,0,5/30/2026 11:02
+553,166,submit_product_button,v3,0.9559,1,0.6037,0.6203,0.615,0.797819,button,v3-ap-submit,�ANG B�N S?N PH?M,1,5/30/2026 11:02
+554,166,submit_product_button,v3,0.6681,0.7467,0.6678,0.6062,0.365,0.627949,button,v3-ap-add-variant,+ Th�m bi?n th? m�u,0,5/30/2026 11:02
+555,166,submit_product_button,v3,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:02
+556,166,submit_product_button,v3,0.6634,0.6851,0.6678,0.494,0.365,0.598432,button,v3-ap-add-gb,+ Th�m l?a ch?n GB,0,5/30/2026 11:02
+557,166,submit_product_button,v3,0.6713,0.715,0.6678,0.4123,0.365,0.597937,button,v3-ap-add-spec,+ Th�m th�ng s?,0,5/30/2026 11:02
+558,166,submit_product_button,v3,0.6962,0.62,0.4873,0.4435,0.615,0.592004,button,v3-ap-rm-spec-0,�,0,5/30/2026 11:02
+559,167,add_product_button,v4,0.9056,1,0.8174,0.5473,0.615,0.818218,a,v4-btn-add-product,+ Th�m s?n ph?m m?i,1,5/30/2026 11:03
+560,167,add_product_button,v4,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:03
+561,167,add_product_button,v4,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:03
+562,167,add_product_button,v4,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:03
+563,167,add_product_button,v4,0.7595,0.6038,0.6916,0.5285,0.365,0.613767,a,v4-btn-view-6a0d531fd7e08f5e9abf61ed,Xem chi ti?t,0,5/30/2026 11:03
+564,167,add_product_button,v4,0.7595,0.6011,0.6931,0.5285,0.365,0.613419,a,v4-btn-view-6a0d531fd7e08f5e9abf619d,Xem chi ti?t,0,5/30/2026 11:03
+565,168,product_name_field,v4,0.7482,1,0.8169,0.6563,0.365,0.7462,input,v4-ap-name,,1,5/30/2026 11:03
+566,168,product_name_field,v4,0.5125,1,0.761,0.5121,0.615,0.696577,input,v4-ap-spec-val-0,,0,5/30/2026 11:03
+567,168,product_name_field,v4,0.5125,1,0.7516,0.5058,0.615,0.693941,input,v4-ap-spec-key-0,,0,5/30/2026 11:03
+568,168,product_name_field,v4,0.505,1,0.7441,0.5051,0.615,0.690332,input,v4-ap-variant-name-0,,0,5/30/2026 11:03
+569,168,product_name_field,v4,0.49,1,0.7516,0.5058,0.615,0.687866,input,v4-ap-gb-label-0,,0,5/30/2026 11:03
+570,168,product_name_field,v4,0.4926,1,0.741,0.5051,0.615,0.686364,input,v4-ap-variant-img-0,,0,5/30/2026 11:03
+571,169,product_price_field,v4,0.7508,1,0.7901,0.5497,0.365,0.72875,input,v4-ap-price,,1,5/30/2026 11:03
+572,169,product_price_field,v4,0.5038,1,0.7511,0.5352,0.615,0.69502,input,v4-ap-gb-price-0,,0,5/30/2026 11:03
+573,169,product_price_field,v4,0.4812,0.95,0.7265,0.5138,0.615,0.66943,input,v4-ap-variant-code-0,,0,5/30/2026 11:03
+574,169,product_price_field,v4,0.3893,1,0.7261,0.5415,0.615,0.659861,input,v4-ap-spec-key-0,,0,5/30/2026 11:03
+575,169,product_price_field,v4,0.3845,1,0.7354,0.5352,0.615,0.659669,input,v4-ap-spec-val-0,,0,5/30/2026 11:03
+576,169,product_price_field,v4,0.3912,1,0.7186,0.5422,0.615,0.658958,input,v4-ap-variant-name-0,,0,5/30/2026 11:03
+577,170,submit_product_button,v4,0.7359,1,0.9037,0.4851,0.365,0.739695,button,v4-ap-submit,�ANG B�N S?N PH?M,1,5/30/2026 11:03
+578,170,submit_product_button,v4,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:03
+579,170,submit_product_button,v4,0.6438,0.715,0.5273,0.516,0.365,0.574856,button,v4-ap-add-spec,+ Th�m th�ng s?,0,5/30/2026 11:03
+580,170,submit_product_button,v4,0.6406,0.7467,0.5273,0.4169,0.365,0.569708,button,v4-ap-add-variant,+ Th�m bi?n th? m�u,0,5/30/2026 11:03
+581,170,submit_product_button,v4,0.6359,0.6851,0.5273,0.4782,0.365,0.561011,button,v4-ap-add-gb,+ Th�m l?a ch?n GB,0,5/30/2026 11:03
+582,170,submit_product_button,v4,0.6312,0.62,0.5209,0.4032,0.615,0.576338,button,v4-ap-rm-variant-0,�,0,5/30/2026 11:03
+583,171,add_product_button,v5,0.93,1,0.88,0.6847,0.615,0.853814,a,,+ Th�m s?n ph?m m?i,1,5/30/2026 11:04
+584,171,add_product_button,v5,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:04
+585,171,add_product_button,v5,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:04
+586,171,add_product_button,v5,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:04
+587,171,add_product_button,v5,0.765,0.6038,0.6715,0.5433,0.365,0.613008,a,,Xem chi ti?t,0,5/30/2026 11:04
+588,171,add_product_button,v5,0.765,0.6038,0.6715,0.5433,0.365,0.613008,a,,Xem chi ti?t,0,5/30/2026 11:04
+589,172,product_name_field,v5,0.93,1,0.86,0.5893,0.365,0.795866,input,,,1,5/30/2026 11:04
+590,172,product_name_field,v5,0.7125,1,0.8252,0.5401,0.615,0.766777,input,,,0,5/30/2026 11:04
+591,172,product_name_field,v5,0.7125,1,0.8283,0.5285,0.615,0.766005,input,,,0,5/30/2026 11:04
+592,172,product_name_field,v5,0.69,1,0.8283,0.5285,0.615,0.75993,input,,,0,5/30/2026 11:04
+593,172,product_name_field,v5,0.69,1,0.8659,0.5047,0.365,0.722094,input,,,0,5/30/2026 11:04
+594,172,product_name_field,v5,0.59,1,0.8058,0.5401,0.615,0.729822,input,,,0,5/30/2026 11:04
+595,173,product_price_field,v5,0.93,1,0.86,0.5894,0.365,0.795878,input,,,1,5/30/2026 11:04
+596,173,product_price_field,v5,0.69,1,0.8311,0.5096,0.615,0.758222,input,,,0,5/30/2026 11:04
+597,173,product_price_field,v5,0.59,1,0.8096,0.5215,0.615,0.72835,input,,,0,5/30/2026 11:04
+598,173,product_price_field,v5,0.59,1,0.8096,0.5215,0.615,0.72835,input,,,0,5/30/2026 11:04
+599,173,product_price_field,v5,0.59,1,0.8096,0.5096,0.615,0.726922,input,,,0,5/30/2026 11:04
+600,173,product_price_field,v5,0.59,1,0.8436,0.5418,0.365,0.695086,input,,,0,5/30/2026 11:04
+601,174,submit_product_button,v5,0.93,1,0.86,0.5355,0.365,0.78941,button,,�ANG B�N S?N PH?M,1,5/30/2026 11:04
+602,174,submit_product_button,v5,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:04
+603,174,submit_product_button,v5,0.6375,0.715,0.6012,0.5841,0.365,0.596107,button,,+ Th�m th�ng s?,0,5/30/2026 11:04
+604,174,submit_product_button,v5,0.6375,0.6851,0.6012,0.5285,0.365,0.582259,button,,+ Th�m l?a ch?n GB,0,5/30/2026 11:04
+605,174,submit_product_button,v5,0.6375,0.7467,0.6012,0.4155,0.365,0.583483,button,,+ Th�m bi?n th? m�u,0,5/30/2026 11:04
+606,174,submit_product_button,v5,0.6729,0.62,0.5164,0.4085,0.615,0.587333,button,,�,0,5/30/2026 11:04
+607,175,add_product_button,v6,0.8827,0.9486,0.88,0.7637,0.615,0.838187,a,v6-prod-btn-add,+ T?o s?n ph?m m?i,1,5/30/2026 11:05
+608,175,add_product_button,v6,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:05
+609,175,add_product_button,v6,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:05
+610,175,add_product_button,v6,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:05
+611,175,add_product_button,v6,0.71,0.6713,0.668,0.5303,0.365,0.612098,a,,Qu?n l� li�n h?,0,5/30/2026 11:05
+612,175,add_product_button,v6,0.7012,0.6011,0.6731,0.5433,0.365,0.595454,a,v6-prod-view-6a0d531fd7e08f5e9abf61c5,Xem chi ti?t,0,5/30/2026 11:05
+613,176,product_name_field,v6,0.71,1,0.8252,0.5401,0.615,0.766102,input,v6-ap-spec-val-0,,1,5/30/2026 11:05
+614,176,product_name_field,v6,0.71,1,0.8283,0.5285,0.615,0.76533,input,v6-ap-spec-key-0,,0,5/30/2026 11:05
+615,176,product_name_field,v6,0.71,1,0.8283,0.5285,0.615,0.76533,input,v6-ap-gb-label-0,,0,5/30/2026 11:05
+616,176,product_name_field,v6,0.61,1,0.8058,0.5401,0.615,0.735222,input,v6-ap-gb-price-0,,0,5/30/2026 11:05
+617,176,product_name_field,v6,0.615,1,0.8009,0.5156,0.615,0.732652,input,v6-ap-variant-name-0,,0,5/30/2026 11:05
+618,176,product_name_field,v6,0.6026,1,0.798,0.5156,0.615,0.728724,input,v6-ap-variant-img-0,,0,5/30/2026 11:05
+619,177,product_price_field,v6,0.7238,1,0.8311,0.5096,0.615,0.767348,input,v6-ap-gb-price-0,,1,5/30/2026 11:05
+620,177,product_price_field,v6,0.6093,1,0.8096,0.5215,0.615,0.733561,input,v6-ap-spec-key-0,,0,5/30/2026 11:05
+621,177,product_price_field,v6,0.6045,1,0.8096,0.5215,0.615,0.732265,input,v6-ap-gb-label-0,,0,5/30/2026 11:05
+622,177,product_price_field,v6,0.6045,0.95,0.8096,0.5096,0.615,0.718837,input,v6-ap-spec-val-0,,0,5/30/2026 11:05
+623,177,product_price_field,v6,0.5019,1,0.7863,0.5345,0.615,0.701463,input,v6-ap-variant-img-0,,0,5/30/2026 11:05
+624,177,product_price_field,v6,0.5012,1,0.7834,0.5345,0.615,0.700694,input,v6-ap-variant-name-0,,0,5/30/2026 11:05
+625,178,submit_product_button,v6,0.8759,0.8733,0.88,0.6203,0.365,0.758571,button,v6-ap-submit,X�C NH?N �ANG S?N PH?M,1,5/30/2026 11:06
+626,178,submit_product_button,v6,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:06
+627,178,submit_product_button,v6,0.6681,0.7286,0.5812,0.6059,0.365,0.606249,button,v6-ap-add-variant,+ Th�m m�u s?c m?i,0,5/30/2026 11:06
+628,178,submit_product_button,v6,0.6634,0.7312,0.5812,0.4979,0.365,0.592644,button,v6-ap-add-gb,+ Th�m phi�n b?n luu tr?,0,5/30/2026 11:06
+629,178,submit_product_button,v6,0.6713,0.7503,0.5812,0.4141,0.365,0.589305,button,v6-ap-add-spec,+ B? sung th�ng s?,0,5/30/2026 11:06
+630,178,submit_product_button,v6,0.6962,0.62,0.5164,0.4085,0.615,0.593624,button,v6-ap-rm-spec-0,�,0,5/30/2026 11:06
+631,179,add_product_button,v7,0.8893,0.9553,0.86,0.5359,0.365,0.767741,a,product-add-btn,+ Th�m s?n ph?m,1,5/30/2026 11:06
+632,179,add_product_button,v7,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:06
+633,179,add_product_button,v7,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:06
+634,179,add_product_button,v7,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:06
+635,179,add_product_button,v7,0.7944,0.6038,0.6458,0.5278,0.365,0.613946,a,view-product-6a0d531fd7e08f5e9abf61ed,Xem chi ti?t,0,5/30/2026 11:06
+636,179,add_product_button,v7,0.7944,0.6038,0.6458,0.5278,0.365,0.613946,a,view-product-6a0d531fd7e08f5e9abf61fa,Xem chi ti?t,0,5/30/2026 11:06
+637,180,product_name_field,v7,0.6714,1,0.9383,0.5212,0.365,0.733532,input,,,1,5/30/2026 11:07
+638,180,product_name_field,v7,0.47,1,0.875,0.6815,0.365,0.68573,input,,,0,5/30/2026 11:07
+639,180,product_name_field,v7,0.47,1,0.9224,0.5212,0.365,0.675974,input,,,0,5/30/2026 11:07
+640,180,product_name_field,v7,0.47,1,0.8961,0.5184,0.365,0.670378,input,,,0,5/30/2026 11:07
+641,180,product_name_field,v7,0.47,1,0.8961,0.5184,0.365,0.670378,input,,,0,5/30/2026 11:07
+642,180,product_name_field,v7,0.47,1,0.8929,0.5184,0.365,0.669738,input,,,0,5/30/2026 11:07
+643,181,product_price_field,v7,0.62,1,0.9352,0.5261,0.365,0.719622,input,,,1,5/30/2026 11:07
+644,181,product_price_field,v7,0.47,1,0.9018,0.5289,0.365,0.672778,input,,,0,5/30/2026 11:07
+645,181,product_price_field,v7,0.37,1,0.8557,0.6095,0.365,0.64623,input,,,0,5/30/2026 11:07
+646,181,product_price_field,v7,0.46,0.95,0.8393,0.5499,0.365,0.648098,input,,,0,5/30/2026 11:07
+647,181,product_price_field,v7,0.37,1,0.896,0.5261,0.365,0.644282,input,,,0,5/30/2026 11:07
+648,181,product_price_field,v7,0.37,1,0.8737,0.5289,0.365,0.640158,input,,,0,5/30/2026 11:07
+649,182,submit_product_button,v7,0.61,0.8498,0.6398,0.4484,0.615,0.65497,button,,�ANG S?N PH?M L�N H? TH?NG,1,5/30/2026 11:07
+650,182,submit_product_button,v7,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:07
+651,182,submit_product_button,v7,0.61,0.6913,0.6598,0.519,0.365,0.586902,button,,+ Th�m d?c di?m,0,5/30/2026 11:07
+652,182,submit_product_button,v7,0.61,0.7388,0.6598,0.4162,0.365,0.585966,button,,+ Th�m ph?i m�u,0,5/30/2026 11:07
+653,182,submit_product_button,v7,0.61,0.6675,0.6598,0.4158,0.365,0.568806,button,,+ Th�m c?u h�nh,0,5/30/2026 11:07
+654,182,submit_product_button,v7,0.61,0.62,0.6326,0.4032,0.365,0.550454,button,,�,0,5/30/2026 11:07
+655,183,add_product_button,v8,0.64,0.9136,0.7625,0.7514,0.615,0.739282,a,,Th�m s?n ph?m m?i v�o kho,1,5/30/2026 11:07
+656,183,add_product_button,v8,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:07
+657,183,add_product_button,v8,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:07
+658,183,add_product_button,v8,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:07
+659,183,add_product_button,v8,0.71,0.6713,0.668,0.5303,0.365,0.612098,a,,Qu?n l� li�n h?,0,5/30/2026 11:07
+660,183,add_product_button,v8,0.475,0.6038,0.5713,0.5433,0.365,0.514668,a,,Xem chi ti?t,0,5/30/2026 11:07
+661,184,product_name_field,v8,0.55,1,0.7164,0.7837,0.365,0.687874,input,,,1,5/30/2026 11:08
+662,184,product_name_field,v8,0.4,1,0.6684,0.5401,0.615,0.651042,input,,,0,5/30/2026 11:08
+663,184,product_name_field,v8,0.4,1,0.6684,0.5285,0.615,0.64965,input,,,0,5/30/2026 11:08
+664,184,product_name_field,v8,0.4,1,0.6684,0.5285,0.615,0.64965,input,,,0,5/30/2026 11:08
+665,184,product_name_field,v8,0.3,1,0.6489,0.5401,0.615,0.620142,input,,,0,5/30/2026 11:08
+666,184,product_name_field,v8,0.3,1,0.6921,0.647,0.365,0.59911,input,,,0,5/30/2026 11:08
+667,185,product_price_field,v8,0.64,1,0.7191,0.7621,0.365,0.710122,input,,,1,5/30/2026 11:08
+668,185,product_price_field,v8,0.4,1,0.6743,0.5096,0.615,0.648562,input,,,0,5/30/2026 11:08
+669,185,product_price_field,v8,0.3,1,0.6528,0.5215,0.615,0.61869,input,,,0,5/30/2026 11:08
+670,185,product_price_field,v8,0.3,1,0.6528,0.5215,0.615,0.61869,input,,,0,5/30/2026 11:08
+671,185,product_price_field,v8,0.3,1,0.6528,0.5096,0.615,0.617262,input,,,0,5/30/2026 11:08
+672,185,product_price_field,v8,0.3,1,0.6921,0.5418,0.365,0.586486,input,,,0,5/30/2026 11:08
+673,186,submit_product_button,v8,0.64,0.9329,0.7326,0.6203,0.365,0.679702,button,,�ANG T?I S?N PH?M,1,5/30/2026 11:08
+674,186,submit_product_button,v8,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:08
+675,186,submit_product_button,v8,0.3475,0.7181,0.4591,0.6028,0.365,0.492375,button,,+ Th�m m�u m?i,0,5/30/2026 11:08
+676,186,submit_product_button,v8,0.3475,0.7467,0.4632,0.4951,0.365,0.487135,button,,+ Th�m phi�n b?n GB,0,5/30/2026 11:08
+677,186,submit_product_button,v8,0.3475,0.7432,0.4615,0.4169,0.365,0.476571,button,,+ Th�m d�ng th�ng s?,0,5/30/2026 11:08
+678,186,submit_product_button,v8,0.3829,0.62,0.4035,0.4085,0.615,0.486453,button,,-,0,5/30/2026 11:08
+679,187,add_product_button,v9,0.9809,0.8944,0.88,0.7632,0.615,0.851633,a,v9-btn-new-product,�ang s?n ph?m m?i,1,5/30/2026 11:08
+680,187,add_product_button,v9,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:08
+681,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.652851,a,v9-view-6a1ab2d740c4b06963190d08,Chi ti?t s?n ph?m,0,5/30/2026 11:08
+682,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.652851,a,v9-view-6a1ab3d640c4b06963192258,Chi ti?t s?n ph?m,0,5/30/2026 11:08
+683,187,add_product_button,v9,0.7739,0.7598,0.6715,0.5433,0.365,0.652851,a,v9-view-6a1ac3d240c4b069631a0cf2,Chi ti?t s?n ph?m,0,5/30/2026 11:08
+684,187,add_product_button,v9,0.771,0.7624,0.6715,0.5433,0.365,0.652692,a,v9-view-6a0d531fd7e08f5e9abf61ed,Chi ti?t s?n ph?m,0,5/30/2026 11:08
+685,188,product_name_field,v9,0.7968,1,0.8064,0.747,0.365,0.768106,input,v9-name,,1,5/30/2026 11:09
+686,188,product_name_field,v9,0.7068,1,0.7782,0.5285,0.615,0.754446,input,v9-gb-label-0,,0,5/30/2026 11:09
+687,188,product_name_field,v9,0.7124,1,0.7551,0.5401,0.615,0.75273,input,v9-spec-val-0,,0,5/30/2026 11:09
+688,188,product_name_field,v9,0.7124,1,0.7577,0.5285,0.615,0.751858,input,v9-spec-key-0,,0,5/30/2026 11:09
+689,188,product_name_field,v9,0.711,1,0.7953,0.6085,0.365,0.7261,input,v9-image,,0,5/30/2026 11:09
+690,188,product_name_field,v9,0.6124,1,0.756,0.5401,0.615,0.72591,input,v9-gb-price-0,,0,5/30/2026 11:09
+691,189,product_price_field,v9,0.89,1,0.8064,0.7399,0.365,0.792418,input,v9-price,,1,5/30/2026 11:09
+692,189,product_price_field,v9,0.7223,1,0.7813,0.5096,0.615,0.756983,input,v9-gb-price-0,,0,5/30/2026 11:09
+693,189,product_price_field,v9,0.6008,1,0.7598,0.5215,0.615,0.721306,input,v9-gb-label-0,,0,5/30/2026 11:09
+694,189,product_price_field,v9,0.6115,1,0.7395,0.5215,0.615,0.720135,input,v9-spec-key-0,,0,5/30/2026 11:09
+695,189,product_price_field,v9,0.6062,1,0.7395,0.5096,0.615,0.717276,input,v9-spec-val-0,,0,5/30/2026 11:09
+696,189,product_price_field,v9,0.61,1,0.7705,0.5418,0.365,0.685866,input,v9-image,,0,5/30/2026 11:09
+697,190,submit_product_button,v9,0.9417,0.861,0.6597,0.5818,0.365,0.724705,button,v9-submit,X�C NH?N & �ANG S?N PH?M,1,5/30/2026 11:09
+698,190,submit_product_button,v9,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:09
+699,190,submit_product_button,v9,0.6713,0.6935,0.5271,0.5894,0.365,0.585889,button,v9-add-variant,+ Th�m m�u s?c,0,5/30/2026 11:09
+700,190,submit_product_button,v9,0.6667,0.7,0.5271,0.5706,0.365,0.583951,button,v9-add-gb,+ Th�m m?c dung lu?ng,0,5/30/2026 11:09
+701,190,submit_product_button,v9,0.6752,0.7503,0.5271,0.4141,0.365,0.579538,button,v9-add-spec,+ B? sung th�ng s?,0,5/30/2026 11:09
+702,190,submit_product_button,v9,0.6979,0.62,0.4755,0.4085,0.615,0.585903,button,v9-del-spec-0,?,0,5/30/2026 11:09
+703,191,add_product_button,v10,0.9918,1,0.88,0.7632,0.615,0.87992,a,btn-add-product_v10,+ Th�m s?n ph?m m?i,1,5/30/2026 11:10
+704,191,add_product_button,v10,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:10
+705,191,add_product_button,v10,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:10
+706,191,add_product_button,v10,0.71,0.8128,0.6805,0.5441,0.365,0.650214,a,,S?n ph?m,0,5/30/2026 11:10
+707,191,add_product_button,v10,0.7883,0.6038,0.6715,0.5433,0.365,0.619299,a,btn-view-6a0d531fd7e08f5e9abf61ed,Xem chi ti?t,0,5/30/2026 11:10
+708,191,add_product_button,v10,0.7883,0.6011,0.6731,0.5433,0.365,0.618971,a,btn-view-6a0d531fd7e08f5e9abf619d,Xem chi ti?t,0,5/30/2026 11:10
+709,192,product_name_field,v10,0.711,1,0.734,0.731,0.615,0.77104,input,cell-a-0,,1,5/30/2026 11:10
+710,192,product_name_field,v10,0.704,1,0.7438,0.6088,0.615,0.756446,input,cell-b-0,,0,5/30/2026 11:10
+711,192,product_name_field,v10,0.704,1,0.734,0.553,0.615,0.74779,input,cell-c-0,,0,5/30/2026 11:10
+712,192,product_name_field,v10,0.604,1,0.7243,0.5082,0.615,0.713474,input,cell-d-0,,0,5/30/2026 11:10
+713,192,product_name_field,v10,0.594,1,0.7151,0.5124,0.615,0.709438,input,cell-f-0,,0,5/30/2026 11:10
+714,192,product_name_field,v10,0.501,0.95,0.679,0.4771,0.615,0.660872,input,cell-e-0,,0,5/30/2026 11:10
+715,193,product_price_field,v10,0.7033,1,0.747,0.5418,0.615,0.748857,input,cell-d-0,,1,5/30/2026 11:10
+716,193,product_price_field,v10,0.6033,1,0.7254,0.5418,0.615,0.717537,input,cell-b-0,,0,5/30/2026 11:10
+717,193,product_price_field,v10,0.6033,1,0.7156,0.5418,0.615,0.715577,input,cell-c-0,,0,5/30/2026 11:10
+718,193,product_price_field,v10,0.5833,0.95,0.6717,0.6468,0.615,0.701997,input,cell-e-0,,0,5/30/2026 11:10
+719,193,product_price_field,v10,0.4933,1,0.687,0.6967,0.615,0.698745,input,cell-f-0,,0,5/30/2026 11:10
+720,193,product_price_field,v10,0.6033,0.95,0.7156,0.5403,0.615,0.703397,input,cell-a-0,,0,5/30/2026 11:10
+721,194,submit_product_button,v10,0.8833,0.848,0.5814,0.4986,0.615,0.722673,button,publish-btn,LUU & XU?T B?N S?N PH?M,1,5/30/2026 11:10
+722,194,submit_product_button,v10,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:10
+723,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.55484,button,ctrl-01,#NAME?,0,5/30/2026 11:10
+724,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.55484,button,ctrl-02,#NAME?,0,5/30/2026 11:10
+725,194,submit_product_button,v10,0.6502,0.7191,0.4805,0.4046,0.365,0.55484,button,ctrl-03,#NAME?,0,5/30/2026 11:10
+726,194,submit_product_button,v10,0.5758,0.62,0.4857,0.4008,0.615,0.554052,button,rm-var-0,??,0,5/30/2026 11:10
+727,195,add_product_button,v11,0.8043,0.8575,0.8161,0.7464,0.615,0.780299,a,,Th�m h�ng m?i,1,5/30/2026 11:11
+728,195,add_product_button,v11,0.71,0.6635,0.6981,0.5794,0.615,0.664638,a,,Gi?i thi?u,0,5/30/2026 11:11
+729,195,add_product_button,v11,0.71,0.6635,0.7278,0.5282,0.615,0.664434,a,,Phone Shop,0,5/30/2026 11:11
+730,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.651144,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:11
+731,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.651144,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:11
+732,195,add_product_button,v11,0.765,0.7624,0.6715,0.5439,0.365,0.651144,a,,Chi ti?t s?n ph?m,0,5/30/2026 11:11
+733,196,product_name_field,v11,0.84,1,0.88,0.7279,0.365,0.792198,input,,,1,5/30/2026 11:11
+734,196,product_name_field,v11,0.69,1,0.8459,0.6283,0.615,0.775426,input,,,0,5/30/2026 11:11
+735,196,product_name_field,v11,0.69,1,0.8252,0.539,0.615,0.76057,input,,,0,5/30/2026 11:11
+736,196,product_name_field,v11,0.69,1,0.8283,0.5278,0.615,0.759846,input,,,0,5/30/2026 11:11
+737,196,product_name_field,v11,0.69,1,0.8283,0.5278,0.615,0.759846,input,,,0,5/30/2026 11:11
+738,196,product_name_field,v11,0.59,1,0.8058,0.539,0.615,0.72969,input,,,0,5/30/2026 11:11
+739,197,product_price_field,v11,0.93,1,0.88,0.7226,0.365,0.815862,input,,,1,5/30/2026 11:11
+740,197,product_price_field,v11,0.69,1,0.8311,0.5107,0.615,0.758354,input,,,0,5/30/2026 11:11
+741,197,product_price_field,v11,0.59,1,0.8236,0.5411,0.615,0.733502,input,,,0,5/30/2026 11:11
+742,197,product_price_field,v11,0.59,1,0.8096,0.5222,0.615,0.728434,input,,,0,5/30/2026 11:11
+743,197,product_price_field,v11,0.59,1,0.8096,0.5222,0.615,0.728434,input,,,0,5/30/2026 11:11
+744,197,product_price_field,v11,0.59,1,0.8096,0.5107,0.615,0.727054,input,,,0,5/30/2026 11:11
+745,198,submit_product_button,v11,0.8671,0.8733,0.8612,0.6186,0.365,0.752231,button,,X�C NH?N �ANG S?N PH?M,1,5/30/2026 11:11
+746,198,submit_product_button,v11,0.7375,0.7662,0.617,0.4099,0.365,0.617651,button,,�ang xu?t,0,5/30/2026 11:11
+747,198,submit_product_button,v11,0.6375,0.7638,0.5812,0.6067,0.365,0.606531,button,,+ Th�m phi�n b?n m�u,0,5/30/2026 11:11
+748,198,submit_product_button,v11,0.6375,0.6907,0.5812,0.5083,0.365,0.577179,button,,+ Th�m t�y ch?n dung lu?ng,0,5/30/2026 11:11
+749,198,submit_product_button,v11,0.6729,0.62,0.5005,0.4085,0.615,0.584153,button,,�,0,5/30/2026 11:11
+750,198,submit_product_button,v11,0.6729,0.62,0.5005,0.4085,0.615,0.584153,button,,�,0,5/30/2026 11:11
