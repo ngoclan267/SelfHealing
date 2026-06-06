@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// V5: Context only - breadcrumb, contact info sidebar, nearby helper text, disclaimer
-// data-testid DELETED completely
-// UNCHANGED: text labels/button, id, name, placeholder, structure, visual
+// V6: Attribute + Semantic
+// data-testid "v6-", id/name/aria changed; label text, button text, title changed
+// UNCHANGED: structure, visual, context
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
@@ -12,18 +12,18 @@ const Contact = () => {
     const token = sessionStorage.getItem('token');
     const validate = () => {
         const e = { name: '', phone: '', message: '' }; let ok = true;
-        if (!formData.name.trim()) { e.name = 'Vui lòng nhập họ và tên.'; ok = false; }
-        if (!formData.phone.trim()) { e.phone = 'Vui lòng nhập số điện thoại.'; ok = false; }
-        else if (!/^\d{10}$/.test(formData.phone.trim())) { e.phone = 'Số điện thoại phải gồm đúng 10 chữ số.'; ok = false; }
-        if (!formData.message.trim()) { e.message = 'Vui lòng nhập lời nhắn.'; ok = false; }
-        else if (formData.message.trim().length > 500) { e.message = `Lời nhắn không được vượt quá 500 ký tự (hiện tại: ${formData.message.trim().length}).`; ok = false; }
+        if (!formData.name.trim()) { e.name = 'Vui lòng nhập tên.'; ok = false; }
+        if (!formData.phone.trim()) { e.phone = 'Vui lòng nhập SĐT.'; ok = false; }
+        else if (!/^\\d{10}$/.test(formData.phone.trim())) { e.phone = 'SĐT phải đúng 10 số.'; ok = false; }
+        if (!formData.message.trim()) { e.message = 'Vui lòng nhập nội dung.'; ok = false; }
+        else if (formData.message.trim().length > 500) { e.message = 'Tối đa 500 ký tự.'; ok = false; }
         setErrors(e); return ok;
     };
-    const handleChange = (field, value) => { setFormData({ ...formData, [field]: value }); if (errors[field]) setErrors({ ...errors, [field]: '' }); };
+    const handleChange = (f, v) => { setFormData({ ...formData, [f]: v }); if (errors[f]) setErrors({ ...errors, [f]: '' }); };
     const handleSubmit = async (e) => {
         e.preventDefault(); if (!validate()) return;
-        try { await axios.post('http://localhost:5000/api/contact', formData); alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm! ^^'); setFormData({ name: '', phone: '', message: '' }); }
-        catch { alert('Có lỗi xảy ra, vui lòng thử lại!!!'); }
+        try { await axios.post('http://localhost:5000/api/contact', formData); alert('Gửi thành công!'); setFormData({ name: '', phone: '', message: '' }); }
+        catch { alert('Lỗi, thử lại!'); }
     };
     if (!token) return (
         <div className="container mt-5">
@@ -36,64 +36,45 @@ const Contact = () => {
     );
     return (
         <div className="container mt-5">
-            {/* Context: breadcrumb */}
-            <nav aria-label="breadcrumb" className="mb-3">
-                <ol className="breadcrumb small">
-                    <li className="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li className="breadcrumb-item active">Liên hệ</li>
-                </ol>
-            </nav>
-            <p className="text-muted mb-4">Hãy để lại thông tin, đội ngũ hỗ trợ sẽ phản hồi trong vòng 24 giờ.</p>
-            <div className="row g-4">
-                {/* Context: contact info sidebar */}
-                <div className="col-md-4">
-                    <div className="card border-0 bg-light p-4 h-100">
-                        <h6 className="fw-bold mb-3">Thông tin liên hệ</h6>
-                        <p className="small text-muted mb-2">📍 123 Lê Lợi, Quận 1, TP.HCM</p>
-                        <p className="small text-muted mb-2">📞 1800-xxxx (miễn phí)</p>
-                        <p className="small text-muted mb-2">✉️ support@applestore.vn</p>
-                        <hr />
-                        <h6 className="fw-bold mb-2">Giờ làm việc</h6>
-                        <p className="small text-muted mb-1">Thứ 2 - Thứ 6: 8:00 - 20:00</p>
-                        <p className="small text-muted">Thứ 7 - CN: 9:00 - 17:00</p>
-                    </div>
-                </div>
-                <div className="col-md-8">
-                    <div className="card p-4 shadow">
-                        <h2 className="text-center mb-4">Liên hệ với chúng tôi</h2>
-                        <form onSubmit={handleSubmit} noValidate>
-                            <div className="mb-3">
-                                <label className="form-label">Họ và tên</label>
-                                {/* Context: nearby helper */}
-                                <small className="text-muted d-block mb-1">VD: Nguyễn Văn A</small>
-                                <input type="text" id="contact-name" placeholder="Nhập họ và tên của bạn"
-                                    className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                                    value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
-                                {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Số điện thoại</label>
-                                <small className="text-muted d-block mb-1">VD: 0912 345 678</small>
-                                <input type="text" id="contact-phone" placeholder="Nhập số điện thoại (10 chữ số)"
-                                    className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
-                                    value={formData.phone} onChange={(e) => handleChange('phone', e.target.value)} />
-                                {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Lời nhắn <span className="text-muted ms-2" style={{ fontSize: '0.85em' }}>({formData.message.length}/500)</span></label>
-                                <small className="text-muted d-block mb-1">Mô tả ngắn gọn vấn đề cần hỗ trợ</small>
-                                <input type="text" id="contact-mess" placeholder="Nhập lời nhắn của bạn (tối đa 500 ký tự)"
-                                    className={`form-control ${errors.message ? 'is-invalid' : ''}`}
-                                    value={formData.message} onChange={(e) => handleChange('message', e.target.value)} />
-                                {errors.message && <div className="invalid-feedback">{errors.message}</div>}
-                            </div>
-                            {/* Context: disclaimer near button */}
-                            <small className="text-muted d-block mb-3">Bằng cách gửi, bạn đồng ý để chúng tôi liên hệ lại theo thông tin trên.</small>
-                            <div className="row justify-content-center mb-3">
-                                <button type="submit" className="btn btn-primary w-17 rounded-pill fw-bold">Gửi thông tin</button>
-                            </div>
-                        </form>
-                    </div>
+            <div className="row justify-content-center">
+                <div className="col-md-6 card p-4 shadow">
+                    <h2 className="text-center mb-4">Gửi tin nhắn cho chúng tôi</h2>
+                    <form onSubmit={handleSubmit} noValidate>
+                        <div className="mb-3">
+                            <label className="form-label">Tên người liên hệ</label>
+                            <input type="text" id="sender-name-field" data-testid="v6-contact-name"
+                                name="senderName" aria-label="Tên người gửi liên hệ"
+                                placeholder="Họ tên đầy đủ của bạn"
+                                className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                                value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
+                            {errors.name && <div className="invalid-feedback" data-testid="v6-err-name">{errors.name}</div>}
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Số điện thoại liên lạc</label>
+                            <input type="text" id="sender-phone-field" data-testid="v6-contact-phone"
+                                name="senderPhone" aria-label="Số điện thoại liên lạc"
+                                placeholder="SĐT để chúng tôi gọi lại (10 số)"
+                                className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                                value={formData.phone} onChange={(e) => handleChange('phone', e.target.value)} />
+                            {errors.phone && <div className="invalid-feedback" data-testid="v6-err-phone">{errors.phone}</div>}
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Nội dung tin nhắn
+                                <span className="text-muted ms-2" style={{ fontSize: '0.85em' }}>({formData.message.length}/500)</span>
+                            </label>
+                            <input type="text" id="sender-message-field" data-testid="v6-contact-mess"
+                                name="senderMessage" aria-label="Nội dung tin nhắn gửi đi"
+                                placeholder="Bạn muốn hỏi gì? (tối đa 500 ký tự)"
+                                className={`form-control ${errors.message ? 'is-invalid' : ''}`}
+                                value={formData.message} onChange={(e) => handleChange('message', e.target.value)} />
+                            {errors.message && <div className="invalid-feedback" data-testid="v6-err-mess">{errors.message}</div>}
+                        </div>
+                        <div className="row justify-content-center mb-3">
+                            <button type="submit" data-testid="v6-btn-contact-submit"
+                                aria-label="Gửi tin nhắn liên hệ"
+                                className="btn btn-primary w-17 rounded-pill fw-bold">Gửi tin nhắn</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
