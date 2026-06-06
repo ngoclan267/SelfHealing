@@ -176,21 +176,21 @@ class SelfHealingDriverV2:
     def _maybe_retrain_model(self):
         """
         Kiểm tra điều kiện trigger retrain theo 2 giai đoạn:
-          - Lần đầu : train khi total_success >= FIRST_TRAIN_AFTER (60)
+          - Lần đầu : train khi total_success >= FIRST_TRAIN_AFTER (100)
           - Các lần sau: retrain thêm mỗi khi tích lũy thêm RETRAIN_EVERY (20) heal
         """
         try:
             total_success   = self._count_successful_heal_in_db()
             history_count   = self._lr_model._count_retrain_history()
-            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 60
+            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 100
             retrain_every   = LogisticWeightModel.RETRAIN_EVERY        # 20
 
             # Tính số lần đáng lẽ đã train dựa trên công thức 2 giai đoạn
             if total_success < first_threshold:
-                # Chưa đủ 60 heal → chưa train lần nào
+                # Chưa đủ 100 heal → chưa train lần nào
                 should_have_trained = 0
             else:
-                # Lần 1 tại heal thứ 60, rồi mỗi 20 heal tiếp theo
+                # Lần 1 tại heal thứ 100, rồi mỗi 20 heal tiếp theo
                 should_have_trained = 1 + (total_success - first_threshold) // retrain_every
 
             logger.debug(
