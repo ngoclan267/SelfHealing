@@ -5,105 +5,317 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState({
-        name: "", description: "", pr: 0, category: "iphone", image: "",
-        specifications: [{ key: "", value: "" }], Gb: [{ label: "", price: 0 }],
+        name: "",
+        description: "",
+        pr: 0,
+        category: "iphone",
+        image: "",
+        specifications: [{ key: "", value: "" }],
+        Gb: [{ label: "", price: 0 }],
         variants: [{ colorName: "", colorCode: "", img: "" }]
     });
-    const handleChange = (e) => setProduct({ ...product, [e.target.name]: e.target.value });
-    const handleArrayChange = (index, field, subField, value) => {
-        setProduct(prev => { const a = [...prev[field]]; a[index] = { ...a[index], [subField]: value }; return { ...prev, [field]: a }; });
+
+    const handleChange = (e) => {
+        setProduct({ ...product, [e.target.name]: e.target.value });
     };
-    const addField = (field, def) => setProduct({ ...product, [field]: [...product[field], def] });
-    const removeField = (field, index) => setProduct({ ...product, [field]: product[field].filter((_, i) => i !== index) });
+
+    const handleArrayChange = (index, field, subField, value) => {
+        setProduct(prev => {
+            const updatedArray = [...prev[field]];
+            updatedArray[index] = { ...updatedArray[index], [subField]: value };
+            return { ...prev, [field]: updatedArray };
+        });
+    };
+
+    const addField = (field, defaultValue) => {
+        setProduct({ ...product, [field]: [...product[field], defaultValue] });
+    };
+
+    const removeField = (field, index) => {
+        const updatedArray = product[field].filter((_, i) => i !== index);
+        setProduct({ ...product, [field]: updatedArray });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = sessionStorage.getItem('token');
-        const clean = product.specifications.filter(s => s.key.trim() && s.value.trim());
-        const img = Array.isArray(product.image) ? product.image : [product.image];
+        const cleanSpecifications = product.specifications.filter(
+            spec => spec.key.trim() !== "" && spec.value.trim() !== ""
+        );
+        const finalImage = Array.isArray(product.image) ? product.image : [product.image];
+        const dataToSend = { ...product, specifications: cleanSpecifications, image: finalImage };
+
         try {
-            await axios.post(`http://localhost:5000/api/products/${product.category}`, { ...product, specifications: clean, image: img }, { headers: { Authorization: `Bearer ${token}` } });
-            alert("Thêm sản phẩm thành công!"); navigate("/");
-        } catch (err) { alert(err.response?.data?.message || "Lỗi"); }
+            await axios.post(`http://localhost:5000/api/products/${product.category}`, dataToSend, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            alert("Sản phẩm đã được đăng bán thành công!");
+            navigate("/");
+        } catch (err) {
+            alert(err.response?.data?.message || "Thêm sản phẩm thất bại");
+        }
     };
+
+    const sectionStyle = {
+        background: '#f0f8f6',
+        border: '1px solid #b2d8d0',
+        borderRadius: '8px',
+        padding: '28px',
+        marginBottom: '24px'
+    };
+
+    const inputStyle = {
+        width: '100%',
+        border: '1px solid #b2d8d0',
+        borderRadius: '6px',
+        padding: '10px 14px',
+        fontSize: '14px',
+        background: '#fff',
+        outline: 'none',
+        boxSizing: 'border-box',
+        fontFamily: 'inherit',
+        color: '#1a3a35'
+    };
+
+    const labelStyle = {
+        display: 'block',
+        color: '#2a7a6a',
+        fontSize: '11px',
+        fontWeight: '700',
+        letterSpacing: '1px',
+        textTransform: 'uppercase',
+        marginBottom: '6px'
+    };
+
     return (
-        <div className="container mt-5 mb-5">
-            <h2 className="text-center mb-4 fw-bold text-uppercase">Đăng ký sản phẩm mới</h2>
-            <form onSubmit={handleSubmit} className="card p-4 shadow-lg border-0 bg-light">
-                <section className="mb-4">
-                    <h5 className="border-bottom pb-2">A. Thông tin nhận diện sản phẩm</h5>
-                    <div className="row g-3">
-                        <div className="col-md-6">
-                            <label className="form-label fw-bold">Tên hàng hoá</label>
-                            <input type="text" id="ap-product-name" data-testid="v6-ap-name" name="productTitle"
-                                aria-label="Tên hàng hoá cần đăng ký"
-                                className="form-control" required onChange={handleChange} placeholder="VD: iPhone 16 Pro Max" />
-                        </div>
-                        <div className="col-md-3">
-                            <label className="form-label fw-bold">Phân loại</label>
-                            <select id="ap-category" name="productCategory" data-testid="v6-ap-category"
-                                aria-label="Chọn phân loại sản phẩm" className="form-select" onChange={handleChange}>
-                                <option value="iphone">iPhone</option><option value="ipad">iPad</option>
-                                <option value="macbook">Macbook</option><option value="airpods">Airpods</option>
-                            </select>
-                        </div>
-                        <div className="col-md-3">
-                            <label className="form-label fw-bold">Mức giá khởi điểm</label>
-                            <input type="number" id="ap-product-price" name="basePrice" data-testid="v6-ap-price"
-                                aria-label="Mức giá khởi điểm" className="form-control" required onChange={handleChange} />
-                        </div>
-                        <div className="col-md-3">
-                            <input type="text" id="ap-product-img" name="imageUrl" data-testid="v6-ap-image"
-                                aria-label="URL hình ảnh" placeholder="Đường dẫn ảnh" className="form-control" onChange={handleChange} />
-                        </div>
-                        <div className="col-12">
-                            <label className="form-label fw-bold">Giới thiệu sản phẩm</label>
-                            <textarea id="ap-product-desc" name="productDescription" data-testid="v6-ap-description"
-                                aria-label="Nội dung giới thiệu sản phẩm"
-                                className="form-control" rows="3" onChange={handleChange}></textarea>
-                        </div>
-                    </div>
-                </section>
-                <section className="mb-4">
-                    <h5 className="border-bottom pb-2">B. Cấu hình kỹ thuật</h5>
-                    {product.specifications.map((spec, index) => (
-                        <div key={index} className="row g-2 mb-2" data-testid={"v6-ap-spec-row-" + index}>
-                            <div className="col-5"><input type="text" placeholder="Tên thông số" data-testid={"v6-ap-spec-key-" + index} className="form-control" value={spec.key} onChange={(e) => handleArrayChange(index, 'specifications', 'key', e.target.value)} /></div>
-                            <div className="col-6"><input type="text" placeholder="Giá trị" data-testid={"v6-ap-spec-val-" + index} className="form-control" value={spec.value} onChange={(e) => handleArrayChange(index, 'specifications', 'value', e.target.value)} /></div>
-                            <div className="col-1"><button type="button" data-testid={"v6-ap-rm-spec-" + index} className="btn btn-danger w-100" onClick={() => removeField('specifications', index)}>×</button></div>
-                        </div>
-                    ))}
-                    <button type="button" data-testid="v6-ap-add-spec" className="btn btn-sm btn-outline-primary" onClick={() => addField('specifications', { key: "", value: "" })}>+ Bổ sung thông số</button>
-                </section>
-                <section className="mb-4">
-                    <h5 className="border-bottom pb-2">C. Phiên bản lưu trữ</h5>
-                    {product.Gb.map((item, index) => (
-                        <div key={index} className="row g-2 mb-2" data-testid={"v6-ap-gb-row-" + index}>
-                            <div className="col-5"><input type="text" placeholder="Dung lượng (256 GB...)" data-testid={"v6-ap-gb-label-" + index} className="form-control" onChange={(e) => handleArrayChange(index, 'Gb', 'label', e.target.value)} /></div>
-                            <div className="col-6"><input type="number" placeholder="Giá tương ứng" data-testid={"v6-ap-gb-price-" + index} className="form-control" onChange={(e) => handleArrayChange(index, 'Gb', 'price', e.target.value)} /></div>
-                            <div className="col-1"><button type="button" data-testid={"v6-ap-rm-gb-" + index} className="btn btn-danger w-100" onClick={() => removeField('Gb', index)}></button></div>
-                        </div>
-                    ))}
-                    <button type="button" data-testid="v6-ap-add-gb" className="btn btn-sm btn-outline-primary" onClick={() => addField('Gb', { label: "", price: 0 })}>+ Thêm phiên bản lưu trữ</button>
-                </section>
-                <section className="mb-4">
-                    <h5 className="border-bottom pb-2">D. Tuỳ chọn màu sắc</h5>
+        <div style={{
+            minHeight: '100vh',
+            background: 'linear-gradient(135deg, #e8f5f2 0%, #f0f8f6 100%)',
+            padding: '40px 16px',
+            fontFamily: "'Segoe UI', sans-serif"
+        }}>
+            <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+
+                {/* BIẾN THỂ MÀU trước — đảo thứ tự section */}
+                <div style={sectionStyle}>
+                    <h5 style={{ color: '#1a5a4a', fontWeight: '700', fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '2px solid #b2d8d0' }}>
+                        ◈ PHỐI MÀU &amp; HÌNH ẢNH
+                    </h5>
                     {product.variants.map((variant, index) => (
-                        <div key={index} className="card p-3 mb-3 border-dashed">
-                            <div className="row g-2" data-testid={"v6-ap-variant-row-" + index}>
-                                <div className="col-md-4"><input type="text" placeholder="Tên màu" data-testid={"v6-ap-variant-name-" + index} className="form-control mb-2" onChange={(e) => handleArrayChange(index, 'variants', 'colorName', e.target.value)} /></div>
-                                <div className="col-md-3"><input type="color" data-testid={"v6-ap-variant-code-" + index} className="form-control form-control-color w-100 mb-2" onChange={(e) => handleArrayChange(index, 'variants', 'colorCode', e.target.value)} /></div>
-                                <div className="col-md-4"><input type="text" placeholder="URL ảnh màu" data-testid={"v6-ap-variant-img-" + index} className="form-control mb-2" onChange={(e) => handleArrayChange(index, 'variants', 'img', e.target.value)} /></div>
-                                <div className="col-md-1"><button type="button" data-testid={"v6-ap-rm-variant-" + index} className="btn btn-danger w-100" onClick={() => removeField('variants', index)}>×</button></div>
+                        <div key={index} style={{ background: '#fff', border: '1px solid #d0ede8', borderRadius: '6px', padding: '16px', marginBottom: '12px' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr auto', gap: '10px', alignItems: 'end' }}>
+                                <div>
+                                    <label style={labelStyle}>Tên màu</label>
+                                    <input
+                                        type="text"
+                                        placeholder="VD: Titan Tự Nhiên"
+                                        data-idx={index}
+                                        data-group="variant"
+                                        data-sub="colorName"
+                                        style={inputStyle}
+                                        onChange={(e) => handleArrayChange(index, 'variants', 'colorName', e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={labelStyle}>Mã màu</label>
+                                    <input
+                                        type="color"
+                                        data-idx={index}
+                                        data-group="variant"
+                                        data-sub="colorCode"
+                                        style={{ ...inputStyle, width: '60px', height: '44px', padding: '4px' }}
+                                        onChange={(e) => handleArrayChange(index, 'variants', 'colorCode', e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={labelStyle}>Link ảnh màu</label>
+                                    <input
+                                        type="text"
+                                        placeholder="https://..."
+                                        data-idx={index}
+                                        data-group="variant"
+                                        data-sub="img"
+                                        style={inputStyle}
+                                        onChange={(e) => handleArrayChange(index, 'variants', 'img', e.target.value)}
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    data-action="remove-variant"
+                                    onClick={() => removeField('variants', index)}
+                                    style={{ background: '#e55', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 14px', cursor: 'pointer', fontSize: '16px' }}
+                                >×</button>
                             </div>
                         </div>
                     ))}
-                    <button type="button" data-testid="v6-ap-add-variant" className="btn btn-sm btn-outline-primary" onClick={() => addField('variants', { colorName: "", colorCode: "", img: "" })}>+ Thêm màu sắc mới</button>
-                </section>
-                <hr />
-                <button type="submit" data-testid="v6-ap-submit" aria-label="Xác nhận đăng sản phẩm"
-                    className="btn btn-dark btn-lg w-100 rounded-pill shadow">XÁC NHẬN ĐĂNG SẢN PHẨM</button>
-            </form>
+                    <button type="button" data-action="add-variant" onClick={() => addField('variants', { colorName: "", colorCode: "", img: "" })}
+                        style={{ background: 'transparent', border: '1px dashed #2a7a6a', color: '#2a7a6a', borderRadius: '6px', padding: '8px 20px', cursor: 'pointer', fontSize: '13px' }}>
+                        + Thêm phối màu
+                    </button>
+                </div>
+
+                {/* DUNG LƯỢNG thứ hai — đảo thứ tự */}
+                <div style={sectionStyle}>
+                    <h5 style={{ color: '#1a5a4a', fontWeight: '700', fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '2px solid #b2d8d0' }}>
+                        ◈ CẤU HÌNH &amp; GIÁ BÁN
+                    </h5>
+                    {product.Gb.map((item, index) => (
+                        <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: '10px', alignItems: 'end', marginBottom: '10px' }}>
+                            <div>
+                                <label style={labelStyle}>Cấu hình bộ nhớ</label>
+                                <input
+                                    type="text"
+                                    placeholder="VD: 256 GB"
+                                    data-idx={index}
+                                    data-group="gb"
+                                    data-sub="label"
+                                    style={inputStyle}
+                                    onChange={(e) => handleArrayChange(index, 'Gb', 'label', e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label style={labelStyle}>Đơn giá (VND)</label>
+                                <input
+                                    type="number"
+                                    placeholder="0"
+                                    data-idx={index}
+                                    data-group="gb"
+                                    data-sub="price"
+                                    style={inputStyle}
+                                    onChange={(e) => handleArrayChange(index, 'Gb', 'price', e.target.value)}
+                                />
+                            </div>
+                            <button
+                                type="button"
+                                data-action="remove-gb"
+                                onClick={() => removeField('Gb', index)}
+                                style={{ background: '#e55', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 14px', cursor: 'pointer', alignSelf: 'end' }}
+                            >×</button>
+                        </div>
+                    ))}
+                    <button type="button" data-action="add-gb" onClick={() => addField('Gb', { label: "", price: 0 })}
+                        style={{ background: 'transparent', border: '1px dashed #2a7a6a', color: '#2a7a6a', borderRadius: '6px', padding: '8px 20px', cursor: 'pointer', fontSize: '13px' }}>
+                        + Thêm cấu hình
+                    </button>
+                </div>
+
+                {/* THÔNG SỐ thứ ba */}
+                <div style={sectionStyle}>
+                    <h5 style={{ color: '#1a5a4a', fontWeight: '700', fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '2px solid #b2d8d0' }}>
+                        ◈ ĐẶC ĐIỂM KỸ THUẬT
+                    </h5>
+                    {product.specifications.map((spec, index) => (
+                        <div key={index} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: '10px', alignItems: 'end', marginBottom: '10px' }}>
+                            <div>
+                                <label style={labelStyle}>Tên đặc điểm</label>
+                                <input
+                                    type="text"
+                                    placeholder="VD: Màn hình"
+                                    data-idx={index}
+                                    data-group="spec"
+                                    data-sub="key"
+                                    style={inputStyle}
+                                    value={spec.key}
+                                    onChange={(e) => handleArrayChange(index, 'specifications', 'key', e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label style={labelStyle}>Giá trị</label>
+                                <input
+                                    type="text"
+                                    placeholder="VD: 6.9 inch OLED"
+                                    data-idx={index}
+                                    data-group="spec"
+                                    data-sub="value"
+                                    style={inputStyle}
+                                    value={spec.value}
+                                    onChange={(e) => handleArrayChange(index, 'specifications', 'value', e.target.value)}
+                                />
+                            </div>
+                            <button
+                                type="button"
+                                data-action="remove-spec"
+                                onClick={() => removeField('specifications', index)}
+                                style={{ background: '#e55', color: '#fff', border: 'none', borderRadius: '6px', padding: '10px 14px', cursor: 'pointer', alignSelf: 'end' }}
+                            >×</button>
+                        </div>
+                    ))}
+                    <button type="button" data-action="add-spec" onClick={() => addField('specifications', { key: "", value: "" })}
+                        style={{ background: 'transparent', border: '1px dashed #2a7a6a', color: '#2a7a6a', borderRadius: '6px', padding: '8px 20px', cursor: 'pointer', fontSize: '13px' }}>
+                        + Thêm đặc điểm
+                    </button>
+                </div>
+
+                {/* THÔNG TIN CƠ BẢN cuối cùng — đảo thứ tự section */}
+                <div style={sectionStyle}>
+                    <h5 style={{ color: '#1a5a4a', fontWeight: '700', fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', margin: '0 0 20px', paddingBottom: '12px', borderBottom: '2px solid #b2d8d0' }}>
+                        ◈ THÔNG TIN CHUNG
+                    </h5>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                        <div>
+                            <label style={labelStyle}>Tên sản phẩm</label>
+                            <input type="text" name="name" data-field="name" placeholder="VD: iPhone 16 Pro Max" style={inputStyle} required onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label style={labelStyle}>Giá khởi điểm</label>
+                            <input type="number" name="pr" data-field="price" placeholder="0" style={inputStyle} required onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label style={labelStyle}>Phân loại</label>
+                            <select name="category" data-field="category" style={inputStyle} onChange={handleChange}>
+                                <option value="iphone">iPhone</option>
+                                <option value="ipad">iPad</option>
+                                <option value="macbook">MacBook</option>
+                                <option value="airpods">AirPods</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style={labelStyle}>Link ảnh đại diện</label>
+                            <input type="text" name="image" data-field="image" placeholder="https://..." style={inputStyle} onChange={handleChange} />
+                        </div>
+                    </div>
+                    <div>
+                        <label style={labelStyle}>Giới thiệu sản phẩm</label>
+                        <textarea name="description" data-field="desc" rows={4} placeholder="Mô tả ngắn gọn sản phẩm..." style={{ ...inputStyle, resize: 'vertical' }} onChange={handleChange} />
+                    </div>
+                </div>
+
+                {/* Submit — context đổi, màu khác */}
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button
+                        type="button"
+                        data-action="publish"
+                        onClick={handleSubmit}
+                        style={{
+                            background: 'linear-gradient(135deg, #1a5a4a, #2a8a6a)',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '8px',
+                            padding: '16px 64px',
+                            fontSize: '14px',
+                            fontWeight: '700',
+                            letterSpacing: '2px',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                            boxShadow: '0 4px 20px rgba(26,90,74,0.3)'
+                        }}
+                    >
+                        ĐĂNG SẢN PHẨM LÊN HỆ THỐNG
+                    </button>
+                </div>
+
+                {/* Tiêu đề ở DƯỚI CÙNG — đảo vị trí */}
+                <div style={{ textAlign: 'center', marginTop: '48px', paddingTop: '32px', borderTop: '1px solid #b2d8d0' }}>
+                    <p style={{ color: '#2a7a6a', fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', margin: '0 0 8px' }}>
+                        QUẢN TRỊ VIÊN
+                    </p>
+                    <h2 style={{ color: '#1a3a35', fontSize: '24px', fontWeight: '300', margin: 0 }}>
+                        Thêm sản phẩm mới vào kho
+                    </h2>
+                </div>
+            </div>
         </div>
     );
 };
+
 export default AddProduct;

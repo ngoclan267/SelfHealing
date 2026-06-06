@@ -2,58 +2,73 @@ import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-// V6: Attribute + Semantic
-// Attribute: data-testid "v6-", id/name/aria/placeholder changed
-// Semantic: title, labels, button text changed
-// UNCHANGED: structure, visual, context
-
+// V7: Structure + Visual
 const Register = () => {
     const [user, setUser] = useState({ email: '', password: '', role: 'user' });
-    const [emailError, setEmailError] = useState('');
+    const [emailError, setEmailError]=useState('');
     const navigate = useNavigate();
-    const validateEmail = (email) => /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
-    const handleEmailChange = (e) => {
-        const val = e.target.value; setUser({ ...user, email: val });
+    const validateEmail = (email)=>{ const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; return regex.test(email); }
+    const handleEmailChange=(e)=>{
+        const val=e.target.value;
+        setUser({...user,email:val});
         setEmailError(val && !validateEmail(val) ? 'Email không hợp lệ!' : '');
-    };
+    }
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (!validateEmail(user.email)) { setEmailError('Vui lòng nhập đúng định dạng email!'); return; }
+        if (!validateEmail(user.email)){ setEmailError('Vui lòng nhập dùng định dạng email!'); return; }
         try {
             const res = await axios.post('http://localhost:5000/api/auth/register', user);
-            alert(res.data.message || "Đăng ký thành công!"); navigate('/login');
-        } catch (err) { alert(err.response?.data?.message || "Đăng ký thất bại!"); }
+            alert(res.data.message || "Đăng ký thành công!");
+            navigate('/login');
+        } catch (err) { alert(err.response?.data?.message || "Đăng ký thất bại, email có thể đã tồn tại!"); }
     };
+
     return (
-        <div className="container mt-5">
-            <div className="card mx-auto shadow" style={{ maxWidth: '400px', borderRadius: '15px' }}>
-                <div className="card-body p-4">
-                    <h3 className="text-center fw-bold mb-4">Khởi tạo tài khoản</h3>
+        // Structure: row/col wrapping thay đổi
+        <div className="row justify-content-center mt-5">
+            <div className="col-12 col-sm-8 col-md-5">
+                <div className="text-center mb-3">
+                    <h3 className="fw-bold">Đăng ký tài khoản</h3>
+                </div>
+                <div className="card border-0 shadow-lg rounded-4 p-4">
+                    {/* Structure: link moved to TOP of form area */}
+                    <div className="text-center mb-3 pb-2 border-bottom">
+                        <small className="text-muted">Đã có tài khoản? <Link to="/login" className="text-dark fw-bold text-decoration-none">Đăng nhập</Link></small>
+                    </div>
                     <form onSubmit={handleRegister}>
                         <div className="mb-3">
-                            <label className="form-label small fw-bold">Địa chỉ Email</label>
-                            <input type="email" id="reg-email-ctrl" data-testid="v6-register-email"
-                                name="registrationEmail" aria-label="Địa chỉ email đăng ký tài khoản"
-                                className="form-control" placeholder="Email dùng để đăng nhập"
-                                required value={user.email} onChange={handleEmailChange} />
-                            {emailError && <div className='invalid-feedback d-block'>{emailError}</div>}
+                            <label className="form-label small fw-bold">Email</label>
+                            <input 
+                                type="email" 
+                                id="register-email"
+                                data-testid="field-register-email"
+                                className="form-control form-control-lg"
+                                placeholder="name@example.com" 
+                                required
+                                value={user.email}
+                                onChange={handleEmailChange} 
+                            />
+                            {emailError&&<div className='invalid-feedback d-block small text-danger mt-1'>{emailError}</div>}
                         </div>
                         <div className="mb-3">
-                            <label className="form-label small fw-bold">Tạo mật khẩu</label>
-                            <input type="password" id="reg-pass-ctrl" data-testid="v6-register-password"
-                                name="registrationPassword" aria-label="Tạo mật khẩu cho tài khoản"
-                                className="form-control" placeholder="Đặt mật khẩu bảo mật"
-                                required onChange={e => setUser({ ...user, password: e.target.value })} />
+                            <label className="form-label small fw-bold">Mật khẩu</label>
+                            <input 
+                                type="password" 
+                                id="register-password"
+                                data-testid="field-register-password"
+                                className="form-control form-control-lg"
+                                placeholder="••••••••" 
+                                required
+                                onChange={e => setUser({ ...user, password: e.target.value })} 
+                            />
                         </div>
-                        <button data-testid="v6-btn-register" aria-label="Hoàn tất tạo tài khoản"
-                            className="btn btn-success w-100 py-2 fw-bold mt-2">Tạo tài khoản</button>
+                        {/* Visual: btn-success -> btn-dark */}
+                        <button data-testid="action-register" className="btn btn-dark w-100 py-3 fw-bold mt-2 rounded-3">Đăng ký</button>
                     </form>
-                    <div className="text-center mt-3">
-                        <small className="text-muted">Đã có tài khoản? <Link to="/login" className="text-decoration-none">Quay lại đăng nhập</Link></small>
-                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
 export default Register;
