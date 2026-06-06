@@ -44,7 +44,7 @@ def print_stats():
             print(f"  └─ Failed heals     : {failed}")
 
             # ── Training threshold ────────────────────────────────────
-            FIRST_TRAIN_AT   = 140
+            FIRST_TRAIN_AT   = 100
             RETRAIN_EVERY    = 20
 
             if success < FIRST_TRAIN_AT:
@@ -70,33 +70,58 @@ def print_stats():
                     ).fetchone()
                     if last:
                         print(f"\n  Last trained at     : {last['trained_at']}")
-                        # In weights nếu có cột riêng
                         for col in last.keys():
-                            if col not in ('id', 'trained_at', 'trigger_count'):
+                            if col not in ('id', 'trained_at', 'notes', 'trigger_count'):
                                 val = last[col]
                                 if isinstance(val, float):
                                     print(f"    {col:<14}: {val:.4f}")
+                                elif val is not None:
+                                    print(f"    {col:<14}: {val}")
 
             except sqlite3.OperationalError:
                 print(f"  learned_weights     : (bảng chưa tồn tại — chưa train lần nào)")
-
-            # ── Retrain history ───────────────────────────────────────
-            try:
-                retrain_count = conn.execute(
-                    "SELECT COUNT(*) FROM retrain_history"
-                ).fetchone()[0]
-                print(f"  Retrain history     : {retrain_count} entries")
-            except sqlite3.OperationalError:
-                pass
 
             # ── Candidates ────────────────────────────────────────────
             try:
                 cands = conn.execute(
                     "SELECT COUNT(*) FROM candidate_scores"
                 ).fetchone()[0]
-                print(f"  Candidate scores    : {cands} rows (training data)")
+                winners = conn.execute(
+                    "SELECT COUNT(*) FROM candidate_scores WHERE is_correct=1"
+                ).fetchone()[0]
+                print(f"\n  Candidate scores    : {cands} rows (training data)")
+                print(f"  ├─ Winners          : {winners}")
+                print(f"  └─ Losers           : {cands - winners}")
             except sqlite3.OperationalError:
                 pass
+
+            # ── Locator Cache (MỚI — thay healing_map.json) ──────────
+            try:
+                cache_total = conn.execute(
+                    "SELECT COUNT(*) FROM locator_cache"
+                ).fetchone()[0]
+                cache_hits_total = conn.execute(
+                    "SELECT COALESCE(SUM(times_used), 0) FROM locator_cache"
+                ).fetchone()[0]
+
+                print(f"\n  Locator cache       : {cache_total} entries (thay healing_map.json)")
+                print(f"  └─ Tổng cache hits  : {cache_hits_total} lần skip full-healing")
+
+                if cache_total > 0:
+                    top_rows = conn.execute("""
+                        SELECT step_name, old_locator_value, new_locator_value,
+                               times_used, confidence
+                        FROM locator_cache
+                        ORDER BY times_used DESC LIMIT 5
+                    """).fetchall()
+                    if top_rows:
+                        print(f"\n  Top cache entries (by hits):")
+                        for r in top_rows:
+                            print(f"    [{r['times_used']:>3}x] step={r['step_name'][:25]:<25} "
+                                  f"-> {r['new_locator_value'][:30]} "
+                                  f"(conf={r['confidence']:.2f})")
+            except sqlite3.OperationalError:
+                print(f"\n  Locator cache       : (bảng chưa tồn tại — cần migrate DB)")
 
         print(f"{'═'*55}\n")
 

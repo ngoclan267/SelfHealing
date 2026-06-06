@@ -1,21 +1,3 @@
-"""
-db/db_manager.py  —  SQLite Database Manager
-═══════════════════════════════════════════════════════════════════════
-
-MỤC ĐÍCH:
-    Lưu trữ snapshot và healing log vào SQLite.
-
-SCHEMA — 3 bảng:
-    snapshots        : fingerprint element tại lúc test PASS
-    healing_events   : lịch sử mỗi lần healing
-    candidate_scores : tất cả ứng viên của mỗi lần healing
-                       (winner + losers, dùng để phân tích sau này)
-
-LUỒNG DỮ LIỆU:
-    Test PASS → save_snapshot()
-    Healing   → save_healing_event() + save_candidate_scores()
-"""
-
 import sqlite3
 import json
 from pathlib import Path
@@ -39,11 +21,6 @@ class DBManager:
         # Tạo database và toàn bộ bảng nếu chưa tồn tại
         self._init_db()
         logger.info(f"[DB] Đã kết nối SQLite: {self.db_path.resolve()}")
-
-    # ──────────────────────────────────────────────────────────────
-    # KHỞI TẠO
-    # ──────────────────────────────────────────────────────────────
-
     def _init_db(self):
         """
         Tạo 3 bảng nếu chưa tồn tại.
@@ -201,6 +178,38 @@ class DBManager:
                     ON candidate_scores(step_name, ui_version);
 
                 -- ═══════════════════════════════════════════════════
+                -- BẢNG 5: locator_cache
+                -- Cache locator đã heal thành công 
+                -- lookup() -> skip full-healing cho element đã biết
+                -- Tích lũy qua nhiều CI run nhờ actions/cache trên healing.db
+                -- ═══════════════════════════════════════════════════
+                CREATE TABLE IF NOT EXISTS locator_cache (
+                    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                    -- Key để tra cứu
+                    step_name           TEXT NOT NULL,
+                    ui_version          TEXT NOT NULL,
+                    old_locator_type    TEXT NOT NULL,
+                    old_locator_value   TEXT NOT NULL,
+
+                    -- Locator mới đã heal thành công
+                    new_locator_type    TEXT NOT NULL,
+                    new_locator_value   TEXT NOT NULL,
+
+                    -- Thống kê
+                    confidence          REAL DEFAULT 0,
+                    times_used          INTEGER DEFAULT 0,
+                    last_used_at        TEXT,
+                    learned_at          TEXT DEFAULT (datetime('now')),
+
+                    UNIQUE(step_name, ui_version, old_locator_type, old_locator_value)
+                        ON CONFLICT REPLACE
+                );
+
+                CREATE INDEX IF NOT EXISTS idx_locator_cache_lookup
+                    ON locator_cache(step_name, ui_version, old_locator_type, old_locator_value);
+
+                -- ═══════════════════════════════════════════════════
                 -- BẢNG 3: learned_weights
                 -- Lưu trọng số đã học từ ML
                 -- Được load lại mỗi khi SimilarityEngine khởi động
@@ -236,11 +245,7 @@ class DBManager:
         conn.execute("PRAGMA journal_mode=WAL")
         conn.execute("PRAGMA foreign_keys=ON")
         return conn
-
-    # ──────────────────────────────────────────────────────────────
-    # BẢNG 1: snapshots
-    # ──────────────────────────────────────────────────────────────
-
+    
     def save_snapshot(self, snap) -> int:
         """
         Lưu ElementSnapshot vào database.
@@ -311,11 +316,7 @@ class DBManager:
             except Exception:
                 d['classes'] = []
             return d
-
-    # ──────────────────────────────────────────────────────────────
-    # BẢNG 2: healing_events
-    # ──────────────────────────────────────────────────────────────
-
+        
     def save_healing_event(self,
                            step_name: str,
                            ui_version: str,
@@ -589,11 +590,7 @@ class DBManager:
             "avg_score":      round(avg_score, 4),
             "by_version":     [dict(r) for r in by_version]
         }
-
-    # ──────────────────────────────────────────────────────────────
-    # BẢNG 3: learned_weights
-    # ──────────────────────────────────────────────────────────────
-
+        
     def save_learned_weights(self, weights: Dict[str, float],
                              accuracy: float,
                              n_samples: int,
@@ -670,3 +667,77 @@ class DBManager:
             }
             for row in rows
         ]
+    def cache_lookup(self, step_name: str, old_by: str,
+                     old_val: str, ui_version: str) -> Optional[tuple]:
+        """
+        Tra cache: step này đã từng heal thành công chưa?
+        Trả về (new_by, new_val) nếu có, None nếu chưa.
+        """
+        with self._connect() as conn:
+            row = conn.execute("""
+                SELECT new_locator_type, new_locator_value
+                FROM locator_cache
+                WHERE step_name         = ?
+                  AND ui_version        = ?
+                  AND old_locator_type  = ?
+                  AND old_locator_value = ?
+                LIMIT 1
+            """, (step_name, ui_version, old_by, old_val)).fetchone()
+
+        if row:
+            logger.debug(f"[Cache] HIT: step={step_name} -> {row['new_locator_type']}='{row['new_locator_value']}'")
+            return (row["new_locator_type"], row["new_locator_value"])
+        return None
+
+    def cache_learn(self, step_name: str, old_by: str, old_val: str,
+                    new_by: str, new_val: str, confidence: float,
+                    ui_version: str) -> None:
+        """
+        Lưu kết quả heal vào locator_cache.
+        ON CONFLICT REPLACE: nếu key đã tồn tại -> ghi đè (locator mới nhất).
+        """
+        with self._connect() as conn:
+            conn.execute("""
+                INSERT OR REPLACE INTO locator_cache (
+                    step_name, ui_version,
+                    old_locator_type, old_locator_value,
+                    new_locator_type, new_locator_value,
+                    confidence, times_used, learned_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
+            """, (step_name, ui_version, old_by, old_val,
+                  new_by, new_val, confidence))
+        logger.info(f"[Cache] Learned: step={step_name} "
+                    f"{old_by}='{old_val}' -> {new_by}='{new_val}' "
+                    f"confidence={confidence:.2f}")
+
+    def cache_increment_usage(self, step_name: str, old_by: str,
+                              old_val: str, ui_version: str) -> None:
+        """Tăng times_used và cập nhật last_used_at khi cache hit."""
+        with self._connect() as conn:
+            conn.execute("""
+                UPDATE locator_cache
+                SET times_used   = times_used + 1,
+                    last_used_at = datetime('now')
+                WHERE step_name         = ?
+                  AND ui_version        = ?
+                  AND old_locator_type  = ?
+                  AND old_locator_value = ?
+            """, (step_name, ui_version, old_by, old_val))
+
+    def get_cache_stats(self) -> Dict:
+        """Thống kê locator_cache — dùng trong db_stats.py."""
+        with self._connect() as conn:
+            total = conn.execute(
+                "SELECT COUNT(*) FROM locator_cache"
+            ).fetchone()[0]
+
+            top_used = conn.execute("""
+                SELECT step_name, new_locator_value, times_used
+                FROM locator_cache
+                ORDER BY times_used DESC LIMIT 5
+            """).fetchall()
+
+        return {
+            "total_cached_locators": total,
+            "top_used": [dict(r) for r in top_used],
+        }
