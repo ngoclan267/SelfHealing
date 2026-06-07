@@ -189,7 +189,7 @@ class SelfHealingDriverV2:
         try:
             total_success   = self._count_successful_heal_in_db()
             history_count   = self._lr_model._count_retrain_history()
-            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 60
+            first_threshold = LogisticWeightModel.FIRST_TRAIN_AFTER   # 100
             retrain_every   = LogisticWeightModel.RETRAIN_EVERY        # 20
 
             # Tính số lần đáng lẽ đã train dựa trên công thức 2 giai đoạn
