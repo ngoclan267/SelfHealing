@@ -40,7 +40,7 @@ def build_login_cases():
     #     (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 1"),
     #     (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 2"),
     #     (ADMIN_EMAIL, ADMIN_PASS,  True,  "admin đúng — lần 3"),
-    # ]
+    # ]#
     cases = []
     for email, pwd, expect, desc in base: #+ edges:
         cases.append({
